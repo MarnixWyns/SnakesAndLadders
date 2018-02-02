@@ -6,6 +6,7 @@ package be.kdg.SnakesAndLadders.view;/*
 import be.kdg.SnakesAndLadders.model.PieceColor;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 
 
@@ -33,6 +34,9 @@ public class SetupView extends GridPane {
     private ComboBox<PieceColor> colorPickerP2;
     private ComboBox<PieceColor> colorPickerP3;
     private ComboBox<PieceColor> colorPickerP4;
+
+    private ColumnConstraints column1;
+    private ColumnConstraints column2;
 
     //region Number of players
     //ToggleGroup, user can choose only one option at a time (radiobutton)
@@ -77,7 +81,7 @@ public class SetupView extends GridPane {
         lblSelectPlayers = new Label("Select number of players");
         lblSelectDifficulty = new Label("Select Difficulty");
 
-        colorPickerP1 = new ComboBox<String>(PieceColor.values().toString()); //TODO: initialising ComboBoxes with correct values
+        //colorPickerP1 = new ComboBox<String>(PieceColor.values().toString()); //TODO: initialising ComboBoxes with correct values
 
 
         //region Init Ammount Players RadioButtonGrouop
@@ -99,9 +103,18 @@ public class SetupView extends GridPane {
         difficultyToggle = new ToggleGroup();
         difficultyToggle.getToggles().addAll(easyDifficulty, normalDifficulty, hardDifficulty);
         //endregion
+
+        //Gridpane initialisation
+        //column1.setPercentWidth(65);
+        //column2.setPercentWidth(35);
+
+
+
     }
 
     private void layoutNodes() {
+        //Gridpane view for main image
+        //add(ivBackground,0,1);
     }
 
 

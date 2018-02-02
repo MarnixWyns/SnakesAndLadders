@@ -30,8 +30,8 @@ public class GameView extends GridPane {
     }
 
     private void initialiseNodes() {
-        ivDice = new ImageView(new Image("")); //TODO: Add image path
-        ivContextBackground = new ImageView(); //TODO: Make contextbackground flat, neutral color
+        //ivDice = new ImageView(new Image("")); //TODO: Add image path
+        //ivContextBackground = new ImageView(); //TODO: Make contextbackground flat, neutral color
 
         btnRollDice = new Button("Roll the dice!");
         btnExit = new Button("Exit");

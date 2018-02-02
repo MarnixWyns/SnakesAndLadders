@@ -4,5 +4,5 @@ package be.kdg.SnakesAndLadders.model;/*
  */
 
 public class Feedback {
-
+//TODO: Ruben amuseer u
 }

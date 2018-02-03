@@ -3,11 +3,9 @@ package be.kdg.SnakesAndLadders.view;/*
  * 2/02/2018
  */
 
-import com.sun.prism.paint.Color;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
@@ -22,6 +20,8 @@ public class GameView extends GridPane {
     private Button btnRollDice;
     private Button btnExit;
     private ToggleButton tbtnFullscreen;
+
+    private final String DIEURL = "be/kdg/SnakesAndLadders/DieImages/die";
 
 
     public GameView() {
@@ -43,6 +43,15 @@ public class GameView extends GridPane {
 
     }
 
+    Button getBtnRollDice() {
+        return btnRollDice;
+    }
 
+    ImageView getIvDice(){
+        return ivDice;
+    }
 
+    String getDIEURL(){
+        return DIEURL;
+    }
 }

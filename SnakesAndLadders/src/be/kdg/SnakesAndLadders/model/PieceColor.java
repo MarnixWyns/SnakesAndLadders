@@ -4,12 +4,18 @@ package be.kdg.SnakesAndLadders.model;/*
  */
 
 public enum PieceColor {
-    BLUE(30,144,255), YELLOW(255,255,0), RED(255,0,0), GREEN(34,139,34);
+    BLUE("Blue"), YELLOW("Yellow"), RED("Red"), GREEN("Green");
 
-    PieceColor(int R, int G, int B) {
+    private String colorString;
 
+    PieceColor( String colorString) {
+        this.colorString = colorString;
     }
 
+    @Override
+    public String toString() {
+        return colorString;
+    }
 }
 
 

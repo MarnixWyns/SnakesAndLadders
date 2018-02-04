@@ -9,7 +9,9 @@ import be.kdg.SnakesAndLadders.view.Presenter;
 import be.kdg.SnakesAndLadders.view.SetupView;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
     @Override
@@ -18,16 +20,30 @@ public class Main extends Application {
         GameView gameView = new GameView();
         SetupView setupView = new SetupView();
 
+
         Presenter presenter = new Presenter(model,gameView,setupView);
 
+        Scene gameScene = new Scene(gameView);
+        Stage secondaryStage = new Stage();
         Scene setupScene = new Scene(setupView);
+
+        secondaryStage.setScene(gameScene);
+        secondaryStage.setTitle("GameView");
+        secondaryStage.setResizable(false);
+
         primaryStage.setScene(setupScene);
-        primaryStage.setTitle("Snakes And Ladders");
+        primaryStage.setTitle("SetupView");
+        primaryStage.setResizable(false);
 
-        primaryStage.setMinHeight(576);
-        primaryStage.setMinWidth(1024);
+        primaryStage.setHeight(600);
+        primaryStage.setWidth(1024);
+        secondaryStage.setHeight(600);
+        secondaryStage.setWidth(1024);
 
+
+        secondaryStage.show();
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {

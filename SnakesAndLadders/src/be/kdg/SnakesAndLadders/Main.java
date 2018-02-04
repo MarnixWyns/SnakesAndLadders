@@ -41,7 +41,7 @@ public class Main extends Application {
         secondaryStage.setWidth(1024);
 
 
-        secondaryStage.show();
+        //secondaryStage.show();
         primaryStage.show();
 
     }

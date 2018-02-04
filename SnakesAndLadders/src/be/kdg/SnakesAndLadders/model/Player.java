@@ -7,17 +7,15 @@ public class Player {
     private PieceColor color;
     private String username;
 
-    //Coordinates for positioning in board
-    private int Xval;
-    private int Yval;
+    //number field has where player currently is
+    private int playerPos;
+
 
     public Player(PieceColor color, String username) {
         this.color = color;
         this.username = username;
-
         //Start position in array coordinates
-        Xval = 0;
-        Yval = 9;
+        playerPos = 1;
     }
 
     public PieceColor getColor() {
@@ -29,20 +27,27 @@ public class Player {
     }
 
     //region Coordinate methods
-    public void setXval(int xval) {
-        Xval = xval;
+
+    public void setPlayerPos(int addToPos) {
+        if (playerPos + addToPos > 100){
+            //Returns player x positions if not on 100
+            playerPos = 100 - ((playerPos+addToPos) - 100);
+        }
+        else playerPos = playerPos + addToPos;
+
     }
 
-    public void setYval(int yval) {
-        Yval = yval;
-    }
-
+    //Horizontal pos
     public int getXval() {
-        return Xval;
+        if (playerPos % 10 == 0){
+            return 0;
+        }
+        else return playerPos % 10;
     }
 
+    //Vertical pos
     public int getYval() {
-        return Yval;
+        return 10 - (playerPos / 10);
     }
     //endregion
 }

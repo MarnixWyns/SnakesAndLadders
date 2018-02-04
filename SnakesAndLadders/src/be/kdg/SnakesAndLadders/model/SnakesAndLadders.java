@@ -13,6 +13,7 @@ public class SnakesAndLadders {
     private Stage stage = new Stage();
 
     public void startGame(){
+
     }
 
 

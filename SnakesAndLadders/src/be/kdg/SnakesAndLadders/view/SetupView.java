@@ -7,6 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
@@ -207,6 +210,7 @@ public class SetupView extends BorderPane {
 
         //TODO: kdacht da dees de achtergronden van de opties in de comboboxen zou aan passen
         //todo: niet dus
+        /*
         colorPickerP1.setStyle("-fx-text-box-border: Yellow;" +
                 "-fx-text-box-border: Green;" +
                 "-fx-text-box-border: Blue;" +
@@ -223,7 +227,7 @@ public class SetupView extends BorderPane {
                 "-fx-text-box-border: Green;" +
                 "-fx-text-box-border: Blue;" +
                 "-fx-text-box-border: Red;");
-
+*/
 
         //Achtergrond veranderen van kleur, bvb rood (zie hieronder)
         //setStyle("-fx-background-color: WHITE;");
@@ -287,17 +291,65 @@ public class SetupView extends BorderPane {
         nameAndColors.setPadding(new Insets(20, 0, 0, 0));
         playerDifficuty.setPadding(new Insets(10, 0, 0, 0));
         setRight(setupMenu);
+
+        //Default Selections of toggleGroups
+        easyDifficulty.setSelected(true);
+        fourPlayers.setSelected(true);
     }
 
-    public Button getBtnStartGame() {
+    Button getBtnStartGame() {
         return btnStartGame;
     }
 
-    public Button getBtnExitGame() {
+    Button getBtnExitGame() {
         return btnExitGame;
     }
 
-    public ToggleButton getTbtnFullScreen() {
+    ToggleButton getTbtnFullScreen() {
         return tbtnFullScreen;
+    }
+
+    RadioButton getOnePlayer() {
+        return onePlayer;
+    }
+
+    RadioButton getTwoPlayers() {
+        return twoPlayers;
+    }
+
+    RadioButton getThreePlayers() {
+        return threePlayers;
+    }
+
+    RadioButton getFourPlayers() {
+        return fourPlayers;
+    }
+
+    TextField getTfP2name() {
+        return tfP2name;
+    }
+
+    TextField getTfP3name() {
+        return tfP3name;
+    }
+
+    TextField getTfP4name() {
+        return tfP4name;
+    }
+
+    ComboBox getColorPickerP1(){
+        return colorPickerP1;
+    }
+
+    ComboBox getColorPickerP2() {
+        return colorPickerP2;
+    }
+
+    ComboBox getColorPickerP3() {
+        return colorPickerP3;
+    }
+
+    ComboBox getColorPickerP4() {
+        return colorPickerP4;
     }
 }

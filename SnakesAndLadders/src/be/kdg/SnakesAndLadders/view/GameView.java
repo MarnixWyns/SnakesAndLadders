@@ -20,6 +20,10 @@ public class GameView extends BorderPane {
     //Background
     private Image backgroundGame;
 
+    private ImageView ivPlayer1;
+    private ImageView ivPlayer2;
+    private ImageView ivPlayer3;
+    private ImageView ivPlayer4;
 
     private Button btnRollDice;
     private Button btnExit;
@@ -72,7 +76,6 @@ public class GameView extends BorderPane {
     private void initialiseNodes() {
         ivDice = new ImageView(new Image("be/kdg/SnakesAndLadders/DieImages/die6.png")); //TODO: Add image path
 
-
         btnRollDice = new Button("Roll the dice!");
         btnExit = new Button("Exit");
         tbtnFullscreen = new ToggleButton("Fullscreen");
@@ -124,6 +127,8 @@ public class GameView extends BorderPane {
     }
 
     private void layoutNodes() {
+
+        //TODO: Ruben kunt gij iv1-4 in de gameGrid zette, onderste row, eerste column
 
 
         //boardgrid layout

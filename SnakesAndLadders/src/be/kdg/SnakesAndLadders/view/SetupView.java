@@ -198,7 +198,7 @@ public class SetupView extends BorderPane {
         row10 = new RowConstraints(40);
 
         //background aanpassen:
-        setupBackgroundImage = new Image("be/kdg/SnakesAndLadders/BackgroundImages/background5.jpg");
+        setupBackgroundImage = new Image("BackgroundImages/background5.jpg");
         BackgroundSize backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
         Background backGround1 = new Background(new BackgroundImage(setupBackgroundImage,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));

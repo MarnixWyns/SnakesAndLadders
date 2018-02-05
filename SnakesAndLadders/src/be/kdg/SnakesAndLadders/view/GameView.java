@@ -29,7 +29,7 @@ public class GameView extends BorderPane {
     private Button btnExit;
     private ToggleButton tbtnFullscreen;
 
-    private final String DIEURL = "be/kdg/SnakesAndLadders/DieImages/die";
+    private final String DIEURL = "resources/DieImages/die";
 
     private ColumnConstraints column1;
     private ColumnConstraints column2;
@@ -74,7 +74,7 @@ public class GameView extends BorderPane {
     }
 
     private void initialiseNodes() {
-        ivDice = new ImageView(new Image("be/kdg/SnakesAndLadders/DieImages/die6.png")); //TODO: Add image path
+        ivDice = new ImageView(new Image("DieImages/die6.png")); //TODO: Add image path
 
         btnRollDice = new Button("Roll the dice!");
         btnExit = new Button("Exit");
@@ -118,7 +118,7 @@ public class GameView extends BorderPane {
         gridFeedback = new VBox();
 
         //achtergrond veranderen
-        backgroundGame = new Image("be/kdg/SnakesAndLadders/BackgroundImages/background5.jpg");
+        backgroundGame = new Image("/BackgroundImages/background5.jpg");
         BackgroundSize backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
         Background backGround1 = new Background(new BackgroundImage(backgroundGame,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));

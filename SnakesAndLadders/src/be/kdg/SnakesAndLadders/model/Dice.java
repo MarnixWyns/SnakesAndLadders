@@ -14,11 +14,8 @@ public class Dice {
         random = new Random();
     }
 
-    public void throwDice() {
-        value = random.nextInt(MAX_THROWN) + 1;
-    }
-
     public int getValue() {
+        value = random.nextInt(MAX_THROWN) + 1;
         return value;
     }
 }

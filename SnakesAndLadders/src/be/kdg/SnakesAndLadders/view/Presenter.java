@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 public class Presenter {
     private SnakesAndLadders model;
@@ -44,18 +45,22 @@ public class Presenter {
     }
 
     private void addEventHandlers() {
-
+        
         //Roll dice on button press
         gameView.getBtnRollDice().setOnAction(event -> {
             Random random = new Random();
             Dice dice = new Dice();
 
-            for (int i = 0; i < random.nextInt(9) + 10; i++) {
+            for (int i = 0; i < random.nextInt(3) + 3; i++) {
 
-                dice.throwDice();
+                dice.getValue();
                 gameView.getIvDice().setImage(new Image(gameView.getDIEURL() + dice.getValue() + ".png"));
 
-                //TimeUnit.MILLISECONDS.sleep(30); TODO: Add decreasing delay when throwing dice
+                try {
+                    TimeUnit.MILLISECONDS.sleep(10 ); //TODO: Imageview is a bitch, changes only after entire for loop
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             updateView();
         });
@@ -63,121 +68,42 @@ public class Presenter {
         //startButton intelligence
         setupView.getBtnStartGame().setOnAction(event -> {
 
-            //region Control if all users have color value selected
-            if (amountOfPlayers == 1) {
-                if (setupView.getColorPickerP1().getValue() == null) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Bad color selection");
-                    alert.setContentText("One or more users hasn't chosen a color, please make sure every player has selected a color.");
-                    alert.showAndWait();
-                }
-                /*
-                setupView.getIvPlayer2().setDisable(true);
-                setupView.getIvPlayer3().setDisable(true);
-                setupView.getIvPlayer4().setDisable(true);
-                setupView.getPawnPane().add(setupView.getIvPlayer1(),0,0);
-                setupView.getBoardGrid().add(setupView.getPawnPane(),0,9);
-                */
+            //TODO: Control duplicate colors
 
-            }
-            if (amountOfPlayers == 2) {
-                if (setupView.getColorPickerP1().getValue() == null || setupView.getColorPickerP2().getValue() == null) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Bad color selection");
-                    alert.setContentText("One or more users hasn't chosen a color, please make sure every player has selected a color.");
-                    alert.showAndWait();
-                }
-            }
-            if (amountOfPlayers == 3) {
-                if (setupView.getColorPickerP1().getValue() == null || setupView.getColorPickerP2().getValue() == null || setupView.getColorPickerP3().getValue() == null) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Bad color selection");
-                    alert.setContentText("One or more users hasn't chosen a color, please make sure every player has selected a color.");
-                    alert.showAndWait();
-                }
-            }
-            if (amountOfPlayers == 4) {
-                if (setupView.getColorPickerP1().getValue() == null ||
-                        setupView.getColorPickerP2().getValue() == null ||
-                        setupView.getColorPickerP3().getValue() == null ||
-                        setupView.getColorPickerP4().getValue() == null) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Bad color selection");
-                    alert.setContentText("One or more users hasn't chosen a color, please make sure every player has selected a color.");
-                    alert.showAndWait();
-                }
-            }
-            //endregion
 
-            //TODO: Clean up mess (Function?)
-
-            /*
             primaryStage.setScene(gameScene);
             primaryStage.show();
-            */
-        });
 
+        });
 
 
         //exitbutton intelligence
         gameView.getBtnExit().setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Exit game");
-            alert.setContentText("Are you sure you want to exit? Your progress won't be saved.");
-            alert.initModality(Modality.APPLICATION_MODAL);
-            ButtonType buttonTypeOne = new ButtonType("Yes");
-            ButtonType buttonTypeTwo = new ButtonType("Cancel");
-            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-
-            Optional<ButtonType> alertOptions = alert.showAndWait();
-            if (alertOptions.get() == buttonTypeOne) {
-                System.exit(0);
-            }
-            if (alertOptions.get() == buttonTypeTwo) {
-                alert.close();
-            }
-            updateView();
+            showExitDialog();
         });
 
 
         setupView.getBtnExitGame().setOnAction(event -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Exit game");
-            alert.setContentText("Are you sure you want to exit? Your progress won't be saved.");
-            alert.initModality(Modality.APPLICATION_MODAL);
-            ButtonType buttonTypeOne = new ButtonType("Yes");
-            ButtonType buttonTypeTwo = new ButtonType("Cancel");
-            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
-
-            Optional<ButtonType> alertOptions = alert.showAndWait();
-            if (alertOptions.get() == buttonTypeOne) {
-                System.exit(0);
-            }
-            if (alertOptions.get() == buttonTypeTwo) {
-                alert.close();
-            }
-            updateView();
+            showExitDialog();
         });
         //endregion
 
         //region Fullscreen ToggleButtons
         //fullscreen button intelligence
         gameView.getTbtnFullscreen().setOnAction(event -> {
-            if(setupView.getTbtnFullScreen().isSelected()){
+            if (setupView.getTbtnFullScreen().isSelected()) {
                 primaryStage.setFullScreen(true);
-            }else {
+            } else {
                 primaryStage.setFullScreen(false);
             }
-            updateView();
         });
 
         setupView.getTbtnFullScreen().setOnAction(event -> {
-            if(setupView.getTbtnFullScreen().isSelected()){
+            if (setupView.getTbtnFullScreen().isSelected()) {
                 primaryStage.setFullScreen(true);
-            }else {
+            } else {
                 primaryStage.setFullScreen(false);
             }
-            updateView();
         });
         //endregion
 
@@ -252,5 +178,23 @@ public class Presenter {
 
     private void updateView() {
 
+    }
+
+    private void showExitDialog() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit game");
+        alert.setContentText("Are you sure you want to exit? Your progress won't be saved.");
+        alert.initModality(Modality.APPLICATION_MODAL);
+        ButtonType buttonTypeOne = new ButtonType("Yes");
+        ButtonType buttonTypeTwo = new ButtonType("Cancel");
+        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
+
+        Optional<ButtonType> alertOptions = alert.showAndWait();
+        if (alertOptions.get() == buttonTypeOne) {
+            System.exit(0);
+        }
+        if (alertOptions.get() == buttonTypeTwo) {
+            alert.close();
+        }
     }
 }

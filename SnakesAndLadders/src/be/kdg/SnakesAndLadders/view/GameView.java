@@ -125,7 +125,7 @@ public class GameView extends BorderPane {
         gridFeedback = new VBox();
 
         //achtergrond veranderen
-        backgroundGame = new Image("/BackgroundImages/background6.jpg");
+        backgroundGame = new Image("/BackgroundImages/background.png");
         backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
         backGround1 = new Background(new BackgroundImage(backgroundGame,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));

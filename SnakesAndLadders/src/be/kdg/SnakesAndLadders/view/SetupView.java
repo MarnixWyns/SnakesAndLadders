@@ -151,6 +151,11 @@ public class SetupView extends BorderPane {
         colorPickerP3 = new ComboBox(colorOptions);
         colorPickerP4 = new ComboBox(colorOptions);
 
+        colorPickerP1.getSelectionModel().select(0);
+        colorPickerP2.getSelectionModel().select(1);
+        colorPickerP3.getSelectionModel().select(2);
+        colorPickerP4.getSelectionModel().select(3);
+
         //region Init Ammount Players RadioButtonGrouop
         onePlayer = new RadioButton("1 Player");
         twoPlayers = new RadioButton("2 Players");
@@ -212,7 +217,7 @@ public class SetupView extends BorderPane {
         row10 = new RowConstraints(40);
 
         //background aanpassen:
-        setupBackgroundImage = new Image("BackgroundImages/background6.jpg");
+        setupBackgroundImage = new Image("BackgroundImages/background.png");
         backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
         backGround1 = new Background(new BackgroundImage(setupBackgroundImage,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));

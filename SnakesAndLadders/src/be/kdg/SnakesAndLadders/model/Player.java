@@ -50,4 +50,8 @@ public class Player {
         return 10 - (playerPos / 10);
     }
     //endregion
+
+    public int getPlayerPos(){
+        return playerPos;
+    }
 }

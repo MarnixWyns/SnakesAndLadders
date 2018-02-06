@@ -12,40 +12,29 @@ public class Board {
     //Array[X][Y]
     private int[][] board = new int[10][10];
     private Scanner scanner;
+    private Dice dice;
 
     private ArrayList<Player> players;
 
-    private Path easyPath;
-    private Path normalPath;
-    private Path hardPath;
+    private Path path;
 
     public Board(){
-        easyPath = Paths.get("SnakesAndLadders\\src\\be\\kdg\\SnakesAndLadders\\BoardLayouts\\easy.txt");
-        normalPath = Paths.get("SnakesAndLadders\\src\\be\\kdg\\SnakesAndLadders\\BoardLayouts\\normal.txt");
-        hardPath = Paths.get("SnakesAndLadders\\src\\be\\kdg\\SnakesAndLadders\\BoardLayouts\\hard.txt");
 
     }
 
-    public void initialize(Player player1){
-        players.add(player1);
-
+    public void initialize(ArrayList<Player> players, Difficulty difficulty){
+        this.players =  players;
+        dice = new Dice();
+        //if (difficulty.equals(Difficulty.EASY)) this.path = Difficulty.getPath(difficulty);
     }
 
-    public void initialize(Player player1, Player player2){
-        Player[] gamePlayers = {player1, player2};
-        players.addAll(Arrays.asList(gamePlayers));
-
+    public void update(int player){
+        Player currentPlayer = players.get(player - 1);
+        currentPlayer.setPlayerPos(dice.getValue());
     }
 
-    public void initialize(Player player1, Player player2, Player player3){
-        Player[] gamePlayers = {player1, player2, player3};
-        players.addAll(Arrays.asList(gamePlayers));
 
-    }
 
-    public void initialize(Player player1, Player player2, Player player3, Player player4){
-        Player[] gamePlayers = {player1, player2, player3, player4};
-        players.addAll(Arrays.asList(gamePlayers));
-    }
+
 
 }

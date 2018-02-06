@@ -40,7 +40,7 @@ public class Main extends Application {
         secondaryStage.setHeight(600);
         secondaryStage.setWidth(1024);
 
-        primaryStage.getIcons().add(new Image("/snake.png"));
+        primaryStage.getIcons().add(new Image("/snakeandladder.png"));
         //secondaryStage.show();
         primaryStage.show();
 

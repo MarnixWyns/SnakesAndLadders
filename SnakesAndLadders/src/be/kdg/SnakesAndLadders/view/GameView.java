@@ -29,7 +29,7 @@ public class GameView extends BorderPane {
     private Button btnExit;
     private ToggleButton tbtnFullscreen;
 
-    private final String DIEURL = "resources/DieImages/die";
+    private final String DIEURL = "/DieImages/die";
 
     private ColumnConstraints column1;
     private ColumnConstraints column2;

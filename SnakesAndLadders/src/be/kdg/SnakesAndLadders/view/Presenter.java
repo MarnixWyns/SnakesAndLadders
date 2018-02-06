@@ -124,7 +124,7 @@ public class Presenter {
 
             Optional<ButtonType> options = alert.showAndWait();
             if (options.get() == ButtonType.YES) {
-                Platform.exit(); //TODO: Does not close, has to be in Main class I think
+                //Platform.exit(); //TODO: Does not close, has to be in Main class I think
                 System.exit(0);
             }
             if (options.get() == ButtonType.CANCEL) {

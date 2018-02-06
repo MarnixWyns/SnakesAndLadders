@@ -12,10 +12,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 
 public class Presenter {
     private SnakesAndLadders model;
@@ -25,9 +27,10 @@ public class Presenter {
     private Scene setupScene;
     private Scene gameScene;
     private int amountOfPlayers;
+    private boolean close = false;
 
     public Presenter(SnakesAndLadders model, GameView gameView, SetupView setupView, Stage primaryStage,
-    Scene setupScene, Scene gameScene) {
+                     Scene setupScene, Scene gameScene) {
         this.model = model;
         this.gameView = gameView;
         this.setupView = setupView;
@@ -115,38 +118,44 @@ public class Presenter {
         });
 
 
-        //region Exit Buttons
         //exitbutton intelligence
         gameView.getBtnExit().setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Exit game");
             alert.setContentText("Are you sure you want to exit? Your progress won't be saved.");
+            alert.initModality(Modality.APPLICATION_MODAL);
+            ButtonType buttonTypeOne = new ButtonType("Yes");
+            ButtonType buttonTypeTwo = new ButtonType("Cancel");
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
 
-            Optional<ButtonType> options = alert.showAndWait();
-            if (options.get() == ButtonType.YES) {
-                //Platform.exit(); //TODO: Does not close, has to be in Main class I think
+            Optional<ButtonType> alertOptions = alert.showAndWait();
+            if(alertOptions.get() == buttonTypeOne){
                 System.exit(0);
             }
-            if (options.get() == ButtonType.CANCEL) {
-                //Does nothing other than close alert
+            if(alertOptions.get() == buttonTypeTwo){
+                alert.close();
             }
             updateView();
         });
 
+
         setupView.getBtnExitGame().setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Exit game");
-            alert.setContentText("Are you sure you want to exit?");
+            alert.setContentText("Are you sure you want to exit? Your progress won't be saved.");
+            alert.initModality(Modality.APPLICATION_MODAL);
+            ButtonType buttonTypeOne = new ButtonType("Yes");
+            ButtonType buttonTypeTwo = new ButtonType("Cancel");
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
 
-            Optional<ButtonType> options = alert.showAndWait();
-            if (options.get() == ButtonType.YES) {
-                Platform.exit(); //TODO: Does not close, has to be in Main class I think
+            Optional<ButtonType> alertOptions = alert.showAndWait();
+            if(alertOptions.get() == buttonTypeOne){
                 System.exit(0);
             }
-            if (options.get() == ButtonType.CANCEL) {
-                //Does nothing other than close alert
+            if(alertOptions.get() == buttonTypeTwo){
+                alert.close();
             }
-
+            updateView();
         });
         //endregion
 

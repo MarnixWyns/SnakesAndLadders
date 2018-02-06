@@ -42,6 +42,7 @@ public class Main extends Application {
 
         secondaryStage.getIcons().add(new Image("/snakeandladder.png"));
         primaryStage.getIcons().add(new Image("/snakeandladder.png"));
+
         secondaryStage.show();
         primaryStage.show();
 

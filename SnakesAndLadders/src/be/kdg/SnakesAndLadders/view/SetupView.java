@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
@@ -26,6 +27,11 @@ public class SetupView extends BorderPane {
     private TextField tfP2name;
     private TextField tfP3name;
     private TextField tfP4name;
+
+    private ImageView ivPlayer1;
+    private ImageView ivPlayer2;
+    private ImageView ivPlayer3;
+    private ImageView ivPlayer4;
 
     private Label name;
     private Label lblPlayer1;
@@ -94,6 +100,7 @@ public class SetupView extends BorderPane {
     private GridPane setupMenu;
     private GridPane setupButtons;
     private GridPane startButton;
+    private GridPane pawnPane;
 
     //create VBox to display player buttons
     private VBox playerButtons;
@@ -101,6 +108,11 @@ public class SetupView extends BorderPane {
     private VBox playerColors;
     private VBox difficulty;
     private VBox playerNameFields;
+
+    //background variables creation
+    BackgroundSize backgroundSize1;
+    Background backGround1;
+
 
 
     public SetupView() {
@@ -165,6 +177,7 @@ public class SetupView extends BorderPane {
         setupMenu = new GridPane();
         setupButtons = new GridPane();
         startButton = new GridPane();
+        pawnPane = new GridPane();
 
 
         //VBox initialiseren
@@ -198,11 +211,17 @@ public class SetupView extends BorderPane {
         row10 = new RowConstraints(40);
 
         //background aanpassen:
-        setupBackgroundImage = new Image("BackgroundImages/background5.jpg");
-        BackgroundSize backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
-        Background backGround1 = new Background(new BackgroundImage(setupBackgroundImage,
+        setupBackgroundImage = new Image("BackgroundImages/background6.jpg");
+        backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
+        backGround1 = new Background(new BackgroundImage(setupBackgroundImage,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));
         setBackground(backGround1);
+
+        //pawns initialisation
+        ivPlayer1 = new ImageView(new Image("PawnImages/red.png"));
+        ivPlayer2 = new ImageView(new Image("PawnImages/blue.png"));
+        ivPlayer3 = new ImageView(new Image("PawnImages/green.png"));
+        ivPlayer4 = new ImageView(new Image("PawnImages/yellow.png"));
     }
 
 
@@ -240,6 +259,27 @@ public class SetupView extends BorderPane {
         boardGrid.setGridLinesVisible(true);
         boardGrid.setPadding(new Insets(30, 0, 30, 90));
         setLeft(boardGrid);
+
+        //changing pawns to acceptable size
+        ivPlayer1.setFitHeight(15);
+        ivPlayer1.setFitWidth(15);
+        ivPlayer2.setFitHeight(15);
+        ivPlayer2.setFitWidth(15);
+        ivPlayer3.setFitHeight(15);
+        ivPlayer3.setFitWidth(15);
+        ivPlayer4.setFitHeight(15);
+        ivPlayer4.setFitWidth(15);
+
+        //Putting pawns in the game at start position
+        pawnPane.add(ivPlayer1,0,0);
+        pawnPane.add(ivPlayer2,1,0);
+        pawnPane.add(ivPlayer3,0,1);
+        pawnPane.add(ivPlayer4, 1,1);
+        pawnPane.setHgap(3);
+        pawnPane.setVgap(3);
+        boardGrid.add(pawnPane,0,9);
+        pawnPane.setPadding(new Insets(3,0,0,3));
+
 
         //VBox setup
         playerButtons.setSpacing(10);

@@ -4,6 +4,7 @@ package be.kdg.SnakesAndLadders.view;/*
  */
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
@@ -66,6 +67,11 @@ public class GameView extends BorderPane {
     private GridPane boardGrid;
     private GridPane currentPlayerDice;
     private GridPane otherButtons;
+    private GridPane pawnPane;
+
+    //background variables creation
+    BackgroundSize backgroundSize1;
+    Background backGround1;
 
 
     public GameView() {
@@ -107,6 +113,7 @@ public class GameView extends BorderPane {
         boardGrid = new GridPane();
         currentPlayerDice = new GridPane();
         otherButtons = new GridPane();
+        pawnPane = new GridPane();
 
         lblplayerName = new Label("Player");
         lblturnMessage = new Label("It's your turn!!");
@@ -118,28 +125,50 @@ public class GameView extends BorderPane {
         gridFeedback = new VBox();
 
         //achtergrond veranderen
-        backgroundGame = new Image("/BackgroundImages/background5.jpg");
-        BackgroundSize backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
-        Background backGround1 = new Background(new BackgroundImage(backgroundGame,
+        backgroundGame = new Image("/BackgroundImages/background6.jpg");
+        backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
+        backGround1 = new Background(new BackgroundImage(backgroundGame,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));
         setBackground(backGround1);
+
+        //pawns initialisation
+        ivPlayer1 = new ImageView(new Image("PawnImages/red.png"));
+        ivPlayer2 = new ImageView(new Image("PawnImages/blue.png"));
+        ivPlayer3 = new ImageView(new Image("PawnImages/green.png"));
+        ivPlayer4 = new ImageView(new Image("PawnImages/yellow.png"));
 
     }
 
     private void layoutNodes() {
-
-        //TODO: Ruben kunt gij iv1-4 in de gameGrid zette, onderste row, eerste column
-
 
         //boardgrid layout
         boardGrid.getColumnConstraints().addAll(column1,column2,column3,column4,column5,column6,column7,column8,column9,column10);
         boardGrid.getRowConstraints().addAll(row1,row2,row3,row4,row5,row6,row7,row8,row9,row10);
         boardGrid.setGridLinesVisible(true);
         boardGrid.setPadding(new Insets(30,0,30,90));
-        //setLeft(boardGrid);
+
+        //changing pawns to acceptable size
+        ivPlayer1.setFitHeight(15);
+        ivPlayer1.setFitWidth(15);
+        ivPlayer2.setFitHeight(15);
+        ivPlayer2.setFitWidth(15);
+        ivPlayer3.setFitHeight(15);
+        ivPlayer3.setFitWidth(15);
+        ivPlayer4.setFitHeight(15);
+        ivPlayer4.setFitWidth(15);
+
+        //Putting pawns in the game at start position
+        pawnPane.add(ivPlayer1,0,0);
+        pawnPane.add(ivPlayer2,1,0);
+        pawnPane.add(ivPlayer3,0,1);
+        pawnPane.add(ivPlayer4, 1,1);
+        pawnPane.setHgap(3);
+        pawnPane.setVgap(3);
+        boardGrid.add(pawnPane,0,9);
+        pawnPane.setPadding(new Insets(3,0,0,3));
+
 
         //VBox layout
-
         gridFeedback.setSpacing(10);
         gridFeedback.getChildren().addAll(boardGrid,lblFeedback);
         lblFeedback.setPadding(new Insets(10,50,0,150));

@@ -70,7 +70,6 @@ public class Presenter {
         //startButton intelligence
         setupView.getBtnStartGame().setOnAction(event -> {
 
-
             //region Control if all users have color value selected
             if (amountOfPlayers == 1) {
                 if (setupView.getColorPickerP1().getValue() == null) {
@@ -129,10 +128,10 @@ public class Presenter {
             alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
 
             Optional<ButtonType> alertOptions = alert.showAndWait();
-            if(alertOptions.get() == buttonTypeOne){
+            if (alertOptions.get() == buttonTypeOne) {
                 System.exit(0);
             }
-            if(alertOptions.get() == buttonTypeTwo){
+            if (alertOptions.get() == buttonTypeTwo) {
                 alert.close();
             }
             updateView();
@@ -149,10 +148,10 @@ public class Presenter {
             alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo);
 
             Optional<ButtonType> alertOptions = alert.showAndWait();
-            if(alertOptions.get() == buttonTypeOne){
+            if (alertOptions.get() == buttonTypeOne) {
                 System.exit(0);
             }
-            if(alertOptions.get() == buttonTypeTwo){
+            if (alertOptions.get() == buttonTypeTwo) {
                 alert.close();
             }
             updateView();
@@ -162,13 +161,14 @@ public class Presenter {
         //region Fullscreen ToggleButtons
         //fullscreen button intelligence
         gameView.getTbtnFullscreen().setOnAction(event -> {
+            primaryStage.setFullScreen(true);
             updateView();
         });
 
         setupView.getTbtnFullScreen().setOnAction(event -> {
-                    updateView();
-                }
-        );
+            primaryStage.setFullScreen(true);
+            updateView();
+        });
         //endregion
 
         //region ToggleGroup Amount of players

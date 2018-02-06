@@ -6,6 +6,7 @@ package be.kdg.SnakesAndLadders.view;/*
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -333,6 +334,7 @@ public class SetupView extends BorderPane {
         nameAndColors.setPadding(new Insets(20, 0, 0, 0));
         playerDifficuty.setPadding(new Insets(10, 0, 0, 0));
         setRight(setupMenu);
+        setAlignment(setupMenu, Pos.CENTER);
 
         //Default Selections of toggleGroups
         easyDifficulty.setSelected(true);

@@ -208,6 +208,8 @@ public class SetupView extends BorderPane {
 
     private void layoutNodes() {
 
+        //TODO: ComboBox selectionmodel
+
         //TODO: kdacht da dees de achtergronden van de opties in de comboboxen zou aan passen
         //todo: niet dus
         /*

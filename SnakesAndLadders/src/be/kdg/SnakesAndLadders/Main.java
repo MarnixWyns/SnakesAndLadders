@@ -9,6 +9,7 @@ import be.kdg.SnakesAndLadders.view.Presenter;
 import be.kdg.SnakesAndLadders.view.SetupView;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -39,7 +40,7 @@ public class Main extends Application {
         secondaryStage.setHeight(600);
         secondaryStage.setWidth(1024);
 
-
+        primaryStage.getIcons().add(new Image("/snake.png"));
         //secondaryStage.show();
         primaryStage.show();
 

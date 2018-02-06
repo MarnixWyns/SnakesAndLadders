@@ -7,6 +7,8 @@ import be.kdg.SnakesAndLadders.model.Dice;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -27,7 +29,6 @@ public class Presenter {
     private Scene setupScene;
     private Scene gameScene;
     private int amountOfPlayers;
-    private boolean close = false;
 
     public Presenter(SnakesAndLadders model, GameView gameView, SetupView setupView, Stage primaryStage,
                      Scene setupScene, Scene gameScene) {
@@ -59,14 +60,6 @@ public class Presenter {
             updateView();
         });
 
-        //Switch scenes on start button press
-        setupView.getBtnStartGame().setOnAction(event -> {
-            updateView();
-
-            primaryStage.setScene(gameScene);
-            primaryStage.show();
-        });
-
         //startButton intelligence
         setupView.getBtnStartGame().setOnAction(event -> {
 
@@ -78,6 +71,14 @@ public class Presenter {
                     alert.setContentText("One or more users hasn't chosen a color, please make sure every player has selected a color.");
                     alert.showAndWait();
                 }
+                /*
+                setupView.getIvPlayer2().setDisable(true);
+                setupView.getIvPlayer3().setDisable(true);
+                setupView.getIvPlayer4().setDisable(true);
+                setupView.getPawnPane().add(setupView.getIvPlayer1(),0,0);
+                setupView.getBoardGrid().add(setupView.getPawnPane(),0,9);
+                */
+
             }
             if (amountOfPlayers == 2) {
                 if (setupView.getColorPickerP1().getValue() == null || setupView.getColorPickerP2().getValue() == null) {
@@ -115,6 +116,7 @@ public class Presenter {
             primaryStage.show();
             */
         });
+
 
 
         //exitbutton intelligence
@@ -161,12 +163,20 @@ public class Presenter {
         //region Fullscreen ToggleButtons
         //fullscreen button intelligence
         gameView.getTbtnFullscreen().setOnAction(event -> {
-            primaryStage.setFullScreen(true);
+            if(setupView.getTbtnFullScreen().isSelected()){
+                primaryStage.setFullScreen(true);
+            }else {
+                primaryStage.setFullScreen(false);
+            }
             updateView();
         });
 
         setupView.getTbtnFullScreen().setOnAction(event -> {
-            primaryStage.setFullScreen(true);
+            if(setupView.getTbtnFullScreen().isSelected()){
+                primaryStage.setFullScreen(true);
+            }else {
+                primaryStage.setFullScreen(false);
+            }
             updateView();
         });
         //endregion
@@ -182,6 +192,10 @@ public class Presenter {
             setupView.getColorPickerP2().setDisable(true);
             setupView.getColorPickerP3().setDisable(true);
             setupView.getColorPickerP4().setDisable(true);
+
+            setupView.getIvPlayer2().setVisible(false);
+            setupView.getIvPlayer3().setVisible(false);
+            setupView.getIvPlayer4().setVisible(false);
         });
 
         setupView.getTwoPlayers().setOnAction(event -> {
@@ -194,6 +208,11 @@ public class Presenter {
             setupView.getColorPickerP2().setDisable(false);
             setupView.getColorPickerP3().setDisable(true);
             setupView.getColorPickerP4().setDisable(true);
+
+            setupView.getIvPlayer2().setVisible(true);
+            setupView.getIvPlayer3().setVisible(false);
+            setupView.getIvPlayer4().setVisible(false);
+
         });
 
         setupView.getThreePlayers().setOnAction(event -> {
@@ -206,6 +225,10 @@ public class Presenter {
             setupView.getColorPickerP2().setDisable(false);
             setupView.getColorPickerP3().setDisable(false);
             setupView.getColorPickerP4().setDisable(true);
+
+            setupView.getIvPlayer2().setVisible(true);
+            setupView.getIvPlayer3().setVisible(true);
+            setupView.getIvPlayer4().setVisible(false);
         });
 
         setupView.getFourPlayers().setOnAction(event -> {
@@ -218,6 +241,10 @@ public class Presenter {
             setupView.getColorPickerP2().setDisable(false);
             setupView.getColorPickerP3().setDisable(false);
             setupView.getColorPickerP4().setDisable(false);
+
+            setupView.getIvPlayer2().setVisible(true);
+            setupView.getIvPlayer3().setVisible(true);
+            setupView.getIvPlayer4().setVisible(true);
         });
         //endregion
 

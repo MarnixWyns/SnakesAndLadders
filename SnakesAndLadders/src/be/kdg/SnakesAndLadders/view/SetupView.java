@@ -272,6 +272,7 @@ public class SetupView extends BorderPane {
         ivPlayer4.setFitWidth(15);
 
         //Putting pawns in the game at start position
+
         pawnPane.add(ivPlayer1,0,0);
         pawnPane.add(ivPlayer2,1,0);
         pawnPane.add(ivPlayer3,0,1);
@@ -280,6 +281,7 @@ public class SetupView extends BorderPane {
         pawnPane.setVgap(3);
         boardGrid.add(pawnPane,0,9);
         pawnPane.setPadding(new Insets(3,0,0,3));
+
 
 
         //VBox setup
@@ -396,4 +398,21 @@ public class SetupView extends BorderPane {
     ComboBox getColorPickerP4() {
         return colorPickerP4;
     }
+
+    ImageView getIvPlayer1() {
+        return ivPlayer1;
+    }
+
+    ImageView getIvPlayer2() {
+        return ivPlayer2;
+    }
+
+    ImageView getIvPlayer3() {
+        return ivPlayer3;
+    }
+
+    ImageView getIvPlayer4() {
+        return ivPlayer4;
+    }
+
 }

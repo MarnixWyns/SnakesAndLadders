@@ -45,7 +45,7 @@ public class Presenter {
     }
 
     private void addEventHandlers() {
-        
+
         //Roll dice on button press
         gameView.getBtnRollDice().setOnAction(event -> {
             Random random = new Random();

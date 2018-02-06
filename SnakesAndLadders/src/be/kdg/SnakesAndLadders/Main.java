@@ -20,12 +20,11 @@ public class Main extends Application {
         GameView gameView = new GameView();
         SetupView setupView = new SetupView();
 
-
-        Presenter presenter = new Presenter(model,gameView,setupView);
-
         Scene gameScene = new Scene(gameView);
         Stage secondaryStage = new Stage();
         Scene setupScene = new Scene(setupView);
+
+        Presenter presenter = new Presenter(model,gameView,setupView, primaryStage, gameScene, setupScene);
 
         secondaryStage.setScene(gameScene);
         secondaryStage.setTitle("GameView");

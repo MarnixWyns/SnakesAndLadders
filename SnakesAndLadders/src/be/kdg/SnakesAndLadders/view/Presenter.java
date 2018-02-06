@@ -7,10 +7,12 @@ import be.kdg.SnakesAndLadders.model.Dice;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.util.Optional;
 import java.util.Random;
@@ -19,12 +21,19 @@ public class Presenter {
     private SnakesAndLadders model;
     private GameView gameView;
     private SetupView setupView;
+    private Stage primaryStage;
+    private Scene setupScene;
+    private Scene gameScene;
     private int amountOfPlayers;
 
-    public Presenter(SnakesAndLadders model, GameView gameView, SetupView setupView) {
+    public Presenter(SnakesAndLadders model, GameView gameView, SetupView setupView, Stage primaryStage,
+    Scene setupScene, Scene gameScene) {
         this.model = model;
         this.gameView = gameView;
         this.setupView = setupView;
+        this.primaryStage = primaryStage;
+        this.setupScene = setupScene;
+        this.gameScene = gameScene;
 
         addEventHandlers();
         updateView();
@@ -50,10 +59,14 @@ public class Presenter {
         //Switch scenes on start button press
         setupView.getBtnStartGame().setOnAction(event -> {
             updateView();
+
+            primaryStage.setScene(gameScene);
+            primaryStage.show();
         });
 
         //startButton intelligence
         setupView.getBtnStartGame().setOnAction(event -> {
+
 
             //region Control if all users have color value selected
             if (amountOfPlayers == 1) {
@@ -92,9 +105,13 @@ public class Presenter {
                 }
             }
             //endregion
+
             //TODO: Clean up mess (Function?)
 
-
+            /*
+            primaryStage.setScene(gameScene);
+            primaryStage.show();
+            */
         });
 
 

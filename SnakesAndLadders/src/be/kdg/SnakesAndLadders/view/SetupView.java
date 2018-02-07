@@ -156,6 +156,7 @@ public class SetupView extends BorderPane {
         colorPickerP3.getSelectionModel().select(2);
         colorPickerP4.getSelectionModel().select(3);
 
+
         //region Init Ammount Players RadioButtonGrouop
         onePlayer = new RadioButton("1 Player");
         twoPlayers = new RadioButton("2 Players");
@@ -194,27 +195,27 @@ public class SetupView extends BorderPane {
         playerNameFields = new VBox();
 
         //boardgrid initialiseren
-        column1 = new ColumnConstraints(40);
-        column2 = new ColumnConstraints(40);
-        column3 = new ColumnConstraints(40);
-        column4 = new ColumnConstraints(40);
-        column5 = new ColumnConstraints(40);
-        column6 = new ColumnConstraints(40);
-        column7 = new ColumnConstraints(40);
-        column8 = new ColumnConstraints(40);
-        column9 = new ColumnConstraints(40);
-        column10 = new ColumnConstraints(40);
+        column1 = new ColumnConstraints(38);
+        column2 = new ColumnConstraints(38);
+        column3 = new ColumnConstraints(38);
+        column4 = new ColumnConstraints(38);
+        column5 = new ColumnConstraints(38);
+        column6 = new ColumnConstraints(38);
+        column7 = new ColumnConstraints(38);
+        column8 = new ColumnConstraints(38);
+        column9 = new ColumnConstraints(38);
+        column10 = new ColumnConstraints(38);
 
-        row1 = new RowConstraints(40);
-        row2 = new RowConstraints(40);
-        row3 = new RowConstraints(40);
-        row4 = new RowConstraints(40);
-        row5 = new RowConstraints(40);
-        row6 = new RowConstraints(40);
-        row7 = new RowConstraints(40);
-        row8 = new RowConstraints(40);
-        row9 = new RowConstraints(40);
-        row10 = new RowConstraints(40);
+        row1 = new RowConstraints(38);
+        row2 = new RowConstraints(38);
+        row3 = new RowConstraints(38);
+        row4 = new RowConstraints(38);
+        row5 = new RowConstraints(38);
+        row6 = new RowConstraints(38);
+        row7 = new RowConstraints(38);
+        row8 = new RowConstraints(38);
+        row9 = new RowConstraints(38);
+        row10 = new RowConstraints(38);
 
         //background aanpassen:
         setupBackgroundImage = new Image("BackgroundImages/background.png");
@@ -420,4 +421,7 @@ public class SetupView extends BorderPane {
         return ivPlayer4;
     }
 
+    public ObservableList<String> getColorOptions() {
+        return colorOptions;
+    }
 }

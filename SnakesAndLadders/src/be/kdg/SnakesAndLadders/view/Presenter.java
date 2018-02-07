@@ -5,13 +5,12 @@ package be.kdg.SnakesAndLadders.view;/*
 
 import be.kdg.SnakesAndLadders.model.Dice;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
-import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
@@ -19,7 +18,7 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 import java.util.Random;
-import java.util.Set;
+
 import java.util.concurrent.TimeUnit;
 
 public class Presenter {
@@ -122,6 +121,7 @@ public class Presenter {
             setupView.getIvPlayer2().setVisible(false);
             setupView.getIvPlayer3().setVisible(false);
             setupView.getIvPlayer4().setVisible(false);
+
         });
 
         setupView.getTwoPlayers().setOnAction(event -> {
@@ -172,7 +172,8 @@ public class Presenter {
             setupView.getIvPlayer3().setVisible(true);
             setupView.getIvPlayer4().setVisible(true);
         });
-        //endregion
+
+        //connect comboboxes to pawncolors and change accordingly
 
     }
 

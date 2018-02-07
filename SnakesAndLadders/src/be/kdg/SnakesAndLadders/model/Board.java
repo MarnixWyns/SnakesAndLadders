@@ -28,9 +28,17 @@ public class Board {
         //if (difficulty.equals(Difficulty.EASY)) this.path = Difficulty.getPath(difficulty);
     }
 
-    public void update(int player){
-        Player currentPlayer = players.get(player - 1);
-        currentPlayer.setPlayerPos(dice.getValue());
+    public void update(int playerID){
+        Player currentPlayer = players.get(playerID - 1);
+        currentPlayer.addToPlayerPos(dice.getValue());
+    }
+
+    public void checkIfPosLadder(){
+
+    }
+
+    public void checkIfPosSnake(){
+
     }
 
 

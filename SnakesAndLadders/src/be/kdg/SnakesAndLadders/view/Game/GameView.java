@@ -1,10 +1,9 @@
-package be.kdg.SnakesAndLadders.view;/*
+package be.kdg.SnakesAndLadders.view.Game;/*
  * Marnix Wyns
  * 2/02/2018
  */
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
@@ -219,11 +218,15 @@ public class GameView extends BorderPane {
         return DIEURL;
     }
 
-    public Button getBtnExit() {
+    Button getBtnExit() {
         return btnExit;
     }
 
-    public ToggleButton getTbtnFullscreen() {
+    ToggleButton getTbtnFullscreen() {
         return tbtnFullscreen;
+    }
+
+    Label getLblplayerName(){
+        return lblplayerName;
     }
 }

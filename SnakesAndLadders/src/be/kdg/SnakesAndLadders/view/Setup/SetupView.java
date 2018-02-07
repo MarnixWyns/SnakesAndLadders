@@ -1,4 +1,4 @@
-package be.kdg.SnakesAndLadders.view;/*
+package be.kdg.SnakesAndLadders.view.Setup;/*
  * Marnix Wyns
  * 2/02/2018
  */
@@ -375,6 +375,10 @@ public class SetupView extends BorderPane {
 
     RadioButton getFourPlayers() {
         return fourPlayers;
+    }
+
+    TextField getTfP1name(){
+        return tfP1name;
     }
 
     TextField getTfP2name() {

@@ -4,21 +4,21 @@ package be.kdg.SnakesAndLadders.model;/*
  */
 
 public class Player {
-    private PieceColor color;
+    private Object color;
     private String username;
 
     //number field has where player currently is
     private int playerPos;
 
 
-    public Player(PieceColor color, String username) {
+    public Player(Object color, String username) {
         this.color = color;
         this.username = username;
         //Start position in array coordinates
         playerPos = 1;
     }
 
-    public PieceColor getColor() {
+    public Object getColor() {
         return color;
     }
 
@@ -28,13 +28,13 @@ public class Player {
 
     //region Coordinate methods
 
-    public void setPlayerPos(int addToPos) {
+    public void addToPlayerPos(int addToPos) {
+
         if (playerPos + addToPos > 100){
             //Returns player x positions if not on 100
             playerPos = 100 - ((playerPos+addToPos) - 100);
         }
         else playerPos = playerPos + addToPos;
-
     }
 
     //Horizontal pos
@@ -54,4 +54,5 @@ public class Player {
     public int getPlayerPos(){
         return playerPos;
     }
+
 }

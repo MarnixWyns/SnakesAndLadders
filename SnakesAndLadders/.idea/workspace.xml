@@ -11,134 +11,120 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/Main.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="575">
-                  <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Presenter.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Presenter.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="411">
-                  <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="GameView.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/GameView.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="452">
-                  <caret line="138" column="0" lean-forward="true" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SetupView.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/SetupView.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1935">
-                  <caret line="334" column="45" lean-forward="true" selection-start-line="334" selection-start-column="45" selection-end-line="334" selection-end-column="45" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SnakesAndLadders.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/SnakesAndLadders.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Board.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="595">
-                  <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Player.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="598">
-                  <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#1149#1150#0" expanded="true" />
-                    <element signature="e#1181#1182#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Dice.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Dice.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="238">
-                  <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Difficulty.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Difficulty.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-                  <folding>
-                    <element signature="e#278#279#0" expanded="true" />
-                    <element signature="e#318#319#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Board.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="476">
-                  <caret line="28" column="5" lean-forward="true" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="512">
+              <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="277">
+              <caret line="37" column="9" lean-forward="false" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetupPresenter.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupPresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="61" column="2" lean-forward="false" selection-start-line="61" selection-start-column="2" selection-end-line="61" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetupView.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="395" column="0" lean-forward="false" selection-start-line="395" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
+              <folding>
+                <element signature="e#12932#12933#0" expanded="true" />
+                <element signature="e#12963#12964#0" expanded="true" />
+                <element signature="e#13183#13184#0" expanded="true" />
+                <element signature="e#13219#13220#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GamePresenter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Game/GamePresenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1408">
+              <caret line="88" column="31" lean-forward="true" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2926#2927#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SnakesAndLadders.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/SnakesAndLadders.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding>
+                <element signature="e#582#583#0" expanded="true" />
+                <element signature="e#620#621#0" expanded="true" />
+                <element signature="e#1099#1100#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PieceColor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/PieceColor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dice.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Dice.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="256">
+              <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+              <folding>
+                <marker date="1517991239301" expanded="true" signature="342:351" ph=" { " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -146,6 +132,7 @@
     <findStrings>
       <find>RadioMenuItem</find>
       <find>setSelecte</find>
+      <find>TBtn</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -164,12 +151,19 @@
         <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/GameView.java" />
         <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Difficulty.java" />
         <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Dice.java" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/SetupView.java" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Presenter.java" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/DiceAnimation.java" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/Presenter.java" />
+        <option value="$PROJECT_DIR$/resources/BoardLayouts/Normal.txt" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/Main.java" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Game/GameView.java" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Game/GamePresenter.java" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupView.java" />
         <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/SnakesAndLadders.java" />
         <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Player.java" />
         <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Board.java" />
-        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/SetupView.java" />
-        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/Main.java" />
-        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Presenter.java" />
+        <option value="$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupPresenter.java" />
       </list>
     </option>
   </component>
@@ -180,10 +174,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="573" />
-    <option name="y" value="77" />
-    <option name="width" value="974" />
-    <option name="height" value="1004" />
+    <option name="x" value="859" />
+    <option name="width" value="1068" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -216,6 +209,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -265,13 +261,26 @@
               <item name="SnakesAndLadders" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SnakesAndLadders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SnakesAndLadders" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SnakesAndLadders" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="Game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SnakesAndLadders" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SnakesAndLadders" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="SnakesAndLadders" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+              <item name="Setup" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -286,6 +295,9 @@
     <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\SnakesAndLadders\SlangenEnLadders\SnakesAndLadders\resources\BackgroundImages" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Projects\SnakesAndLadders\SnakesAndLadders\SnakesAndLadders\resources\BackgroundImages" />
       <recent name="C:\Projects\SnakesAndLadders\SlangenEnLadders\SnakesAndLadders\resources" />
@@ -443,36 +455,38 @@
       <workItem from="1517908478083" duration="274000" />
       <workItem from="1517939116298" duration="57000" />
       <workItem from="1517939222046" duration="4564000" />
+      <workItem from="1517991658769" duration="5288000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24037000" />
+    <option name="totallyTimeSpent" value="29325000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="3456" height="1416" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32441473" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32856005" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16283864" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13166311" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -500,32 +514,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/GameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="33" column="10" lean-forward="false" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/SnakesAndLadders.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/SetupView.java">
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1584">
           <caret line="116" column="10" lean-forward="false" selection-start-line="116" selection-start-column="10" selection-end-line="116" selection-end-column="10" />
@@ -562,7 +551,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/GameView.java">
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Game/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
@@ -583,21 +572,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Presenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/SetupView.java">
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="608">
           <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
@@ -642,14 +633,14 @@
         <state relative-caret-position="80">
           <caret line="5" column="65" lean-forward="false" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
           <folding>
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#361#362#0" expanded="true" />
-            <element signature="e#398#399#0" expanded="true" />
-            <element signature="e#455#456#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#179#180#0" expanded="false" />
+            <element signature="e#202#203#0" expanded="false" />
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#288#289#0" expanded="false" />
+            <element signature="e#361#362#0" expanded="false" />
+            <element signature="e#398#399#0" expanded="false" />
+            <element signature="e#455#456#0" expanded="false" />
+            <element signature="e#483#484#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -658,7 +649,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -706,14 +701,14 @@
         <state relative-caret-position="80">
           <caret line="5" column="65" lean-forward="false" selection-start-line="5" selection-start-column="65" selection-end-line="5" selection-end-column="65" />
           <folding>
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#361#362#0" expanded="true" />
-            <element signature="e#398#399#0" expanded="true" />
-            <element signature="e#455#456#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#179#180#0" expanded="false" />
+            <element signature="e#202#203#0" expanded="false" />
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#288#289#0" expanded="false" />
+            <element signature="e#361#362#0" expanded="false" />
+            <element signature="e#398#399#0" expanded="false" />
+            <element signature="e#455#456#0" expanded="false" />
+            <element signature="e#483#484#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -722,7 +717,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -738,7 +737,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding />
+          <folding>
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -843,13 +846,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/PieceColor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/BackgroundImages/background5.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -891,14 +887,14 @@
         <state relative-caret-position="136">
           <caret line="12" column="5" lean-forward="false" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
           <folding>
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#202#203#0" expanded="true" />
-            <element signature="e#258#259#0" expanded="true" />
-            <element signature="e#288#289#0" expanded="true" />
-            <element signature="e#361#362#0" expanded="true" />
-            <element signature="e#398#399#0" expanded="true" />
-            <element signature="e#455#456#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
+            <element signature="e#179#180#0" expanded="false" />
+            <element signature="e#202#203#0" expanded="false" />
+            <element signature="e#258#259#0" expanded="false" />
+            <element signature="e#288#289#0" expanded="false" />
+            <element signature="e#361#362#0" expanded="false" />
+            <element signature="e#398#399#0" expanded="false" />
+            <element signature="e#455#456#0" expanded="false" />
+            <element signature="e#483#484#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -910,10 +906,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/SnakesAndLadders.java">
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Difficulty.java" />
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/DiceAnimation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="417">
+          <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -926,77 +923,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Difficulty.java">
+    <entry file="file://$PROJECT_DIR$/resources/BoardLayouts/Normal.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
-          <folding>
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#318#319#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="80">
+          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Dice.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+        <state relative-caret-position="256">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
           <folding>
-            <element signature="e#1149#1150#0" expanded="true" />
-            <element signature="e#1181#1182#0" expanded="true" />
+            <marker date="1517991239301" expanded="true" signature="342:351" ph=" { " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Board.java">
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Game/GameView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="2014">
+          <caret line="229" column="29" lean-forward="false" selection-start-line="229" selection-start-column="29" selection-end-line="229" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#7315#7316#0" expanded="true" />
+            <element signature="e#7351#7352#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/SetupView.java">
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/PieceColor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1935">
-          <caret line="334" column="45" lean-forward="true" selection-start-line="334" selection-start-column="45" selection-end-line="334" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/GameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="138" column="0" lean-forward="true" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="45" column="10" lean-forward="false" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
+        <state relative-caret-position="277">
+          <caret line="37" column="9" lean-forward="false" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Presenter.java">
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="186">
+          <caret line="395" column="0" lean-forward="false" selection-start-line="395" selection-start-column="0" selection-end-line="396" selection-end-column="0" />
+          <folding>
+            <element signature="e#12932#12933#0" expanded="true" />
+            <element signature="e#12963#12964#0" expanded="true" />
+            <element signature="e#13183#13184#0" expanded="true" />
+            <element signature="e#13219#13220#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Game/GamePresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1408">
+          <caret line="88" column="31" lean-forward="true" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2926#2927#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="32" column="32" lean-forward="true" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/SnakesAndLadders.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding>
+            <element signature="e#582#583#0" expanded="true" />
+            <element signature="e#620#621#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="39" column="20" lean-forward="true" selection-start-line="39" selection-start-column="20" selection-end-line="39" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/be/kdg/SnakesAndLadders/view/Setup/SetupPresenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="61" column="2" lean-forward="false" selection-start-line="61" selection-start-column="2" selection-end-line="61" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>

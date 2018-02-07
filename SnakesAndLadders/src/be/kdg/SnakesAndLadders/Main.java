@@ -4,15 +4,13 @@ package be.kdg.SnakesAndLadders;/*
  */
 
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
-import be.kdg.SnakesAndLadders.view.GameView;
-import be.kdg.SnakesAndLadders.view.Presenter;
-import be.kdg.SnakesAndLadders.view.SetupView;
+import be.kdg.SnakesAndLadders.view.Game.GameView;
+import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
+import be.kdg.SnakesAndLadders.view.Setup.SetupView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Main extends Application {
     @Override
@@ -25,7 +23,7 @@ public class Main extends Application {
         Stage secondaryStage = new Stage();
         Scene setupScene = new Scene(setupView);
 
-        Presenter presenter = new Presenter(model,gameView,setupView, primaryStage, gameScene, setupScene);
+        SetupPresenter setupPresenter = new SetupPresenter(model,gameView,setupView, primaryStage, gameScene, setupScene);
 
         secondaryStage.setScene(gameScene);
         secondaryStage.setTitle("GameView");
@@ -43,7 +41,6 @@ public class Main extends Application {
         secondaryStage.getIcons().add(new Image("/snakeandladder.png"));
         primaryStage.getIcons().add(new Image("/snakeandladder.png"));
 
-        //secondaryStage.show();
         primaryStage.show();
 
     }

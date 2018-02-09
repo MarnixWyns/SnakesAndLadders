@@ -11,6 +11,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
     @Override
@@ -24,10 +25,6 @@ public class Main extends Application {
         Scene setupScene = new Scene(setupView);
 
         SetupPresenter setupPresenter = new SetupPresenter(model,gameView,setupView, primaryStage, gameScene, setupScene);
-
-        secondaryStage.setScene(gameScene);
-        secondaryStage.setTitle("GameView");
-        secondaryStage.setResizable(false);
 
         primaryStage.setScene(setupScene);
         primaryStage.setTitle("SetupView");

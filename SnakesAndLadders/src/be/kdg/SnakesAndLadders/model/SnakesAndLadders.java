@@ -10,9 +10,7 @@ import java.util.List;
 
 public class SnakesAndLadders {
 
-    private String[] demoStrings = {"Someone", "Dagobert", "Donald", "Bert"};
-
-    private ArrayList<Player> players;
+    private ArrayList<Player> players = new ArrayList<>();
     private int currentPlayer;
     private Board board;
     private Stage stage = new Stage();
@@ -32,15 +30,14 @@ public class SnakesAndLadders {
     }
 
     public String getCurrentPlayer() {
-//        return players.get(currentPlayer).getUsername();
 
-        //TODO: If nullpointers fixed, change demo array with prod arrayList
-        if (currentPlayer == demoStrings.length -1) {
+        if (currentPlayer == players.size() - 1) {
             currentPlayer = 0;
-            return demoStrings[demoStrings.length - 1];
+            return players.get(players.size() - 1).getUsername();
         } else {
-            return demoStrings[currentPlayer++];
+            return players.get(currentPlayer++).getUsername();
         }
+
     }
 
     public void addPlayer(Player player) {

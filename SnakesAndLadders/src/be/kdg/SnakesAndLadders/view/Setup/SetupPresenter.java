@@ -41,45 +41,27 @@ public class SetupPresenter {
         //startButton intelligence
         view.getBtnStartGame().setOnAction(event -> {
 
-            //TODO: Control duplicate colors
 
-
-
-/*
-            //TODO: Add players to SnakesAndLadders Class
-            //So, this is throwing a nullpointer, completely understandable if you ask me, now just kill me please
-            ArrayList<Player> totalPlayers = new ArrayList<>();
-
-            Player player1 = new Player(view.getColorPickerP1().getValue(), view.getTfP1name().getText());
-            Player player2 = new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText());
-            Player player3 = new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText());
-            Player player4 = new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText());
-
-            model.addPlayer(player1);
-            model.addPlayer(player2);
-            model.addPlayer(player3);
-            model.addPlayer(player4);
-*/
-/*
             //Shorter version of above code
-            totalPlayers.add(new Player(view.getColorPickerP1().getValue(), view.getTfP1name().getText()));
-            totalPlayers.add(new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText()));
-            totalPlayers.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
-            totalPlayers.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
-*/
+            ArrayList<Player> players = new ArrayList<>();
 
-            /*
+            players.add(new Player(view.getColorPickerP1().getValue(), view.getTfP1name().getText()));
+            players.add(new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText()));
+            players.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
+            players.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
+
+
+
             //Should filter out all players that aren't valid
-            for (Player player : totalPlayers) {
+            for (Player player : players) {
                 if (!player.getUsername().equals("")){
                     model.addPlayer(player);
                 }
             }
-            */
 
 
             GameView gameView = new GameView();
-            GamePresenter gamePresenter = new GamePresenter(gameView, model);
+            GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);
             view.getScene().setRoot(gameView);
             //gameView.getScene().getWindow().sizeToScene();
             gameView.getScene().getWindow().setHeight(600);

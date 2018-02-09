@@ -234,32 +234,6 @@ public class SetupView extends BorderPane {
 
     private void layoutNodes() {
 
-        //TODO: ComboBox selectionmodel
-
-        //TODO: kdacht da dees de achtergronden van de opties in de comboboxen zou aan passen
-        //todo: niet dus
-        /*
-        colorPickerP1.setStyle("-fx-text-box-border: Yellow;" +
-                "-fx-text-box-border: Green;" +
-                "-fx-text-box-border: Blue;" +
-                "-fx-text-box-border: Red;");
-        colorPickerP2.setStyle("-fx-text-box-border: Yellow;" +
-                "-fx-text-box-border: Green;" +
-                "-fx-text-box-border: Blue;" +
-                "-fx-text-box-border: Red;");
-        colorPickerP3.setStyle("-fx-text-box-border: Yellow;" +
-                "-fx-text-box-border: Green;" +
-                "-fx-text-box-border: Blue;" +
-                "-fx-text-box-border: Red;");
-        colorPickerP4.setStyle("-fx-text-box-border: Yellow;" +
-                "-fx-text-box-border: Green;" +
-                "-fx-text-box-border: Blue;" +
-                "-fx-text-box-border: Red;");
-*/
-
-        //Achtergrond veranderen van kleur, bvb rood (zie hieronder)
-        //setStyle("-fx-background-color: WHITE;");
-
         //boardgrid layout
         boardGrid.getColumnConstraints().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10);
         boardGrid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6, row7, row8, row9, row10);

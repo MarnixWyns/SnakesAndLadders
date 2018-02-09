@@ -4,6 +4,7 @@ package be.kdg.SnakesAndLadders.view.Game;/*
  */
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
@@ -60,6 +61,8 @@ public class GameView extends BorderPane {
     private VBox playerMessage;
     private VBox dicePosition;
     private VBox gridFeedback;
+    private VBox gameButtons;
+    private HBox fullAndExit;
 
 
     //create grids using Gridpane
@@ -122,6 +125,8 @@ public class GameView extends BorderPane {
         playerMessage = new VBox();
         dicePosition = new VBox();
         gridFeedback = new VBox();
+        gameButtons = new VBox();
+        fullAndExit = new HBox();
 
         //achtergrond veranderen
         backgroundGame = new Image("/BackgroundImages/background.png");
@@ -174,21 +179,52 @@ public class GameView extends BorderPane {
         lblFeedback.setFont(new Font(30));
         setLeft(gridFeedback);
 
+        /*
+        //todo: place playername in center of label
         playerMessage.setSpacing(10);
-        playerMessage.setPadding(new Insets(50,200,0,0));
+        playerMessage.setPadding(new Insets(50,0,0,50));
         playerMessage.getChildren().addAll(lblplayerName,lblturnMessage);
-        lblplayerName.setPadding(new Insets(0,0,0,5));
+        lblplayerName.setPadding(new Insets(0,0,0,0));
         lblplayerName.setFont(new Font(50));
         lblturnMessage.setFont(new Font(25));
+        lblturnMessage.setPadding(new Insets(0,0,0,25));
+        playerMessage.setPrefWidth(400);
+        */
+        //Todo: Ruben set alignment of VBox to center if fullscreen is pressed
+        gameButtons.setSpacing(10);
+        gameButtons.setPadding(new Insets(50,0,0,50));
+        gameButtons.getChildren().addAll(lblplayerName, lblturnMessage, ivDice, btnRollDice);
+        lblplayerName.setFont(new Font(50));
+        lblturnMessage.setFont(new Font(25));
+        ivDice.setFitHeight(200);
+        ivDice.setFitWidth(200);
+        lblturnMessage.setPadding(new Insets(0,0,40,0));
+        btnRollDice.setPrefWidth(150);
+        btnRollDice.setPrefHeight(50);
+        btnRollDice.setFont(new Font(20));
+        setRight(gameButtons);
+        setMargin(gameButtons, new Insets(0,90,0,0));
+        gameButtons.setAlignment(Pos.CENTER);
 
+        fullAndExit.setSpacing(5);
+        //fullAndExit.setPadding(new Insets(0,0,15,895));
+        fullAndExit.getChildren().addAll(tbtnFullscreen, btnExit);
+        setBottom(fullAndExit);
+        setMargin(fullAndExit, new Insets(15));
+        fullAndExit.setAlignment(Pos.BOTTOM_RIGHT);
+
+
+
+        /*
         dicePosition.setSpacing(10);
-        dicePosition.setPadding(new Insets(20,100,20,0));
+        dicePosition.setPadding(new Insets(20,100,20,75));
         dicePosition.getChildren().addAll(ivDice, btnRollDice);
         ivDice.setFitHeight(150);
         ivDice.setFitWidth(150);
         btnRollDice.setPrefWidth(150);
         btnRollDice.setPrefHeight(50);
         btnRollDice.setFont(new Font(20));
+
 
         //gridpane voor exit en fullscreenbuttons
         btnExit.setPrefSize(40, 10);
@@ -197,12 +233,14 @@ public class GameView extends BorderPane {
         otherButtons.add(tbtnFullscreen, 1, 2);
         setCenter(otherButtons);
 
+
         //Vbox placement in gridpane
         currentPlayerDice.add(playerMessage,0,0);
         currentPlayerDice.add(dicePosition,0,1);
         currentPlayerDice.add(otherButtons,0,2);
         setRight(currentPlayerDice);
         otherButtons.setPadding(new Insets(85,0,0,235));
+        */
 
     }
 

@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.util.Optional;
 import java.util.Random;
@@ -17,10 +18,12 @@ import java.util.concurrent.TimeUnit;
 public class GamePresenter {
     private GameView view;
     private SnakesAndLadders model;
+    private Stage primaryStage;
 
-    public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders) {
+    public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
         this.view = view;
         this.model = snakesAndLadders;
+        this.primaryStage = primarystage;
 
         addEventHandlers();
         updateView();
@@ -53,28 +56,7 @@ public class GamePresenter {
             } else System.exit(0);
         });
 
-        //TODO: Switching scene also throws a closeRequest, pointing to a nullpointer
-        /*
-        view.getScene().getWindow().setOnCloseRequest(event -> {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Hierdoor stopt het spel!");
-            alert.setContentText("Ben je zeker?");
-            alert.setTitle("Opgelet!");
-            alert.getButtonTypes().clear();
-            ButtonType neen = new ButtonType("Neen");
-            ButtonType ja = new ButtonType("Ja");
-            alert.getButtonTypes().addAll(neen, ja);
-            alert.showAndWait();
 
-            if (alert.getResult() == null || alert.getResult().equals(neen)) {
-                event.consume();
-            } else System.exit(0);
-        });
-        */
-
-
-
-        /* //TODO: RE Enable
         //fullscreen button intelligence
         view.getTbtnFullscreen().setOnAction(event -> {
             if (view.getTbtnFullscreen().isSelected()) {
@@ -83,7 +65,7 @@ public class GamePresenter {
                 primaryStage.setFullScreen(false);
             }
         });
-        */
+
     }
 
     private void updateView() {

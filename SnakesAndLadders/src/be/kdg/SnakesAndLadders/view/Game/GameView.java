@@ -177,7 +177,7 @@ public class GameView extends BorderPane {
         gridFeedback.getChildren().addAll(boardGrid,lblFeedback);
         lblFeedback.setPadding(new Insets(10,50,0,150));
         lblFeedback.setFont(new Font(30));
-        setLeft(gridFeedback);
+        setCenter(gridFeedback);
 
         /*
         //todo: place playername in center of label

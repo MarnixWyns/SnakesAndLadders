@@ -44,4 +44,7 @@ public class SnakesAndLadders {
         players.add(player);
     }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
 }

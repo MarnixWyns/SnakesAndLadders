@@ -41,16 +41,12 @@ public class SetupPresenter {
         //startButton intelligence
         view.getBtnStartGame().setOnAction(event -> {
 
-
-            //Shorter version of above code
             ArrayList<Player> players = new ArrayList<>();
 
             players.add(new Player(view.getColorPickerP1().getValue(), view.getTfP1name().getText()));
             players.add(new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText()));
             players.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
             players.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
-
-
 
             //Should filter out all players that aren't valid
             for (Player player : players) {
@@ -59,7 +55,7 @@ public class SetupPresenter {
                 }
             }
 
-
+            //Switch between scenes from setup to Game
             GameView gameView = new GameView();
             GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);
             view.getScene().setRoot(gameView);
@@ -69,24 +65,6 @@ public class SetupPresenter {
 
 
         });
-
-        /* //TODO: Something strange is going on
-        view.getScene().getWindow().setOnCloseRequest(event -> {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Hierdoor stopt het spel!");
-            alert.setContentText("Ben je zeker?");
-            alert.setTitle("Opgelet!");
-            alert.getButtonTypes().clear();
-            ButtonType neen = new ButtonType("Neen");
-            ButtonType ja = new ButtonType("Ja");
-            alert.getButtonTypes().addAll(neen, ja);
-            alert.showAndWait();
-
-            if (alert.getResult() == null || alert.getResult().equals(neen)) {
-                event.consume();
-            } else System.exit(0);
-        });
-        */
 
         view.getBtnExitGame().setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -107,7 +85,6 @@ public class SetupPresenter {
 
         //region Fullscreen ToggleButtons
 
-
         view.getTbtnFullScreen().setOnAction(event -> {
             if (view.getTbtnFullScreen().isSelected()) {
                 primaryStage.setFullScreen(true);
@@ -121,68 +98,35 @@ public class SetupPresenter {
         view.getOnePlayer().setOnAction(event -> {
             amountOfPlayers = 1;
 
-            view.getTfP2name().setDisable(true);
-            view.getTfP3name().setDisable(true);
-            view.getTfP4name().setDisable(true);
+            disableFields(true, true,true);
 
-            view.getColorPickerP2().setDisable(true);
-            view.getColorPickerP3().setDisable(true);
-            view.getColorPickerP4().setDisable(true);
-
-            view.getIvPlayer2().setVisible(false);
-            view.getIvPlayer3().setVisible(false);
-            view.getIvPlayer4().setVisible(false);
-
+            hidePlayers(false, false, false);
         });
 
         view.getTwoPlayers().setOnAction(event -> {
             amountOfPlayers = 2;
 
-            view.getTfP2name().setDisable(false);
-            view.getTfP3name().setDisable(true);
-            view.getTfP4name().setDisable(true);
+            disableFields(false, true,true);
 
-            view.getColorPickerP2().setDisable(false);
-            view.getColorPickerP3().setDisable(true);
-            view.getColorPickerP4().setDisable(true);
-
-            view.getIvPlayer2().setVisible(true);
-            view.getIvPlayer3().setVisible(false);
-            view.getIvPlayer4().setVisible(false);
-
+            hidePlayers(true, false, false);
         });
 
         view.getThreePlayers().setOnAction(event -> {
             amountOfPlayers = 3;
 
-            view.getTfP2name().setDisable(false);
-            view.getTfP3name().setDisable(false);
-            view.getTfP4name().setDisable(true);
+            disableFields(false, false,true);
 
-            view.getColorPickerP2().setDisable(false);
-            view.getColorPickerP3().setDisable(false);
-            view.getColorPickerP4().setDisable(true);
-
-            view.getIvPlayer2().setVisible(true);
-            view.getIvPlayer3().setVisible(true);
-            view.getIvPlayer4().setVisible(false);
+            hidePlayers(true, true, false);
         });
 
         view.getFourPlayers().setOnAction(event -> {
             amountOfPlayers = 4;
 
-            view.getTfP2name().setDisable(false);
-            view.getTfP3name().setDisable(false);
-            view.getTfP4name().setDisable(false);
+            disableFields(false, false, false);
 
-            view.getColorPickerP2().setDisable(false);
-            view.getColorPickerP3().setDisable(false);
-            view.getColorPickerP4().setDisable(false);
-
-            view.getIvPlayer2().setVisible(true);
-            view.getIvPlayer3().setVisible(true);
-            view.getIvPlayer4().setVisible(true);
+            hidePlayers(true, true,true);
         });
+        //endregion
 
         //connect comboboxes to pawncolors and change accordingly
 
@@ -206,5 +150,21 @@ public class SetupPresenter {
         if (alert.getResult() == null || alert.getResult().equals(neen)) {
             event.consume();
         }*/
+    }
+
+    private void disableFields(boolean dis1, boolean dis2, boolean dis3){
+        view.getTfP2name().setDisable(dis1);
+        view.getTfP3name().setDisable(dis2);
+        view.getTfP4name().setDisable(dis3);
+
+        view.getColorPickerP2().setDisable(dis1);
+        view.getColorPickerP3().setDisable(dis2);
+        view.getColorPickerP4().setDisable(dis3);
+    }
+
+    private void hidePlayers(boolean dis1, boolean dis2, boolean dis3){
+        view.getIvPlayer2().setVisible(dis1);
+        view.getIvPlayer3().setVisible(dis2);
+        view.getIvPlayer4().setVisible(dis3);
     }
 }

@@ -3,24 +3,51 @@ package be.kdg.SnakesAndLadders.model;/*
  * 2/02/2018
  */
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class Board {
 
     //Array[X][Y]
-    private int[][] board = new int[10][10];
-    private Scanner scanner;
+    private int[][] board;
+    private Scanner easyScan;
     private Dice dice;
+    private Scanner txtScanner;
+    private File easy;
+    private File normal;
+    private File hard;
+    private Scanner normalScan;
+    private Scanner hardScan;
 
     private ArrayList<Player> players;
 
     private Path path;
 
     public Board(){
+        board = new int[10][10];
+        players = new ArrayList<>();
+
+        initialiseScanners();
 
     }
+
+    private void initialiseScanners() {
+        easy = new File("/BoardLayouts/Easy.txt");
+        normal = new File("/BoardLayouts/Normal.txt");
+        hard = new File("/BoardLayouts/Normal.txt");
+
+        try {
+            easyScan = new Scanner(easy);
+            normalScan = new Scanner(normal);
+            hardScan = new Scanner(hard);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void initialize(ArrayList<Player> players, Difficulty difficulty){
         this.players =  players;
@@ -40,9 +67,5 @@ public class Board {
     public void checkIfPosSnake(){
 
     }
-
-
-
-
 
 }

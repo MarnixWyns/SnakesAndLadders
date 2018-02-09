@@ -10,62 +10,54 @@ import java.util.*;
 
 public class Board {
 
-    //Array[X][Y]
     private int[][] board;
-    private Scanner easyScan;
-    private Dice dice;
-    private Scanner txtScanner;
-    private File easy;
-    private File normal;
-    private File hard;
-    private Scanner normalScan;
-    private Scanner hardScan;
 
-    private ArrayList<Player> players;
+    private ArrayList<Integer> snakeHeadPos;
+    private ArrayList<Integer> snakeTailPos;
 
-    private Path path;
+    private ArrayList<Integer> ladderBottomPos;
+    private ArrayList<Integer> ladderTopPos;
 
     public Board(){
+        snakeHeadPos = new ArrayList<>();
+        snakeTailPos = new ArrayList<>();
+        ladderBottomPos = new ArrayList<>();
+        ladderTopPos = new ArrayList<>();
+
         board = new int[10][10];
-        players = new ArrayList<>();
-
-        initialiseScanners();
-
     }
 
-    private void initialiseScanners() {
-        easy = new File("/BoardLayouts/Easy.txt");
-        normal = new File("/BoardLayouts/Normal.txt");
-        hard = new File("/BoardLayouts/Normal.txt");
+    //TODO: We hebbe dees nodig, kben ni aant cheate vo regels :P
 
-        try {
-            easyScan = new Scanner(easy);
-            normalScan = new Scanner(normal);
-            hardScan = new Scanner(hard);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    public ArrayList<Integer> getSnakeHeadPos() {
+        return snakeHeadPos;
     }
 
-
-
-    public void initialize(ArrayList<Player> players, Difficulty difficulty){
-        this.players =  players;
-        dice = new Dice();
-        //if (difficulty.equals(Difficulty.EASY)) this.path = Difficulty.getPath(difficulty);
+    public ArrayList<Integer> getSnakeTailPos() {
+        return snakeTailPos;
     }
 
-    public void update(int playerID){
-        Player currentPlayer = players.get(playerID - 1);
-        currentPlayer.addToPlayerPos(dice.getValue());
+    public ArrayList<Integer> getLadderBottomPos() {
+        return ladderBottomPos;
     }
 
-    public void checkIfPosLadder(){
-
+    public ArrayList<Integer> getLadderTopPos() {
+        return ladderTopPos;
     }
 
-    public void checkIfPosSnake(){
-
+    public void setSnakeHeadPos(ArrayList<Integer> snakeHeadPos) {
+        this.snakeHeadPos = snakeHeadPos;
     }
 
+    public void setSnakeTailPos(ArrayList<Integer> snakeTailPos) {
+        this.snakeTailPos = snakeTailPos;
+    }
+
+    public void setLadderBottomPos(ArrayList<Integer> ladderBottomPos) {
+        this.ladderBottomPos = ladderBottomPos;
+    }
+
+    public void setLadderTopPos(ArrayList<Integer> ladderTopPos) {
+        this.ladderTopPos = ladderTopPos;
+    }
 }

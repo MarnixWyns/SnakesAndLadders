@@ -15,10 +15,13 @@ public class SnakesAndLadders {
     private Board board;
     private Stage stage = new Stage();
     private Dice dice;
+    private BoardScan boardScan;
 
     public SnakesAndLadders() {
         dice = new Dice();
         currentPlayer = 0;
+        BoardScan boardScan = new BoardScan();
+        board = boardScan.getBoard();
     }
 
     public void startGame() {

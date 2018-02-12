@@ -3,9 +3,6 @@ package be.kdg.SnakesAndLadders.model;/*
  * 2/02/2018
  */
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.nio.file.Path;
 import java.util.*;
 
 public class Board {
@@ -27,6 +24,7 @@ public class Board {
         board = new int[10][10];
     }
 
+
     //TODO: We hebbe dees nodig, kben ni aant cheate vo regels :P
 
     public ArrayList<Integer> getSnakeHeadPos() {
@@ -45,6 +43,8 @@ public class Board {
         return ladderTopPos;
     }
 
+
+    //region BoardScan utilised functions, interacting scanner with Board
     public void setSnakeHeadPos(ArrayList<Integer> snakeHeadPos) {
         this.snakeHeadPos = snakeHeadPos;
     }
@@ -60,4 +60,5 @@ public class Board {
     public void setLadderTopPos(ArrayList<Integer> ladderTopPos) {
         this.ladderTopPos = ladderTopPos;
     }
+    //endregion
 }

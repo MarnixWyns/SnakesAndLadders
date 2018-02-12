@@ -61,8 +61,6 @@ public class BoardScan {
 
                     }
 
-
-
                     //TODO: put in Board arraylists
 
                     board.setSnakeHeadPos(snakeHeadPos);
@@ -80,5 +78,7 @@ public class BoardScan {
 
     }
 
-
+    public Board getBoard() {
+        return board;
+    }
 }

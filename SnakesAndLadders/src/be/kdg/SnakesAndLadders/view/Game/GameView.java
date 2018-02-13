@@ -267,4 +267,32 @@ public class GameView extends BorderPane {
     Label getLblplayerName(){
         return lblplayerName;
     }
+
+    public ImageView getIvPlayer1() {
+        return ivPlayer1;
+    }
+
+    public ImageView getIvPlayer2() {
+        return ivPlayer2;
+    }
+
+    public ImageView getIvPlayer3() {
+        return ivPlayer3;
+    }
+
+    public ImageView getIvPlayer4() {
+        return ivPlayer4;
+    }
+
+    public GridPane getPawnPane() {
+        return pawnPane;
+    }
+
+    public GridPane getBoardGrid() {
+        return boardGrid;
+    }
+
+    public Label getLblFeedback() {
+        return lblFeedback;
+    }
 }

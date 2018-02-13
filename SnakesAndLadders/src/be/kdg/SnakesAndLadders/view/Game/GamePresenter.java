@@ -3,27 +3,25 @@ package be.kdg.SnakesAndLadders.view.Game;/*
  * 7/02/2018
  */
 
-import be.kdg.SnakesAndLadders.model.Dice;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.util.Optional;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class GamePresenter {
     private GameView view;
     private SnakesAndLadders model;
     private Stage primaryStage;
 
+    int testC = 1;
+    int testR = 9;
+
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
         this.view = view;
         this.model = snakesAndLadders;
         this.primaryStage = primarystage;
+
 
         addEventHandlers();
         updateView();
@@ -33,7 +31,10 @@ public class GamePresenter {
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
 
-            view.getIvDice().setImage(new Image(view.getDIEURL() + model.throwDice() + ".png"));
+            int dice = model.throwDice();
+            view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
+
+            model.getCurrentPlayer().addToPlayerPos(dice);
 
             updateView();
         });
@@ -69,6 +70,56 @@ public class GamePresenter {
     }
 
     private void updateView() {
-        view.getLblplayerName().setText(model.getCurrentPlayer());
+        view.getLblplayerName().setText(model.getCurrentPlayerName());
+
+        if (model.getCurrentPlayerId() == 0) {
+            view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
+
+            view.getBoardGrid().add(view.getIvPlayer1(),
+                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
+                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
+
+            view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                    + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+
+            model.nextPlayer();
+        } else if (model.getCurrentPlayerId() == 1) {
+            view.getBoardGrid().getChildren().remove(view.getIvPlayer2());
+
+            view.getBoardGrid().add(view.getIvPlayer2(),
+                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
+                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
+
+            view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                    + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+
+            model.nextPlayer();
+        } else if (model.getCurrentPlayerId() == 2) {
+            view.getBoardGrid().getChildren().remove(view.getIvPlayer3());
+
+            view.getBoardGrid().add(view.getIvPlayer3(),
+                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
+                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
+
+            view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                    + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+
+            model.nextPlayer();
+        } else if (model.getCurrentPlayerId() == 3) {
+            view.getBoardGrid().getChildren().remove(view.getIvPlayer4());
+
+            view.getBoardGrid().add(view.getIvPlayer4(),
+                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
+                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
+
+            view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                    + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+
+            model.nextPlayer();
+        }
+
+
     }
+
+
 }

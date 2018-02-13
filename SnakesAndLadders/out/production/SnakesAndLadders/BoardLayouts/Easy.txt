@@ -1,0 +1,6 @@
+#Dit is een normaal spelbord van 10x10
+#Auteur: Freddy Fish
+snakesladders1.jpg
+BORD=10
+SLANGEN=7(23-6,24-54,27-50,58-81,65-40,70-94,98-67)
+LADDERS=9(4-26,9-30,13-56,19-38,37-59,48-69,60-83,73-89,77-96)

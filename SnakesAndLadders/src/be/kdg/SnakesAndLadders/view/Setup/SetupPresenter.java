@@ -3,6 +3,7 @@ package be.kdg.SnakesAndLadders.view.Setup;/*
  * 2/02/2018
  */
 
+import be.kdg.SnakesAndLadders.model.PieceColor;
 import be.kdg.SnakesAndLadders.model.Player;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
@@ -41,27 +42,41 @@ public class SetupPresenter {
         //startButton intelligence
         view.getBtnStartGame().setOnAction(event -> {
 
-            ArrayList<Player> players = new ArrayList<>();
+            try {
+                ArrayList<Player> players = new ArrayList<>();
 
-            players.add(new Player(view.getColorPickerP1().getValue(), view.getTfP1name().getText()));
-            players.add(new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText()));
-            players.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
-            players.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
+                players.add(new Player(view.getColorPickerP1().getValue(), view.getTfP1name().getText()));
+                players.add(new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText()));
+                players.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
+                players.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
 
-            //Should filter out all players that aren't valid
-            for (Player player : players) {
-                if (!player.getUsername().equals("")){
-                    model.addPlayer(player);
+                //Should filter out all players that aren't valid
+                for (Player player : players) {
+                    if (!player.getUsername().equals("")){
+                        model.addPlayer(player);
+                    }
                 }
-            }
 
-            //Switch between scenes from setup to Game
-            GameView gameView = new GameView();
-            GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);
-            view.getScene().setRoot(gameView);
-            //gameView.getScene().getWindow().sizeToScene();
-            gameView.getScene().getWindow().setHeight(600);
-            gameView.getScene().getWindow().setWidth(1024);
+                //TODO: Add computer player
+                if (model.getPlayers().size() == 1 || view.getOnePlayer().isSelected()){
+                    model.addPlayer(new Player(PieceColor.YELLOW, "Computer"));
+                }
+
+                //Switch between scenes from setup to Game
+                GameView gameView = new GameView();
+                GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);
+                view.getScene().setRoot(gameView);
+                //gameView.getScene().getWindow().sizeToScene();
+                gameView.getScene().getWindow().setHeight(600);
+                gameView.getScene().getWindow().setWidth(1024);
+
+
+            } catch (IndexOutOfBoundsException i){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Please give at least 1 player a name");
+                alert.setTitle("No player names");
+                alert.showAndWait();
+            }
 
 
         });

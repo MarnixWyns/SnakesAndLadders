@@ -30,19 +30,17 @@ public class Player {
 
     public void addToPlayerPos(int addToPos) {
 
-        if (playerPos + addToPos > 100){
+        if (playerPos + addToPos > 100) {
             //Returns player x positions if not on 100
-            playerPos = 100 - ((playerPos+addToPos) - 100);
-        }
-        else playerPos = playerPos + addToPos;
+            playerPos = 100 - ((playerPos + addToPos) - 100);
+        } else playerPos = playerPos + addToPos;
     }
 
     //Horizontal pos
     public int getXval() {
-        if (playerPos % 10 == 0){
+        if (playerPos % 10 == 0) {
             return 0;
-        }
-        else return playerPos % 10;
+        } else return playerPos % 10;
     }
 
     //Vertical pos
@@ -51,7 +49,7 @@ public class Player {
     }
     //endregion
 
-    public int getPlayerPos(){
+    public int getPlayerPos() {
         return playerPos;
     }
 

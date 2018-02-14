@@ -72,6 +72,13 @@ public class GamePresenter {
     private void updateView() {
         view.getLblplayerName().setText(model.getCurrentPlayerName());
 
+        if (model.getCurrentPlayer().getPlayerPos() == 100){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(model.getCurrentPlayerName());
+            alert.setContentText(model.getCurrentPlayerName() + " has finished");
+            alert.show();
+        }
+
         if (model.getCurrentPlayerId() == 0) {
             view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
 

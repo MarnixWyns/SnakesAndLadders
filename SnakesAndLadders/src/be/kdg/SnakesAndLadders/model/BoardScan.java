@@ -67,7 +67,13 @@ public class BoardScan {
                     board.setSnakeTailPos(snakeTailPos);
                 }
                 else if (line.substring(0,6).equals("LADDERS")){
-                    //TODO Put in board arraylists
+                    ArrayList<Integer> ladderBottomPos = new ArrayList<>();
+                    ArrayList<Integer> ladderTopPos = new ArrayList<>();
+
+                    //TODO: Scan function
+
+                    board.setLadderBottomPos(ladderBottomPos);
+                    board.setLadderTopPos(ladderTopPos);
                 }
             }
             scanner.close();

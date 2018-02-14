@@ -30,10 +30,34 @@ public class Player {
 
     public void addToPlayerPos(int addToPos) {
 
+        //Get board locations
+        BoardScan boardScan = new BoardScan();
+
+        //Rebound if > 100
         if (playerPos + addToPos > 100) {
             //Returns player x positions if not on 100
             playerPos = 100 - ((playerPos + addToPos) - 100);
         } else playerPos = playerPos + addToPos;
+
+        //Move down if snake head
+        int iS = 0;
+        for (Integer sPos : boardScan.getBoard().getSnakeHeadPos()){
+            if (playerPos == sPos){
+                this.playerPos = boardScan.getBoard().getSnakeTailPos().get(iS);
+            }
+            iS++;
+        }
+
+        //Move up is ladder bottom
+        int iL = 0;
+        for (Integer lPos : boardScan.getBoard().getLadderBottomPos()){
+            if (playerPos == lPos){
+                this.playerPos = boardScan.getBoard().getLadderTopPos().get(iL);
+            }
+            iL++;
+        }
+
+
     }
 
     //Horizontal pos

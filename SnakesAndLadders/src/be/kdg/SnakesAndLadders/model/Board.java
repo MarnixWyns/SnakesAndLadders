@@ -7,8 +7,6 @@ import java.util.*;
 
 public class Board {
 
-    private int[][] board;
-
     private ArrayList<Integer> snakeHeadPos;
     private ArrayList<Integer> snakeTailPos;
 
@@ -21,7 +19,6 @@ public class Board {
         ladderBottomPos = new ArrayList<>();
         ladderTopPos = new ArrayList<>();
 
-        board = new int[10][10];
     }
 
 

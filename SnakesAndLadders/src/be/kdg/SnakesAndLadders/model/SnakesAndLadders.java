@@ -41,15 +41,11 @@ public class SnakesAndLadders {
             return players.get(currentPlayer);
     }
 
-    public void addToPos(Player player, int dice) {
-        player.addToPlayerPos(dice);
-    }
-
     public int getPlayerPos(Player player) {
         return player.getPlayerPos();
     }
 
-    //Column = verticaal
+    //Column = verticaal, werkt
     public int translateToColumn(int pos) {
         int row = translateToRow(pos);
         int r;

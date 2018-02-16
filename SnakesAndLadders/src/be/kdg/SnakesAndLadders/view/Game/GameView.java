@@ -295,4 +295,8 @@ public class GameView extends BorderPane {
     public Label getLblFeedback() {
         return lblFeedback;
     }
+
+    public void setPawnPane(GridPane pawnPane) {
+        this.pawnPane = pawnPane;
+    }
 }

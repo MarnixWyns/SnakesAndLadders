@@ -8,6 +8,8 @@ import be.kdg.SnakesAndLadders.model.Player;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
+import javafx.collections.ListChangeListener;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 
@@ -113,6 +115,22 @@ public class SetupPresenter {
         view.getOnePlayer().setOnAction(event -> {
             amountOfPlayers = 1;
 
+            //todo Ruben fix itemlistener
+            view.getColorPickerP1().getChildrenUnmodifiable().addListener(new ListChangeListener<Node>() {
+                @Override
+                public void onChanged(Change<? extends Node> c) {
+            if(view.getColorPickerP1().getSelectionModel().isSelected(2)){
+                view.getIvPlayer1().setImage(view.getIvPlayer1NewColor());
+            }
+                }
+            });
+
+            /*
+            if(view.getColorPickerP1().getSelectionModel().isSelected(2)){
+                view.getIvPlayer1().setImage(view.getIvPlayer1NewColor());
+            }
+            */
+
             disableFields(true, true,true);
 
             hidePlayers(false, false, false);
@@ -124,6 +142,9 @@ public class SetupPresenter {
             disableFields(false, true,true);
 
             hidePlayers(true, false, false);
+
+            view.getColorPickerP1().getSelectionModel().select(0);
+            view.getColorPickerP2().getSelectionModel().select(1);
         });
 
         view.getThreePlayers().setOnAction(event -> {
@@ -132,6 +153,11 @@ public class SetupPresenter {
             disableFields(false, false,true);
 
             hidePlayers(true, true, false);
+
+            view.getColorPickerP1().getSelectionModel().select(0);
+            view.getColorPickerP2().getSelectionModel().select(1);
+            view.getColorPickerP3().getSelectionModel().select(2);
+
         });
 
         view.getFourPlayers().setOnAction(event -> {
@@ -140,6 +166,12 @@ public class SetupPresenter {
             disableFields(false, false, false);
 
             hidePlayers(true, true,true);
+
+            view.getColorPickerP1().getSelectionModel().select(0);
+            view.getColorPickerP2().getSelectionModel().select(1);
+            view.getColorPickerP3().getSelectionModel().select(2);
+            view.getColorPickerP4().getSelectionModel().select(3);
+
         });
         //endregion
 

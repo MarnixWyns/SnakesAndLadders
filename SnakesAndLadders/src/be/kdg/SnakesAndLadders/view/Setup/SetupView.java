@@ -34,6 +34,8 @@ public class SetupView extends BorderPane {
     private ImageView ivPlayer3;
     private ImageView ivPlayer4;
 
+    private Image ivPlayer1NewColor;
+
     private Label name;
     private Label lblPlayer1;
     private Label lblPlayer2;
@@ -151,6 +153,7 @@ public class SetupView extends BorderPane {
         colorPickerP3 = new ComboBox(colorOptions);
         colorPickerP4 = new ComboBox(colorOptions);
 
+
         colorPickerP1.getSelectionModel().select(0);
         colorPickerP2.getSelectionModel().select(1);
         colorPickerP3.getSelectionModel().select(2);
@@ -229,6 +232,9 @@ public class SetupView extends BorderPane {
         ivPlayer2 = new ImageView(new Image("PawnImages/blue.png"));
         ivPlayer3 = new ImageView(new Image("PawnImages/green.png"));
         ivPlayer4 = new ImageView(new Image("PawnImages/yellow.png"));
+
+        //pawn change color
+        ivPlayer1NewColor = new Image("PawnImages/green.png");
     }
 
 
@@ -401,5 +407,9 @@ public class SetupView extends BorderPane {
 
     public ObservableList<String> getColorOptions() {
         return colorOptions;
+    }
+
+    public Image getIvPlayer1NewColor() {
+        return ivPlayer1NewColor;
     }
 }

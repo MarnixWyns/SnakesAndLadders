@@ -14,14 +14,10 @@ public class GamePresenter {
     private SnakesAndLadders model;
     private Stage primaryStage;
 
-    int testC = 1;
-    int testR = 9;
-
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
         this.view = view;
         this.model = snakesAndLadders;
         this.primaryStage = primarystage;
-
 
         addEventHandlers();
         updateView();
@@ -30,7 +26,6 @@ public class GamePresenter {
     private void addEventHandlers() {
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
-
             int dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
@@ -70,6 +65,9 @@ public class GamePresenter {
     }
 
     private void updateView() {
+
+        //TODO: Disable a player if position 100 is reached, store playername in arrayList
+
         view.getLblplayerName().setText(model.getCurrentPlayerName());
 
         if (model.getCurrentPlayer().getPlayerPos() == 100){
@@ -78,6 +76,8 @@ public class GamePresenter {
             alert.setContentText(model.getCurrentPlayerName() + " has finished");
             alert.show();
         }
+
+        //TODO: Try to compact this
 
         if (model.getCurrentPlayerId() == 0) {
             view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
@@ -124,9 +124,5 @@ public class GamePresenter {
 
             model.nextPlayer();
         }
-
-
     }
-
-
 }

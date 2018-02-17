@@ -5,12 +5,16 @@ package be.kdg.SnakesAndLadders.model;/*
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BoardScan {
+public class BoardScan extends SnakesAndLadders {
     private File file;
+    private File save;
     private Scanner scanner;
+    private ArrayList<Player> players;
 
     private Board board;
 
@@ -18,55 +22,28 @@ public class BoardScan {
         board = new Board();
     }
 
-    private void readFile(File file){
+    private void readFile(File file) {
         this.file = file;
 
         try {
             scanner = new Scanner(file);
 
-            while (scanner.hasNext()){
+            while (scanner.hasNext()) {
                 String line = scanner.nextLine();
 
-                if (line.startsWith("#")){
+                if (line.startsWith("#")) {
                     //TODO: Read next Line
-                }
-                else if(line.startsWith("#")){
+                } else if (line.startsWith("#")) {
                     //TODO: Read next line, no variable board sizes implemented
-                }
-                else if(line.substring(0,6).equals("SLANGEN")){
+                } else if (line.substring(0, 6).equals("SLANGEN")) {
                     ArrayList<Integer> snakeHeadPos = new ArrayList<>();
                     ArrayList<Integer> snakeTailPos = new ArrayList<>();
-
-                    String text = line;
-
-                    //Function to see where ( starts for opening
-                    int noSnakes = 0;
-                    int sPos = 0;
-                    int ePos;
-                    char oB = '(';
-                    char cB = ')';
-
-                    //Obtains start pos of snakes coords
-                    while (oB != line.charAt(sPos)){
-                        sPos++;
-
-                    }
-
-                    ePos = sPos++;
-
-                    for (int i = 0; i < noSnakes * 2; i++) {
-                        while (!line.substring(sPos,ePos).contains("-")){
-
-                        }
-
-                    }
 
                     //TODO: put in Board arraylists
 
                     board.setSnakeHeadPos(snakeHeadPos);
                     board.setSnakeTailPos(snakeTailPos);
-                }
-                else if (line.substring(0,6).equals("LADDERS")){
+                } else if (line.substring(0, 6).equals("LADDERS")) {
                     ArrayList<Integer> ladderBottomPos = new ArrayList<>();
                     ArrayList<Integer> ladderTopPos = new ArrayList<>();
 
@@ -77,8 +54,60 @@ public class BoardScan {
                 }
             }
             scanner.close();
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             throw new SnakesAndLaddersException("Game file not found");
+        }
+    }
+
+    private void save() {
+        try {
+            int index = 1;
+            PrintWriter writer = new PrintWriter("saveFile.txt", "UTF-8");
+
+            //Header tag
+            writer.println("SAVE");
+
+            //$ = end of line indicator
+            //Format: P1:Squirrel:YELLOW:69$
+            for (Player player : super.getPlayers()){
+                writer.println("P" + index + ":" + player.getUsername() + ":" + player.getColor() + ":" + player.getPlayerPos() + "$");
+            }
+
+            writer.close();
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+            throw new SnakesAndLaddersException("FileWriteError");
+        }
+    }
+
+    private void readSave(File save) {
+        this.save = save;
+
+        try {
+            scanner =  new Scanner(save);
+            scanner.useDelimiter(":");
+
+            while (scanner.hasNext()){
+                String line =  scanner.nextLine();
+                if (line.equals("SAVE")){
+                    //You're in a good file, TODO: Add exception if SAVE not found on first line
+                }
+                if (line.startsWith("P")){
+                    //TODO: String to enum, no idea what this thing is actually doing
+                    String index = scanner.next();
+                    String name = scanner.next();
+                    String color = scanner.next();
+                    int startPos = scanner.nextInt();
+
+                    players.add(new Player(name, color, startPos));
+                }
+                else throw new SnakesAndLaddersException("IllegalSaveFormat");
+            }
+
+            super.setPlayers(players);
+
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
 

@@ -18,6 +18,13 @@ public class Player {
         playerPos = 1;
     }
 
+    public Player(Object color, String username, int playerPos) {
+        this.color = color;
+        this.username = username;
+        //Start position in array coordinates
+    }
+
+
     public Object getColor() {
         return color;
     }

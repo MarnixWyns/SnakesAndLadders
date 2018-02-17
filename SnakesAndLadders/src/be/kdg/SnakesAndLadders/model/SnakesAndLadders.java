@@ -85,5 +85,11 @@ public class SnakesAndLadders {
         }
     }
 
+    public BoardScan getBoardScan() {
+        return boardScan;
+    }
 
+    public void setPlayers(ArrayList<Player> players) {
+        this.players = players;
+    }
 }

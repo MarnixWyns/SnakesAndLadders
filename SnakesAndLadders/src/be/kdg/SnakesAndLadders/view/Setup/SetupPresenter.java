@@ -9,6 +9,7 @@ import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
 import javafx.collections.ListChangeListener;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -105,8 +106,10 @@ public class SetupPresenter {
         view.getTbtnFullScreen().setOnAction(event -> {
             if (view.getTbtnFullScreen().isSelected()) {
                 primaryStage.setFullScreen(true);
+                view.getSetupMenu().setPadding(new Insets(75,50,0,0));
             } else {
                 primaryStage.setFullScreen(false);
+                view.getSetupMenu().setPadding(new Insets(0));
             }
         });
         //endregion

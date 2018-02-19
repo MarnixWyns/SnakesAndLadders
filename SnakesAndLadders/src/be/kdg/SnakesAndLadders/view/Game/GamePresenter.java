@@ -4,6 +4,7 @@ package be.kdg.SnakesAndLadders.view.Game;/*
  */
 
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
@@ -57,11 +58,34 @@ public class GamePresenter {
         view.getTbtnFullscreen().setOnAction(event -> {
             if (view.getTbtnFullscreen().isSelected()) {
                 primaryStage.setFullScreen(true);
+                view.getGameButtons().setPadding(new Insets(75,50,0,0));
             } else {
                 primaryStage.setFullScreen(false);
+                view.getGameButtons().setPadding(new Insets(50,0,0,50));
             }
         });
 
+        if(model.getPlayers().size() == 1){
+            view.getIvPlayer1().setVisible(true);
+            view.getIvPlayer2().setVisible(true);
+            view.getIvPlayer3().setVisible(false);
+            view.getIvPlayer4().setVisible(false);
+        }else if (model.getPlayers().size() == 2){
+            view.getIvPlayer1().setVisible(true);
+            view.getIvPlayer2().setVisible(true);
+            view.getIvPlayer3().setVisible(false);
+            view.getIvPlayer4().setVisible(false);
+        }else if (model.getPlayers().size() == 3){
+            view.getIvPlayer1().setVisible(true);
+            view.getIvPlayer2().setVisible(true);
+            view.getIvPlayer3().setVisible(true);
+            view.getIvPlayer4().setVisible(false);
+        } else {
+            view.getIvPlayer1().setVisible(true);
+            view.getIvPlayer2().setVisible(true);
+            view.getIvPlayer3().setVisible(true);
+            view.getIvPlayer4().setVisible(true);
+        }
     }
 
     private void updateView() {

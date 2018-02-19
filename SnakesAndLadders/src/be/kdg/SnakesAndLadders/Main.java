@@ -39,7 +39,6 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("/snakeandladder.png"));
 
         primaryStage.show();
-
     }
 
     public static void main(String[] args) {

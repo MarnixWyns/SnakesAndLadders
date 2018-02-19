@@ -111,6 +111,7 @@ public class SetupView extends BorderPane {
     private VBox playerColors;
     private VBox difficulty;
     private VBox playerNameFields;
+    private HBox fullAndExit;
 
     //background variables creation
     BackgroundSize backgroundSize1;
@@ -196,6 +197,7 @@ public class SetupView extends BorderPane {
         playerColors = new VBox();
         difficulty = new VBox();
         playerNameFields = new VBox();
+        fullAndExit = new HBox();
 
         //boardgrid initialiseren
         column1 = new ColumnConstraints(38);
@@ -316,9 +318,7 @@ public class SetupView extends BorderPane {
         setupMenu.add(playerDifficuty, 0, 0);
         setupMenu.add(nameAndColors, 0, 1);
         setupMenu.add(startButton, 0, 2);
-        setupMenu.add(setupButtons, 0, 3);
         startButton.setPadding(new Insets(20, 100, 20, 100));
-        setupButtons.setPadding(new Insets(50, 0, 10, 230));
         nameAndColors.setPadding(new Insets(20, 0, 0, 0));
         playerDifficuty.setPadding(new Insets(10, 0, 0, 0));
         setRight(setupMenu);
@@ -327,6 +327,12 @@ public class SetupView extends BorderPane {
         //Default Selections of toggleGroups
         easyDifficulty.setSelected(true);
         fourPlayers.setSelected(true);
+
+        fullAndExit.setSpacing(5);
+        fullAndExit.getChildren().addAll(tbtnFullScreen, btnExitGame);
+        setBottom(fullAndExit);
+        setMargin(fullAndExit, new Insets(15,15,13,15));
+        fullAndExit.setAlignment(Pos.BOTTOM_RIGHT);
     }
 
     Button getBtnStartGame() {
@@ -411,5 +417,9 @@ public class SetupView extends BorderPane {
 
     public Image getIvPlayer1NewColor() {
         return ivPlayer1NewColor;
+    }
+
+    public GridPane getSetupMenu() {
+        return setupMenu;
     }
 }

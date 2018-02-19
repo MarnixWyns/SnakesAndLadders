@@ -172,6 +172,7 @@ public class GameView extends BorderPane {
         pawnPane.setPadding(new Insets(3,0,0,3));
 
 
+
         //VBox layout
         gridFeedback.setSpacing(10);
         gridFeedback.getChildren().addAll(boardGrid,lblFeedback);
@@ -207,7 +208,6 @@ public class GameView extends BorderPane {
         gameButtons.setAlignment(Pos.CENTER);
 
         fullAndExit.setSpacing(5);
-        //fullAndExit.setPadding(new Insets(0,0,15,895));
         fullAndExit.getChildren().addAll(tbtnFullscreen, btnExit);
         setBottom(fullAndExit);
         setMargin(fullAndExit, new Insets(15));
@@ -299,4 +299,9 @@ public class GameView extends BorderPane {
     public void setPawnPane(GridPane pawnPane) {
         this.pawnPane = pawnPane;
     }
+
+    public VBox getGameButtons() {
+        return gameButtons;
+    }
+
 }

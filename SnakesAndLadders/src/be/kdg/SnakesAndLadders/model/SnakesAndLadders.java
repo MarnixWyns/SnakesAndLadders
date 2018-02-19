@@ -14,15 +14,15 @@ public class SnakesAndLadders {
     private ArrayList<Player> players = new ArrayList<>();
     private int currentPlayer;
     private Board board;
-    private Stage stage = new Stage();
     private Dice dice;
-    private BoardScan boardScan;
+
+    //TODO: Boardscan object + initialisation causes stackOverflowError
+    //private BoardScan boardScan;
 
     public SnakesAndLadders() {
         dice = new Dice();
         currentPlayer = 0;
-        BoardScan boardScan = new BoardScan();
-        board = boardScan.getBoard();
+        //board = boardScan.getBoard();
     }
 
     public void startGame() {
@@ -85,9 +85,11 @@ public class SnakesAndLadders {
         }
     }
 
+    /*
     public BoardScan getBoardScan() {
         return boardScan;
     }
+    */
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;

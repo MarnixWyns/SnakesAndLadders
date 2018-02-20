@@ -94,4 +94,5 @@ public class SnakesAndLadders {
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
+
 }

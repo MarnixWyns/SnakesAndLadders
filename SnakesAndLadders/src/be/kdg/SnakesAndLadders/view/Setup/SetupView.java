@@ -104,6 +104,7 @@ public class SetupView extends BorderPane {
     private GridPane setupButtons;
     private GridPane startButton;
     private GridPane pawnPane;
+    private GridPane boardBackground;
 
     //create VBox to display player buttons
     private VBox playerButtons;
@@ -115,6 +116,7 @@ public class SetupView extends BorderPane {
 
     //background variables creation
     BackgroundSize backgroundSize1;
+    BackgroundSize backgroundBoard;
     Background backGround1;
 
 
@@ -135,7 +137,7 @@ public class SetupView extends BorderPane {
         tfP3name = new TextField();
         tfP4name = new TextField();
 
-        name = new Label("Name:");
+        name = new Label("Name: (Max 10 Chars)");
         lblPlayer1 = new Label("Player 1: ");
         lblPlayer2 = new Label("Player 2: ");
         lblPlayer3 = new Label("Player 3: ");
@@ -189,6 +191,7 @@ public class SetupView extends BorderPane {
         setupButtons = new GridPane();
         startButton = new GridPane();
         pawnPane = new GridPane();
+        boardBackground = new GridPane();
 
 
         //VBox initialiseren
@@ -200,27 +203,27 @@ public class SetupView extends BorderPane {
         fullAndExit = new HBox();
 
         //boardgrid initialiseren
-        column1 = new ColumnConstraints(38);
-        column2 = new ColumnConstraints(38);
-        column3 = new ColumnConstraints(38);
-        column4 = new ColumnConstraints(38);
-        column5 = new ColumnConstraints(38);
-        column6 = new ColumnConstraints(38);
-        column7 = new ColumnConstraints(38);
-        column8 = new ColumnConstraints(38);
-        column9 = new ColumnConstraints(38);
-        column10 = new ColumnConstraints(38);
+        column1 = new ColumnConstraints(40);
+        column2 = new ColumnConstraints(40);
+        column3 = new ColumnConstraints(40);
+        column4 = new ColumnConstraints(40);
+        column5 = new ColumnConstraints(40);
+        column6 = new ColumnConstraints(40);
+        column7 = new ColumnConstraints(40);
+        column8 = new ColumnConstraints(40);
+        column9 = new ColumnConstraints(40);
+        column10 = new ColumnConstraints(40);
 
-        row1 = new RowConstraints(38);
-        row2 = new RowConstraints(38);
-        row3 = new RowConstraints(38);
-        row4 = new RowConstraints(38);
-        row5 = new RowConstraints(38);
-        row6 = new RowConstraints(38);
-        row7 = new RowConstraints(38);
-        row8 = new RowConstraints(38);
-        row9 = new RowConstraints(38);
-        row10 = new RowConstraints(38);
+        row1 = new RowConstraints(40);
+        row2 = new RowConstraints(40);
+        row3 = new RowConstraints(40);
+        row4 = new RowConstraints(40);
+        row5 = new RowConstraints(40);
+        row6 = new RowConstraints(40);
+        row7 = new RowConstraints(40);
+        row8 = new RowConstraints(40);
+        row9 = new RowConstraints(40);
+        row10 = new RowConstraints(40);
 
         //background aanpassen:
         setupBackgroundImage = new Image("BackgroundImages/background.png");
@@ -228,6 +231,8 @@ public class SetupView extends BorderPane {
         backGround1 = new Background(new BackgroundImage(setupBackgroundImage,
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));
         setBackground(backGround1);
+
+        backgroundBoard = new BackgroundSize(400,400, false, false, true, false);
 
         //pawns initialisation
         ivPlayer1 = new ImageView(new Image("PawnImages/red.png"));
@@ -246,8 +251,11 @@ public class SetupView extends BorderPane {
         boardGrid.getColumnConstraints().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10);
         boardGrid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6, row7, row8, row9, row10);
         boardGrid.setGridLinesVisible(true);
-        boardGrid.setPadding(new Insets(30, 0, 30, 90));
-        setLeft(boardGrid);
+        boardGrid.setBackground(new Background(new BackgroundImage(new Image("BackgroundImages/normal.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard)));
+        boardBackground.add(boardGrid,0,0);
+        boardBackground.setPadding(new Insets(30, 0, 30, 90));
+        setLeft(boardBackground);
+
 
         //changing pawns to acceptable size
         ivPlayer1.setFitHeight(15);
@@ -421,5 +429,13 @@ public class SetupView extends BorderPane {
 
     public GridPane getSetupMenu() {
         return setupMenu;
+    }
+
+    public GridPane getBoardGrid() {
+        return boardGrid;
+    }
+
+    public GridPane getBoardBackground() {
+        return boardBackground;
     }
 }

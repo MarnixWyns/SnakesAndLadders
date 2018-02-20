@@ -4,6 +4,8 @@ package be.kdg.SnakesAndLadders.view.Game;/*
  */
 
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
+import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
+import be.kdg.SnakesAndLadders.view.Setup.SetupView;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -35,6 +37,19 @@ public class GamePresenter {
             updateView();
         });
 
+        view.getBtnHome().setOnAction(event -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Are you sure you want to return to setup screen?");
+            alert.setTitle("Return to Home Screen");
+            alert.showAndWait();
+
+            SetupView setupView = new SetupView();
+
+            if (alert.getResult() == null) {
+                event.consume();
+            } else view.getScene().setRoot(setupView);
+        });
+
 
         //exitbutton intelligence
         view.getBtnExit().setOnAction(event -> {
@@ -59,9 +74,11 @@ public class GamePresenter {
             if (view.getTbtnFullscreen().isSelected()) {
                 primaryStage.setFullScreen(true);
                 view.getGameButtons().setPadding(new Insets(75,50,0,0));
+                view.getBoardBackground().setPadding(new Insets(150,75,25,175));
             } else {
                 primaryStage.setFullScreen(false);
                 view.getGameButtons().setPadding(new Insets(50,0,0,50));
+                view.getBoardBackground().setPadding(new Insets(30,0,30,90));
             }
         });
 
@@ -106,12 +123,30 @@ public class GamePresenter {
         if (model.getCurrentPlayerId() == 0) {
             view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
 
-            view.getBoardGrid().add(view.getIvPlayer1(),
-                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
-                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
+            if(model.getCurrentPlayer().getPlayerPos() == 2){
+                view.getBoardGrid().add(view.getIvPlayer1(),2,6);
 
-            view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
-                    + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+                view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+            } else if (model.getCurrentPlayer().getPlayerPos() == 7){
+                view.getBoardGrid().add(view.getIvPlayer1(), 6,8);
+
+                view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+            } else if(model.getCurrentPlayer().getPlayerPos() == 8){
+                view.getBoardGrid().add(view.getIvPlayer1(), 9,6);
+
+                view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+            }
+            else {
+                view.getBoardGrid().add(view.getIvPlayer1(),
+                        model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
+                        model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
+
+                view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+            }
 
             model.nextPlayer();
         } else if (model.getCurrentPlayerId() == 1) {

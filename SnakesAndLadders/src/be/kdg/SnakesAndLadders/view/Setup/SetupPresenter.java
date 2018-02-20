@@ -107,9 +107,11 @@ public class SetupPresenter {
             if (view.getTbtnFullScreen().isSelected()) {
                 primaryStage.setFullScreen(true);
                 view.getSetupMenu().setPadding(new Insets(75,50,0,0));
+                view.getBoardBackground().setPadding(new Insets(150,75,25,175));
             } else {
                 primaryStage.setFullScreen(false);
                 view.getSetupMenu().setPadding(new Insets(0));
+                view.getBoardBackground().setPadding(new Insets(30,0,30,90));
             }
         });
         //endregion

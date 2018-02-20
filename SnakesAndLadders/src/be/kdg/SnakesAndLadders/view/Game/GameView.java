@@ -28,6 +28,7 @@ public class GameView extends BorderPane {
 
     private Button btnRollDice;
     private Button btnExit;
+    private Button btnHome;
     private ToggleButton tbtnFullscreen;
 
     private final String DIEURL = "/DieImages/die";
@@ -70,10 +71,13 @@ public class GameView extends BorderPane {
     private GridPane currentPlayerDice;
     private GridPane otherButtons;
     private GridPane pawnPane;
+    private GridPane boardBackground;
 
     //background variables creation
     BackgroundSize backgroundSize1;
+    BackgroundSize backgroundBoard;
     Background backGround1;
+
 
 
     public GameView() {
@@ -86,6 +90,7 @@ public class GameView extends BorderPane {
 
         btnRollDice = new Button("Roll the dice!");
         btnExit = new Button("Exit");
+        btnHome = new Button("Home");
         tbtnFullscreen = new ToggleButton("Fullscreen");
 
         //boardgrid initialiserenµ
@@ -116,6 +121,7 @@ public class GameView extends BorderPane {
         currentPlayerDice = new GridPane();
         otherButtons = new GridPane();
         pawnPane = new GridPane();
+        boardBackground = new GridPane();
 
         lblplayerName = new Label("Player");
         lblturnMessage = new Label("It's your turn!!");
@@ -135,6 +141,9 @@ public class GameView extends BorderPane {
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));
         setBackground(backGround1);
 
+        backgroundBoard = new BackgroundSize(400,400, false, false, true, false);
+
+
         //pawns initialisation
         ivPlayer1 = new ImageView(new Image("PawnImages/red.png"));
         ivPlayer2 = new ImageView(new Image("PawnImages/blue.png"));
@@ -146,10 +155,13 @@ public class GameView extends BorderPane {
     private void layoutNodes() {
 
         //boardgrid layout
-        boardGrid.getColumnConstraints().addAll(column1,column2,column3,column4,column5,column6,column7,column8,column9,column10);
-        boardGrid.getRowConstraints().addAll(row1,row2,row3,row4,row5,row6,row7,row8,row9,row10);
+        boardGrid.getColumnConstraints().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10);
+        boardGrid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6, row7, row8, row9, row10);
         boardGrid.setGridLinesVisible(true);
-        boardGrid.setPadding(new Insets(30,0,30,90));
+        boardGrid.setBackground(new Background(new BackgroundImage(new Image("BackgroundImages/normal.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard)));
+        boardBackground.add(boardGrid,0,0);
+        boardBackground.setPadding(new Insets(30, 0, 30, 90));
+
 
         //changing pawns to acceptable size
         ivPlayer1.setFitHeight(15);
@@ -175,10 +187,11 @@ public class GameView extends BorderPane {
 
         //VBox layout
         gridFeedback.setSpacing(10);
-        gridFeedback.getChildren().addAll(boardGrid,lblFeedback);
         lblFeedback.setPadding(new Insets(10,50,0,150));
         lblFeedback.setFont(new Font(30));
-        setCenter(gridFeedback);
+        gridFeedback.getChildren().addAll(boardBackground,lblFeedback);
+        setLeft(gridFeedback);
+
 
         /*
         //todo: place playername in center of label
@@ -206,9 +219,10 @@ public class GameView extends BorderPane {
         setRight(gameButtons);
         setMargin(gameButtons, new Insets(0,90,0,0));
         gameButtons.setAlignment(Pos.CENTER);
+        gameButtons.setPrefWidth(300);
 
         fullAndExit.setSpacing(5);
-        fullAndExit.getChildren().addAll(tbtnFullscreen, btnExit);
+        fullAndExit.getChildren().addAll(tbtnFullscreen,btnHome, btnExit);
         setBottom(fullAndExit);
         setMargin(fullAndExit, new Insets(15));
         fullAndExit.setAlignment(Pos.BOTTOM_RIGHT);
@@ -304,4 +318,11 @@ public class GameView extends BorderPane {
         return gameButtons;
     }
 
+    public GridPane getBoardBackground() {
+        return boardBackground;
+    }
+
+    public Button getBtnHome() {
+        return btnHome;
+    }
 }

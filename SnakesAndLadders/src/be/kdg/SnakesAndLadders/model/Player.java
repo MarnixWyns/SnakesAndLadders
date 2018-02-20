@@ -25,7 +25,6 @@ public class Player {
         this.username = username;
     }
 
-
     public Object getColor() {
         return color;
     }
@@ -49,23 +48,7 @@ public class Player {
             playerPos = 100 - ((playerPos + addToPos) - 100);
         } else playerPos += addToPos;
 
-        //Move down if snake head
-        int iS = 0;
-        for (Integer sPos : boardScan.getBoard().getSnakeHeadPos()) {
-            if (playerPos == sPos) {
-                this.playerPos = boardScan.getBoard().getSnakeTailPos().get(iS);
-            }
-            iS++;
-        }
-
-        //Move up is ladder bottom
-        int iL = 0;
-        for (Integer lPos : boardScan.getBoard().getLadderBottomPos()) {
-            if (playerPos == lPos) {
-                this.playerPos = boardScan.getBoard().getLadderTopPos().get(iL);
-            }
-            iL++;
-        }
+        playerPos = boardScan.getBoard().checkPos(playerPos);
     }
 
     public int getPlayerPos() {

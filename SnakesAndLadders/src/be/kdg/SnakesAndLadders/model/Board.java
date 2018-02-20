@@ -18,30 +18,29 @@ public class Board {
         snakeTailPos = new ArrayList<>();
         ladderBottomPos = new ArrayList<>();
         ladderTopPos = new ArrayList<>();
-
     }
 
+    public int checkPos(int pos){
 
-    //TODO: We hebbe dees nodig, kben ni aant cheate vo regels :P
+        int iS = 0;
+        for (Integer snakeHead : snakeHeadPos) {
+            if (snakeHead == pos){
+                return snakeTailPos.get(iS);
+            }
+            iS++;
+        }
 
-    public ArrayList<Integer> getSnakeHeadPos() {
-        return snakeHeadPos;
+        int iL = 0;
+        for (Integer ladderBottom : ladderBottomPos) {
+            if (ladderBottom == pos){
+                return ladderTopPos.get(iL);
+            }
+            iS++;
+        }
+
+        return pos;
     }
 
-    public ArrayList<Integer> getSnakeTailPos() {
-        return snakeTailPos;
-    }
-
-    public ArrayList<Integer> getLadderBottomPos() {
-        return ladderBottomPos;
-    }
-
-    public ArrayList<Integer> getLadderTopPos() {
-        return ladderTopPos;
-    }
-
-
-    //region BoardScan utilised functions, interacting scanner with Board
     public void setSnakeHeadPos(ArrayList<Integer> snakeHeadPos) {
         this.snakeHeadPos = snakeHeadPos;
     }
@@ -57,5 +56,4 @@ public class Board {
     public void setLadderTopPos(ArrayList<Integer> ladderTopPos) {
         this.ladderTopPos = ladderTopPos;
     }
-    //endregion
 }

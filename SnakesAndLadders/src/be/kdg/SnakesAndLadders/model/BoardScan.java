@@ -32,8 +32,10 @@ public class BoardScan extends SnakesAndLadders {
                 String line = scanner.nextLine();
 
                 if (line.startsWith("#")) {
+                    scanner.nextLine();
                     //TODO: Read next Line
-                } else if (line.startsWith("#")) {
+                } else if (line.startsWith("BORD")) {
+                    scanner.nextLine();
                     //TODO: Read next line, no variable board sizes implemented
                 } else if (line.substring(0, 6).equals("SLANGEN")) {
                     ArrayList<Integer> snakeHeadPos = new ArrayList<>();
@@ -89,8 +91,8 @@ public class BoardScan extends SnakesAndLadders {
             while (scanner.hasNext()){
                 String line =  scanner.nextLine();
                 if (line.equals("SAVE")){
-                    //You're in a good file, TODO: Add exception if SAVE not found on first line
-                } else throw new SnakesAndLaddersException("IllegalSaveFile");
+                    //You're in a good file,
+                } else throw new SnakesAndLaddersException("IllegalSaveFileHeader");
                 if (line.startsWith("P")){
                     //TODO: String to enum, no idea what this thing is actually doing
                     String index = scanner.next();

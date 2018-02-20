@@ -16,10 +16,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Optional;
 
 public class SetupPresenter {
@@ -58,6 +60,16 @@ public class SetupPresenter {
 
                 //Get players
                 ArrayList<Player> players = new ArrayList<>();
+
+                ArrayList<TextField> playerNames = new ArrayList<>();
+                playerNames.addAll(Arrays.asList(view.getTfP1name(), view.getTfP2name(), view.getTfP3name(), view.getTfP4name()));
+
+                for (TextField playerName : playerNames) {
+                    if (playerName.getText().length() > 10){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("wrong name format");
+                    }
+                }
 
                 players.add(new Player(view.getColorPickerP1().getValue(), view.getTfP1name().getText()));
                 players.add(new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText()));

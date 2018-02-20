@@ -442,4 +442,12 @@ public class SetupView extends BorderPane {
     RadioButton getHardDifficulty() {
         return hardDifficulty;
     }
+
+    public Background getBackGround1() {
+        return backGround1;
+    }
+
+    public GridPane getBoardBackground() {
+        return boardBackground;
+    }
 }

@@ -22,7 +22,7 @@ public class BoardScan extends SnakesAndLadders {
         board = new Board();
     }
 
-    private void readFile(File file) {
+    public void readFile(File file) {
         this.file = file;
 
         try {
@@ -59,7 +59,7 @@ public class BoardScan extends SnakesAndLadders {
         }
     }
 
-    private void save() {
+    public void save() {
         try {
             int index = 1;
             PrintWriter writer = new PrintWriter("saveFile.txt", "UTF-8");
@@ -79,7 +79,7 @@ public class BoardScan extends SnakesAndLadders {
         }
     }
 
-    private void readSave(File save) {
+    public void readSave(File save) {
         this.save = save;
 
         try {
@@ -90,7 +90,7 @@ public class BoardScan extends SnakesAndLadders {
                 String line =  scanner.nextLine();
                 if (line.equals("SAVE")){
                     //You're in a good file, TODO: Add exception if SAVE not found on first line
-                }
+                } else throw new SnakesAndLaddersException("IllegalSaveFile");
                 if (line.startsWith("P")){
                     //TODO: String to enum, no idea what this thing is actually doing
                     String index = scanner.next();

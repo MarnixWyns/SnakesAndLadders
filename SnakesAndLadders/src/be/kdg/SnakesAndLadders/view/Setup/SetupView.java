@@ -419,23 +419,27 @@ public class SetupView extends BorderPane {
         return ivPlayer4;
     }
 
-    public ObservableList<String> getColorOptions() {
+    ObservableList<String> getColorOptions() {
         return colorOptions;
     }
 
-    public Image getIvPlayer1NewColor() {
+    Image getIvPlayer1NewColor() {
         return ivPlayer1NewColor;
     }
 
-    public GridPane getSetupMenu() {
+    GridPane getSetupMenu() {
         return setupMenu;
     }
 
-    public GridPane getBoardGrid() {
-        return boardGrid;
+    RadioButton getEasyDifficulty() {
+        return easyDifficulty;
     }
 
-    public GridPane getBoardBackground() {
-        return boardBackground;
+    RadioButton getNormalDifficulty() {
+        return normalDifficulty;
+    }
+
+    RadioButton getHardDifficulty() {
+        return hardDifficulty;
     }
 }

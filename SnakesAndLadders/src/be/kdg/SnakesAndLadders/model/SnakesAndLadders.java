@@ -11,17 +11,31 @@ import java.util.List;
 
 public class SnakesAndLadders {
 
+    //Inner class enum voor difficulty
+    public enum Difficulty{
+        EASY, NORMAL, HARD;
+
+        @Override
+        public String toString() {
+            return this.name().toLowerCase();
+        }
+    }
+
     private ArrayList<Player> players = new ArrayList<>();
     private int currentPlayer;
     private Board board;
     private Dice dice;
+    private int boardSize;
+    private Difficulty difficulty;
 
-    //TODO: Boardscan object + initialisation causes stackOverflowError
+
+    //TODO: Boardscan object + initialisation causes stackOverflowError, possibly due to extends?
     //private BoardScan boardScan;
 
     public SnakesAndLadders() {
         dice = new Dice();
         currentPlayer = 0;
+        boardSize = 10;
         //board = boardScan.getBoard();
     }
 
@@ -48,20 +62,18 @@ public class SnakesAndLadders {
     //Column = verticaal, werkt
     public int translateToColumn(int pos) {
         int row = translateToRow(pos);
-        int r;
 
         if (row % 2 == 0) {
-            if (9 - ((pos % 10) - 1) == 10) return 0;
-            return 9 - ((pos % 10) - 1);
+            if ((boardSize - 1) - ((pos % boardSize) - 1) == boardSize) return 0;
+            return (boardSize - 1) - ((pos % boardSize) - 1);
         } else {
-            return pos - 1 - ((9 - row) * 10);
+            return pos - 1 - (((boardSize - 1) - row) * boardSize);
         }
     }
 
     //Row = horizontaal, werkt
     public int translateToRow(int pos) {
-
-        return 9 - ((pos - 1) / 10);
+        return (boardSize - 1) - ((pos - 1) / boardSize);
     }
 
     public void addPlayer(Player player) {
@@ -95,4 +107,11 @@ public class SnakesAndLadders {
         this.players = players;
     }
 
+    public void setSelectedDifficulty(Difficulty difficulty){
+        this.difficulty = difficulty;
+    }
+
+    public String getSelectedDifficulty(){
+        return difficulty.name();
+    }
 }

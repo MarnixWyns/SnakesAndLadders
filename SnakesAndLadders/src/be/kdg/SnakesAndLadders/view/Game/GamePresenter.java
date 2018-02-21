@@ -12,15 +12,19 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class GamePresenter {
     private GameView view;
     private SnakesAndLadders model;
     private Stage primaryStage;
+    private ArrayList<String> scoreboard;
 
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
         this.view = view;
         this.model = snakesAndLadders;
         this.primaryStage = primarystage;
+        scoreboard = new ArrayList<>();
 
         addEventHandlers();
         updateView();
@@ -73,26 +77,26 @@ public class GamePresenter {
         view.getTbtnFullscreen().setOnAction(event -> {
             if (view.getTbtnFullscreen().isSelected()) {
                 primaryStage.setFullScreen(true);
-                view.getGameButtons().setPadding(new Insets(75,50,0,0));
-                view.getBoardBackground().setPadding(new Insets(150,75,25,175));
+                view.getGameButtons().setPadding(new Insets(75, 50, 0, 0));
+                view.getBoardBackground().setPadding(new Insets(150, 75, 25, 175));
             } else {
                 primaryStage.setFullScreen(false);
-                view.getGameButtons().setPadding(new Insets(50,0,0,50));
-                view.getBoardBackground().setPadding(new Insets(30,0,30,90));
+                view.getGameButtons().setPadding(new Insets(50, 0, 0, 50));
+                view.getBoardBackground().setPadding(new Insets(30, 0, 30, 90));
             }
         });
 
-        if(model.getPlayers().size() == 1){
+        if (model.getPlayers().size() == 1) {
             view.getIvPlayer1().setVisible(true);
             view.getIvPlayer2().setVisible(true);
             view.getIvPlayer3().setVisible(false);
             view.getIvPlayer4().setVisible(false);
-        }else if (model.getPlayers().size() == 2){
+        } else if (model.getPlayers().size() == 2) {
             view.getIvPlayer1().setVisible(true);
             view.getIvPlayer2().setVisible(true);
             view.getIvPlayer3().setVisible(false);
             view.getIvPlayer4().setVisible(false);
-        }else if (model.getPlayers().size() == 3){
+        } else if (model.getPlayers().size() == 3) {
             view.getIvPlayer1().setVisible(true);
             view.getIvPlayer2().setVisible(true);
             view.getIvPlayer3().setVisible(true);
@@ -111,7 +115,13 @@ public class GamePresenter {
 
         view.getLblplayerName().setText(model.getCurrentPlayerName());
 
-        if (model.getCurrentPlayer().getPlayerPos() == 100){
+
+        if (model.getCurrentPlayer().getPlayerPos() == 100) {
+
+            model.getCurrentPlayer().setFinished(true);
+            scoreboard.add(model.getCurrentPlayerName());
+
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(model.getCurrentPlayerName());
             alert.setContentText(model.getCurrentPlayerName() + " has finished");
@@ -119,37 +129,21 @@ public class GamePresenter {
         }
 
         //TODO: Try to compact this
+        //TODO: The initial startup does an updateview but the dice hasn't been rolled yet so player1 loses a turn
 
-        if (model.getCurrentPlayerId() == 0) {
+        if (model.getCurrentPlayerId() == 0 && !model.getCurrentPlayer().isFinished()) {
             view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
 
-            if(model.getCurrentPlayer().getPlayerPos() == 2){
-                view.getBoardGrid().add(view.getIvPlayer1(),2,6);
 
-                view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
-                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
-            } else if (model.getCurrentPlayer().getPlayerPos() == 7){
-                view.getBoardGrid().add(view.getIvPlayer1(), 6,8);
+            view.getBoardGrid().add(view.getIvPlayer1(),
+                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
+                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
 
-                view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
-                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
-            } else if(model.getCurrentPlayer().getPlayerPos() == 8){
-                view.getBoardGrid().add(view.getIvPlayer1(), 9,6);
-
-                view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
-                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
-            }
-            else {
-                view.getBoardGrid().add(view.getIvPlayer1(),
-                        model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
-                        model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
-
-                view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
-                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
-            }
+            view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                    + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
             model.nextPlayer();
-        } else if (model.getCurrentPlayerId() == 1) {
+        } else if (model.getCurrentPlayerId() == 1 && !model.getCurrentPlayer().isFinished()) {
             view.getBoardGrid().getChildren().remove(view.getIvPlayer2());
 
             view.getBoardGrid().add(view.getIvPlayer2(),
@@ -160,7 +154,7 @@ public class GamePresenter {
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
             model.nextPlayer();
-        } else if (model.getCurrentPlayerId() == 2) {
+        } else if (model.getCurrentPlayerId() == 2 && !model.getCurrentPlayer().isFinished()) {
             view.getBoardGrid().getChildren().remove(view.getIvPlayer3());
 
             view.getBoardGrid().add(view.getIvPlayer3(),
@@ -171,7 +165,7 @@ public class GamePresenter {
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
             model.nextPlayer();
-        } else if (model.getCurrentPlayerId() == 3) {
+        } else if (model.getCurrentPlayerId() == 3 && !model.getCurrentPlayer().isFinished()) {
             view.getBoardGrid().getChildren().remove(view.getIvPlayer4());
 
             view.getBoardGrid().add(view.getIvPlayer4(),
@@ -182,6 +176,20 @@ public class GamePresenter {
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
             model.nextPlayer();
+        }
+        //No one can play anymore, game is finished
+        else {
+            StringBuilder score = new StringBuilder();
+            int i = 1;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("End of the game");
+            alert.setHeaderText("Everyone has finished");
+
+            for (String s : scoreboard) {
+                score.append(i++).append(". ").append(s).append("\n");
+            }
+            alert.setContentText(score.toString());
+            alert.showAndWait();
         }
     }
 }

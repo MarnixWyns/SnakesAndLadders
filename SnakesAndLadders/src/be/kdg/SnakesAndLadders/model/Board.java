@@ -7,53 +7,33 @@ import java.util.*;
 
 public class Board {
 
-    private ArrayList<Integer> snakeHeadPos;
-    private ArrayList<Integer> snakeTailPos;
-
-    private ArrayList<Integer> ladderBottomPos;
-    private ArrayList<Integer> ladderTopPos;
+    private HashMap<Integer, Integer> snakes;
+    private HashMap<Integer, Integer> ladders;
 
     public Board(){
-        snakeHeadPos = new ArrayList<>();
-        snakeTailPos = new ArrayList<>();
-        ladderBottomPos = new ArrayList<>();
-        ladderTopPos = new ArrayList<>();
+
+        snakes = new HashMap<>();
+        ladders = new HashMap<>();
     }
 
     public int checkPos(int pos){
 
-        int iS = 0;
-        for (Integer snakeHead : snakeHeadPos) {
-            if (snakeHead == pos){
-                return snakeTailPos.get(iS);
-            }
-            iS++;
+        if (snakes.containsKey(pos)){
+            return snakes.get(pos);
         }
 
-        int iL = 0;
-        for (Integer ladderBottom : ladderBottomPos) {
-            if (ladderBottom == pos){
-                return ladderTopPos.get(iL);
-            }
-            iS++;
+        if (ladders.containsKey(pos)){
+            return ladders.get(pos);
         }
 
         return pos;
     }
 
-    public void setSnakeHeadPos(ArrayList<Integer> snakeHeadPos) {
-        this.snakeHeadPos = snakeHeadPos;
+    public void setSnakes(HashMap<Integer, Integer> snakes) {
+        this.snakes = snakes;
     }
 
-    public void setSnakeTailPos(ArrayList<Integer> snakeTailPos) {
-        this.snakeTailPos = snakeTailPos;
-    }
-
-    public void setLadderBottomPos(ArrayList<Integer> ladderBottomPos) {
-        this.ladderBottomPos = ladderBottomPos;
-    }
-
-    public void setLadderTopPos(ArrayList<Integer> ladderTopPos) {
-        this.ladderTopPos = ladderTopPos;
+    public void setLadders(HashMap<Integer, Integer> ladders) {
+        this.ladders = ladders;
     }
 }

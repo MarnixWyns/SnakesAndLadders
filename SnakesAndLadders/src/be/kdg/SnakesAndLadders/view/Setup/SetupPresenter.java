@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -38,6 +39,8 @@ public class SetupPresenter {
         this.view = setupView;
         this.primaryStage = primaryStage;
         this.setupScene = setupScene;
+
+        this.model.startGame();
 
         addEventHandlers();
         updateView();
@@ -103,9 +106,48 @@ public class SetupPresenter {
                 alert.setTitle("No player names");
                 alert.showAndWait();
             }
-
-
         });
+
+
+        //TODO: Werkt niet met relatieve directories, moet absoluut pad krijgen adhv rel pad
+        view.getEasyDifficulty().setOnAction(event -> {
+            try {
+                model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
+
+            } catch (SnakesAndLaddersException e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("No such game file");
+                alert.setHeaderText("Game file not found");
+                alert.showAndWait();
+            }
+        });
+
+        view.getNormalDifficulty().setOnAction(event -> {
+            try {
+                model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Normal.txt"));
+
+            } catch (SnakesAndLaddersException e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("No such game file");
+                alert.setHeaderText("Game file not found");
+                alert.showAndWait();
+            }
+        });
+
+        view.getHardDifficulty().setOnAction(event -> {
+            try {
+                model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Hard.txt"));
+
+            } catch (SnakesAndLaddersException e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("No such game file");
+                alert.setHeaderText("Game file not found");
+                alert.showAndWait();
+            }
+        });
+
+
+
 
         view.getBtnExitGame().setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);

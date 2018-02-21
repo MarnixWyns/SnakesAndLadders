@@ -30,17 +30,18 @@ public class SnakesAndLadders {
 
 
     //TODO: Boardscan object + initialisation causes stackOverflowError, possibly due to extends?
-    //private BoardScan boardScan;
+    private BoardScan boardScan;
 
     public SnakesAndLadders() {
-        dice = new Dice();
         currentPlayer = 0;
         boardSize = 10;
-        //board = boardScan.getBoard();
+
     }
 
     public void startGame() {
-
+        dice = new Dice();
+        boardScan = new BoardScan();
+        board = boardScan.getBoard();
     }
 
     public int throwDice() {
@@ -97,11 +98,11 @@ public class SnakesAndLadders {
         }
     }
 
-    /*
+
     public BoardScan getBoardScan() {
         return boardScan;
     }
-    */
+
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;

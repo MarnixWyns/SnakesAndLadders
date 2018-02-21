@@ -9,6 +9,7 @@ import java.nio.file.Path;
 public class Player {
     private Object color;
     private String username;
+    private boolean isFinished;
 
     //number field has where player currently is
     private int playerPos;
@@ -53,5 +54,13 @@ public class Player {
 
     public int getPlayerPos() {
         return playerPos;
+    }
+
+    public boolean isFinished() {
+        return isFinished;
+    }
+
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 }

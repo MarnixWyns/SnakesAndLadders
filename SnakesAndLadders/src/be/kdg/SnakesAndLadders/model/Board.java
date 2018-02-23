@@ -3,17 +3,33 @@ package be.kdg.SnakesAndLadders.model;/*
  * 2/02/2018
  */
 
+import javafx.scene.image.Image;
+
 import java.util.*;
 
 public class Board {
 
     private HashMap<Integer, Integer> snakes;
     private HashMap<Integer, Integer> ladders;
+    private Image imgBackground;
+    private int size;
+    private ArrayList<Player> players;
 
-    public Board(){
 
-        snakes = new HashMap<>();
-        ladders = new HashMap<>();
+    public Board(Image background, HashMap<Integer, Integer> snakes, HashMap<Integer, Integer> ladders, int size){
+        this.imgBackground = background;
+        this.snakes = snakes;
+        this.ladders = ladders;
+        this.size = size;
+    }
+
+    public Board(Image imgBackground, HashMap<Integer, Integer> snakes, HashMap<Integer, Integer> ladders, ArrayList<Player> players, int size) {
+        //When save file is read, call this constructor
+        this.snakes = snakes;
+        this.ladders = ladders;
+        this.imgBackground = imgBackground;
+        this.players = players;
+        this.size = size;
     }
 
     public int checkPos(int pos){
@@ -29,11 +45,7 @@ public class Board {
         return pos;
     }
 
-    public void setSnakes(HashMap<Integer, Integer> snakes) {
-        this.snakes = snakes;
-    }
-
-    public void setLadders(HashMap<Integer, Integer> ladders) {
-        this.ladders = ladders;
+    public ArrayList getSavedPlayers() {
+        return players;
     }
 }

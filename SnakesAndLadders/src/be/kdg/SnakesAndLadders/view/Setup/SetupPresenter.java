@@ -34,6 +34,7 @@ public class SetupPresenter {
     private Stage primaryStage;
     private Scene setupScene;
     private int amountOfPlayers;
+    private DialogThrower dialogThrower;
 
     public SetupPresenter(SnakesAndLadders model, GameView gameView, SetupView setupView, Stage primaryStage,
                           Scene setupScene, Scene gameScene) {
@@ -43,6 +44,8 @@ public class SetupPresenter {
         this.setupScene = setupScene;
 
         this.model.startGame();
+
+        dialogThrower = new DialogThrower();
 
         addEventHandlers();
         updateView();
@@ -71,8 +74,8 @@ public class SetupPresenter {
 
                 for (TextField playerName : playerNames) {
                     if (playerName.getText().length() > 10){
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("wrong name format");
+                        dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "Illegal player name", "Player names are limited by 10 characters in length");
+
                     }
                 }
 
@@ -103,10 +106,7 @@ public class SetupPresenter {
 
 
             } catch (IndexOutOfBoundsException i){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setContentText("Please give at least 1 player a name");
-                alert.setTitle("No player names");
-                alert.showAndWait();
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No player Names", "Please give at least 1 player a name");
             }
         });
 
@@ -115,12 +115,9 @@ public class SetupPresenter {
         view.getEasyDifficulty().setOnAction(event -> {
             try {
                 model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
-
+                //TODO: obtain background file from Board
             } catch (SnakesAndLaddersException e){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("No such game file");
-                alert.setHeaderText("Game file not found");
-                alert.showAndWait();
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
             }
         });
 
@@ -129,10 +126,7 @@ public class SetupPresenter {
                 model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Normal.txt"));
 
             } catch (SnakesAndLaddersException e){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("No such game file");
-                alert.setHeaderText("Game file not found");
-                alert.showAndWait();
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
             }
         });
 
@@ -141,10 +135,7 @@ public class SetupPresenter {
                 model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Hard.txt"));
 
             } catch (SnakesAndLaddersException e){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("No such game file");
-                alert.setHeaderText("Game file not found");
-                alert.showAndWait();
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
             }
         });
 
@@ -350,5 +341,29 @@ public class SetupPresenter {
         view.getIvPlayer2().setVisible(dis1);
         view.getIvPlayer3().setVisible(dis2);
         view.getIvPlayer4().setVisible(dis3);
+    }
+
+    private class DialogThrower{
+        private Alert alert;
+
+        public DialogThrower() {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Default");
+        }
+
+        void throwAlert(Alert.AlertType type, String title, String header, String content){
+            alert.setAlertType(type);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.setContentText(content);
+            alert.showAndWait();
+        }
+
+        void throwAlert(Alert.AlertType type, String title, String header){
+            alert.setAlertType(type);
+            alert.setTitle(title);
+            alert.setHeaderText(header);
+            alert.showAndWait();
+        }
     }
 }

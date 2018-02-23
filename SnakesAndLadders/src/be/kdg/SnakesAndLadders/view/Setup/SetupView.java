@@ -34,6 +34,16 @@ public class SetupView extends BorderPane {
     private ImageView ivPlayer3;
     private ImageView ivPlayer4;
 
+    private ImageView ivRed;
+    private ImageView ivBlue;
+    private ImageView ivGreen;
+    private ImageView ivYellow;
+
+    private Image red;
+    private Image blue;
+    private Image green;
+    private Image yellow;
+
     private Image ivPlayer1NewColor;
 
     private Label name;
@@ -234,11 +244,22 @@ public class SetupView extends BorderPane {
 
         backgroundBoard = new BackgroundSize(400,400, false, false, true, false);
 
+        red = new Image("PawnImages/red.png");
+        blue = new Image("PawnImages/blue.png");
+        green = new Image("PawnImages/green.png");
+        yellow = new Image("PawnImages/yellow.png");
+
+
         //pawns initialisation
-        ivPlayer1 = new ImageView(new Image("PawnImages/red.png"));
-        ivPlayer2 = new ImageView(new Image("PawnImages/blue.png"));
-        ivPlayer3 = new ImageView(new Image("PawnImages/green.png"));
-        ivPlayer4 = new ImageView(new Image("PawnImages/yellow.png"));
+        ivRed = new ImageView(red);
+        ivBlue = new ImageView(blue);
+        ivGreen = new ImageView(green);
+        ivYellow = new ImageView(yellow);
+
+        ivPlayer1 = ivYellow;
+        ivPlayer2 = ivGreen;
+        ivPlayer3 = ivBlue;
+        ivPlayer4 = ivRed;
 
         //pawn change color
         ivPlayer1NewColor = new Image("PawnImages/green.png");
@@ -449,5 +470,37 @@ public class SetupView extends BorderPane {
 
     public GridPane getBoardBackground() {
         return boardBackground;
+    }
+
+    public ImageView getIvRed() {
+        return ivRed;
+    }
+
+    public ImageView getIvBlue() {
+        return ivBlue;
+    }
+
+    public ImageView getIvGreen() {
+        return ivGreen;
+    }
+
+    public ImageView getIvYellow() {
+        return ivYellow;
+    }
+
+    public Image getRed() {
+        return red;
+    }
+
+    public Image getBlue() {
+        return blue;
+    }
+
+    public Image getGreen() {
+        return green;
+    }
+
+    public Image getYellow() {
+        return yellow;
     }
 }

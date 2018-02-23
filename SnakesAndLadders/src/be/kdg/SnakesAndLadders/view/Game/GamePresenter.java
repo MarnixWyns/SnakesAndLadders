@@ -19,6 +19,7 @@ public class GamePresenter {
     private SnakesAndLadders model;
     private Stage primaryStage;
     private ArrayList<String> scoreboard;
+    private int score = 0;
 
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
         this.view = view;
@@ -107,6 +108,12 @@ public class GamePresenter {
             view.getIvPlayer3().setVisible(true);
             view.getIvPlayer4().setVisible(true);
         }
+
+        view.getIvPlayer1().setImage(model.getColorPlayer1());
+        view.getIvPlayer2().setImage(model.getColorPlayer2());
+        view.getIvPlayer3().setImage(model.getColorPlayer3());
+        view.getIvPlayer4().setImage(model.getColorPlayer4());
+
     }
 
     private void updateView() {
@@ -126,6 +133,13 @@ public class GamePresenter {
             alert.setTitle(model.getCurrentPlayerName());
             alert.setContentText(model.getCurrentPlayerName() + " has finished");
             alert.show();
+
+
+            scoreboard.add(score,model.getCurrentPlayerName());
+            score++;
+
+            model.disablePlayer(model.getCurrentPlayer());
+            model.nextPlayer();
         }
 
         //TODO: Try to compact this
@@ -178,6 +192,7 @@ public class GamePresenter {
             model.nextPlayer();
         }
         //No one can play anymore, game is finished
+        /*
         else {
             StringBuilder score = new StringBuilder();
             int i = 1;
@@ -191,5 +206,6 @@ public class GamePresenter {
             alert.setContentText(score.toString());
             alert.showAndWait();
         }
+        */
     }
 }

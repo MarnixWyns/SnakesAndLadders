@@ -21,6 +21,11 @@ public class GameView extends BorderPane {
     //Background
     private Image backgroundGame;
 
+    private ImageView ivRed;
+    private ImageView ivBlue;
+    private ImageView ivGreen;
+    private ImageView ivYellow;
+
     private ImageView ivPlayer1;
     private ImageView ivPlayer2;
     private ImageView ivPlayer3;
@@ -145,10 +150,16 @@ public class GameView extends BorderPane {
 
 
         //pawns initialisation
-        ivPlayer1 = new ImageView(new Image("PawnImages/red.png"));
-        ivPlayer2 = new ImageView(new Image("PawnImages/blue.png"));
-        ivPlayer3 = new ImageView(new Image("PawnImages/green.png"));
-        ivPlayer4 = new ImageView(new Image("PawnImages/yellow.png"));
+
+        ivRed = new ImageView(new Image("PawnImages/red.png"));
+        ivBlue = new ImageView(new Image("PawnImages/blue.png"));
+        ivGreen = new ImageView(new Image("PawnImages/green.png"));
+        ivYellow = new ImageView(new Image("PawnImages/yellow.png"));
+
+        ivPlayer1 = ivYellow;
+        ivPlayer2 = ivGreen;
+        ivPlayer3 = ivBlue;
+        ivPlayer4 = ivRed;
 
     }
 
@@ -164,20 +175,20 @@ public class GameView extends BorderPane {
 
 
         //changing pawns to acceptable size
-        ivPlayer1.setFitHeight(15);
-        ivPlayer1.setFitWidth(15);
-        ivPlayer2.setFitHeight(15);
-        ivPlayer2.setFitWidth(15);
-        ivPlayer3.setFitHeight(15);
-        ivPlayer3.setFitWidth(15);
-        ivPlayer4.setFitHeight(15);
-        ivPlayer4.setFitWidth(15);
+        ivRed.setFitHeight(15);
+        ivRed.setFitWidth(15);
+        ivBlue.setFitHeight(15);
+        ivBlue.setFitWidth(15);
+        ivGreen.setFitHeight(15);
+        ivGreen.setFitWidth(15);
+        ivYellow.setFitHeight(15);
+        ivYellow.setFitWidth(15);
 
         //Putting pawns in the game at start position
-        pawnPane.add(ivPlayer1,0,0);
-        pawnPane.add(ivPlayer2,1,0);
-        pawnPane.add(ivPlayer3,0,1);
-        pawnPane.add(ivPlayer4, 1,1);
+        pawnPane.add(ivRed,0,0);
+        pawnPane.add(ivBlue,1,0);
+        pawnPane.add(ivGreen,0,1);
+        pawnPane.add(ivYellow, 1,1);
         pawnPane.setHgap(3);
         pawnPane.setVgap(3);
         boardGrid.add(pawnPane,0,9);

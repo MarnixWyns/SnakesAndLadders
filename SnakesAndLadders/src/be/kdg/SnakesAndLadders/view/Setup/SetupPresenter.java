@@ -10,6 +10,8 @@ import be.kdg.SnakesAndLadders.model.SnakesAndLaddersException;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -185,22 +187,6 @@ public class SetupPresenter {
         view.getOnePlayer().setOnAction(event -> {
             amountOfPlayers = 1;
 
-            //todo Ruben fix itemlistener
-            view.getColorPickerP1().getChildrenUnmodifiable().addListener(new ListChangeListener<Node>() {
-                @Override
-                public void onChanged(Change<? extends Node> c) {
-            if(view.getColorPickerP1().getSelectionModel().isSelected(2)){
-                view.getIvPlayer1().setImage(view.getIvPlayer1NewColor());
-            }
-                }
-            });
-
-            /*
-            if(view.getColorPickerP1().getSelectionModel().isSelected(2)){
-                view.getIvPlayer1().setImage(view.getIvPlayer1NewColor());
-            }
-            */
-
             disableFields(true, true,true);
 
             hidePlayers(false, false, false);
@@ -245,7 +231,88 @@ public class SetupPresenter {
         });
         //endregion
 
+        //initialisatie in het geval de spelers de default waarden van de comboboxen nemen
+        model.setColorPlayer1(view.getYellow());
+        model.setColorPlayer2(view.getGreen());
+        model.setColorPlayer3(view.getBlue());
+        model.setColorPlayer4(view.getRed());
+
         //connect comboboxes to pawncolors and change accordingly
+        view.getColorPickerP1().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(view.getColorPickerP1().getSelectionModel().isSelected(0)){
+                    model.setColorPlayer1(view.getYellow());
+                    view.getIvPlayer1().setImage(view.getYellow());
+                } else if (view.getColorPickerP1().getSelectionModel().isSelected(1)){
+                    model.setColorPlayer1(view.getGreen());
+                    view.getIvPlayer1().setImage(view.getGreen());
+                } else if (view.getColorPickerP1().getSelectionModel().isSelected(2)){
+                    model.setColorPlayer1(view.getBlue());
+                    view.getIvPlayer1().setImage(view.getBlue());
+                } else if (view.getColorPickerP1().getSelectionModel().isSelected(3)){
+                    model.setColorPlayer1(view.getRed());
+                    view.getIvPlayer1().setImage(view.getRed());
+                }
+            }
+        });
+
+        view.getColorPickerP2().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(view.getColorPickerP2().getSelectionModel().isSelected(0)){
+                    model.setColorPlayer2(view.getYellow());
+                    view.getIvPlayer2().setImage(view.getYellow());
+                } else if (view.getColorPickerP2().getSelectionModel().isSelected(1)){
+                    model.setColorPlayer2(view.getGreen());
+                    view.getIvPlayer2().setImage(view.getGreen());
+                } else if (view.getColorPickerP2().getSelectionModel().isSelected(2)){
+                    model.setColorPlayer2(view.getBlue());
+                    view.getIvPlayer2().setImage(view.getBlue());
+                } else if (view.getColorPickerP2().getSelectionModel().isSelected(3)){
+                    model.setColorPlayer2(view.getRed());
+                    view.getIvPlayer2().setImage(view.getRed());
+                }
+            }
+        });
+
+        view.getColorPickerP3().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(view.getColorPickerP3().getSelectionModel().isSelected(0)){
+                    model.setColorPlayer3(view.getYellow());
+                    view.getIvPlayer3().setImage(view.getYellow());
+                } else if (view.getColorPickerP3().getSelectionModel().isSelected(1)){
+                    model.setColorPlayer3(view.getGreen());
+                    view.getIvPlayer3().setImage(view.getGreen());
+                } else if (view.getColorPickerP3().getSelectionModel().isSelected(2)){
+                    model.setColorPlayer3(view.getBlue());
+                    view.getIvPlayer3().setImage(view.getBlue());
+                } else if (view.getColorPickerP3().getSelectionModel().isSelected(3)){
+                    model.setColorPlayer3(view.getRed());
+                    view.getIvPlayer3().setImage(view.getRed());
+                }
+            }
+        });
+
+        view.getColorPickerP4().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                if(view.getColorPickerP4().getSelectionModel().isSelected(0)){
+                    model.setColorPlayer4(view.getYellow());
+                    view.getIvPlayer4().setImage(view.getYellow());
+                } else if (view.getColorPickerP4().getSelectionModel().isSelected(1)){
+                    model.setColorPlayer4(view.getGreen());
+                    view.getIvPlayer4().setImage(view.getGreen());
+                } else if (view.getColorPickerP4().getSelectionModel().isSelected(2)){
+                    model.setColorPlayer4(view.getBlue());
+                    view.getIvPlayer4().setImage(view.getBlue());
+                } else if (view.getColorPickerP4().getSelectionModel().isSelected(3)){
+                    model.setColorPlayer4(view.getRed());
+                    view.getIvPlayer4().setImage(view.getRed());
+                }
+            }
+        });
 
     }
 

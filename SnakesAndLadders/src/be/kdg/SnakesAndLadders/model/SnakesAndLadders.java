@@ -4,6 +4,8 @@ package be.kdg.SnakesAndLadders.model;/*
  */
 
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -27,6 +29,10 @@ public class SnakesAndLadders {
     private Dice dice;
     private int boardSize;
     private Difficulty difficulty;
+    private Image colorPlayer1;
+    private Image colorPlayer2;
+    private Image colorPlayer3;
+    private Image colorPlayer4;
 
 
     //TODO: Boardscan object + initialisation causes stackOverflowError, possibly due to extends?
@@ -80,6 +86,9 @@ public class SnakesAndLadders {
     public void addPlayer(Player player) {
         players.add(player);
     }
+    public void disablePlayer(Player player){
+        players.remove(player);
+    }
 
     public ArrayList<Player> getPlayers() {
         return players;
@@ -114,5 +123,37 @@ public class SnakesAndLadders {
 
     public String getSelectedDifficulty(){
         return difficulty.name();
+    }
+
+    public void setColorPlayer1(Image colorPlayer1) {
+        this.colorPlayer1 = colorPlayer1;
+    }
+
+    public void setColorPlayer2(Image colorPlayer2) {
+        this.colorPlayer2 = colorPlayer2;
+    }
+
+    public void setColorPlayer3(Image colorPlayer3) {
+        this.colorPlayer3 = colorPlayer3;
+    }
+
+    public void setColorPlayer4(Image colorPlayer4) {
+        this.colorPlayer4 = colorPlayer4;
+    }
+
+    public Image getColorPlayer1() {
+        return colorPlayer1;
+    }
+
+    public Image getColorPlayer2() {
+        return colorPlayer2;
+    }
+
+    public Image getColorPlayer3() {
+        return colorPlayer3;
+    }
+
+    public Image getColorPlayer4() {
+        return colorPlayer4;
     }
 }

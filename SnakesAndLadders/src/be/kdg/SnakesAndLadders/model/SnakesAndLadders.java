@@ -86,6 +86,7 @@ public class SnakesAndLadders {
     public void addPlayer(Player player) {
         players.add(player);
     }
+
     public void disablePlayer(Player player){
         players.remove(player);
     }

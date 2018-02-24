@@ -11,19 +11,19 @@ public class Board {
 
     private HashMap<Integer, Integer> snakes;
     private HashMap<Integer, Integer> ladders;
-    private Image imgBackground;
+    private String imgBackground;
     private int size;
     private ArrayList<Player> players;
 
 
-    public Board(Image background, HashMap<Integer, Integer> snakes, HashMap<Integer, Integer> ladders, int size){
+    public Board(String background, HashMap<Integer, Integer> snakes, HashMap<Integer, Integer> ladders, int size){
         this.imgBackground = background;
         this.snakes = snakes;
         this.ladders = ladders;
         this.size = size;
     }
 
-    public Board(Image imgBackground, HashMap<Integer, Integer> snakes, HashMap<Integer, Integer> ladders, ArrayList<Player> players, int size) {
+    public Board(String imgBackground, HashMap<Integer, Integer> snakes, HashMap<Integer, Integer> ladders, ArrayList<Player> players, int size) {
         //When save file is read, call this constructor
         this.snakes = snakes;
         this.ladders = ladders;

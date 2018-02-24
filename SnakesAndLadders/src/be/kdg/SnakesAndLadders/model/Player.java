@@ -24,6 +24,7 @@ public class Player {
     public Player(Object color, String username, int playerPos) {
         this.color = color;
         this.username = username;
+        this.playerPos = playerPos;
     }
 
     public Object getColor() {
@@ -49,7 +50,7 @@ public class Player {
             playerPos = 100 - ((playerPos + addToPos) - 100);
         } else playerPos += addToPos;
 
-        playerPos = boardScan.getBoard().checkPos(playerPos);
+        //playerPos = boardScan.getBoard().checkPos(playerPos);
     }
 
     public int getPlayerPos() {

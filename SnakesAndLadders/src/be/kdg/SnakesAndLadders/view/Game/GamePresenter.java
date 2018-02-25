@@ -26,7 +26,7 @@ public class GamePresenter {
     private int pos2 = 1;
     private int pos3 = 1;
     private int pos4 = 1;
-
+    private int dice;
 
 
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
@@ -42,10 +42,10 @@ public class GamePresenter {
     private void addEventHandlers() {
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
-            int dice = model.throwDice();
+            dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
-            model.getCurrentPlayer().addToPlayerPos(dice);
+            model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
 
             if (model.getCurrentPlayerId() == 0 && !model.getCurrentPlayer().isPlayer1Finished()) {
 
@@ -262,6 +262,27 @@ public class GamePresenter {
     }
 
     private void updateView() {
+
+        //AI movement
+        //TODO: Add an animation or something to let the player know the computer haz moved
+        if (model.getCurrentPlayerName().equals("Computer")){
+            dice = model.throwDice();
+            view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
+
+            model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
+
+            view.getBoardGrid().getChildren().remove(view.getIvPlayer2());
+
+            view.getBoardGrid().add(view.getIvPlayer2(),
+                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
+                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
+
+
+            view.getLblFeedback().setText("AI Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
+                    + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+
+            model.nextPlayer();
+        }
 
         view.getLblplayerName().setText(model.getCurrentPlayerName());
 

@@ -96,7 +96,7 @@ public class GameView extends BorderPane {
     }
 
     private void initialiseNodes() {
-        ivDice = new ImageView(new Image("DieImages/die6.png")); //TODO: Add image path
+        ivDice = new ImageView(new Image("DieImages/die6.png"));
 
         btnRollDice = new Button("Roll the dice!");
         btnExit = new Button("Exit");
@@ -236,7 +236,7 @@ public class GameView extends BorderPane {
 
 
         /*
-        //todo: place playername in center of label
+        //TODO: place playername in center of label
         playerMessage.setSpacing(10);
         playerMessage.setPadding(new Insets(50,0,0,50));
         playerMessage.getChildren().addAll(lblplayerName,lblturnMessage);
@@ -246,7 +246,7 @@ public class GameView extends BorderPane {
         lblturnMessage.setPadding(new Insets(0,0,0,25));
         playerMessage.setPrefWidth(400);
         */
-        //Todo: Ruben set alignment of VBox to center if fullscreen is pressed
+        //TODO: Ruben set alignment of VBox to center if fullscreen is pressed, yeah Ruben, do this
         gameButtons.setSpacing(10);
         gameButtons.setPadding(new Insets(50,0,0,50));
         gameButtons.getChildren().addAll(lblplayerName, lblturnMessage, ivDice, btnRollDice);

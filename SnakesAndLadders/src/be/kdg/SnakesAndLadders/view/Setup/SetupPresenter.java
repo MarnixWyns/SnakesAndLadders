@@ -23,6 +23,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -46,6 +47,14 @@ public class SetupPresenter {
         this.model.startGame();
 
         dialogThrower = new DialogThrower();
+
+        //TODO: This has to be initialised first time, maybe better placement however
+        try {
+            model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
+            //TODO: obtain background file from Board
+        } catch (SnakesAndLaddersException e){
+            dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
+        }
 
         addEventHandlers();
         updateView();
@@ -91,7 +100,6 @@ public class SetupPresenter {
                     }
                 }
 
-                //TODO: Add computer player
                 if (model.getPlayers().size() == 1 || view.getOnePlayer().isSelected()){
                     model.addPlayer(new Player(PieceColor.YELLOW, "Computer"));
                 }

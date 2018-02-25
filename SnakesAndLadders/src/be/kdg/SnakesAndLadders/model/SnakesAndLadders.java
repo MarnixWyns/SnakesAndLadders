@@ -36,8 +36,6 @@ public class SnakesAndLadders {
     private boolean isFilled;
     private String player1Name;
 
-
-    //TODO: Boardscan object + initialisation causes stackOverflowError, possibly due to extends?
     private BoardScan boardScan;
 
     public SnakesAndLadders() {

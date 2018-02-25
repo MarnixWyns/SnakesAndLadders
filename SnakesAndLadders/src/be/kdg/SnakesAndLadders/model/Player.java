@@ -40,12 +40,7 @@ public class Player {
 
     //region Coordinate methods
 
-    public void addToPlayerPos(int addToPos) {
-
-        //Get board locations for snakes and ladders
-        BoardScan boardScan = new BoardScan();
-        //TODO: Get SnakesAndLadders getSelectedDifficulty in the readfile method below
-        //boardScan.readFile(new File("BoardLayouts/ "+  + ".txt"));
+    public void addToPlayerPos(int addToPos, Board board) {
 
         //Rebound if > 100
         if (playerPos + addToPos > 100) {
@@ -53,7 +48,8 @@ public class Player {
             playerPos = 100 - ((playerPos + addToPos) - 100);
         } else playerPos += addToPos;
 
-        //playerPos = boardScan.getBoard().checkPos(playerPos);
+        //TODO: Board has to be selected at least once
+        this.playerPos = board.checkPos(playerPos);
     }
 
     public int getPlayerPos() {

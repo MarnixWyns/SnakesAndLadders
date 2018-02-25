@@ -41,6 +41,7 @@ public class GamePresenter {
 
     private void addEventHandlers() {
         //Roll dice on button press
+
         view.getBtnRollDice().setOnAction(event -> {
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));

@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -68,6 +69,43 @@ public class SetupPresenter {
     }
 
     private void addEventHandlers() {
+
+        //check and delete if playernames exceed limit
+        view.getTfP1name().setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (view.getTfP1name().getLength() >= 10){
+                    event.consume();
+                }
+            }
+        });
+
+        view.getTfP2name().setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (view.getTfP2name().getLength() >= 10){
+                    event.consume();
+                }
+            }
+        });
+
+        view.getTfP3name().setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (view.getTfP3name().getLength() >= 10){
+                    event.consume();
+                }
+            }
+        });
+
+        view.getTfP4name().setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (view.getTfP4name().getLength() >= 10){
+                    event.consume();
+                }
+            }
+        });
 
         //startButton intelligence
         view.getBtnStartGame().setOnAction(event -> {
@@ -125,8 +163,6 @@ public class SetupPresenter {
             }
         });
 
-
-        //TODO: Werkt niet met relatieve directories, moet absoluut pad krijgen adhv rel pad
         view.getEasyDifficulty().setOnAction(event -> {
             ClassLoader classLoader = getClass().getClassLoader();
             try {
@@ -138,8 +174,9 @@ public class SetupPresenter {
         });
 
         view.getNormalDifficulty().setOnAction(event -> {
+            ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Normal.txt"));
+                model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
 
             } catch (SnakesAndLaddersException e){
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
@@ -147,8 +184,9 @@ public class SetupPresenter {
         });
 
         view.getHardDifficulty().setOnAction(event -> {
+            ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Hard.txt"));
+                model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Hard.txt").getFile()));
 
             } catch (SnakesAndLaddersException e){
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");

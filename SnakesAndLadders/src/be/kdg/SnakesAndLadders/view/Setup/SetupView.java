@@ -5,6 +5,7 @@ package be.kdg.SnakesAndLadders.view.Setup;/*
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
@@ -146,6 +148,7 @@ public class SetupView extends BorderPane {
         tfP2name = new TextField();
         tfP3name = new TextField();
         tfP4name = new TextField();
+
 
         name = new Label("Name: (Max 10 Chars)");
         lblPlayer1 = new Label("Player 1: ");

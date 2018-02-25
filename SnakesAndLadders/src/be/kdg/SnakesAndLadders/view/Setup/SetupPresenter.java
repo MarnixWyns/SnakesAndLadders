@@ -24,6 +24,9 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -49,8 +52,12 @@ public class SetupPresenter {
         dialogThrower = new DialogThrower();
 
         //TODO: This has to be initialised first time, maybe better placement however
+
+        ClassLoader classLoader = getClass().getClassLoader();
+
         try {
-            model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
+            //model.getBoardScan().readFile(new File("C:\\INF105B\\Java_Project\\SnakesAndLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
+            model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
             //TODO: obtain background file from Board
         } catch (SnakesAndLaddersException e){
             dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
@@ -121,8 +128,9 @@ public class SetupPresenter {
 
         //TODO: Werkt niet met relatieve directories, moet absoluut pad krijgen adhv rel pad
         view.getEasyDifficulty().setOnAction(event -> {
+            ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.getBoardScan().readFile(new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
+                model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
                 //TODO: obtain background file from Board
             } catch (SnakesAndLaddersException e){
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");

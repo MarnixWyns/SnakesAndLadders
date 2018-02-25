@@ -503,4 +503,8 @@ public class SetupView extends BorderPane {
     public Image getYellow() {
         return yellow;
     }
+
+    public GridPane getBoardGrid() {
+        return boardGrid;
+    }
 }

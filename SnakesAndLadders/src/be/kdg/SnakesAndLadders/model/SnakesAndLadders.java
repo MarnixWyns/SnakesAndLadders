@@ -33,6 +33,8 @@ public class SnakesAndLadders {
     private Image colorPlayer2;
     private Image colorPlayer3;
     private Image colorPlayer4;
+    private boolean isFilled;
+    private String player1Name;
 
 
     //TODO: Boardscan object + initialisation causes stackOverflowError, possibly due to extends?
@@ -108,7 +110,6 @@ public class SnakesAndLadders {
         }
     }
 
-
     public BoardScan getBoardScan() {
         return boardScan;
     }
@@ -156,5 +157,9 @@ public class SnakesAndLadders {
 
     public Image getColorPlayer4() {
         return colorPlayer4;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
     }
 }

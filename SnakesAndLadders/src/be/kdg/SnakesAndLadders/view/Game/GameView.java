@@ -77,6 +77,11 @@ public class GameView extends BorderPane {
     private GridPane otherButtons;
     private GridPane pawnPane;
     private GridPane boardBackground;
+    private GridPane newPawnPane;
+    private GridPane pawnPane1;
+    private GridPane pawnPane2;
+    private GridPane pawnPane3;
+    private GridPane pawnPane4;
 
     //background variables creation
     BackgroundSize backgroundSize1;
@@ -127,6 +132,11 @@ public class GameView extends BorderPane {
         otherButtons = new GridPane();
         pawnPane = new GridPane();
         boardBackground = new GridPane();
+        newPawnPane = new GridPane();
+        pawnPane1 = new GridPane();
+        pawnPane2 = new GridPane();
+        pawnPane3 = new GridPane();
+        pawnPane4 = new GridPane();
 
         lblplayerName = new Label("Player");
         lblturnMessage = new Label("It's your turn!!");
@@ -185,16 +195,37 @@ public class GameView extends BorderPane {
         ivYellow.setFitWidth(15);
 
         //Putting pawns in the game at start position
-        pawnPane.add(ivRed,0,0);
-        pawnPane.add(ivBlue,1,0);
-        pawnPane.add(ivGreen,0,1);
-        pawnPane.add(ivYellow, 1,1);
+
+        pawnPane.add(ivPlayer1,0,0);
+        pawnPane.add(ivPlayer2,1,0);
+        pawnPane.add(ivPlayer3,0,1);
+        pawnPane.add(ivPlayer4, 1,1);
         pawnPane.setHgap(3);
         pawnPane.setVgap(3);
         boardGrid.add(pawnPane,0,9);
         pawnPane.setPadding(new Insets(3,0,0,3));
 
 
+        //create new pawnpane for pawn placement
+        newPawnPane.setHgap(3);
+        newPawnPane.setVgap(3);
+        newPawnPane.setPadding(new Insets(3,0,0,3));
+
+        pawnPane1.setHgap(3);
+        pawnPane1.setVgap(3);
+        pawnPane1.setPadding(new Insets(3,0,0,3));
+
+        pawnPane2.setHgap(3);
+        pawnPane2.setVgap(3);
+        pawnPane2.setPadding(new Insets(3,0,0,3));
+
+        pawnPane3.setHgap(3);
+        pawnPane3.setVgap(3);
+        pawnPane3.setPadding(new Insets(3,0,0,3));
+
+        pawnPane4.setHgap(3);
+        pawnPane4.setVgap(3);
+        pawnPane4.setPadding(new Insets(3,0,0,3));
 
         //VBox layout
         gridFeedback.setSpacing(10);
@@ -335,5 +366,25 @@ public class GameView extends BorderPane {
 
     public Button getBtnHome() {
         return btnHome;
+    }
+
+    public GridPane getNewPawnPane() {
+        return newPawnPane;
+    }
+
+    public GridPane getPawnPane1() {
+        return pawnPane1;
+    }
+
+    public GridPane getPawnPane2() {
+        return pawnPane2;
+    }
+
+    public GridPane getPawnPane3() {
+        return pawnPane3;
+    }
+
+    public GridPane getPawnPane4() {
+        return pawnPane4;
     }
 }

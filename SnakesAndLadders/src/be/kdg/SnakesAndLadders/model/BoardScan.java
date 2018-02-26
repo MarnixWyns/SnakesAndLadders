@@ -87,7 +87,7 @@ public class BoardScan {
             throw new SnakesAndLaddersException("Game file not found");
         }
     }
-
+    /*
     public void save(File originalFile, File location) {
 
         String originalText = "";
@@ -127,6 +127,7 @@ public class BoardScan {
             throw new SnakesAndLaddersException("FileWriteError");
         }
     }
+    */
 
     public void readSave(File save) {
         this.save = save;

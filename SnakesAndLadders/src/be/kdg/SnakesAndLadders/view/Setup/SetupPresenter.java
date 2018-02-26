@@ -136,6 +136,12 @@ public class SetupPresenter {
                 players.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
                 players.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
 
+                model.addPlayerImage(view.getIvPlayer1());
+                model.addPlayerImage(view.getIvPlayer2());
+                model.addPlayerImage(view.getIvPlayer3());
+                model.addPlayerImage(view.getIvPlayer4());
+
+
                 //Should filter out all players that aren't valid
                 for (Player player : players) {
                     if (!player.getUsername().equals("")){
@@ -154,6 +160,8 @@ public class SetupPresenter {
                 //gameView.getScene().getWindow().sizeToScene();
                 gameView.getScene().getWindow().setHeight(600);
                 gameView.getScene().getWindow().setWidth(1024);
+
+                model.setCountPlayers(2);
 
 
             } catch (IndexOutOfBoundsException i){
@@ -233,6 +241,7 @@ public class SetupPresenter {
         //region ToggleGroup Amount of players
         view.getOnePlayer().setOnAction(event -> {
             amountOfPlayers = 1;
+            model.setCountPlayers(2);
 
             disableFields(true, true,true);
 
@@ -241,6 +250,7 @@ public class SetupPresenter {
 
         view.getTwoPlayers().setOnAction(event -> {
             amountOfPlayers = 2;
+            model.setCountPlayers(2);
 
             disableFields(false, true,true);
 
@@ -252,6 +262,7 @@ public class SetupPresenter {
 
         view.getThreePlayers().setOnAction(event -> {
             amountOfPlayers = 3;
+            model.setCountPlayers(3);
 
             disableFields(false, false,true);
 
@@ -265,6 +276,7 @@ public class SetupPresenter {
 
         view.getFourPlayers().setOnAction(event -> {
             amountOfPlayers = 4;
+            model.setCountPlayers(4);
 
             disableFields(false, false, false);
 
@@ -301,6 +313,7 @@ public class SetupPresenter {
                     model.setColorPlayer1(view.getRed());
                     view.getIvPlayer1().setImage(view.getRed());
                 }
+
             }
         });
 
@@ -320,6 +333,7 @@ public class SetupPresenter {
                     model.setColorPlayer2(view.getRed());
                     view.getIvPlayer2().setImage(view.getRed());
                 }
+
             }
         });
 
@@ -339,6 +353,7 @@ public class SetupPresenter {
                     model.setColorPlayer3(view.getRed());
                     view.getIvPlayer3().setImage(view.getRed());
                 }
+
             }
         });
 

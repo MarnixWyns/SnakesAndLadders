@@ -25,6 +25,7 @@ public class SnakesAndLadders {
     }
 
     private ArrayList<Player> players = new ArrayList<>();
+    private ArrayList<ImageView> playerImages = new ArrayList<>();
     private int currentPlayer;
     private Board board;
     private Dice dice;
@@ -34,6 +35,7 @@ public class SnakesAndLadders {
     private Image colorPlayer2;
     private Image colorPlayer3;
     private Image colorPlayer4;
+    private int countPlayers;
     private boolean isFilled;
     private String player1Name;
     private File difficultyFile;
@@ -63,6 +65,13 @@ public class SnakesAndLadders {
             return players.get(currentPlayer);
     }
 
+    public ImageView getCurrentPlayerImage(){
+        return playerImages.get(currentPlayer);
+    }
+    public int getCurrentPlayerImageId(){
+        return currentPlayer;
+    }
+
     public int getPlayerPos(Player player) {
         return player.getPlayerPos();
     }
@@ -86,6 +95,10 @@ public class SnakesAndLadders {
 
     public void addPlayer(Player player) {
         players.add(player);
+    }
+
+    public void addPlayerImage(ImageView imageView){
+        playerImages.add(imageView);
     }
 
     public void disablePlayer(Player player){
@@ -169,4 +182,17 @@ public class SnakesAndLadders {
     public void setDifficultyFile(File difficultyFile) {
         this.difficultyFile = difficultyFile;
     }
+
+    public ArrayList<ImageView> getPlayerImages() {
+        return playerImages;
+    }
+
+    public int getCountPlayers() {
+        return countPlayers;
+    }
+
+    public void setCountPlayers(int countPlayers) {
+        this.countPlayers = countPlayers;
+    }
 }
+

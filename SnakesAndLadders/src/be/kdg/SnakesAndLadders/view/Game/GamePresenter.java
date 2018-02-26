@@ -14,6 +14,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class GamePresenter {
@@ -218,6 +221,9 @@ public class GamePresenter {
                 event.consume();
             } else System.exit(0);
         });
+
+        //TODO SAVE Function
+        model.getBoardScan().save(model.getDifficultyFile(), new File("./Save.txt"));
 
 
         //fullscreen button intelligence

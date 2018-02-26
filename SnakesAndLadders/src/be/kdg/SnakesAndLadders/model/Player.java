@@ -48,7 +48,6 @@ public class Player {
             playerPos = 100 - ((playerPos + addToPos) - 100);
         } else playerPos += addToPos;
 
-        //TODO: Board has to be selected at least once
         this.playerPos = board.checkPos(playerPos);
     }
 

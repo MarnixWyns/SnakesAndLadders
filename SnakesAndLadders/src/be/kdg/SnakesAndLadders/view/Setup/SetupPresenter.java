@@ -47,18 +47,16 @@ public class SetupPresenter {
         this.view = setupView;
         this.primaryStage = primaryStage;
         this.setupScene = setupScene;
-
-        this.model.startGame();
-
         dialogThrower = new DialogThrower();
+        this.model.startGame();
 
         //TODO: This has to be initialised first time, maybe better placement however
 
         ClassLoader classLoader = getClass().getClassLoader();
 
         try {
-            //model.getBoardScan().readFile(new File("C:\\INF105B\\Java_Project\\SnakesAndLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
-            model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
+            model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
+            model.getBoardScan().readFile(model.getDifficultyFile());
             //TODO: obtain background file from Board
         } catch (SnakesAndLaddersException e){
             dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
@@ -166,7 +164,9 @@ public class SetupPresenter {
         view.getEasyDifficulty().setOnAction(event -> {
             ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
+                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
+                model.getBoardScan().readFile(model.getDifficultyFile());
+
                 //TODO: obtain background file from Board
             } catch (SnakesAndLaddersException e){
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
@@ -176,7 +176,8 @@ public class SetupPresenter {
         view.getNormalDifficulty().setOnAction(event -> {
             ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
+                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
+                model.getBoardScan().readFile(model.getDifficultyFile());
 
             } catch (SnakesAndLaddersException e){
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
@@ -186,7 +187,8 @@ public class SetupPresenter {
         view.getHardDifficulty().setOnAction(event -> {
             ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Hard.txt").getFile()));
+                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Hard.txt").getFile()));
+                model.getBoardScan().readFile(model.getDifficultyFile());
 
             } catch (SnakesAndLaddersException e){
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");

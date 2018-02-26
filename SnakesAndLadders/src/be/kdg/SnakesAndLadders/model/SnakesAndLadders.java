@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class SnakesAndLadders {
     private Image colorPlayer4;
     private boolean isFilled;
     private String player1Name;
-
+    private File difficultyFile;
     private BoardScan boardScan;
 
     public SnakesAndLadders() {
@@ -159,5 +160,13 @@ public class SnakesAndLadders {
 
     public void setCurrentPlayer(int currentPlayer) {
         this.currentPlayer = currentPlayer;
+    }
+
+    public File getDifficultyFile() {
+        return difficultyFile;
+    }
+
+    public void setDifficultyFile(File difficultyFile) {
+        this.difficultyFile = difficultyFile;
     }
 }

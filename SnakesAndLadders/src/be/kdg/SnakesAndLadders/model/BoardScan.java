@@ -3,18 +3,9 @@ package be.kdg.SnakesAndLadders.model;/*
  * 9/02/2018
  */
 
-import com.sun.media.jfxmedia.events.PlayerStateEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
-import org.omg.CORBA.INTERNAL;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -97,22 +88,42 @@ public class BoardScan {
         }
     }
 
-    public void save() {
+    public void save(File originalFile, File location) {
+
+        String originalText = "";
+        File save = new File(location.getAbsolutePath());
+
         try {
-            int index = 1;
-            PrintWriter writer = new PrintWriter("Save.txt", "UTF-8");
+            scanner =  new Scanner(originalFile);
 
-            //Header tag
-            writer.println("SAVE");
-
-            //$ = end of line indicator
-            //Format: P1:Squirrel:YELLOW:69$
-            for (Player player : snl.getPlayers()) {
-                writer.println("P" + index + ":" + player.getUsername() + ":" + player.getColor() + ":" + player.getPlayerPos() + "$");
+            while (scanner.hasNext()){
+                originalText += scanner.nextLine();
             }
 
+            BufferedWriter writer = new BufferedWriter(new FileWriter(save));
+            writer.write(originalText);
+            System.out.println(originalText);
+
+            //[0-9]+-[A-Z]-([a-z]|[A-Z])+
+
+            String playersSave = "PLAYERS";
+
+            playersSave += snl.getPlayers().size() + "(";
+
+
+            for (Player player : snl.getPlayers()) {
+                String p = "";
+                p += player.getPlayerPos() + "-";
+                p += player.getColor().toString().toUpperCase().substring(0,1) + "-";
+                p += player.getUsername() + ",";
+                playersSave += p;
+            }
+
+            playersSave += ")";
+
+            System.out.print(playersSave);
             writer.close();
-        } catch (FileNotFoundException | UnsupportedEncodingException e) {
+        } catch (IOException e) {
             throw new SnakesAndLaddersException("FileWriteError");
         }
     }

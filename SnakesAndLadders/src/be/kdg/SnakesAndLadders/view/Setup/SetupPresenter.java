@@ -55,8 +55,8 @@ public class SetupPresenter {
         ClassLoader classLoader = getClass().getClassLoader();
 
         try {
-            model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
-            model.getBoardScan().readFile(model.getDifficultyFile());
+            //model.getBoardScan().readFile(new File("C:\\INF105B\\Java_Project\\SnakesAndLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
+            model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
             //TODO: obtain background file from Board
         } catch (SnakesAndLaddersException e){
             dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");

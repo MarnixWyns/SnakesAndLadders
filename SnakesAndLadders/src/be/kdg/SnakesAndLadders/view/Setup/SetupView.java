@@ -264,8 +264,6 @@ public class SetupView extends BorderPane {
         ivPlayer3 = ivBlue;
         ivPlayer4 = ivRed;
 
-        //pawn change color
-        ivPlayer1NewColor = new Image("PawnImages/green.png");
     }
 
 
@@ -357,7 +355,8 @@ public class SetupView extends BorderPane {
         setAlignment(setupMenu, Pos.CENTER);
 
         //Default Selections of toggleGroups
-        easyDifficulty.setSelected(true);
+        //easyDifficulty.setSelected(true);
+        normalDifficulty.setSelected(true);
         fourPlayers.setSelected(true);
 
         fullAndExit.setSpacing(5);

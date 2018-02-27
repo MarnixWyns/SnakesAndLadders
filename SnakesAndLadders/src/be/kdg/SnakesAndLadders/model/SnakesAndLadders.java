@@ -3,14 +3,11 @@ package be.kdg.SnakesAndLadders.model;/*
  * 2/02/2018
  */
 
-import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SnakesAndLadders {
 
@@ -68,6 +65,7 @@ public class SnakesAndLadders {
     public ImageView getCurrentPlayerImage(){
         return playerImages.get(currentPlayer);
     }
+
     public int getCurrentPlayerImageId(){
         return currentPlayer;
     }

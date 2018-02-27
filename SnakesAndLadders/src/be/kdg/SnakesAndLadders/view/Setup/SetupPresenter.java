@@ -7,6 +7,7 @@ import be.kdg.SnakesAndLadders.model.PieceColor;
 import be.kdg.SnakesAndLadders.model.Player;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.model.SnakesAndLaddersException;
+import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
 import javafx.collections.ListChangeListener;
@@ -412,29 +413,5 @@ public class SetupPresenter {
         view.getIvPlayer2().setVisible(dis1);
         view.getIvPlayer3().setVisible(dis2);
         view.getIvPlayer4().setVisible(dis3);
-    }
-
-    private class DialogThrower{
-        private Alert alert;
-
-        public DialogThrower() {
-            alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Default");
-        }
-
-        void throwAlert(Alert.AlertType type, String title, String header, String content){
-            alert.setAlertType(type);
-            alert.setTitle(title);
-            alert.setHeaderText(header);
-            alert.setContentText(content);
-            alert.showAndWait();
-        }
-
-        void throwAlert(Alert.AlertType type, String title, String header){
-            alert.setAlertType(type);
-            alert.setTitle(title);
-            alert.setHeaderText(header);
-            alert.showAndWait();
-        }
     }
 }

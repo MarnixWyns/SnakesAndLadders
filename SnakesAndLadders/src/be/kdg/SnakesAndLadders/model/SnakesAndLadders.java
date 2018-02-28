@@ -25,6 +25,7 @@ public class SnakesAndLadders {
     private ArrayList<ImageView> playerImages = new ArrayList<>();
     private int currentPlayer;
     private Board board;
+    private Feedback feedback;
     private Dice dice;
     private int boardSize;
     private Difficulty difficulty;
@@ -191,6 +192,10 @@ public class SnakesAndLadders {
 
     public void setCountPlayers(int countPlayers) {
         this.countPlayers = countPlayers;
+    }
+
+    public Feedback getFeedback() {
+        return feedback;
     }
 }
 

@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 
@@ -24,6 +25,7 @@ public class SetupView extends BorderPane {
 
     private Button btnStartGame;
     private Button btnExitGame;
+    private Button btnLoadGame;
     private ToggleButton tbtnFullScreen;
 
     private TextField tfP1name;
@@ -127,9 +129,11 @@ public class SetupView extends BorderPane {
     private HBox fullAndExit;
 
     //background variables creation
-    BackgroundSize backgroundSize1;
-    BackgroundSize backgroundBoard;
-    Background backGround1;
+    private BackgroundSize backgroundSize1;
+    private BackgroundSize backgroundBoard;
+    private Background backGround1;
+
+    private Border border;
 
 
 
@@ -141,6 +145,7 @@ public class SetupView extends BorderPane {
     private void initialiseNodes() {
         btnStartGame = new Button("Start");
         btnExitGame = new Button("Exit");
+        btnLoadGame = new Button("Load Game");
         tbtnFullScreen = new ToggleButton("Fullscreen");
 
 
@@ -247,6 +252,8 @@ public class SetupView extends BorderPane {
 
         backgroundBoard = new BackgroundSize(400,400, false, false, true, false);
 
+        border = new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+
         red = new Image("PawnImages/red.png");
         blue = new Image("PawnImages/blue.png");
         green = new Image("PawnImages/green.png");
@@ -333,13 +340,7 @@ public class SetupView extends BorderPane {
         nameAndColors.add(playerColors, 2, 0);
         //setCenter(nameAndColors);
 
-
-        btnExitGame.setPrefSize(40, 10);
-        tbtnFullScreen.setPrefSize(75, 10);
-        setupButtons.add(btnExitGame, 2, 2);
-        setupButtons.add(tbtnFullScreen, 1, 2);
         //setCenter(setupButtons);
-
         btnStartGame.setPrefSize(150, 75);
         startButton.add(btnStartGame, 0, 0);
         btnStartGame.setFont(new Font(25));
@@ -359,11 +360,15 @@ public class SetupView extends BorderPane {
         normalDifficulty.setSelected(true);
         fourPlayers.setSelected(true);
 
+        btnExitGame.setPrefSize(40, 10);
+        tbtnFullScreen.setPrefSize(75, 10);
         fullAndExit.setSpacing(5);
         fullAndExit.getChildren().addAll(tbtnFullScreen, btnExitGame);
         setBottom(fullAndExit);
         setMargin(fullAndExit, new Insets(15,15,13,15));
         fullAndExit.setAlignment(Pos.BOTTOM_RIGHT);
+
+        setBorder(border);
     }
 
     Button getBtnStartGame() {

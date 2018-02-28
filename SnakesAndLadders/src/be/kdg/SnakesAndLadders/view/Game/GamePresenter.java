@@ -3,22 +3,15 @@ package be.kdg.SnakesAndLadders.view.Game;/*
  * 7/02/2018
  */
 
+import be.kdg.SnakesAndLadders.model.Feedback;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
-import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
-import be.kdg.SnakesAndLadders.view.Setup.SetupView;
-import com.sun.glass.events.ViewEvent;
+import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
+import be.kdg.SnakesAndLadders.view.Start.StartView;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
 import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.stage.Window;
-
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class GamePresenter {
@@ -26,7 +19,6 @@ public class GamePresenter {
     private SnakesAndLadders model;
     private Stage primaryStage;
     private ArrayList<String> scoreboard;
-    private int score = 0;
     private int pos1 = 1;
     private int pos2 = 1;
     private int pos3 = 1;
@@ -150,8 +142,10 @@ public class GamePresenter {
             view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
-            teller++;
 
+            //view.getLblFeedback().setText(model.getFeedback().getRandFeedback());
+
+            teller++;
 
             model.nextPlayer();
 
@@ -161,21 +155,29 @@ public class GamePresenter {
 
         view.getBtnHome().setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Are you sure you want to return to setup screen?\n" +
+            alert.setHeaderText("Are you sure you want to return to start screen?\n" +
                     "Your progress won't be saved.");
-            alert.setTitle("Return to Home Screen");
+            alert.setTitle("Return to Start Screen");
+            alert.getButtonTypes().clear();
+            ButtonType cancel = new ButtonType("Cancel");
+            ButtonType yes = new ButtonType("Return");
+            ButtonType save = new ButtonType("Save and Return");
+            alert.getButtonTypes().addAll(save, cancel, yes);
             alert.showAndWait();
 
-            SetupView setupView = new SetupView();
-            SetupPresenter setupPresenter = new SetupPresenter(model, view, setupView, primaryStage, setupView.getScene(), view.getScene());
+            StartView startView = new StartView();
+            StartPresenter startPresenter = new StartPresenter(startView, model, primaryStage);
             model.getPlayers().clear();
             teller = 1;
             model.getPlayerImages().clear();
             model.setCurrentPlayer(0);
 
-            if (alert.getResult() == null) {
+            //todo: Marnix, ook hier heb ik de save optie der bij gezet dus die if statement voor die button moet nog ingevuld worden
+            if (alert.getResult() == cancel) {
                 event.consume();
-            } else view.getScene().setRoot(setupView);
+            } else if(alert.getResult() == save){
+
+            } else view.getScene().setRoot(startView);
 
         });
 
@@ -183,17 +185,20 @@ public class GamePresenter {
         //exitbutton intelligence
         view.getBtnExit().setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Are you sure you want to exit? Your progress will not be saved");
-            alert.setContentText("Are you sure?");
+            alert.setHeaderText("Are you sure you want to exit?");
             alert.setTitle("Warning!");
             alert.getButtonTypes().clear();
-            ButtonType no = new ButtonType("No");
-            ButtonType yes = new ButtonType("Yes");
-            alert.getButtonTypes().addAll(no, yes);
+            ButtonType cancel = new ButtonType("Cancel");
+            ButtonType yes = new ButtonType("Exit");
+            ButtonType save = new ButtonType("Save and Quit");
+            alert.getButtonTypes().addAll(save, cancel, yes);
             alert.showAndWait();
 
-            if (alert.getResult() == null || alert.getResult().equals(no)) {
+            //Todo: same as the above marmar
+            if (alert.getResult() == cancel) {
                 event.consume();
+            } else if(alert.getResult() == save){
+
             } else System.exit(0);
         });
 

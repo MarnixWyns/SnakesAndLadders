@@ -3,10 +3,7 @@ package be.kdg.SnakesAndLadders.view.Setup;/*
  * 2/02/2018
  */
 
-import be.kdg.SnakesAndLadders.model.PieceColor;
-import be.kdg.SnakesAndLadders.model.Player;
-import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
-import be.kdg.SnakesAndLadders.model.SnakesAndLaddersException;
+import be.kdg.SnakesAndLadders.model.*;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
@@ -158,7 +155,6 @@ public class SetupPresenter {
                 GameView gameView = new GameView();
                 GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);
                 view.getScene().setRoot(gameView);
-                //gameView.getScene().getWindow().sizeToScene();
                 gameView.getScene().getWindow().setHeight(600);
                 gameView.getScene().getWindow().setWidth(1024);
 

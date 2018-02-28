@@ -11,6 +11,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 
@@ -20,6 +21,8 @@ public class GameView extends BorderPane {
 
     //Background
     private Image backgroundGame;
+
+    private Border border;
 
     private ImageView ivRed;
     private ImageView ivBlue;
@@ -100,6 +103,8 @@ public class GameView extends BorderPane {
     private void initialiseNodes() {
         ivDice = new ImageView(new Image("DieImages/die6.png"));
 
+        border = new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
+
         btnRollDice = new Button("Roll the dice!");
         btnExit = new Button("Exit");
         btnHome = new Button("Home");
@@ -173,6 +178,8 @@ public class GameView extends BorderPane {
         ivPlayer2 = ivGreen;
         ivPlayer3 = ivBlue;
         ivPlayer4 = ivRed;
+
+        setBorder(border);
 
     }
 

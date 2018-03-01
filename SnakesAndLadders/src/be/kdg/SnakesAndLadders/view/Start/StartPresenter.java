@@ -4,9 +4,11 @@ import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
 import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
 import be.kdg.SnakesAndLadders.view.Setup.SetupView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.nio.file.Paths;
 
 /**
  * Ruben Vanloo
@@ -29,23 +31,15 @@ public class StartPresenter {
     private void addEventHandlers() {
 
         //start a new game when new game is pressed and initialise setupview
-        view.getBtnNewGame().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        view.getBtnNewGame().setOnAction(event -> {
 
-                SetupView setupView = new SetupView();
-                GameView gameView = new GameView();
-                SetupPresenter setupPresenter = new SetupPresenter(model, gameView, setupView, primaryStage, setupView.getScene(), view.getScene());
-                view.getScene().setRoot(setupView);
-            }
+            SetupView setupView = new SetupView();
+            GameView gameView = new GameView();
+            SetupPresenter setupPresenter = new SetupPresenter(model, gameView, setupView, primaryStage, setupView.getScene(), view.getScene());
+            view.getScene().setRoot(setupView);
         });
         //exit button without warning
-        view.getBtnExit().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.exit(0);
-            }
-        });
+        view.getBtnExit().setOnAction(event -> System.exit(0));
         //fullscreen
         view.getTbtnFullscreen().setOnAction(event -> {
             if (view.getTbtnFullscreen().isSelected()) {
@@ -56,12 +50,19 @@ public class StartPresenter {
 
             }
         });
-        //TODO: Marnix do your magic tric and set game load logic here pls
-        view.getBtnLoadGame().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        view.getBtnLoadGame().setOnAction(event -> {
 
-            }
+                FileChooser fc = new FileChooser();
+                fc.setInitialDirectory(Paths.get(".").toFile());
+                fc.setTitle("Select your savefile");
+                File saveFile = fc.showOpenDialog(primaryStage);
+
+                if (saveFile != null){ //Sees is no file is selected
+                    model.getBoardScan().readSave(saveFile);
+                }
+
+
+
         });
     }
 

@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
 import java.util.ArrayList;
 
 public class GamePresenter {
@@ -25,7 +26,6 @@ public class GamePresenter {
     private int pos4 = 1;
     private int dice;
     private int teller = 1;
-
 
 
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
@@ -43,14 +43,14 @@ public class GamePresenter {
 
         view.getBtnRollDice().setOnAction(event -> {
 
-            if(teller ==1){
+            if (teller == 1) {
                 view.getPawnPane().getChildren().remove(view.getIvPlayer1());
                 pos1 = model.getPlayerPos(model.getCurrentPlayer());
-            } else if (teller == 2){
+            } else if (teller == 2) {
                 view.getPawnPane().getChildren().remove(view.getIvPlayer2());
-            } else if (teller == 3){
+            } else if (teller == 3) {
                 view.getPawnPane().getChildren().remove(view.getIvPlayer3());
-            } else if (teller == 4){
+            } else if (teller == 4) {
                 view.getPawnPane().getChildren().remove(view.getIvPlayer4());
             }
 
@@ -61,7 +61,6 @@ public class GamePresenter {
 
 
             view.getBoardGrid().getChildren().remove(model.getCurrentPlayerImage());
-
 
 
             view.getBoardGrid().add(model.getCurrentPlayerImage(),
@@ -92,11 +91,11 @@ public class GamePresenter {
                     model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
                     model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
             */
-            if(model.getCurrentPlayerId() == 0){
+            if (model.getCurrentPlayerId() == 0) {
                 pos1 = model.getPlayerPos(model.getCurrentPlayer());
             } else if (model.getCurrentPlayerId() == 1) {
                 pos2 = model.getPlayerPos(model.getCurrentPlayer());
-            } else if (model.getCurrentPlayerId() == 2){
+            } else if (model.getCurrentPlayerId() == 2) {
                 pos3 = model.getPlayerPos(model.getCurrentPlayer());
             } else if (model.getCurrentPlayerId() == 3) {
                 pos4 = model.getPlayerPos(model.getCurrentPlayer());
@@ -175,8 +174,8 @@ public class GamePresenter {
             //todo: Marnix, ook hier heb ik de save optie der bij gezet dus die if statement voor die button moet nog ingevuld worden
             if (alert.getResult() == cancel) {
                 event.consume();
-            } else if(alert.getResult() == save){
-
+            } else if (alert.getResult() == save) {
+                model.getBoardScan().save();
             } else view.getScene().setRoot(startView);
 
         });
@@ -197,15 +196,10 @@ public class GamePresenter {
             //Todo: same as the above marmar
             if (alert.getResult() == cancel) {
                 event.consume();
-            } else if(alert.getResult() == save){
-
+            } else if (alert.getResult() == save) {
+                model.getBoardScan().save();
             } else System.exit(0);
         });
-
-        //TODO SAVE Function
-
-        //model.getBoardScan().save(model.getDifficultyFile(), new File("./Save.txt"));
-
 
         //fullscreen button intelligence
         view.getTbtnFullscreen().setOnAction(event -> {
@@ -253,7 +247,7 @@ public class GamePresenter {
 
         //AI movement
         //TODO: Add an animation or something to let the player know the computer haz moved
-        if (model.getCurrentPlayerName().equals("Computer")){
+        if (model.getCurrentPlayerName().equals("Computer")) {
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
@@ -274,7 +268,7 @@ public class GamePresenter {
 
         view.getLblplayerName().setText(model.getCurrentPlayerName());
 
-        if(model.getCurrentPlayerId() == 0 && model.getCurrentPlayer().getPlayerPos() == 100) {
+        if (model.getCurrentPlayerId() == 0 && model.getCurrentPlayer().getPlayerPos() == 100) {
             scoreboard.add(model.getCurrentPlayerName());
             model.getCurrentPlayer().setPlayer1Finished(true);
 
@@ -288,7 +282,7 @@ public class GamePresenter {
             //model.getPlayers().remove(model.getCurrentPlayer());
 
         }
-        if(model.getCurrentPlayerId() == 1 && model.getCurrentPlayer().getPlayerPos() == 100) {
+        if (model.getCurrentPlayerId() == 1 && model.getCurrentPlayer().getPlayerPos() == 100) {
             scoreboard.add(model.getCurrentPlayerName());
             model.getCurrentPlayer().setPlayer2Finished(true);
 
@@ -303,7 +297,7 @@ public class GamePresenter {
             //model.getPlayers().remove(model.getCurrentPlayer());
 
         }
-        if(model.getCurrentPlayerId() == 2 && model.getCurrentPlayer().getPlayerPos() == 100) {
+        if (model.getCurrentPlayerId() == 2 && model.getCurrentPlayer().getPlayerPos() == 100) {
             scoreboard.add(model.getCurrentPlayerName());
             model.getCurrentPlayer().setPlayer3Finished(true);
 
@@ -318,7 +312,7 @@ public class GamePresenter {
             //model.getPlayers().remove(model.getCurrentPlayer());
 
         }
-        if(model.getCurrentPlayerId() == 3 && model.getCurrentPlayer().getPlayerPos() == 100) {
+        if (model.getCurrentPlayerId() == 3 && model.getCurrentPlayer().getPlayerPos() == 100) {
             scoreboard.add(model.getCurrentPlayerName());
             model.getCurrentPlayer().setPlayer4Finished(true);
 
@@ -333,7 +327,7 @@ public class GamePresenter {
 
         }
 
-        if(model.getPlayers().isEmpty()){
+        if (model.getPlayers().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("End Of Game");
             alert.setHeaderText(null);

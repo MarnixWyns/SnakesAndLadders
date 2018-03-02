@@ -1,7 +1,4 @@
-package be.kdg.SnakesAndLadders.model;/*
- * Marnix Wyns
- * 2/02/2018
- */
+package be.kdg.SnakesAndLadders.model;
 
 public class SnakesAndLaddersException extends RuntimeException {
     public SnakesAndLaddersException() {

@@ -10,10 +10,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.nio.file.Paths;
 
-/**
- * Ruben Vanloo
- * 28/02/2018.
- */
+
 public class StartPresenter {
     private StartView view;
     private SnakesAndLadders model;
@@ -58,11 +55,11 @@ public class StartPresenter {
                 File saveFile = fc.showOpenDialog(primaryStage);
 
                 if (saveFile != null){ //Sees is no file is selected
-                    model.getBoardScan().readSave(saveFile);
+                    //TODO: If file is selected, throws nullpointer :D
+                    model.getBoardScan().readFile(saveFile);
                 }
 
-
-
+                //Start game met gelezen files
         });
     }
 

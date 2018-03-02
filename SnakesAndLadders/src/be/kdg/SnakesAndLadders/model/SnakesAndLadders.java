@@ -3,6 +3,8 @@ package be.kdg.SnakesAndLadders.model;/*
  * 2/02/2018
  */
 
+//TODO: Geen JavaFX in model
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 public class SnakesAndLadders {
 
     //Inner class enum voor difficulty
-    public enum Difficulty{
+    public enum Difficulty {
         EASY, NORMAL, HARD;
 
         @Override
@@ -25,7 +27,6 @@ public class SnakesAndLadders {
     private ArrayList<ImageView> playerImages = new ArrayList<>();
     private int currentPlayer;
     private Board board;
-    private Feedback feedback;
     private Dice dice;
     private int boardSize;
     private Difficulty difficulty;
@@ -34,8 +35,6 @@ public class SnakesAndLadders {
     private Image colorPlayer3;
     private Image colorPlayer4;
     private int countPlayers;
-    private boolean isFilled;
-    private String player1Name;
     private File difficultyFile;
     private BoardScan boardScan;
 
@@ -56,18 +55,18 @@ public class SnakesAndLadders {
     }
 
     public String getCurrentPlayerName() {
-            return players.get(currentPlayer).getUsername();
+        return players.get(currentPlayer).getUsername();
     }
 
     public Player getCurrentPlayer() {
-            return players.get(currentPlayer);
+        return players.get(currentPlayer);
     }
 
-    public ImageView getCurrentPlayerImage(){
+    public ImageView getCurrentPlayerImage() {
         return playerImages.get(currentPlayer);
     }
 
-    public int getCurrentPlayerImageId(){
+    public int getCurrentPlayerImageId() {
         return currentPlayer;
     }
 
@@ -96,11 +95,11 @@ public class SnakesAndLadders {
         players.add(player);
     }
 
-    public void addPlayerImage(ImageView imageView){
+    public void addPlayerImage(ImageView imageView) {
         playerImages.add(imageView);
     }
 
-    public void disablePlayer(Player player){
+    public void disablePlayer(Player player) {
         players.remove(player);
     }
 
@@ -108,15 +107,14 @@ public class SnakesAndLadders {
         return players;
     }
 
-    public int getCurrentPlayerId(){
+    public int getCurrentPlayerId() {
         return currentPlayer;
     }
 
-    public void nextPlayer(){
-        if (currentPlayer == players.size() - 1){
+    public void nextPlayer() {
+        if (currentPlayer == players.size() - 1) {
             currentPlayer = 0;
-        }
-        else {
+        } else {
             currentPlayer++;
         }
     }
@@ -130,12 +128,8 @@ public class SnakesAndLadders {
         this.players = players;
     }
 
-    public void setSelectedDifficulty(Difficulty difficulty){
+    public void setSelectedDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
-    }
-
-    public String getSelectedDifficulty(){
-        return difficulty.name();
     }
 
     public void setColorPlayer1(Image colorPlayer1) {
@@ -194,8 +188,5 @@ public class SnakesAndLadders {
         this.countPlayers = countPlayers;
     }
 
-    public Feedback getFeedback() {
-        return feedback;
-    }
 }
 

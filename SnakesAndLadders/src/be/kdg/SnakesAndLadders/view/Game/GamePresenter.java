@@ -1,18 +1,14 @@
-package be.kdg.SnakesAndLadders.view.Game;/*
- * Marnix Wyns
- * 7/02/2018
- */
+package be.kdg.SnakesAndLadders.view.Game;
 
-import be.kdg.SnakesAndLadders.model.Feedback;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
-import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
-import be.kdg.SnakesAndLadders.view.Start.StartView;
+import be.kdg.SnakesAndLadders.view.Start.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class GamePresenter {
@@ -20,10 +16,6 @@ public class GamePresenter {
     private SnakesAndLadders model;
     private Stage primaryStage;
     private ArrayList<String> scoreboard;
-    private int pos1 = 1;
-    private int pos2 = 1;
-    private int pos3 = 1;
-    private int pos4 = 1;
     private int dice;
     private int teller = 1;
 
@@ -45,7 +37,6 @@ public class GamePresenter {
 
             if (teller == 1) {
                 view.getPawnPane().getChildren().remove(view.getIvPlayer1());
-                pos1 = model.getPlayerPos(model.getCurrentPlayer());
             } else if (teller == 2) {
                 view.getPawnPane().getChildren().remove(view.getIvPlayer2());
             } else if (teller == 3) {
@@ -91,6 +82,8 @@ public class GamePresenter {
                     model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
                     model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
             */
+
+            /* //TODO: See if usefull
             if (model.getCurrentPlayerId() == 0) {
                 pos1 = model.getPlayerPos(model.getCurrentPlayer());
             } else if (model.getCurrentPlayerId() == 1) {
@@ -100,12 +93,15 @@ public class GamePresenter {
             } else if (model.getCurrentPlayerId() == 3) {
                 pos4 = model.getPlayerPos(model.getCurrentPlayer());
             }
+            */
+
+            /*
             System.out.println(pos1);
             System.out.println(pos2);
             System.out.println(pos3);
             System.out.println(pos4);
             System.out.println("--");
-            /*
+
             if(pos1 == pos2 && pos1 != pos3 && pos1 != pos4){
                 view.getBoardGrid().getChildren().remove(view.getPawnPane2());
                 view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
@@ -175,7 +171,7 @@ public class GamePresenter {
             if (alert.getResult() == cancel) {
                 event.consume();
             } else if (alert.getResult() == save) {
-                model.getBoardScan().save();
+                model.getBoardScan().save(model.getDifficultyFile());
             } else view.getScene().setRoot(startView);
 
         });
@@ -193,11 +189,11 @@ public class GamePresenter {
             alert.getButtonTypes().addAll(save, cancel, yes);
             alert.showAndWait();
 
-            //Todo: same as the above marmar
             if (alert.getResult() == cancel) {
                 event.consume();
             } else if (alert.getResult() == save) {
-                model.getBoardScan().save();
+                //TODO: DifficultyFile is empty??????????????????????????????????????????????????????????
+                model.getBoardScan().save(Paths.get("./resources/BoardLayouts/normal.txt").toFile());
             } else System.exit(0);
         });
 

@@ -3,8 +3,6 @@ package be.kdg.SnakesAndLadders.model;/*
  * 2/02/2018
  */
 
-import javafx.scene.image.Image;
-
 import java.util.*;
 
 public class Board {

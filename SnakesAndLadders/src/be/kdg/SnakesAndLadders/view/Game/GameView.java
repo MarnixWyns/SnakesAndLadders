@@ -217,14 +217,6 @@ public class GameView extends BorderPane {
         boardGrid.add(pawnPane,0,9);
         pawnPane.setPadding(new Insets(3,0,0,3));
 
-        /*
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                boardGrid.add(new GridPane(), i,j);
-            }
-        }
-        */
-
         //create new pawnpane for pawn placement
         newPawnPane.setHgap(3);
         newPawnPane.setVgap(3);

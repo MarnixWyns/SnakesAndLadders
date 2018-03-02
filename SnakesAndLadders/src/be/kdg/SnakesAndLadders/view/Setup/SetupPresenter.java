@@ -1,34 +1,22 @@
-package be.kdg.SnakesAndLadders.view.Setup;/*
- * Marnix Wyns
- * 2/02/2018
- */
+package be.kdg.SnakesAndLadders.view.Setup;
 
 import be.kdg.SnakesAndLadders.model.*;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 
 public class SetupPresenter {
     private SnakesAndLadders model;
@@ -53,10 +41,9 @@ public class SetupPresenter {
         ClassLoader classLoader = getClass().getClassLoader();
 
         try {
-            //model.getBoardScan().readFile(new File("C:\\INF105B\\Java_Project\\SnakesAndLadders\\SnakesAndLadders\\resources\\BoardLayouts\\Easy.txt"));
             model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
             //TODO: obtain background file from Board
-        } catch (SnakesAndLaddersException e){
+        } catch (SnakesAndLaddersException e) {
             dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
         }
 
@@ -67,39 +54,27 @@ public class SetupPresenter {
     private void addEventHandlers() {
 
         //check and delete if playernames exceed limit
-        view.getTfP1name().setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (view.getTfP1name().getLength() >= 10){
-                    event.consume();
-                }
+        view.getTfP1name().setOnKeyTyped(event -> {
+            if (view.getTfP1name().getLength() >= 10) {
+                event.consume();
             }
         });
 
-        view.getTfP2name().setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (view.getTfP2name().getLength() >= 10){
-                    event.consume();
-                }
+        view.getTfP2name().setOnKeyTyped(event -> {
+            if (view.getTfP2name().getLength() >= 10) {
+                event.consume();
             }
         });
 
-        view.getTfP3name().setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (view.getTfP3name().getLength() >= 10){
-                    event.consume();
-                }
+        view.getTfP3name().setOnKeyTyped(event -> {
+            if (view.getTfP3name().getLength() >= 10) {
+                event.consume();
             }
         });
 
-        view.getTfP4name().setOnKeyTyped(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (view.getTfP4name().getLength() >= 10){
-                    event.consume();
-                }
+        view.getTfP4name().setOnKeyTyped(event -> {
+            if (view.getTfP4name().getLength() >= 10) {
+                event.consume();
             }
         });
 
@@ -108,11 +83,11 @@ public class SetupPresenter {
 
             try {
                 //Get difficulty
-                if (view.getEasyDifficulty().isSelected()){
+                if (view.getEasyDifficulty().isSelected()) {
                     model.setSelectedDifficulty(SnakesAndLadders.Difficulty.EASY);
-                } else if (view.getNormalDifficulty().isSelected()){
+                } else if (view.getNormalDifficulty().isSelected()) {
                     model.setSelectedDifficulty(SnakesAndLadders.Difficulty.NORMAL);
-                } else if (view.getHardDifficulty().isSelected()){
+                } else if (view.getHardDifficulty().isSelected()) {
                     model.setSelectedDifficulty(SnakesAndLadders.Difficulty.HARD);
                 } else throw new SnakesAndLaddersException("No selected difficulty");
 
@@ -123,7 +98,7 @@ public class SetupPresenter {
                 playerNames.addAll(Arrays.asList(view.getTfP1name(), view.getTfP2name(), view.getTfP3name(), view.getTfP4name()));
 
                 for (TextField playerName : playerNames) {
-                    if (playerName.getText().length() > 10){
+                    if (playerName.getText().length() > 10) {
                         dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "Illegal player name", "Player names are limited by 10 characters in length");
 
                     }
@@ -142,12 +117,12 @@ public class SetupPresenter {
 
                 //Should filter out all players that aren't valid
                 for (Player player : players) {
-                    if (!player.getUsername().equals("")){
+                    if (!player.getUsername().equals("")) {
                         model.addPlayer(player);
                     }
                 }
 
-                if (model.getPlayers().size() == 1 || view.getOnePlayer().isSelected()){
+                if (model.getPlayers().size() == 1 || view.getOnePlayer().isSelected()) {
                     model.addPlayer(new Player(PieceColor.YELLOW, "Computer"));
                 }
 
@@ -161,7 +136,7 @@ public class SetupPresenter {
                 model.setCountPlayers(2);
 
 
-            } catch (IndexOutOfBoundsException i){
+            } catch (IndexOutOfBoundsException i) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No player Names", "Please give at least 1 player a name");
             }
         });
@@ -173,7 +148,7 @@ public class SetupPresenter {
                 model.getBoardScan().readFile(model.getDifficultyFile());
 
                 //TODO: obtain background file from Board
-            } catch (SnakesAndLaddersException e){
+            } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
             }
         });
@@ -184,7 +159,7 @@ public class SetupPresenter {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
 
-            } catch (SnakesAndLaddersException e){
+            } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
             }
         });
@@ -195,12 +170,10 @@ public class SetupPresenter {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Hard.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
 
-            } catch (SnakesAndLaddersException e){
+            } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
             }
         });
-
-
 
 
         view.getBtnExitGame().setOnAction(event -> {
@@ -225,12 +198,12 @@ public class SetupPresenter {
         view.getTbtnFullScreen().setOnAction(event -> {
             if (view.getTbtnFullScreen().isSelected()) {
                 primaryStage.setFullScreen(true);
-                view.getSetupMenu().setPadding(new Insets(75,50,0,0));
-                view.getBoardBackground().setPadding(new Insets(150,75,25,175));
+                view.getSetupMenu().setPadding(new Insets(75, 50, 0, 0));
+                view.getBoardBackground().setPadding(new Insets(150, 75, 25, 175));
             } else {
                 primaryStage.setFullScreen(false);
                 view.getSetupMenu().setPadding(new Insets(0));
-                view.getBoardBackground().setPadding(new Insets(30,0,30,90));
+                view.getBoardBackground().setPadding(new Insets(30, 0, 30, 90));
             }
         });
         //endregion
@@ -240,7 +213,7 @@ public class SetupPresenter {
             amountOfPlayers = 1;
             model.setCountPlayers(2);
 
-            disableFields(true, true,true);
+            disableFields(true, true, true);
 
             hidePlayers(false, false, false);
         });
@@ -249,7 +222,7 @@ public class SetupPresenter {
             amountOfPlayers = 2;
             model.setCountPlayers(2);
 
-            disableFields(false, true,true);
+            disableFields(false, true, true);
 
             hidePlayers(true, false, false);
 
@@ -261,7 +234,7 @@ public class SetupPresenter {
             amountOfPlayers = 3;
             model.setCountPlayers(3);
 
-            disableFields(false, false,true);
+            disableFields(false, false, true);
 
             hidePlayers(true, true, false);
 
@@ -277,7 +250,7 @@ public class SetupPresenter {
 
             disableFields(false, false, false);
 
-            hidePlayers(true, true,true);
+            hidePlayers(true, true, true);
 
             view.getColorPickerP1().getSelectionModel().select(0);
             view.getColorPickerP2().getSelectionModel().select(1);
@@ -294,82 +267,70 @@ public class SetupPresenter {
         model.setColorPlayer4(view.getRed());
 
         //connect comboboxes to pawncolors and change accordingly
-        view.getColorPickerP1().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(view.getColorPickerP1().getSelectionModel().isSelected(0)){
-                    model.setColorPlayer1(view.getYellow());
-                    view.getIvPlayer1().setImage(view.getYellow());
-                } else if (view.getColorPickerP1().getSelectionModel().isSelected(1)){
-                    model.setColorPlayer1(view.getGreen());
-                    view.getIvPlayer1().setImage(view.getGreen());
-                } else if (view.getColorPickerP1().getSelectionModel().isSelected(2)){
-                    model.setColorPlayer1(view.getBlue());
-                    view.getIvPlayer1().setImage(view.getBlue());
-                } else if (view.getColorPickerP1().getSelectionModel().isSelected(3)){
-                    model.setColorPlayer1(view.getRed());
-                    view.getIvPlayer1().setImage(view.getRed());
-                }
-
+        view.getColorPickerP1().setOnAction(event -> {
+            if (view.getColorPickerP1().getSelectionModel().isSelected(0)) {
+                model.setColorPlayer1(view.getYellow());
+                view.getIvPlayer1().setImage(view.getYellow());
+            } else if (view.getColorPickerP1().getSelectionModel().isSelected(1)) {
+                model.setColorPlayer1(view.getGreen());
+                view.getIvPlayer1().setImage(view.getGreen());
+            } else if (view.getColorPickerP1().getSelectionModel().isSelected(2)) {
+                model.setColorPlayer1(view.getBlue());
+                view.getIvPlayer1().setImage(view.getBlue());
+            } else if (view.getColorPickerP1().getSelectionModel().isSelected(3)) {
+                model.setColorPlayer1(view.getRed());
+                view.getIvPlayer1().setImage(view.getRed());
             }
+
         });
 
-        view.getColorPickerP2().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(view.getColorPickerP2().getSelectionModel().isSelected(0)){
-                    model.setColorPlayer2(view.getYellow());
-                    view.getIvPlayer2().setImage(view.getYellow());
-                } else if (view.getColorPickerP2().getSelectionModel().isSelected(1)){
-                    model.setColorPlayer2(view.getGreen());
-                    view.getIvPlayer2().setImage(view.getGreen());
-                } else if (view.getColorPickerP2().getSelectionModel().isSelected(2)){
-                    model.setColorPlayer2(view.getBlue());
-                    view.getIvPlayer2().setImage(view.getBlue());
-                } else if (view.getColorPickerP2().getSelectionModel().isSelected(3)){
-                    model.setColorPlayer2(view.getRed());
-                    view.getIvPlayer2().setImage(view.getRed());
-                }
-
+        view.getColorPickerP2().setOnAction(event -> {
+            if (view.getColorPickerP2().getSelectionModel().isSelected(0)) {
+                model.setColorPlayer2(view.getYellow());
+                view.getIvPlayer2().setImage(view.getYellow());
+            } else if (view.getColorPickerP2().getSelectionModel().isSelected(1)) {
+                model.setColorPlayer2(view.getGreen());
+                view.getIvPlayer2().setImage(view.getGreen());
+            } else if (view.getColorPickerP2().getSelectionModel().isSelected(2)) {
+                model.setColorPlayer2(view.getBlue());
+                view.getIvPlayer2().setImage(view.getBlue());
+            } else if (view.getColorPickerP2().getSelectionModel().isSelected(3)) {
+                model.setColorPlayer2(view.getRed());
+                view.getIvPlayer2().setImage(view.getRed());
             }
+
         });
 
-        view.getColorPickerP3().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(view.getColorPickerP3().getSelectionModel().isSelected(0)){
-                    model.setColorPlayer3(view.getYellow());
-                    view.getIvPlayer3().setImage(view.getYellow());
-                } else if (view.getColorPickerP3().getSelectionModel().isSelected(1)){
-                    model.setColorPlayer3(view.getGreen());
-                    view.getIvPlayer3().setImage(view.getGreen());
-                } else if (view.getColorPickerP3().getSelectionModel().isSelected(2)){
-                    model.setColorPlayer3(view.getBlue());
-                    view.getIvPlayer3().setImage(view.getBlue());
-                } else if (view.getColorPickerP3().getSelectionModel().isSelected(3)){
-                    model.setColorPlayer3(view.getRed());
-                    view.getIvPlayer3().setImage(view.getRed());
-                }
-
+        view.getColorPickerP3().setOnAction(event -> {
+            if (view.getColorPickerP3().getSelectionModel().isSelected(0)) {
+                model.setColorPlayer3(view.getYellow());
+                view.getIvPlayer3().setImage(view.getYellow());
+            } else if (view.getColorPickerP3().getSelectionModel().isSelected(1)) {
+                model.setColorPlayer3(view.getGreen());
+                view.getIvPlayer3().setImage(view.getGreen());
+            } else if (view.getColorPickerP3().getSelectionModel().isSelected(2)) {
+                model.setColorPlayer3(view.getBlue());
+                view.getIvPlayer3().setImage(view.getBlue());
+            } else if (view.getColorPickerP3().getSelectionModel().isSelected(3)) {
+                model.setColorPlayer3(view.getRed());
+                view.getIvPlayer3().setImage(view.getRed());
             }
+
         });
 
-        view.getColorPickerP4().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                if(view.getColorPickerP4().getSelectionModel().isSelected(0)){
-                    model.setColorPlayer4(view.getYellow());
-                    view.getIvPlayer4().setImage(view.getYellow());
-                } else if (view.getColorPickerP4().getSelectionModel().isSelected(1)){
-                    model.setColorPlayer4(view.getGreen());
-                    view.getIvPlayer4().setImage(view.getGreen());
-                } else if (view.getColorPickerP4().getSelectionModel().isSelected(2)){
-                    model.setColorPlayer4(view.getBlue());
-                    view.getIvPlayer4().setImage(view.getBlue());
-                } else if (view.getColorPickerP4().getSelectionModel().isSelected(3)){
-                    model.setColorPlayer4(view.getRed());
-                    view.getIvPlayer4().setImage(view.getRed());
-                }
+        view.getColorPickerP4().setOnAction(event -> {
+            if (view.getColorPickerP4().getSelectionModel().isSelected(0)) {
+                model.setColorPlayer4(view.getYellow());
+                view.getIvPlayer4().setImage(view.getYellow());
+            } else if (view.getColorPickerP4().getSelectionModel().isSelected(1)) {
+                model.setColorPlayer4(view.getGreen());
+                view.getIvPlayer4().setImage(view.getGreen());
+            } else if (view.getColorPickerP4().getSelectionModel().isSelected(2)) {
+                model.setColorPlayer4(view.getBlue());
+                view.getIvPlayer4().setImage(view.getBlue());
+            } else if (view.getColorPickerP4().getSelectionModel().isSelected(3)) {
+                model.setColorPlayer4(view.getRed());
+                view.getIvPlayer4().setImage(view.getRed());
             }
         });
 
@@ -395,7 +356,7 @@ public class SetupPresenter {
         }*/
     }
 
-    private void disableFields(boolean dis1, boolean dis2, boolean dis3){
+    private void disableFields(boolean dis1, boolean dis2, boolean dis3) {
         view.getTfP2name().setDisable(dis1);
         view.getTfP3name().setDisable(dis2);
         view.getTfP4name().setDisable(dis3);
@@ -405,7 +366,7 @@ public class SetupPresenter {
         view.getColorPickerP4().setDisable(dis3);
     }
 
-    private void hidePlayers(boolean dis1, boolean dis2, boolean dis3){
+    private void hidePlayers(boolean dis1, boolean dis2, boolean dis3) {
         view.getIvPlayer2().setVisible(dis1);
         view.getIvPlayer3().setVisible(dis2);
         view.getIvPlayer4().setVisible(dis3);

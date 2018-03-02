@@ -3,8 +3,6 @@ package be.kdg.SnakesAndLadders.model;/*
  * 2/02/2018
  */
 
-import java.io.File;
-import java.nio.file.Path;
 
 public class Player {
     private Object color;

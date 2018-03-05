@@ -167,6 +167,7 @@ public class SetupPresenter {
                 view.getBoardGrid().setBackground(view.getEasy());
                 model.setSelectedBackground(view.getEasy());
                 model.setBackgroundChanged(true);
+                view.getLblPreviewInfo().setText("Easy difficulty: The amount of snakes and ladders is reduced.");
 
                 //TODO: obtain background file from Board
             } catch (SnakesAndLaddersException e) {
@@ -181,6 +182,7 @@ public class SetupPresenter {
                 model.getBoardScan().readFile(model.getDifficultyFile());
                 view.getBoardGrid().setBackground(view.getNormal());
                 model.setSelectedBackground(view.getNormal());
+                view.getLblPreviewInfo().setText("Normal difficulty: Snakes and ladders are evenly distributed.");
 
             } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
@@ -195,6 +197,7 @@ public class SetupPresenter {
                 view.getBoardGrid().setBackground(view.getHard());
                 model.setSelectedBackground(view.getHard());
                 model.setBackgroundChanged(true);
+                view.getLblPreviewInfo().setText("Hard difficulty: More snakes than ladders.");
 
             } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");

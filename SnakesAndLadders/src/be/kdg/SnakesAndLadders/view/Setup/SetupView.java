@@ -57,6 +57,8 @@ public class SetupView extends BorderPane {
     private Label lblPlayer4;
     private Label lblSelectPlayers;
     private Label lblSelectDifficulty;
+    private Label lblPreviewInfo;
+    private Label lblInfoTitle;
 
     private Label empty;
     private Label color;
@@ -126,6 +128,7 @@ public class SetupView extends BorderPane {
     private VBox playerColors;
     private VBox difficulty;
     private VBox playerNameFields;
+    private VBox boardAndPreview;
     private HBox fullAndExit;
 
     //background variables creation
@@ -137,7 +140,6 @@ public class SetupView extends BorderPane {
     private Background hard;
 
     private Border border;
-
 
 
     public SetupView() {
@@ -165,6 +167,8 @@ public class SetupView extends BorderPane {
         lblPlayer4 = new Label("Player 4: ");
         lblSelectPlayers = new Label("Select number of players");
         lblSelectDifficulty = new Label("Select Difficulty");
+        lblPreviewInfo = new Label("Normal difficulty: Snakes and ladders are evenly distributed.");
+        lblInfoTitle = new Label("INFORMATION:");
 
         empty = new Label("");
 
@@ -221,6 +225,7 @@ public class SetupView extends BorderPane {
         playerColors = new VBox();
         difficulty = new VBox();
         playerNameFields = new VBox();
+        boardAndPreview = new VBox();
         fullAndExit = new HBox();
 
         //boardgrid initialiseren
@@ -248,12 +253,12 @@ public class SetupView extends BorderPane {
 
         //background aanpassen:
         setupBackgroundImage = new Image("BackgroundImages/background.png");
-        backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
+        backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
         backGround1 = new Background(new BackgroundImage(setupBackgroundImage,
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize1));
         setBackground(backGround1);
 
-        backgroundBoard = new BackgroundSize(400,400, false, false, true, false);
+        backgroundBoard = new BackgroundSize(400, 400, false, false, true, false);
 
         border = new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
 
@@ -287,9 +292,15 @@ public class SetupView extends BorderPane {
         boardGrid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6, row7, row8, row9, row10);
         boardGrid.setGridLinesVisible(true);
         boardGrid.setBackground(normal);
-        boardBackground.add(boardGrid,0,0);
-        boardBackground.setPadding(new Insets(30, 0, 30, 90));
-        setLeft(boardBackground);
+        boardBackground.add(boardGrid, 0, 0);
+        boardAndPreview.setPadding(new Insets(30, 0, 30, 90));
+        boardAndPreview.getChildren().add(boardGrid);
+        boardAndPreview.getChildren().add(lblInfoTitle);
+        lblInfoTitle.setFont(new Font(30));
+        boardAndPreview.getChildren().add(lblPreviewInfo);
+        lblPreviewInfo.setFont(new Font(15));
+        boardAndPreview.setSpacing(10);
+        setLeft(boardAndPreview);
 
 
         //changing pawns to acceptable size
@@ -304,15 +315,14 @@ public class SetupView extends BorderPane {
 
         //Putting pawns in the game at start position
 
-        pawnPane.add(ivPlayer1,0,0);
-        pawnPane.add(ivPlayer2,1,0);
-        pawnPane.add(ivPlayer3,0,1);
-        pawnPane.add(ivPlayer4, 1,1);
+        pawnPane.add(ivPlayer1, 0, 0);
+        pawnPane.add(ivPlayer2, 1, 0);
+        pawnPane.add(ivPlayer3, 0, 1);
+        pawnPane.add(ivPlayer4, 1, 1);
         pawnPane.setHgap(3);
         pawnPane.setVgap(3);
-        boardGrid.add(pawnPane,0,9);
-        pawnPane.setPadding(new Insets(3,0,0,3));
-
+        boardGrid.add(pawnPane, 0, 9);
+        pawnPane.setPadding(new Insets(3, 0, 0, 3));
 
 
         //VBox setup
@@ -371,7 +381,7 @@ public class SetupView extends BorderPane {
         fullAndExit.setSpacing(5);
         fullAndExit.getChildren().addAll(tbtnFullScreen, btnExitGame);
         setBottom(fullAndExit);
-        setMargin(fullAndExit, new Insets(15,15,13,15));
+        setMargin(fullAndExit, new Insets(15, 15, 13, 15));
         fullAndExit.setAlignment(Pos.BOTTOM_RIGHT);
 
         setBorder(border);
@@ -405,7 +415,7 @@ public class SetupView extends BorderPane {
         return fourPlayers;
     }
 
-    TextField getTfP1name(){
+    TextField getTfP1name() {
         return tfP1name;
     }
 
@@ -421,7 +431,7 @@ public class SetupView extends BorderPane {
         return tfP4name;
     }
 
-    ComboBox getColorPickerP1(){
+    ComboBox getColorPickerP1() {
         return colorPickerP1;
     }
 
@@ -535,5 +545,9 @@ public class SetupView extends BorderPane {
 
     public Background getHard() {
         return hard;
+    }
+
+    public Label getLblPreviewInfo() {
+        return lblPreviewInfo;
     }
 }

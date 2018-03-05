@@ -77,14 +77,17 @@ public class BoardScan {
 
 
                 } else if (line.startsWith("PLAYERS")) {
-                    int nPlayers = Integer.parseInt(line.substring(9));
+                    //TODO: Apparently I didn't completely get this working
+                    int nPlayers = Integer.parseInt(line.substring(8,9));
 
                     Pattern pattern = Pattern.compile("[0-9]+-[A-Z]-([a-z]|[A-Z])+");
                     Matcher matcher = pattern.matcher(line);
                     while (matcher.find()) {
 
                         int pos = Integer.parseInt(line.substring(10, line.indexOf('-')));
-                        PieceColor playerC = PieceColor.RED;
+                        PieceColor playerC = null;
+
+                        System.out.println(line.substring(line.indexOf('-'), line.lastIndexOf('-')));
                         switch (line.substring(line.indexOf('-'), line.lastIndexOf('-'))) {
                             case "R":
                                 playerC = PieceColor.RED;
@@ -97,7 +100,10 @@ public class BoardScan {
                         }
                         String name = line.substring(line.lastIndexOf('-'));
 
+                        players = new ArrayList<>();
                         players.add(new Player(playerC, name, pos));
+
+                        System.out.printf("Color: %s Name: %s Position: %d", playerC, name, pos);
                     }
 
                 } else throw new SnakesAndLaddersException("IllegalFileFormat");

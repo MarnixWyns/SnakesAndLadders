@@ -1,6 +1,7 @@
 package be.kdg.SnakesAndLadders.view.Start;
 
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
+import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
 import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
 import be.kdg.SnakesAndLadders.view.Setup.SetupView;
@@ -55,11 +56,25 @@ public class StartPresenter {
                 File saveFile = fc.showOpenDialog(primaryStage);
 
                 if (saveFile != null){ //Sees is no file is selected
-                    //TODO: If file is selected, throws nullpointer :D
+
+
+                    //TODO: throws Boardscan nullpointer, game hasnt started yet so none has been initiialised
+                    model.startGame();
                     model.getBoardScan().readFile(saveFile);
+
                 }
 
                 //Start game met gelezen files
+            model.setPlayers(model.getBoardScan().getBoard().getSavedPlayers());
+
+            //Switch between scenes from setup to Game
+            GameView gameView = new GameView();
+            GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);
+            view.getScene().setRoot(gameView);
+            gameView.getScene().getWindow().setHeight(600);
+            gameView.getScene().getWindow().setWidth(1024);
+
+            model.setCountPlayers(2);
         });
     }
 

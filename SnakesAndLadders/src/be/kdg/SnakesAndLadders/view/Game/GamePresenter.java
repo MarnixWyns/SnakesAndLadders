@@ -31,8 +31,13 @@ public class GamePresenter {
     }
 
     private void addEventHandlers() {
-        //Roll dice on button press
+        //change background accordingly
+        if(model.getBackgroundChanged()){
+            view.getBoardGrid().setBackground(model.getSelectedBackground());
+        }
 
+
+        //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
 
             if (teller == 1) {

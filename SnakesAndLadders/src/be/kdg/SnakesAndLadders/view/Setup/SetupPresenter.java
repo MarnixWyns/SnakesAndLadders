@@ -81,6 +81,24 @@ public class SetupPresenter {
         //startButton intelligence
         view.getBtnStartGame().setOnAction(event -> {
 
+            if(view.getOnePlayer().isSelected() && view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()){
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "Player name is empty.");
+                return;
+            }
+            if(view.getTwoPlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()))){
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "One of the player names is empty.");
+                return;
+            }
+            if(view.getThreePlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()) || (view.getTfP3name() == null || view.getTfP3name().getText().trim().isEmpty()))){
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "One of the player names is empty.");
+                return;
+            }
+            if(view.getFourPlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()) || (view.getTfP3name() == null || view.getTfP3name().getText().trim().isEmpty()) || (view.getTfP4name() == null || view.getTfP4name().getText().trim().isEmpty()))){
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "One of the player names is empty.");
+                return;
+            }
+
+
             try {
                 //Get difficulty
                 if (view.getEasyDifficulty().isSelected()) {
@@ -146,6 +164,9 @@ public class SetupPresenter {
             try {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
+                view.getBoardGrid().setBackground(view.getEasy());
+                model.setSelectedBackground(view.getEasy());
+                model.setBackgroundChanged(true);
 
                 //TODO: obtain background file from Board
             } catch (SnakesAndLaddersException e) {
@@ -158,6 +179,8 @@ public class SetupPresenter {
             try {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
+                view.getBoardGrid().setBackground(view.getNormal());
+                model.setSelectedBackground(view.getNormal());
 
             } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
@@ -169,6 +192,9 @@ public class SetupPresenter {
             try {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Hard.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
+                view.getBoardGrid().setBackground(view.getHard());
+                model.setSelectedBackground(view.getHard());
+                model.setBackgroundChanged(true);
 
             } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");

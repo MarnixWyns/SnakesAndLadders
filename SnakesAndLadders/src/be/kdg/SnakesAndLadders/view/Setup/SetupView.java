@@ -132,6 +132,9 @@ public class SetupView extends BorderPane {
     private BackgroundSize backgroundSize1;
     private BackgroundSize backgroundBoard;
     private Background backGround1;
+    private Background easy;
+    private Background normal;
+    private Background hard;
 
     private Border border;
 
@@ -271,6 +274,9 @@ public class SetupView extends BorderPane {
         ivPlayer3 = ivBlue;
         ivPlayer4 = ivRed;
 
+        easy = new Background(new BackgroundImage(new Image("BackgroundImages/easy.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
+        normal = new Background(new BackgroundImage(new Image("BackgroundImages/normal.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
+        hard = new Background(new BackgroundImage(new Image("BackgroundImages/hard.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
     }
 
 
@@ -280,7 +286,7 @@ public class SetupView extends BorderPane {
         boardGrid.getColumnConstraints().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10);
         boardGrid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6, row7, row8, row9, row10);
         boardGrid.setGridLinesVisible(true);
-        boardGrid.setBackground(new Background(new BackgroundImage(new Image("BackgroundImages/normal.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard)));
+        boardGrid.setBackground(normal);
         boardBackground.add(boardGrid,0,0);
         boardBackground.setPadding(new Insets(30, 0, 30, 90));
         setLeft(boardBackground);
@@ -513,5 +519,21 @@ public class SetupView extends BorderPane {
 
     public GridPane getBoardGrid() {
         return boardGrid;
+    }
+
+    public Image getSetupBackgroundImage() {
+        return setupBackgroundImage;
+    }
+
+    public Background getEasy() {
+        return easy;
+    }
+
+    public Background getNormal() {
+        return normal;
+    }
+
+    public Background getHard() {
+        return hard;
     }
 }

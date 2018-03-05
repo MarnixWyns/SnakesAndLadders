@@ -7,6 +7,7 @@ package be.kdg.SnakesAndLadders.model;/*
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,6 +38,8 @@ public class SnakesAndLadders {
     private int countPlayers;
     private File difficultyFile;
     private BoardScan boardScan;
+    private Background selectedBackground;
+    private Boolean isBackgroundChanged = false;
 
     public SnakesAndLadders() {
         currentPlayer = 0;
@@ -188,5 +191,20 @@ public class SnakesAndLadders {
         this.countPlayers = countPlayers;
     }
 
+    public Background getSelectedBackground() {
+        return selectedBackground;
+    }
+
+    public void setSelectedBackground(Background selectedBackground) {
+        this.selectedBackground = selectedBackground;
+    }
+
+    public Boolean getBackgroundChanged() {
+        return isBackgroundChanged;
+    }
+
+    public void setBackgroundChanged(Boolean backgroundChanged) {
+        isBackgroundChanged = backgroundChanged;
+    }
 }
 

@@ -1,13 +1,14 @@
 package be.kdg.SnakesAndLadders.view.Game;
 
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
-import be.kdg.SnakesAndLadders.view.Start.*;
+import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
+import be.kdg.SnakesAndLadders.view.Start.StartView;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import java.io.File;
+
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -280,7 +281,7 @@ public class GamePresenter {
             alert.setContentText(model.getCurrentPlayerName() + " has finished");
             alert.show();
 
-            //model.getPlayers().remove(model.getCurrentPlayer());
+            model.getPlayers().remove(model.getCurrentPlayer());
 
         }
         if (model.getCurrentPlayerId() == 1 && model.getCurrentPlayer().getPlayerPos() == 100) {
@@ -295,7 +296,7 @@ public class GamePresenter {
             alert.show();
 
 
-            //model.getPlayers().remove(model.getCurrentPlayer());
+            model.getPlayers().remove(model.getCurrentPlayer());
 
         }
         if (model.getCurrentPlayerId() == 2 && model.getCurrentPlayer().getPlayerPos() == 100) {
@@ -310,7 +311,7 @@ public class GamePresenter {
             alert.show();
 
 
-            //model.getPlayers().remove(model.getCurrentPlayer());
+            model.getPlayers().remove(model.getCurrentPlayer());
 
         }
         if (model.getCurrentPlayerId() == 3 && model.getCurrentPlayer().getPlayerPos() == 100) {
@@ -324,7 +325,7 @@ public class GamePresenter {
             alert.setContentText(model.getCurrentPlayerName() + " has finished");
             alert.show();
 
-            //model.getPlayers().remove(model.getCurrentPlayer());
+            model.getPlayers().remove(model.getCurrentPlayer());
 
         }
 

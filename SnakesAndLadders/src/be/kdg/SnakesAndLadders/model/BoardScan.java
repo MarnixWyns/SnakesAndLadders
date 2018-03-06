@@ -12,9 +12,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BoardScan {
-    private File file;
-    private File save;
-    private ArrayList<Player> players;
 
     private SnakesAndLadders snl;
 
@@ -25,7 +22,6 @@ public class BoardScan {
     }
 
     public void readFile(File file) {
-        this.file = file;
 
         try (Scanner scanner = new Scanner(file)) {
 
@@ -40,7 +36,7 @@ public class BoardScan {
                 String line = scanner.nextLine();
 
                 if (line.startsWith("#")) {
-
+                    //Nothing
                 } else if (line.contains(".png") || line.contains(".jpg")) {
                     bgPath = line;
 
@@ -80,30 +76,47 @@ public class BoardScan {
                     //TODO: Apparently I didn't completely get this working
                     int nPlayers = Integer.parseInt(line.substring(8,9));
 
-                    Pattern pattern = Pattern.compile("[0-9]+-[A-Z]-([a-z]|[A-Z])+");
+                    Pattern pattern = Pattern.compile("[0-9]+-[A-Z]-([A-Z]|[a-z])+");
                     Matcher matcher = pattern.matcher(line);
                     while (matcher.find()) {
+                        String part = line.substring(matcher.start(), matcher.end());
 
-                        int pos = Integer.parseInt(line.substring(10, line.indexOf('-')));
+                        System.out.println(part);
+
+                        //int pos = Integer.parseInt(part.substring(10, line.indexOf('-')));
+                        int pos = Integer.parseInt(part.substring(0, part.indexOf("-")));
+
+                        //String name = part.substring(line.lastIndexOf('-'));
+                        //TODO: Read name
+                        String name = null;
+                        System.out.println("Name: " +  part);
+
                         PieceColor playerC = null;
 
-                        System.out.println(line.substring(line.indexOf('-'), line.lastIndexOf('-')));
-                        switch (line.substring(line.indexOf('-'), line.lastIndexOf('-'))) {
+
+
+                        switch (part.substring(part.indexOf('-') + 1, part.lastIndexOf('-'))) {
                             case "R":
                                 playerC = PieceColor.RED;
+                                break;
                             case "G":
                                 playerC = PieceColor.GREEN;
+                                break;
                             case "B":
                                 playerC = PieceColor.BLUE;
+                                break;
                             case "Y":
                                 playerC = PieceColor.YELLOW;
+                                break;
+                            default:
+                                throw new SnakesAndLaddersException();
                         }
-                        String name = line.substring(line.lastIndexOf('-'));
 
-                        players = new ArrayList<>();
+
+                        ArrayList<Player> players = new ArrayList<>();
                         players.add(new Player(playerC, name, pos));
 
-                        System.out.printf("Color: %s Name: %s Position: %d", playerC, name, pos);
+                        System.out.printf("Color: %s Name: %s Position: %d\n", playerC, name, pos);
                     }
 
                 } else throw new SnakesAndLaddersException("IllegalFileFormat");

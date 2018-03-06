@@ -299,7 +299,6 @@ public class SetupView extends BorderPane {
         lblInfoTitle.setFont(new Font(30));
         boardAndPreview.getChildren().add(lblPreviewInfo);
         lblPreviewInfo.setFont(new Font(15));
-        boardAndPreview.setSpacing(10);
         setLeft(boardAndPreview);
 
 

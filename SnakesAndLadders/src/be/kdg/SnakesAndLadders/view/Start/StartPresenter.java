@@ -67,6 +67,7 @@ public class StartPresenter {
                 //Start game met gelezen files
             model.setPlayers(model.getBoardScan().getBoard().getSavedPlayers());
 
+
             //Switch between scenes from setup to Game
             GameView gameView = new GameView();
             GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);

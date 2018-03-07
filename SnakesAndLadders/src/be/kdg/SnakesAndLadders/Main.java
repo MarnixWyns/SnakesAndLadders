@@ -22,6 +22,7 @@ public class Main extends Application {
         StartView startView = new StartView();
 
         Scene startScene = new Scene(startView);
+        startScene.getStylesheets().add("CSS-files/fullscreen.css");
         StartPresenter startPresenter = new StartPresenter(startView,model,primaryStage);
         primaryStage.setScene(startScene);
         primaryStage.setTitle("StartView");

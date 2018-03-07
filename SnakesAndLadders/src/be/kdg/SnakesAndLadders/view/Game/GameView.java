@@ -5,6 +5,7 @@ package be.kdg.SnakesAndLadders.view.Game;/*
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
@@ -313,6 +314,39 @@ public class GameView extends BorderPane {
         otherButtons.setPadding(new Insets(85,0,0,235));
         */
 
+    }
+
+    private class Animation extends Group {
+        GameView gameView = new GameView();
+        private ImageView Ivplayer1;
+        private ImageView Ivplayer2;
+        private ImageView Ivplayer3;
+        private ImageView Ivplayer4;
+
+        public Animation(){
+            this.initialiseNodes();
+            this.layoutNodes();
+            this.animate();
+        }
+
+        private void initialiseNodes() {
+            this.Ivplayer1 = gameView.getIvPlayer1();
+            this.Ivplayer2 = gameView.getIvPlayer2();
+            this.Ivplayer3 = gameView.getIvPlayer3();
+            this.Ivplayer4 = gameView.getIvPlayer4();
+
+        }
+
+        private void layoutNodes() {
+            this.getChildren().add(Ivplayer1);
+            this.getChildren().add(Ivplayer2);
+            this.getChildren().add(Ivplayer3);
+            this.getChildren().add(Ivplayer4);
+        }
+
+        private void animate() {
+           
+        }
     }
 
     Button getBtnRollDice() {

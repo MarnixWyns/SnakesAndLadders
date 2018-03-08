@@ -3,6 +3,8 @@ package be.kdg.SnakesAndLadders.view.Game;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
 import be.kdg.SnakesAndLadders.view.Start.StartView;
+import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -41,28 +43,52 @@ public class GamePresenter {
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
 
-            if (teller == 1) {
-                view.getPawnPane().getChildren().remove(view.getIvPlayer1());
-            } else if (teller == 2) {
-                view.getPawnPane().getChildren().remove(view.getIvPlayer2());
-            } else if (teller == 3) {
-                view.getPawnPane().getChildren().remove(view.getIvPlayer3());
-            } else if (teller == 4) {
-                view.getPawnPane().getChildren().remove(view.getIvPlayer4());
+            /* Overbodig aangezien we met nieuwe animations niks meer moeten verwijderen maar altijd met zelfde iv thread werken
+            switch (teller){
+                case 1: view.getPawnPane().getChildren().remove(view.getIvPlayer1()); break;
+                case 2: view.getPawnPane().getChildren().remove(view.getIvPlayer2()); break;
+                case 3: view.getPawnPane().getChildren().remove(view.getIvPlayer3()); break;
+                case 4: view.getPawnPane().getChildren().remove(view.getIvPlayer1()); break;
             }
+            */
+
+            //TODO: Snake animation
+            //TODO: Doesn't work for more than 1 turn
+            //TODO: Move vertically || Done, Marnix fixed
+            //TODO: Move left or right according to position || Should be fixed not sure entirely
+
+            SequentialTransition st = new SequentialTransition();
+            int startpos = model.getCurrentPlayer().getPlayerPos();
 
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
             model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
 
+            for (int i = startpos; i < startpos + dice; i++) {
+                TranslateTransition tt = new TranslateTransition();
+                switch (teller){
+                    case 1: tt.setNode(view.getIvPlayer1()); break;
+                    case 2: tt.setNode(view.getIvPlayer2()); break;
+                    case 3: tt.setNode(view.getIvPlayer3()); break;
+                    case 4: tt.setNode(view.getIvPlayer4()); break;
+                }
 
-            view.getBoardGrid().getChildren().remove(model.getCurrentPlayerImage());
+                if (i % 10 == 0){
+                    tt.setByY(-view.getBoardGrid().getWidth()/10);
+                } else if ((i / 10) % 2 == 0) {
+                    tt.setByX(view.getBoardGrid().getWidth()/10);
+                } else if ((i / 10) % 2 == 1){
+                    tt.setByX(-view.getBoardGrid().getWidth()/10);
+                }
 
+                st.getChildren().add(tt);
+            }
 
-            view.getBoardGrid().add(model.getCurrentPlayerImage(),
-                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
-                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
+            //view.getBoardGrid().getChildren().remove(model.getCurrentPlayerImage());
+            st.play();
+
+            //view.getBoardGrid().add(model.getCurrentPlayerImage(), model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())), model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
 
 
             /*
@@ -270,6 +296,8 @@ public class GamePresenter {
 
         view.getLblplayerName().setText(model.getCurrentPlayerName());
 
+
+        //TODO: Clean redundant code
         if (model.getCurrentPlayerId() == 0 && model.getCurrentPlayer().getPlayerPos() == 100) {
             scoreboard.add(model.getCurrentPlayerName());
             model.getCurrentPlayer().setPlayer1Finished(true);

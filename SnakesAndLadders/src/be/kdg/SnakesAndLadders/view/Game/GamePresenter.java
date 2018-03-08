@@ -44,6 +44,7 @@ public class GamePresenter {
         }
 
 
+
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
 
@@ -57,7 +58,7 @@ public class GamePresenter {
             */
 
             //TODO: Snake animation
-            //TODO: Doesn't work for more than 1 turn
+            //TODO: Doesn't work for more than 1 turn || Done, Ruben Fixed
             //TODO: Move vertically || Done, Marnix fixed
             //TODO: Move left or right according to position || Should be fixed not sure entirely
 
@@ -67,7 +68,10 @@ public class GamePresenter {
             int startpos = model.getCurrentPlayer().getPlayerPos();
 
 
-            st.getChildren().clear();
+            if(teller > model.getPlayers().size()){
+                st.getChildren().clear();
+                teller = 1;
+            }
 
 
             dice = model.throwDice();
@@ -103,6 +107,8 @@ public class GamePresenter {
             model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
 
 
+
+
             if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
                 TranslateTransition ttSL = new TranslateTransition();
                 switch (teller){
@@ -115,7 +121,7 @@ public class GamePresenter {
                 //TODO: Doesnt work exactly
                 int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos+ dice);
 
-                int difColumns = 0;
+                int difColumns = 1;
 
                 ttSL.setByY(difRows * (view.getBoardGrid().getHeight()/10));
                 ttSL.setByX(difColumns * (view.getBoardGrid().getWidth()/10));
@@ -214,6 +220,7 @@ public class GamePresenter {
             //teller++;
 
             model.nextPlayer();
+            teller++;
 
             updateView();
         });

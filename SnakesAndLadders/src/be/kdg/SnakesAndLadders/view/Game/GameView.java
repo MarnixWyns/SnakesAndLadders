@@ -217,30 +217,7 @@ public class GameView extends BorderPane {
         pawnPane.setVgap(3);
         boardGrid.add(pawnPane,0,9);
         pawnPane.setPadding(new Insets(3,0,0,3));
-
-        //create new pawnpane for pawn placement
-        newPawnPane.setHgap(3);
-        newPawnPane.setVgap(3);
-        newPawnPane.setPadding(new Insets(3,0,0,3));
-
-        pawnPane1.setHgap(3);
-        pawnPane1.setVgap(3);
-        pawnPane1.setPadding(new Insets(3,0,0,3));
-
-
-        pawnPane2.setHgap(3);
-        pawnPane2.setVgap(3);
-        pawnPane2.setPadding(new Insets(3,0,0,3));
-
-
-        pawnPane3.setHgap(3);
-        pawnPane3.setVgap(3);
-        pawnPane3.setPadding(new Insets(3,0,0,3));
-
-
-        pawnPane4.setHgap(3);
-        pawnPane4.setVgap(3);
-        pawnPane4.setPadding(new Insets(3,0,0,3));
+        boardGrid.getStyleClass().add("boardgrid1");
 
 
         //VBox layout
@@ -345,7 +322,7 @@ public class GameView extends BorderPane {
         }
 
         private void animate() {
-           
+
         }
     }
 
@@ -440,4 +417,5 @@ public class GameView extends BorderPane {
     public ImageView getIvBlack() {
         return ivBlack;
     }
+
 }

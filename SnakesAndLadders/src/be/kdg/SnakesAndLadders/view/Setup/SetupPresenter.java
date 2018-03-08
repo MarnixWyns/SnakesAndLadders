@@ -7,11 +7,13 @@ import be.kdg.SnakesAndLadders.view.Game.GameView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -225,14 +227,19 @@ public class SetupPresenter {
         //region Fullscreen ToggleButtons
 
         view.getTbtnFullScreen().setOnAction(event -> {
+
+
             if (view.getTbtnFullScreen().isSelected()) {
                 primaryStage.setFullScreen(true);
-                view.getSetupMenu().setPadding(new Insets(75, 50, 0, 0));
-                view.getBoardBackground().setPadding(new Insets(150, 75, 25, 175));
+                //view.getSetupMenu().setPadding(new Insets(75, 50, 0, 0));
+                //view.getBoardBackground().setPadding(new Insets(150, 75, 25, 175));
+
+
             } else {
                 primaryStage.setFullScreen(false);
-                view.getSetupMenu().setPadding(new Insets(0));
-                view.getBoardBackground().setPadding(new Insets(30, 0, 30, 90));
+                //view.getSetupMenu().setPadding(new Insets(0));
+                //view.getBoardBackground().setPadding(new Insets(30, 0, 30, 90));
+
             }
         });
         //endregion

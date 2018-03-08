@@ -121,6 +121,7 @@ public class SetupView extends BorderPane {
     private GridPane startButton;
     private GridPane pawnPane;
     private GridPane boardBackground;
+    private AnchorPane anchorPane;
 
     //create VBox to display player buttons
     private VBox playerButtons;
@@ -217,6 +218,7 @@ public class SetupView extends BorderPane {
         startButton = new GridPane();
         pawnPane = new GridPane();
         boardBackground = new GridPane();
+        anchorPane = new AnchorPane();
 
 
         //VBox initialiseren
@@ -290,6 +292,10 @@ public class SetupView extends BorderPane {
         //boardgrid layout
         boardGrid.getColumnConstraints().addAll(column1, column2, column3, column4, column5, column6, column7, column8, column9, column10);
         boardGrid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6, row7, row8, row9, row10);
+        AnchorPane.setBottomAnchor(boardGrid, 0.0);
+        AnchorPane.setTopAnchor(boardGrid, 0.0);
+        AnchorPane.setLeftAnchor(boardGrid, 0.0);
+        AnchorPane.setRightAnchor(boardGrid, 0.0);
         boardGrid.setGridLinesVisible(true);
         boardGrid.setBackground(normal);
         boardBackground.add(boardGrid, 0, 0);
@@ -300,7 +306,15 @@ public class SetupView extends BorderPane {
         boardAndPreview.getChildren().add(lblPreviewInfo);
         lblPreviewInfo.setFont(new Font(15));
         setLeft(boardAndPreview);
-
+        /*
+        anchorPane.getChildren().add(boardGrid);
+        anchorPane.getChildren().add(lblInfoTitle);
+        AnchorPane.setBottomAnchor(boardGrid, 50.0);
+        AnchorPane.setTopAnchor(boardGrid, 50.0);
+        AnchorPane.setLeftAnchor(boardGrid, 100.0);
+        AnchorPane.setRightAnchor(boardGrid, 50.0);
+        setLeft(anchorPane);
+        */
 
         //changing pawns to acceptable size
         ivPlayer1.setFitHeight(15);
@@ -548,5 +562,13 @@ public class SetupView extends BorderPane {
 
     public Label getLblPreviewInfo() {
         return lblPreviewInfo;
+    }
+
+    public VBox getBoardAndPreview() {
+        return boardAndPreview;
+    }
+
+    public AnchorPane getAnchorPane() {
+        return anchorPane;
     }
 }

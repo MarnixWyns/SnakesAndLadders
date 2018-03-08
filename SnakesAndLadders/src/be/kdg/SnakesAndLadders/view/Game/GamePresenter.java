@@ -1,6 +1,7 @@
 package be.kdg.SnakesAndLadders.view.Game;
 
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
+import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
 import be.kdg.SnakesAndLadders.view.Start.StartView;
 import javafx.animation.SequentialTransition;
@@ -10,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -21,6 +23,7 @@ public class GamePresenter {
     private ArrayList<String> scoreboard;
     private int dice;
     private int teller = 1;
+    private DialogThrower dialogThrower;
 
 
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
@@ -28,6 +31,7 @@ public class GamePresenter {
         this.model = snakesAndLadders;
         this.primaryStage = primarystage;
         scoreboard = new ArrayList<>();
+        dialogThrower = new DialogThrower();
 
         addEventHandlers();
         updateView();
@@ -57,13 +61,19 @@ public class GamePresenter {
             //TODO: Move vertically || Done, Marnix fixed
             //TODO: Move left or right according to position || Should be fixed not sure entirely
 
+            //dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "Current player", model.getCurrentPlayer().toString());
+
             SequentialTransition st = new SequentialTransition();
             int startpos = model.getCurrentPlayer().getPlayerPos();
+
+
+            st.getChildren().clear();
+
 
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
-            model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
+
 
             for (int i = startpos; i < startpos + dice; i++) {
                 TranslateTransition tt = new TranslateTransition();
@@ -82,11 +92,40 @@ public class GamePresenter {
                     tt.setByX(-view.getBoardGrid().getWidth()/10);
                 }
 
+                tt.setDuration(Duration.millis(300));
+
                 st.getChildren().add(tt);
             }
 
-            //view.getBoardGrid().getChildren().remove(model.getCurrentPlayerImage());
             st.play();
+
+
+            model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
+
+
+            if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
+                TranslateTransition ttSL = new TranslateTransition();
+                switch (teller){
+                    case 1: ttSL.setNode(view.getIvPlayer1()); break;
+                    case 2: ttSL.setNode(view.getIvPlayer2()); break;
+                    case 3: ttSL.setNode(view.getIvPlayer3()); break;
+                    case 4: ttSL.setNode(view.getIvPlayer4()); break;
+                }
+
+                //TODO: Doesnt work exactly
+                int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos+ dice);
+
+                int difColumns = 0;
+
+                ttSL.setByY(difRows * (view.getBoardGrid().getHeight()/10));
+                ttSL.setByX(difColumns * (view.getBoardGrid().getWidth()/10));
+                ttSL.setDuration(Duration.millis(800));
+                ttSL.play();
+
+            }
+
+            //view.getBoardGrid().getChildren().remove(model.getCurrentPlayerImage());
+
 
             //view.getBoardGrid().add(model.getCurrentPlayerImage(), model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())), model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
 
@@ -172,10 +211,9 @@ public class GamePresenter {
 
             //view.getLblFeedback().setText(model.getFeedback().getRandFeedback());
 
-            teller++;
+            //teller++;
 
             model.nextPlayer();
-
 
             updateView();
         });

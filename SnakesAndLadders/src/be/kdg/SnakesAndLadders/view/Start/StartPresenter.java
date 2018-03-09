@@ -15,7 +15,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 
 public class StartPresenter {
@@ -47,14 +49,18 @@ public class StartPresenter {
 
         view.getBtnLoadGame().setOnAction(event -> {
 
+            ClassLoader classLoader = getClass().getClassLoader();
+
 
             //TODO: throws Boardscan nullpointer, game hasnt started yet so none has been initiialised
-            model.getBoardScan().readFile(Paths.get("save_file.txt").toFile());
             model.startGame();
 
+            //TODO: Fix this shitty workaround
+            model.getBoardScan().readFile(new File(classLoader.getResource("save_file.txt").getFile()));
 
             //Start game met gelezen files
             model.setPlayers(model.getBoardScan().getBoard().getSavedPlayers());
+            model.setSelectedBackground(model.getBoardScan().getBoard().getBgPath());
 
 
             //Switch between scenes from setup to Game
@@ -64,7 +70,7 @@ public class StartPresenter {
             gameView.getScene().getWindow().setHeight(600);
             gameView.getScene().getWindow().setWidth(1024);
 
-            model.setCountPlayers(2);
+            //model.setCountPlayers(2);
         });
 
         view.getBtnHelp().setOnAction(new EventHandler<ActionEvent>() {

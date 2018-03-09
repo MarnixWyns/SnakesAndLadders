@@ -4,12 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- * Ruben Vanloo
- * 9/03/2018.
- */
+//TODO: Move to boardscan or make static
+
 public class Help {
-    public static final String HELP_FILE = "Txt-files/Help.txt";
+    public static final String HELP_FILE = "txtFiles/Help.txt";
 
     private String help = "";
 

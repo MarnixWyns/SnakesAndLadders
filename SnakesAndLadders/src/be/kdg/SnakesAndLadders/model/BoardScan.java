@@ -1,9 +1,7 @@
-package be.kdg.SnakesAndLadders.model;/*
- * Marnix Wyns
- * 9/02/2018
- */
+package be.kdg.SnakesAndLadders.model;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -11,30 +9,45 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * The BoardScan class is the IO handling class which is used for reading and writing data from save and other game files and
+ * writes data to save files. This class creates the Board objects containing the positions of snakes and ladders that allow the
+ * game to be played as desired.
+ *
+ * @author Marnix
+ * @version 2.0
+ */
 public class BoardScan {
 
-    private SnakesAndLadders snl;
     private Board board;
     private String bgPath;
 
+    /**
+     * The constructor creates a new BoardScan object which contains a model class in order to cooperate
+     * with the Board classes and presenters.
+     */
     public BoardScan() {
         bgPath = null;
-        snl = new SnakesAndLadders();
     }
 
-    public String getBgPath() {
-        return bgPath;
-    }
-
+    /**
+     * This method is used for reading a text file, parses its text content into usable Strings int's and Player objects,
+     * and uses this for creating a new Board class for the game to use
+     *
+     * @param file game requires a difficulty file to read, currently there are 3 supported difficulty files
+     *             and the readfile method is also used for reading data from save files
+     * @throws SnakesAndLaddersException if the text file is corrupted and does not contain the required lines
+     * @throws SnakesAndLaddersException as a replacement for the caught FileNotFoundException
+     */
     public void readFile(File file) {
+
+        boolean isSaveFile = false;
+        ArrayList<Player> players = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(file)) {
 
-
             LinkedHashMap<Integer, Integer> snakes = new LinkedHashMap<>();
             LinkedHashMap<Integer, Integer> ladders = new LinkedHashMap<>();
-            int size = 20;
-
 
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
@@ -44,23 +57,8 @@ public class BoardScan {
                 } else if (line.contains(".png") || line.contains(".jpg")) {
                     bgPath = line;
                 } else if (line.startsWith("BORD")) {
-                    size = Integer.parseInt(line.substring(5));
-
-                } else if (line.startsWith("LADDERS")) {
-
-                    Pattern pattern = Pattern.compile("[0-9]+-[0-9]+");
-                    Matcher matcher = pattern.matcher(line);
-                    while (matcher.find()) {
-                        String sub = line.substring(matcher.start(), matcher.end());
-
-                        int start = Integer.parseInt(sub.substring(0, sub.indexOf('-')));
-                        int stop = Integer.parseInt(sub.substring(sub.indexOf('-') + 1));
-
-                        ladders.put(start, stop);
-                    }
-
-
-                } else if (line.startsWith("SLANGEN")) {
+                    //Do nothing, we did not implement variable board size
+                } else if (line.startsWith("LADDERS") || line.startsWith("SLANGEN")) {
 
                     Pattern pattern = Pattern.compile("[0-9]+-[0-9]+");
                     Matcher matcher = pattern.matcher(line);
@@ -70,32 +68,30 @@ public class BoardScan {
                         int start = Integer.parseInt(sub.substring(0, sub.indexOf('-')));
                         int stop = Integer.parseInt(sub.substring(sub.indexOf('-') + 1));
 
-                        snakes.put(start, stop);
+                        if (line.startsWith("LADDERS")) {
+                            ladders.put(start, stop);
+                        } else if (line.startsWith("SLANGEN")) {
+                            snakes.put(start, stop);
+                        }
+
                     }
-
-
                 } else if (line.startsWith("PLAYERS")) {
-                    //TODO: Apparently I didn't completely get this working
-                    int nPlayers = Integer.parseInt(line.substring(8, 9));
+
+                    isSaveFile = true;
+
+                    //int nPlayers = Integer.parseInt(line.substring(8, 9));
 
                     Pattern pattern = Pattern.compile("[0-9]+-[A-Z]-([A-Z]|[a-z]|[0-9])+");
                     Matcher matcher = pattern.matcher(line);
                     while (matcher.find()) {
                         String part = line.substring(matcher.start(), matcher.end());
 
-                        System.out.println(part);
-
-                        //int pos = Integer.parseInt(part.substring(10, line.indexOf('-')));
                         int pos = Integer.parseInt(part.substring(0, part.indexOf("-")));
 
-                        //String name = part.substring(line.lastIndexOf('-'));
-                        //TODO: Read name
-                        String name = null;
-                        System.out.println("Name: " + part);
+                        String name;
+                        name = part.substring(part.indexOf('-', 4) + 1);
 
-                        PieceColor playerC = null;
-
-
+                        PieceColor playerC;
                         switch (part.substring(part.indexOf('-') + 1, part.lastIndexOf('-'))) {
                             case "R":
                                 playerC = PieceColor.RED;
@@ -113,46 +109,61 @@ public class BoardScan {
                                 throw new SnakesAndLaddersException();
                         }
 
-                        ArrayList<Player> players = new ArrayList<>();
                         players.add(new Player(playerC, name, pos));
 
                         System.out.printf("Color: %s Name: %s Position: %d\n", playerC, name, pos);
                     }
 
-                    ArrayList<Player> players = new ArrayList<>();
-
-
                 } else throw new SnakesAndLaddersException("IllegalFileFormat");
 
             }
-            board = new Board(bgPath, snakes, ladders, size);
+
+            if (isSaveFile){
+                board = new Board(bgPath, snakes, ladders, players);
+            } else board = new Board(bgPath, snakes, ladders);
 
         } catch (FileNotFoundException e) {
             throw new SnakesAndLaddersException("Game file not found");
         }
     }
 
-    public void save(File difficulty) {
+    /**
+     * This method is called whenever a player wants to save the current game. There is only support for 1 save file.
+     * If a previous save file exists, the old one will be overwritten. The way it writes a save file is by copying the
+     * original game file and adding an extra line containing the player save data.
+     *
+     * @param difficulty save requires an original difficulty file that is required for copying the original game data.
+     * @param players in order for the save file to work an up to date list of players is required which have to be
+     *                passed through by the presenter.
+     *
+     * @throws SnakesAndLaddersException if original game file can not be found a SnakesAndLaddersException is thrown
+     */
+    public void save(File difficulty, ArrayList<Player> players) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        File newfile = new File(classLoader.getResource("save_file.txt").getFile());
 
-        File newfile = Paths.get("../savefile.txt").toFile();
+        try {
+            Files.deleteIfExists(newfile.toPath());
+        } catch (IOException e) {
+            throw new SnakesAndLaddersException("Original game file not found");
+        }
 
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(newfile))); Scanner scanner = new Scanner(difficulty)) {
 
             //COPY original file
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
-                pw.write(line);
+                pw.write(line + "\n");
+
             }
 
             //Write extra line containing player data
+            StringBuilder playersave = new StringBuilder();
 
-            String playersave = "";
-
-            for (Player player : snl.getPlayers()) {
-                int playerid = 0;
+            int playerid = 0;
+            for (Player player : players) {
                 StringBuilder iplayer = new StringBuilder();
 
-                //[0-9]+-[A-Z]-([a-z]|[A-Z])
                 //Write playerpos
                 iplayer.append(player.getPlayerPos());
                 iplayer.append("-");
@@ -176,63 +187,26 @@ public class BoardScan {
 
                 //Write Username
                 iplayer.append(player.getUsername());
-                if (playerid != snl.getPlayers().size() - 1) {
+                if (playerid != players.size() - 1) {
                     iplayer.append(",");
                 }
 
-
-                playersave += iplayer.toString();
+                playersave.append(iplayer.toString());
                 playerid++;
             }
 
 
-            pw.format("PLAYERS=%d(%s)", snl.getPlayers().size(), playersave);
+            pw.format("PLAYERS=%d(%s)", players.size(), playersave.toString());
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new SnakesAndLaddersException("Original game file not found");
         }
-
-        /*
-        String originalText = "";
-        File save = new File(location.getAbsolutePath());
-
-        try {
-            scanner =  new Scanner(originalFile);
-
-            while (scanner.hasNext()){
-                originalText += scanner.nextLine();
-            }
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(save));
-            writer.write(originalText);
-            System.out.println(originalText);
-
-            //[0-9]+-[A-Z]-([a-z]|[A-Z])+
-
-            String playersSave = "PLAYERS";
-
-            playersSave += snl.getPlayers().size() + "(";
-
-
-            for (Player player : snl.getPlayers()) {
-                String p = "";
-                p += player.getPlayerPos() + "-";
-                p += player.getColor().toString().toUpperCase().substring(0,1) + "-";
-                p += player.getUsername() + ",";
-                playersSave += p;
-            }
-
-            playersSave += ")";
-
-            System.out.print(playersSave);
-            writer.close();
-        } catch (IOException e) {
-            throw new SnakesAndLaddersException("FileWriteError");
-        }
-        */
     }
 
+    /**
+     * @return Board returns the board that is created after the readFile() method has been used
+     */
     public Board getBoard() {
         return board;
     }

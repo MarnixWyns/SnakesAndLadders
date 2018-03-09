@@ -44,7 +44,8 @@ public class GamePresenter {
 
     private void addEventHandlers() {
         //change background accordingly.
-        view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+        view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(
+                        model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
 
 
         //Roll dice on button press
@@ -152,7 +153,8 @@ public class GamePresenter {
             if (alert.getResult() == cancel) {
                 event.consume();
             } else if (alert.getResult() == save) {
-                model.getBoardScan().save(model.getDifficultyFile());
+                model.getBoardScan().save(model.getDifficultyFile(), model.getPlayers());
+                System.out.print("Saved");
             } else view.getScene().setRoot(startView);
 
         });
@@ -173,8 +175,8 @@ public class GamePresenter {
             if (alert.getResult() == cancel) {
                 event.consume();
             } else if (alert.getResult() == save) {
-                //TODO: DifficultyFile is empty??????????????????????????????????????????????????????????
-                model.getBoardScan().save(Paths.get("./resources/BoardLayouts/normal.txt").toFile());
+                model.getBoardScan().save(model.getDifficultyFile(), model.getPlayers());
+                System.exit(0);
             } else System.exit(0);
         });
 
@@ -211,7 +213,7 @@ public class GamePresenter {
 
         //AI movement
         //TODO: Add an animation or something to let the player know the computer haz moved
-        if (model.getCurrentPlayerName().equals("Computer")) {
+        if (model.getCurrentPlayer().getUsername().equals("Computer")) {
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
@@ -230,33 +232,33 @@ public class GamePresenter {
             model.nextPlayer();
         }
 
-        view.getLblplayerName().setText(model.getCurrentPlayerName());
+        view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
 
 
         //TODO: Clean redundant code
         if (model.getCurrentPlayerId() == 0 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayerName());
+            scoreboard.add(model.getCurrentPlayer().getUsername());
             model.getCurrentPlayer().setPlayer1Finished(true);
 
             view.getIvPlayer1().setVisible(false);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayerName());
-            alert.setContentText(model.getCurrentPlayerName() + " has finished");
+            alert.setTitle(model.getCurrentPlayer().getUsername());
+            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
             alert.show();
 
             model.getPlayers().remove(model.getCurrentPlayer());
 
         }
         if (model.getCurrentPlayerId() == 1 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayerName());
+            scoreboard.add(model.getCurrentPlayer().getUsername());
             model.getCurrentPlayer().setPlayer2Finished(true);
 
             view.getIvPlayer2().setVisible(false);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayerName());
-            alert.setContentText(model.getCurrentPlayerName() + " has finished");
+            alert.setTitle(model.getCurrentPlayer().getUsername());
+            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
             alert.show();
 
 
@@ -264,14 +266,14 @@ public class GamePresenter {
 
         }
         if (model.getCurrentPlayerId() == 2 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayerName());
+            scoreboard.add(model.getCurrentPlayer().getUsername());
             model.getCurrentPlayer().setPlayer3Finished(true);
 
             view.getIvPlayer3().setVisible(false);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayerName());
-            alert.setContentText(model.getCurrentPlayerName() + " has finished");
+            alert.setTitle(model.getCurrentPlayer().getUsername());
+            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
             alert.show();
 
 
@@ -279,14 +281,14 @@ public class GamePresenter {
 
         }
         if (model.getCurrentPlayerId() == 3 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayerName());
+            scoreboard.add(model.getCurrentPlayer().getUsername());
             model.getCurrentPlayer().setPlayer4Finished(true);
 
             view.getIvPlayer4().setVisible(false);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayerName());
-            alert.setContentText(model.getCurrentPlayerName() + " has finished");
+            alert.setTitle(model.getCurrentPlayer().getUsername());
+            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
             alert.show();
 
             model.getPlayers().remove(model.getCurrentPlayer());

@@ -1,5 +1,5 @@
 #Dit is een normaal spelbord van 10x10
-#Auteur: Freddy Fish
+#Auteur: Pajama Sam
 hard.jpg
 BORD=10
 SLANGEN=15(17-1,6-2,32-14,51-47,54-30,58-5,60-18,67-31,75-37,82-35,84-13,87-70,93-50,96-72,99-61)

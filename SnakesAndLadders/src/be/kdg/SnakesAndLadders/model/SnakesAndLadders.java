@@ -1,7 +1,4 @@
-package be.kdg.SnakesAndLadders.model;/*
- * Marnix Wyns
- * 2/02/2018
- */
+package be.kdg.SnakesAndLadders.model;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,7 +12,6 @@ public class SnakesAndLadders {
     private String colorPlayer2;
     private String colorPlayer3;
     private String colorPlayer4;
-    private int countPlayers;
     private File difficultyFile;
     private BoardScan boardScan;
     private String selectedBackground;
@@ -33,10 +29,6 @@ public class SnakesAndLadders {
 
     public int throwDice() {
         return dice.getValue();
-    }
-
-    public String getCurrentPlayerName() {
-        return players.get(currentPlayer).getUsername();
     }
 
     public Player getCurrentPlayer() {
@@ -66,10 +58,6 @@ public class SnakesAndLadders {
 
     public void addPlayer(Player player) {
         players.add(player);
-    }
-
-    public void disablePlayer(Player player) {
-        players.remove(player);
     }
 
     public ArrayList<Player> getPlayers() {
@@ -139,10 +127,6 @@ public class SnakesAndLadders {
 
     public void setDifficultyFile(File difficultyFile) {
         this.difficultyFile = difficultyFile;
-    }
-
-    public void setCountPlayers(int countPlayers) {
-        this.countPlayers = countPlayers;
     }
 
     public String getSelectedBackground() {

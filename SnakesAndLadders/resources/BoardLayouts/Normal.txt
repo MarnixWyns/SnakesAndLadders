@@ -1,5 +1,5 @@
 #Dit is een normaal spelbord van 10x10
-#Auteur: Freddy Fish
+#Auteur: Putt Putt
 normal.jpg
 BORD=10
 SLANGEN=10(16-6,46-25,49-11,62-19,64-60,74-53,89-68,92-88,95-75,99-80)

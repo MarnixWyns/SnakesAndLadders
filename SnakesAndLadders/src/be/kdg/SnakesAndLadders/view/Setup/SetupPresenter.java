@@ -141,8 +141,6 @@ public class SetupPresenter {
                 gameView.getScene().getWindow().setHeight(600);
                 gameView.getScene().getWindow().setWidth(1024);
 
-                model.setCountPlayers(2);
-
 
             } catch (IndexOutOfBoundsException i) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No player Names", "Please give at least 1 player a name");
@@ -155,7 +153,7 @@ public class SetupPresenter {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
                 try {
-                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
                 } catch (IllegalArgumentException e){
                     dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
                     System.exit(1);
@@ -176,7 +174,7 @@ public class SetupPresenter {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
                 try{
-                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
                 } catch (IllegalArgumentException e){
                     dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
                     System.exit(1);
@@ -196,7 +194,7 @@ public class SetupPresenter {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Hard.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
                 try{
-                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
                 }catch (IllegalArgumentException e){
                     dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
                     System.exit(1);
@@ -230,16 +228,12 @@ public class SetupPresenter {
 
         //region ToggleGroup Amount of players
         view.getOnePlayer().setOnAction(event -> {
-            model.setCountPlayers(2);
-
             disableFields(true, true, true);
 
             hidePlayers(false, false, false);
         });
 
         view.getTwoPlayers().setOnAction(event -> {
-            model.setCountPlayers(2);
-
             disableFields(false, true, true);
 
             hidePlayers(true, false, false);
@@ -249,8 +243,6 @@ public class SetupPresenter {
         });
 
         view.getThreePlayers().setOnAction(event -> {
-            model.setCountPlayers(3);
-
             disableFields(false, false, true);
 
             hidePlayers(true, true, false);
@@ -262,8 +254,6 @@ public class SetupPresenter {
         });
 
         view.getFourPlayers().setOnAction(event -> {
-            model.setCountPlayers(4);
-
             disableFields(false, false, false);
 
             hidePlayers(true, true, true);

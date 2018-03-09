@@ -39,7 +39,7 @@ public class GameView extends BorderPane {
     private Button btnRollDice;
     private Button btnExit;
     private Button btnHome;
-    private ToggleButton tbtnFullscreen;
+    private Button btnHelp;
 
     private final String DIEURL = "/DieImages/die";
 
@@ -69,11 +69,9 @@ public class GameView extends BorderPane {
     private Label lblturnMessage;
     private Label lblFeedback;
 
-    private VBox playerMessage;
-    private VBox dicePosition;
     private VBox gridFeedback;
     private VBox gameButtons;
-    private HBox fullAndExit;
+    private HBox helpAndExit;
 
 
     //create grids using Gridpane
@@ -109,7 +107,7 @@ public class GameView extends BorderPane {
         btnRollDice = new Button("Roll the dice!");
         btnExit = new Button("Exit");
         btnHome = new Button("Home");
-        tbtnFullscreen = new ToggleButton("Fullscreen");
+        btnHelp = new Button("Help");
 
         //boardgrid initialiserenµ
         column1 = new ColumnConstraints(40);
@@ -151,11 +149,9 @@ public class GameView extends BorderPane {
         lblFeedback = new Label("Roll the damn dice!");
 
         //VBoxes initialiseren
-        playerMessage = new VBox();
-        dicePosition = new VBox();
         gridFeedback = new VBox();
         gameButtons = new VBox();
-        fullAndExit = new HBox();
+        helpAndExit = new HBox();
 
         //achtergrond veranderen
         backgroundGame = new Image("/BackgroundImages/background.png");
@@ -256,40 +252,15 @@ public class GameView extends BorderPane {
         gameButtons.setAlignment(Pos.CENTER);
         gameButtons.setPrefWidth(300);
 
-        fullAndExit.setSpacing(5);
-        fullAndExit.getChildren().addAll(tbtnFullscreen,btnHome, btnExit);
-        setBottom(fullAndExit);
-        setMargin(fullAndExit, new Insets(15));
-        fullAndExit.setAlignment(Pos.BOTTOM_RIGHT);
-
-
-
-        /*
-        dicePosition.setSpacing(10);
-        dicePosition.setPadding(new Insets(20,100,20,75));
-        dicePosition.getChildren().addAll(ivDice, btnRollDice);
-        ivDice.setFitHeight(150);
-        ivDice.setFitWidth(150);
-        btnRollDice.setPrefWidth(150);
-        btnRollDice.setPrefHeight(50);
-        btnRollDice.setFont(new Font(20));
-
-
-        //gridpane voor exit en fullscreenbuttons
-        btnExit.setPrefSize(40, 10);
-        tbtnFullscreen.setPrefSize(75, 10);
-        otherButtons.add(btnExit, 2, 2);
-        otherButtons.add(tbtnFullscreen, 1, 2);
-        setCenter(otherButtons);
-
-
-        //Vbox placement in gridpane
-        currentPlayerDice.add(playerMessage,0,0);
-        currentPlayerDice.add(dicePosition,0,1);
-        currentPlayerDice.add(otherButtons,0,2);
-        setRight(currentPlayerDice);
-        otherButtons.setPadding(new Insets(85,0,0,235));
-        */
+        btnExit.setPrefSize(60, 10);
+        btnHelp.setPrefSize(60,10);
+        btnHome.setPrefSize(60,10);
+        helpAndExit.getChildren().add(btnHelp);
+        helpAndExit.getChildren().add(btnHome);
+        helpAndExit.getChildren().add(btnExit);
+        helpAndExit.setSpacing(10);
+        setMargin(helpAndExit, new Insets(15, 15, 13, 800));
+        setBottom(helpAndExit);
 
     }
 
@@ -340,10 +311,6 @@ public class GameView extends BorderPane {
 
     Button getBtnExit() {
         return btnExit;
-    }
-
-    ToggleButton getTbtnFullscreen() {
-        return tbtnFullscreen;
     }
 
     Label getLblplayerName(){

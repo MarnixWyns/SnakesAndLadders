@@ -25,7 +25,7 @@ public class SetupView extends BorderPane {
 
     private Button btnStartGame;
     private Button btnExitGame;
-    private Button btnLoadGame;
+    private Button btnHelp;
 
     private TextField tfP1name;
     private TextField tfP2name;
@@ -126,6 +126,7 @@ public class SetupView extends BorderPane {
     private VBox difficulty;
     private VBox playerNameFields;
     private VBox boardAndPreview;
+    private HBox helpAndExit;
 
     //background variables creation
     private BackgroundSize backgroundSize1;
@@ -146,7 +147,7 @@ public class SetupView extends BorderPane {
     private void initialiseNodes() {
         btnStartGame = new Button("Start");
         btnExitGame = new Button("Exit");
-        btnLoadGame = new Button("Load Game");
+        btnHelp = new Button("Help");
 
 
         tfP1name = new TextField();
@@ -222,6 +223,7 @@ public class SetupView extends BorderPane {
         difficulty = new VBox();
         playerNameFields = new VBox();
         boardAndPreview = new VBox();
+        helpAndExit = new HBox();
 
         //boardgrid initialiseren
         column1 = new ColumnConstraints(40);
@@ -371,9 +373,14 @@ public class SetupView extends BorderPane {
         //Default Selections of toggleGroups
         fourPlayers.setSelected(true);
 
-        btnExitGame.setPrefSize(40, 10);
-        setMargin(btnExitGame, new Insets(15, 15, 13, 965));
-        setBottom(btnExitGame);
+
+        btnExitGame.setPrefSize(60, 10);
+        btnHelp.setPrefSize(60,10);
+        helpAndExit.getChildren().add(btnHelp);
+        helpAndExit.getChildren().add(btnExitGame);
+        helpAndExit.setSpacing(10);
+        setMargin(helpAndExit, new Insets(15, 15, 13, 900));
+        setBottom(helpAndExit);
 
         setBorder(border);
     }

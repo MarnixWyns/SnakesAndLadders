@@ -178,20 +178,6 @@ public class GamePresenter {
             } else System.exit(0);
         });
 
-        //fullscreen button intelligence
-
-        view.getTbtnFullscreen().setOnAction(event -> {
-            if (view.getTbtnFullscreen().isSelected()) {
-                primaryStage.setFullScreen(true);
-                view.getGameButtons().setPadding(new Insets(75, 50, 0, 0));
-                view.getBoardBackground().setPadding(new Insets(150, 75, 25, 175));
-            } else {
-                primaryStage.setFullScreen(false);
-                view.getGameButtons().setPadding(new Insets(50, 0, 0, 50));
-                view.getBoardBackground().setPadding(new Insets(30, 0, 30, 90));
-            }
-        });
-
         if (model.getPlayers().size() == 1) {
             view.getIvPlayer1().setVisible(true);
             view.getIvPlayer2().setVisible(true);

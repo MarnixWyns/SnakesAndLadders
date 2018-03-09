@@ -21,7 +21,7 @@ public class StartView extends BorderPane {
     private Button btnNewGame;
     private Button btnLoadGame;
     private Button btnExit;
-    private ToggleButton tbtnFullscreen;
+    private Button btnHelp;
     private Label lblName;
     private Label lblIntro;
     private Label lblAbout;
@@ -32,7 +32,7 @@ public class StartView extends BorderPane {
     private VBox buttons;
     private VBox text;
 
-    private HBox fullAndExit;
+    private HBox helpAndExit;
 
     private Background backGround1;
     private BackgroundSize backgroundSize1;
@@ -49,12 +49,12 @@ public class StartView extends BorderPane {
         btnNewGame = new Button("New Game");
         btnLoadGame = new Button("Load Game");
         btnExit = new Button("Exit");
-        tbtnFullscreen = new ToggleButton("Fullscreen");
+        btnHelp = new Button("Help");
 
         buttons = new VBox();
         text = new VBox();
 
-        fullAndExit = new HBox();
+        helpAndExit = new HBox();
 
         border = new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
 
@@ -88,12 +88,13 @@ public class StartView extends BorderPane {
 
     private void layoutNodes() {
 
-        //fullscreen and exit placement in startscreen
-        fullAndExit.setSpacing(5);
-        fullAndExit.getChildren().addAll(tbtnFullscreen, btnExit);
-        setBottom(fullAndExit);
-        setMargin(fullAndExit, new Insets(15));
-        fullAndExit.setAlignment(Pos.BOTTOM_RIGHT);
+        btnExit.setPrefSize(60, 10);
+        btnHelp.setPrefSize(60,10);
+        helpAndExit.getChildren().add(btnHelp);
+        helpAndExit.getChildren().add(btnExit);
+        helpAndExit.setSpacing(10);
+        setMargin(helpAndExit, new Insets(15, 15, 13, 900));
+        setBottom(helpAndExit);
 
         //add buttons to gridpane and change their layout
         buttons.setSpacing(25);
@@ -135,7 +136,4 @@ public class StartView extends BorderPane {
         return btnExit;
     }
 
-    public ToggleButton getTbtnFullscreen() {
-        return tbtnFullscreen;
-    }
 }

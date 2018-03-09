@@ -38,16 +38,7 @@ public class StartPresenter {
         });
         //exit button without warning
         view.getBtnExit().setOnAction(event -> System.exit(0));
-        //fullscreen
-        view.getTbtnFullscreen().setOnAction(event -> {
-            if (view.getTbtnFullscreen().isSelected()) {
-                primaryStage.setFullScreen(true);
 
-            } else {
-                primaryStage.setFullScreen(false);
-
-            }
-        });
         view.getBtnLoadGame().setOnAction(event -> {
 
 

@@ -3,9 +3,15 @@ package be.kdg.SnakesAndLadders.view.Start;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
+import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
+import be.kdg.SnakesAndLadders.view.Help.HelpView;
 import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
 import be.kdg.SnakesAndLadders.view.Setup.SetupView;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -59,6 +65,20 @@ public class StartPresenter {
             gameView.getScene().getWindow().setWidth(1024);
 
             model.setCountPlayers(2);
+        });
+
+        view.getBtnHelp().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HelpView helpView = new HelpView();
+                HelpPresenter helpPresenter = new HelpPresenter(helpView);
+                Stage helpStage = new Stage();
+                helpStage.setTitle("Help");
+                helpStage.initOwner(view.getScene().getWindow());
+                helpStage.initModality(Modality.APPLICATION_MODAL);
+                helpStage.setScene(new Scene(helpView));
+                helpStage.showAndWait();
+            }
         });
     }
 

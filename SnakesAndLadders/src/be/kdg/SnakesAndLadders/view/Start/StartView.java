@@ -122,4 +122,7 @@ public class StartView extends BorderPane {
         return btnExit;
     }
 
+    public Button getBtnHelp() {
+        return btnHelp;
+    }
 }

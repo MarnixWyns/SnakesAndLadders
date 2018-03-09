@@ -12,9 +12,10 @@ public class HelpView extends BorderPane {
 
     public HelpView() {
         setCenter(taHelp);
-        setPrefHeight(300);
+        setPrefHeight(250);
         setPrefWidth(300);
         taHelp.setEditable(false);
+        taHelp.setWrapText(true);
     }
 
     public TextArea getTaHelp() {

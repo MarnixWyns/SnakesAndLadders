@@ -40,11 +40,9 @@ public class BoardScan {
                 String line = scanner.nextLine();
 
                 if (line.startsWith("#")) {
-                    //Nothing
+                    //Do Nothing
                 } else if (line.contains(".png") || line.contains(".jpg")) {
                     bgPath = line;
-
-                    //Does not read Bord, all others are fine :D
                 } else if (line.startsWith("BORD")) {
                     size = Integer.parseInt(line.substring(5));
 
@@ -78,9 +76,9 @@ public class BoardScan {
 
                 } else if (line.startsWith("PLAYERS")) {
                     //TODO: Apparently I didn't completely get this working
-                    int nPlayers = Integer.parseInt(line.substring(8,9));
+                    int nPlayers = Integer.parseInt(line.substring(8, 9));
 
-                    Pattern pattern = Pattern.compile("[0-9]+-[A-Z]-([A-Z]|[a-z])+");
+                    Pattern pattern = Pattern.compile("[0-9]+-[A-Z]-([A-Z]|[a-z]|[0-9])+");
                     Matcher matcher = pattern.matcher(line);
                     while (matcher.find()) {
                         String part = line.substring(matcher.start(), matcher.end());
@@ -93,10 +91,9 @@ public class BoardScan {
                         //String name = part.substring(line.lastIndexOf('-'));
                         //TODO: Read name
                         String name = null;
-                        System.out.println("Name: " +  part);
+                        System.out.println("Name: " + part);
 
                         PieceColor playerC = null;
-
 
 
                         switch (part.substring(part.indexOf('-') + 1, part.lastIndexOf('-'))) {
@@ -116,12 +113,14 @@ public class BoardScan {
                                 throw new SnakesAndLaddersException();
                         }
 
-
                         ArrayList<Player> players = new ArrayList<>();
                         players.add(new Player(playerC, name, pos));
 
                         System.out.printf("Color: %s Name: %s Position: %d\n", playerC, name, pos);
                     }
+
+                    ArrayList<Player> players = new ArrayList<>();
+
 
                 } else throw new SnakesAndLaddersException("IllegalFileFormat");
 
@@ -159,17 +158,25 @@ public class BoardScan {
                 iplayer.append("-");
 
                 //Write color
-                switch (player.getColor().toString().toLowerCase()){
-                    case "yellow" : iplayer.append("Y"); break;
-                    case "blue" : iplayer.append("B"); break;
-                    case "red" : iplayer.append("R"); break;
-                    case "green" : iplayer.append("G"); break;
+                switch (player.getColor().toString().toLowerCase()) {
+                    case "yellow":
+                        iplayer.append("Y");
+                        break;
+                    case "blue":
+                        iplayer.append("B");
+                        break;
+                    case "red":
+                        iplayer.append("R");
+                        break;
+                    case "green":
+                        iplayer.append("G");
+                        break;
                 }
                 iplayer.append("-");
 
                 //Write Username
                 iplayer.append(player.getUsername());
-                if (playerid != snl.getPlayers().size() - 1){
+                if (playerid != snl.getPlayers().size() - 1) {
                     iplayer.append(",");
                 }
 

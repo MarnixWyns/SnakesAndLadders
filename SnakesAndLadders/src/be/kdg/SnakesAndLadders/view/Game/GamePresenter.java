@@ -181,6 +181,7 @@ public class GamePresenter {
         });
 
         //fullscreen button intelligence
+
         view.getTbtnFullscreen().setOnAction(event -> {
             if (view.getTbtnFullscreen().isSelected()) {
                 primaryStage.setFullScreen(true);

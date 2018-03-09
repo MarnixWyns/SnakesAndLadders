@@ -188,7 +188,12 @@ public class SetupPresenter {
             try {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
-                view.getBoardGrid().setBackground(view.getNormal());
+                try{
+                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+                } catch (IllegalArgumentException e){
+                    dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
+                    System.exit(1);
+                }
                 model.setSelectedBackground(view.getNormal());
                 view.getLblPreviewInfo().setText("Normal difficulty: Snakes and ladders are evenly distributed.");
 
@@ -203,7 +208,12 @@ public class SetupPresenter {
             try {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Hard.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
-                view.getBoardGrid().setBackground(view.getHard());
+                try{
+                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+                }catch (IllegalArgumentException e){
+                    dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
+                    System.exit(1);
+                }
                 model.setSelectedBackground(view.getHard());
                 model.setBackgroundChanged(true);
                 view.getLblPreviewInfo().setText("Hard difficulty: More snakes than ladders.");

@@ -274,9 +274,9 @@ public class SetupView extends BorderPane {
         ivPlayer3 = ivBlue;
         ivPlayer4 = ivRed;
 
-        easy = new Background(new BackgroundImage(new Image("BackgroundImages/easy.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
+        //easy = new Background(new BackgroundImage(new Image("BackgroundImages/easy.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
         normal = new Background(new BackgroundImage(new Image("BackgroundImages/normal.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
-        hard = new Background(new BackgroundImage(new Image("BackgroundImages/hard.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
+        //hard = new Background(new BackgroundImage(new Image("BackgroundImages/hard.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
     }
 
 

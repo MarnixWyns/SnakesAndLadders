@@ -48,21 +48,10 @@ public class GamePresenter {
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
 
-            /* Overbodig aangezien we met nieuwe animations niks meer moeten verwijderen maar altijd met zelfde iv thread werken
-            switch (teller){
-                case 1: view.getPawnPane().getChildren().remove(view.getIvPlayer1()); break;
-                case 2: view.getPawnPane().getChildren().remove(view.getIvPlayer2()); break;
-                case 3: view.getPawnPane().getChildren().remove(view.getIvPlayer3()); break;
-                case 4: view.getPawnPane().getChildren().remove(view.getIvPlayer1()); break;
-            }
-            */
-
             //TODO: Snake animation
             //TODO: Doesn't work for more than 1 turn || Done, Ruben Fixed
             //TODO: Move vertically || Done, Marnix fixed
             //TODO: Move left or right according to position || Should be fixed not sure entirely
-
-            //dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "Current player", model.getCurrentPlayer().toString());
 
             SequentialTransition st = new SequentialTransition();
             int startpos = model.getCurrentPlayer().getPlayerPos();
@@ -107,8 +96,6 @@ public class GamePresenter {
             model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
 
 
-
-
             if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
                 TranslateTransition ttSL = new TranslateTransition();
                 switch (teller){
@@ -136,88 +123,8 @@ public class GamePresenter {
             //view.getBoardGrid().add(model.getCurrentPlayerImage(), model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())), model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
 
 
-            /*
-            if(model.getCurrentPlayerId() == 0){
-                gridPane.add(view.getIvPlayer1(),0,0);
-
-            }
-            if(model.getCurrentPlayerId() == 1){
-                gridPane.add(view.getIvPlayer2(),1,0);
-            }
-            if(model.getCurrentPlayerId() == 2){
-                gridPane.add(view.getIvPlayer3(),0,1);
-            }
-            if(model.getCurrentPlayerId() == 3){
-                gridPane.add(view.getIvPlayer4(),1,1);
-            }
-            */
-
-            /*
-            view.getBoardGrid().getChildren().remove(model.getCurrentPlayerImage());
-
-            view.getBoardGrid().add(model.getCurrentPlayerImage(),
-                    model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
-                    model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
-            */
-
-            /* //TODO: See if usefull
-            if (model.getCurrentPlayerId() == 0) {
-                pos1 = model.getPlayerPos(model.getCurrentPlayer());
-            } else if (model.getCurrentPlayerId() == 1) {
-                pos2 = model.getPlayerPos(model.getCurrentPlayer());
-            } else if (model.getCurrentPlayerId() == 2) {
-                pos3 = model.getPlayerPos(model.getCurrentPlayer());
-            } else if (model.getCurrentPlayerId() == 3) {
-                pos4 = model.getPlayerPos(model.getCurrentPlayer());
-            }
-            */
-
-            /*
-            System.out.println(pos1);
-            System.out.println(pos2);
-            System.out.println(pos3);
-            System.out.println(pos4);
-            System.out.println("--");
-
-            if(pos1 == pos2 && pos1 != pos3 && pos1 != pos4){
-                view.getBoardGrid().getChildren().remove(view.getPawnPane2());
-                view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
-                view.getBoardGrid().getChildren().remove(view.getIvPlayer2());
-                view.getBoardGrid().add(view.getPawnPane2(),
-                        model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
-                        model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
-                view.getPawnPane2().add(view.getIvPlayer1(), 0,0);
-                view.getPawnPane2().add(view.getIvPlayer2(), 1,0);
-            }
-            if(pos1 == pos3 && pos1 != pos2 && pos1 != pos4) {
-                view.getBoardGrid().getChildren().remove(view.getPawnPane3());
-                view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
-                view.getBoardGrid().getChildren().remove(view.getIvPlayer3());
-                view.getBoardGrid().add(view.getPawnPane3(),
-                        model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
-                        model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
-                view.getPawnPane3().add(view.getIvPlayer1(), 0,0);
-                view.getPawnPane3().add(view.getIvPlayer3(), 1,0);
-            }
-            if(pos1 == pos4 && pos1 != pos2 && pos1 != pos3) {
-                view.getBoardGrid().getChildren().remove(view.getPawnPane4());
-                view.getBoardGrid().getChildren().remove(view.getIvPlayer1());
-                view.getBoardGrid().getChildren().remove(view.getIvPlayer4());
-                view.getBoardGrid().add(view.getPawnPane3(),
-                        model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())),
-                        model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
-                view.getPawnPane3().add(view.getIvPlayer1(), 0,0);
-                view.getPawnPane3().add(view.getIvPlayer4(), 1,0);
-            }
-            */
-
             view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());
-
-
-            //view.getLblFeedback().setText(model.getFeedback().getRandFeedback());
-
-            //teller++;
 
             model.nextPlayer();
             teller++;

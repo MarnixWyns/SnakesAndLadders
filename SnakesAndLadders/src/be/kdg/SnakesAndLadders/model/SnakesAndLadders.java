@@ -141,10 +141,6 @@ public class SnakesAndLadders {
         this.difficultyFile = difficultyFile;
     }
 
-    public int getCountPlayers() {
-        return countPlayers;
-    }
-
     public void setCountPlayers(int countPlayers) {
         this.countPlayers = countPlayers;
     }

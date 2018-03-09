@@ -25,7 +25,6 @@ public class SetupPresenter {
     private SetupView view;
     private Stage primaryStage;
     private Scene setupScene;
-    private int amountOfPlayers;
     private DialogThrower dialogThrower;
 
     public SetupPresenter(SnakesAndLadders model, GameView gameView, SetupView setupView, Stage primaryStage,
@@ -98,20 +97,13 @@ public class SetupPresenter {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "One of the player names is empty.");
                 return;
             }
+            if(!view.getHardDifficulty().isSelected() && !view.getNormalDifficulty().isSelected() && !view.getEasyDifficulty().isSelected()){
+                dialogThrower.throwAlert(Alert.AlertType.WARNING,"No difficulty selected", "Please select a difficulty");
+                return;
+            }
 
 
             try {
-                //Get difficulty
-                /*
-                if (view.getEasyDifficulty().isSelected()) {
-                    model.setSelectedDifficulty(SnakesAndLadders.Difficulty.EASY);
-                } else if (view.getNormalDifficulty().isSelected()) {
-                    model.setSelectedDifficulty(SnakesAndLadders.Difficulty.NORMAL);
-                } else if (view.getHardDifficulty().isSelected()) {
-                    model.setSelectedDifficulty(SnakesAndLadders.Difficulty.HARD);
-                } else throw new SnakesAndLaddersException("No selected difficulty");
-                */
-                //Get players
                 ArrayList<Player> players = new ArrayList<>();
 
                 ArrayList<TextField> playerNames = new ArrayList<>();
@@ -175,7 +167,6 @@ public class SetupPresenter {
             } catch (SnakesAndLaddersException e) {
                 System.exit(1);
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found", "The program will now self destruct");
-
             }
         });
 
@@ -239,7 +230,6 @@ public class SetupPresenter {
 
         //region ToggleGroup Amount of players
         view.getOnePlayer().setOnAction(event -> {
-            amountOfPlayers = 1;
             model.setCountPlayers(2);
 
             disableFields(true, true, true);
@@ -248,7 +238,6 @@ public class SetupPresenter {
         });
 
         view.getTwoPlayers().setOnAction(event -> {
-            amountOfPlayers = 2;
             model.setCountPlayers(2);
 
             disableFields(false, true, true);
@@ -260,7 +249,6 @@ public class SetupPresenter {
         });
 
         view.getThreePlayers().setOnAction(event -> {
-            amountOfPlayers = 3;
             model.setCountPlayers(3);
 
             disableFields(false, false, true);
@@ -274,7 +262,6 @@ public class SetupPresenter {
         });
 
         view.getFourPlayers().setOnAction(event -> {
-            amountOfPlayers = 4;
             model.setCountPlayers(4);
 
             disableFields(false, false, false);

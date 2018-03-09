@@ -47,8 +47,6 @@ public class GamePresenter {
         view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
 
 
-
-
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
 
@@ -322,21 +320,6 @@ public class GamePresenter {
             alert.show();
 
         }
-        //alternatative method to show instead of alert
-        /*
-        if(model.getPlayers().isEmpty()){
-            Dialog dialog = new Dialog();
-            dialog.setTitle("End Of Game");
-            dialog.setContentText("Ranking: \n" +
-                    "First place : " + scoreboard.get(0) + "\n" +
-                    "Second Place : " + scoreboard.get(1) + "\n" +
-                    "Third Place : " + scoreboard.get(2) + "\n" +
-                    "Fourth Place : " + scoreboard.get(3));
-            Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-            stage.getIcons().add(new Image("/snakeandladder.png"));
-            dialog.show();
-        }
-        */
     }
 }
 

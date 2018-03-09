@@ -1,0 +1,7 @@
+Snakes and ladders is a fun game for young and old!
+
+The rules are simple:
+
+-Step on the head of a snake and you fall down to it's tail!
+
+-But no worries, step on the beginning of a ladder and it will lift you up to where it ends!

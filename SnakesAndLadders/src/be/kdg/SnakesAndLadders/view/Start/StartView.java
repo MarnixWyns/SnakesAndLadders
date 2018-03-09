@@ -23,9 +23,7 @@ public class StartView extends BorderPane {
     private Button btnExit;
     private Button btnHelp;
     private Label lblName;
-    private Label lblIntro;
     private Label lblAbout;
-    private Text tIntro;
     private Text tAbout;
     private Border border;
 
@@ -59,7 +57,6 @@ public class StartView extends BorderPane {
         border = new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
 
         lblName = new Label("Welcome to Snakes and Ladders!");
-        lblIntro = new Label("Introduction:");
         lblAbout = new Label("About us:");
 
         tAbout = new Text("" +
@@ -67,16 +64,7 @@ public class StartView extends BorderPane {
                 "by Marnix Wyns and Ruben Vanloo.\n" +
                 "Both students at KdG, \n" +
                 "located in Antwerpen, Belgium.");
-        tIntro = new Text("" +
-                "Snakes and Ladders is a fun \n" +
-                "game for young and old! \n" +
-                "The rules are simple:\n" +
-                "Step on the head of a snake\n" +
-                "and you fall down to it's tail!\n" +
-                "But no worries, step on the \n" +
-                "beginning of a ladder and \n" +
-                "it will lift you up to where\n" +
-                "it ends!");
+
 
         //adjust background:
         background = new Image("/BackgroundImages/background.png");
@@ -112,12 +100,10 @@ public class StartView extends BorderPane {
 
 
         //adding the text and labels to a vbox and align it on the right side of the screen
-        text.getChildren().addAll(lblIntro, tIntro, lblAbout, tAbout);
+        text.getChildren().addAll(lblAbout, tAbout);
         text.setSpacing(20);
         text.setPadding(new Insets(50,10,0,10));
-        tIntro.setFont(Font.font("Arial", FontPosture.ITALIC, 20));
         tAbout.setFont(Font.font("Arial", FontPosture.ITALIC,20));
-        lblIntro.setFont(Font.font("Arial", FontWeight.BOLD, 25));
         lblAbout.setFont(Font.font("Arial", FontWeight.BOLD,  25));
         setRight(text);
 

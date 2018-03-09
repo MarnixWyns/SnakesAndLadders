@@ -17,7 +17,7 @@ public class StartPresenter {
     private SnakesAndLadders model;
     private Stage primaryStage;
 
-    public StartPresenter(StartView startView, SnakesAndLadders snakesAndLadders, Stage primaryStage){
+    public StartPresenter(StartView startView, SnakesAndLadders snakesAndLadders, Stage primaryStage) {
         this.view = startView;
         this.model = snakesAndLadders;
         this.primaryStage = primaryStage;
@@ -50,21 +50,13 @@ public class StartPresenter {
         });
         view.getBtnLoadGame().setOnAction(event -> {
 
-                FileChooser fc = new FileChooser();
-                fc.setInitialDirectory(Paths.get(".").toFile());
-                fc.setTitle("Select your savefile");
-                File saveFile = fc.showOpenDialog(primaryStage);
 
-                if (saveFile != null){ //Sees is no file is selected
+            //TODO: throws Boardscan nullpointer, game hasnt started yet so none has been initiialised
+            model.getBoardScan().readFile(Paths.get("save_file.txt").toFile());
+            model.startGame();
 
 
-                    //TODO: throws Boardscan nullpointer, game hasnt started yet so none has been initiialised
-                    model.startGame();
-                    model.getBoardScan().readFile(saveFile);
-
-                }
-
-                //Start game met gelezen files
+            //Start game met gelezen files
             model.setPlayers(model.getBoardScan().getBoard().getSavedPlayers());
 
 

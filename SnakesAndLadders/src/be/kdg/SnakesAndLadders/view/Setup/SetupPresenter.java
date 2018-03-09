@@ -231,6 +231,7 @@ public class SetupPresenter {
 
             if (view.getTbtnFullScreen().isSelected()) {
                 primaryStage.setFullScreen(true);
+                view.getScene().getStylesheets().add("CSS-files/fullscreen.css");
                 //view.getSetupMenu().setPadding(new Insets(75, 50, 0, 0));
                 //view.getBoardBackground().setPadding(new Insets(150, 75, 25, 175));
 

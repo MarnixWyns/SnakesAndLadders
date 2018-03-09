@@ -26,7 +26,6 @@ public class SetupView extends BorderPane {
     private Button btnStartGame;
     private Button btnExitGame;
     private Button btnLoadGame;
-    private ToggleButton tbtnFullScreen;
 
     private TextField tfP1name;
     private TextField tfP2name;
@@ -47,8 +46,6 @@ public class SetupView extends BorderPane {
     private Image blue;
     private Image green;
     private Image yellow;
-
-    private Image ivPlayer1NewColor;
 
     private Label name;
     private Label lblPlayer1;
@@ -121,7 +118,6 @@ public class SetupView extends BorderPane {
     private GridPane startButton;
     private GridPane pawnPane;
     private GridPane boardBackground;
-    private AnchorPane anchorPane;
 
     //create VBox to display player buttons
     private VBox playerButtons;
@@ -130,7 +126,6 @@ public class SetupView extends BorderPane {
     private VBox difficulty;
     private VBox playerNameFields;
     private VBox boardAndPreview;
-    private HBox fullAndExit;
 
     //background variables creation
     private BackgroundSize backgroundSize1;
@@ -152,7 +147,6 @@ public class SetupView extends BorderPane {
         btnStartGame = new Button("Start");
         btnExitGame = new Button("Exit");
         btnLoadGame = new Button("Load Game");
-        tbtnFullScreen = new ToggleButton("Fullscreen");
 
 
         tfP1name = new TextField();
@@ -218,7 +212,7 @@ public class SetupView extends BorderPane {
         startButton = new GridPane();
         pawnPane = new GridPane();
         boardBackground = new GridPane();
-        anchorPane = new AnchorPane();
+
 
 
         //VBox initialiseren
@@ -228,7 +222,6 @@ public class SetupView extends BorderPane {
         difficulty = new VBox();
         playerNameFields = new VBox();
         boardAndPreview = new VBox();
-        fullAndExit = new HBox();
 
         //boardgrid initialiseren
         column1 = new ColumnConstraints(40);
@@ -287,6 +280,7 @@ public class SetupView extends BorderPane {
     }
 
 
+
     private void layoutNodes() {
 
         //boardgrid layout
@@ -306,15 +300,6 @@ public class SetupView extends BorderPane {
         boardAndPreview.getChildren().add(lblPreviewInfo);
         lblPreviewInfo.setFont(new Font(15));
         setLeft(boardAndPreview);
-        /*
-        anchorPane.getChildren().add(boardGrid);
-        anchorPane.getChildren().add(lblInfoTitle);
-        AnchorPane.setBottomAnchor(boardGrid, 50.0);
-        AnchorPane.setTopAnchor(boardGrid, 50.0);
-        AnchorPane.setLeftAnchor(boardGrid, 100.0);
-        AnchorPane.setRightAnchor(boardGrid, 50.0);
-        setLeft(anchorPane);
-        */
 
         //changing pawns to acceptable size
         ivPlayer1.setFitHeight(15);
@@ -327,7 +312,6 @@ public class SetupView extends BorderPane {
         ivPlayer4.setFitWidth(15);
 
         //Putting pawns in the game at start position
-
         pawnPane.add(ivPlayer1, 0, 0);
         pawnPane.add(ivPlayer2, 1, 0);
         pawnPane.add(ivPlayer3, 0, 1);
@@ -385,17 +369,12 @@ public class SetupView extends BorderPane {
         setAlignment(setupMenu, Pos.CENTER);
 
         //Default Selections of toggleGroups
-        //easyDifficulty.setSelected(true);
         normalDifficulty.setSelected(true);
         fourPlayers.setSelected(true);
 
         btnExitGame.setPrefSize(40, 10);
-        tbtnFullScreen.setPrefSize(75, 10);
-        fullAndExit.setSpacing(5);
-        fullAndExit.getChildren().addAll(tbtnFullScreen, btnExitGame);
-        setBottom(fullAndExit);
-        setMargin(fullAndExit, new Insets(15, 15, 13, 15));
-        fullAndExit.setAlignment(Pos.BOTTOM_RIGHT);
+        setMargin(btnExitGame, new Insets(15, 15, 13, 965));
+        setBottom(btnExitGame);
 
         setBorder(border);
     }
@@ -406,10 +385,6 @@ public class SetupView extends BorderPane {
 
     Button getBtnExitGame() {
         return btnExitGame;
-    }
-
-    ToggleButton getTbtnFullScreen() {
-        return tbtnFullScreen;
     }
 
     RadioButton getOnePlayer() {
@@ -478,10 +453,6 @@ public class SetupView extends BorderPane {
 
     ObservableList<String> getColorOptions() {
         return colorOptions;
-    }
-
-    Image getIvPlayer1NewColor() {
-        return ivPlayer1NewColor;
     }
 
     GridPane getSetupMenu() {
@@ -567,8 +538,7 @@ public class SetupView extends BorderPane {
     public VBox getBoardAndPreview() {
         return boardAndPreview;
     }
-
-    public AnchorPane getAnchorPane() {
-        return anchorPane;
+    public BackgroundSize getBackgroundBoard() {
+        return backgroundBoard;
     }
 }

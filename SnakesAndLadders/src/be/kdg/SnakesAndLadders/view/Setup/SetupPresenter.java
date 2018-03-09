@@ -4,16 +4,15 @@ import be.kdg.SnakesAndLadders.model.*;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -166,14 +165,21 @@ public class SetupPresenter {
             try {
                 model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
-                view.getBoardGrid().setBackground(view.getEasy());
+                try {
+                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+                } catch (IllegalArgumentException e){
+                    dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
+                    System.exit(1);
+                }
                 model.setSelectedBackground(view.getEasy());
                 model.setBackgroundChanged(true);
                 view.getLblPreviewInfo().setText("Easy difficulty: The amount of snakes and ladders is reduced.");
 
                 //TODO: obtain background file from Board
             } catch (SnakesAndLaddersException e) {
-                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
+                System.exit(1);
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found", "The program will now self destruct");
+
             }
         });
 
@@ -188,6 +194,7 @@ public class SetupPresenter {
 
             } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
+                System.exit(1);
             }
         });
 
@@ -203,6 +210,7 @@ public class SetupPresenter {
 
             } catch (SnakesAndLaddersException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
+                System.exit(1);
             }
         });
 
@@ -221,27 +229,6 @@ public class SetupPresenter {
             if (alert.getResult() == null || alert.getResult().equals(no)) {
                 event.consume();
             } else System.exit(0);
-        });
-        //endregion
-
-        //region Fullscreen ToggleButtons
-
-        view.getTbtnFullScreen().setOnAction(event -> {
-
-
-            if (view.getTbtnFullScreen().isSelected()) {
-                primaryStage.setFullScreen(true);
-                view.getScene().getStylesheets().add("CSS-files/fullscreen.css");
-                //view.getSetupMenu().setPadding(new Insets(75, 50, 0, 0));
-                //view.getBoardBackground().setPadding(new Insets(150, 75, 25, 175));
-
-
-            } else {
-                primaryStage.setFullScreen(false);
-                //view.getSetupMenu().setPadding(new Insets(0));
-                //view.getBoardBackground().setPadding(new Insets(30, 0, 30, 90));
-
-            }
         });
         //endregion
 

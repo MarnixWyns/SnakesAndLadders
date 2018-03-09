@@ -14,11 +14,16 @@ import java.util.regex.Pattern;
 public class BoardScan {
 
     private SnakesAndLadders snl;
-
     private Board board;
+    private String bgPath;
 
     public BoardScan() {
+        bgPath = null;
         snl = new SnakesAndLadders();
+    }
+
+    public String getBgPath() {
+        return bgPath;
     }
 
     public void readFile(File file) {
@@ -28,7 +33,6 @@ public class BoardScan {
 
             LinkedHashMap<Integer, Integer> snakes = new LinkedHashMap<>();
             LinkedHashMap<Integer, Integer> ladders = new LinkedHashMap<>();
-            String bgPath = null;
             int size = 20;
 
 

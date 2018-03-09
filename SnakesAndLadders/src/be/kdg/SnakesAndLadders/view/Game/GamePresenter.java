@@ -10,9 +10,14 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -38,10 +43,9 @@ public class GamePresenter {
     }
 
     private void addEventHandlers() {
-        //change background accordingly
-        if(model.getBackgroundChanged()){
-            view.getBoardGrid().setBackground(model.getSelectedBackground());
-        }
+        //change background accordingly.
+        view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+
 
 
 
@@ -144,7 +148,6 @@ public class GamePresenter {
             StartPresenter startPresenter = new StartPresenter(startView, model, primaryStage);
             model.getPlayers().clear();
             teller = 1;
-            model.getPlayerImages().clear();
             model.setCurrentPlayer(0);
 
             //todo: Marnix, ook hier heb ik de save optie der bij gezet dus die if statement voor die button moet nog ingevuld worden
@@ -212,10 +215,10 @@ public class GamePresenter {
             view.getIvPlayer4().setVisible(true);
         }
 
-        view.getIvPlayer1().setImage(model.getColorPlayer1());
-        view.getIvPlayer2().setImage(model.getColorPlayer2());
-        view.getIvPlayer3().setImage(model.getColorPlayer3());
-        view.getIvPlayer4().setImage(model.getColorPlayer4());
+        view.getIvPlayer1().setImage(new Image(model.getColorPlayer1()));
+        view.getIvPlayer2().setImage(new Image(model.getColorPlayer2()));
+        view.getIvPlayer3().setImage(new Image(model.getColorPlayer3()));
+        view.getIvPlayer4().setImage(new Image(model.getColorPlayer4()));
 
     }
 

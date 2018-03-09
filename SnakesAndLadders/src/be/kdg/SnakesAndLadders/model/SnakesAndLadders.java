@@ -3,43 +3,22 @@ package be.kdg.SnakesAndLadders.model;/*
  * 2/02/2018
  */
 
-//TODO: Geen JavaFX in model
-
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-
 import java.io.File;
 import java.util.ArrayList;
 
 public class SnakesAndLadders {
-
-    //Inner class enum voor difficulty
-    public enum Difficulty {
-        EASY, NORMAL, HARD;
-
-        @Override
-        public String toString() {
-            return this.name().toLowerCase();
-        }
-    }
-
     private ArrayList<Player> players = new ArrayList<>();
-    private ArrayList<ImageView> playerImages = new ArrayList<>();
     private int currentPlayer;
-    private Board board;
     private Dice dice;
     private int boardSize;
-    private Difficulty difficulty;
-    private Image colorPlayer1;
-    private Image colorPlayer2;
-    private Image colorPlayer3;
-    private Image colorPlayer4;
+    private String colorPlayer1;
+    private String colorPlayer2;
+    private String colorPlayer3;
+    private String colorPlayer4;
     private int countPlayers;
     private File difficultyFile;
     private BoardScan boardScan;
-    private Background selectedBackground;
-    private Boolean isBackgroundChanged = false;
+    private String selectedBackground;
 
     public SnakesAndLadders() {
         currentPlayer = 0;
@@ -50,7 +29,6 @@ public class SnakesAndLadders {
     public void startGame() {
         dice = new Dice();
         boardScan = new BoardScan();
-        board = boardScan.getBoard();
     }
 
     public int throwDice() {
@@ -63,14 +41,6 @@ public class SnakesAndLadders {
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayer);
-    }
-
-    public ImageView getCurrentPlayerImage() {
-        return playerImages.get(currentPlayer);
-    }
-
-    public int getCurrentPlayerImageId() {
-        return currentPlayer;
     }
 
     public int getPlayerPos(Player player) {
@@ -96,10 +66,6 @@ public class SnakesAndLadders {
 
     public void addPlayer(Player player) {
         players.add(player);
-    }
-
-    public void addPlayerImage(ImageView imageView) {
-        playerImages.add(imageView);
     }
 
     public void disablePlayer(Player player) {
@@ -131,39 +97,35 @@ public class SnakesAndLadders {
         this.players = players;
     }
 
-    public void setSelectedDifficulty(Difficulty difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public void setColorPlayer1(Image colorPlayer1) {
+    public void setColorPlayer1(String colorPlayer1) {
         this.colorPlayer1 = colorPlayer1;
     }
 
-    public void setColorPlayer2(Image colorPlayer2) {
+    public void setColorPlayer2(String colorPlayer2) {
         this.colorPlayer2 = colorPlayer2;
     }
 
-    public void setColorPlayer3(Image colorPlayer3) {
+    public void setColorPlayer3(String colorPlayer3) {
         this.colorPlayer3 = colorPlayer3;
     }
 
-    public void setColorPlayer4(Image colorPlayer4) {
+    public void setColorPlayer4(String colorPlayer4) {
         this.colorPlayer4 = colorPlayer4;
     }
 
-    public Image getColorPlayer1() {
+    public String getColorPlayer1() {
         return colorPlayer1;
     }
 
-    public Image getColorPlayer2() {
+    public String getColorPlayer2() {
         return colorPlayer2;
     }
 
-    public Image getColorPlayer3() {
+    public String getColorPlayer3() {
         return colorPlayer3;
     }
 
-    public Image getColorPlayer4() {
+    public String getColorPlayer4() {
         return colorPlayer4;
     }
 
@@ -179,10 +141,6 @@ public class SnakesAndLadders {
         this.difficultyFile = difficultyFile;
     }
 
-    public ArrayList<ImageView> getPlayerImages() {
-        return playerImages;
-    }
-
     public int getCountPlayers() {
         return countPlayers;
     }
@@ -191,20 +149,12 @@ public class SnakesAndLadders {
         this.countPlayers = countPlayers;
     }
 
-    public Background getSelectedBackground() {
+    public String getSelectedBackground() {
         return selectedBackground;
     }
 
-    public void setSelectedBackground(Background selectedBackground) {
+    public void setSelectedBackground(String selectedBackground) {
         this.selectedBackground = selectedBackground;
-    }
-
-    public Boolean getBackgroundChanged() {
-        return isBackgroundChanged;
-    }
-
-    public void setBackgroundChanged(Boolean backgroundChanged) {
-        isBackgroundChanged = backgroundChanged;
     }
 }
 

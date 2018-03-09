@@ -366,9 +366,6 @@ public class GameView extends BorderPane {
         return ivPlayer4;
     }
 
-    public GridPane getPawnPane() {
-        return pawnPane;
-    }
 
     public GridPane getBoardGrid() {
         return boardGrid;
@@ -394,28 +391,7 @@ public class GameView extends BorderPane {
         return btnHome;
     }
 
-    public GridPane getNewPawnPane() {
-        return newPawnPane;
+    public BackgroundSize getBackgroundBoard() {
+        return backgroundBoard;
     }
-
-    public GridPane getPawnPane1() {
-        return pawnPane1;
-    }
-
-    public GridPane getPawnPane2() {
-        return pawnPane2;
-    }
-
-    public GridPane getPawnPane3() {
-        return pawnPane3;
-    }
-
-    public GridPane getPawnPane4() {
-        return pawnPane4;
-    }
-
-    public ImageView getIvBlack() {
-        return ivBlack;
-    }
-
 }

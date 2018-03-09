@@ -102,6 +102,7 @@ public class SetupPresenter {
 
             try {
                 //Get difficulty
+                /*
                 if (view.getEasyDifficulty().isSelected()) {
                     model.setSelectedDifficulty(SnakesAndLadders.Difficulty.EASY);
                 } else if (view.getNormalDifficulty().isSelected()) {
@@ -109,7 +110,7 @@ public class SetupPresenter {
                 } else if (view.getHardDifficulty().isSelected()) {
                     model.setSelectedDifficulty(SnakesAndLadders.Difficulty.HARD);
                 } else throw new SnakesAndLaddersException("No selected difficulty");
-
+                */
                 //Get players
                 ArrayList<Player> players = new ArrayList<>();
 
@@ -128,10 +129,6 @@ public class SetupPresenter {
                 players.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
                 players.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
 
-                model.addPlayerImage(view.getIvPlayer1());
-                model.addPlayerImage(view.getIvPlayer2());
-                model.addPlayerImage(view.getIvPlayer3());
-                model.addPlayerImage(view.getIvPlayer4());
 
 
                 //Should filter out all players that aren't valid
@@ -171,8 +168,7 @@ public class SetupPresenter {
                     dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
                     System.exit(1);
                 }
-                model.setSelectedBackground(view.getEasy());
-                model.setBackgroundChanged(true);
+                model.setSelectedBackground("BackgroundImages/easy.jpg");
                 view.getLblPreviewInfo().setText("Easy difficulty: The amount of snakes and ladders is reduced.");
 
                 //TODO: obtain background file from Board
@@ -194,7 +190,7 @@ public class SetupPresenter {
                     dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
                     System.exit(1);
                 }
-                model.setSelectedBackground(view.getNormal());
+                model.setSelectedBackground("BackgroundImages/normal.jpg");
                 view.getLblPreviewInfo().setText("Normal difficulty: Snakes and ladders are evenly distributed.");
 
             } catch (SnakesAndLaddersException e) {
@@ -214,8 +210,7 @@ public class SetupPresenter {
                     dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
                     System.exit(1);
                 }
-                model.setSelectedBackground(view.getHard());
-                model.setBackgroundChanged(true);
+                model.setSelectedBackground("BackgroundImages/hard.jpg");
                 view.getLblPreviewInfo().setText("Hard difficulty: More snakes than ladders.");
 
             } catch (SnakesAndLaddersException e) {
@@ -295,24 +290,24 @@ public class SetupPresenter {
         //endregion
 
         //initialisatie in het geval de spelers de default waarden van de comboboxen nemen
-        model.setColorPlayer1(view.getYellow());
-        model.setColorPlayer2(view.getGreen());
-        model.setColorPlayer3(view.getBlue());
-        model.setColorPlayer4(view.getRed());
+        model.setColorPlayer1("PawnImages/yellow.png");
+        model.setColorPlayer2("PawnImages/green.png");
+        model.setColorPlayer3("PawnImages/blue.png");
+        model.setColorPlayer4("PawnImages/red.png");
 
         //connect comboboxes to pawncolors and change accordingly
         view.getColorPickerP1().setOnAction(event -> {
             if (view.getColorPickerP1().getSelectionModel().isSelected(0)) {
-                model.setColorPlayer1(view.getYellow());
+                model.setColorPlayer1("PawnImages/yellow.png");
                 view.getIvPlayer1().setImage(view.getYellow());
             } else if (view.getColorPickerP1().getSelectionModel().isSelected(1)) {
-                model.setColorPlayer1(view.getGreen());
+                model.setColorPlayer1("PawnImages/green.png");
                 view.getIvPlayer1().setImage(view.getGreen());
             } else if (view.getColorPickerP1().getSelectionModel().isSelected(2)) {
-                model.setColorPlayer1(view.getBlue());
+                model.setColorPlayer1("PawnImages/blue.png");
                 view.getIvPlayer1().setImage(view.getBlue());
             } else if (view.getColorPickerP1().getSelectionModel().isSelected(3)) {
-                model.setColorPlayer1(view.getRed());
+                model.setColorPlayer1("PawnImages/red.png");
                 view.getIvPlayer1().setImage(view.getRed());
             }
 
@@ -320,33 +315,32 @@ public class SetupPresenter {
 
         view.getColorPickerP2().setOnAction(event -> {
             if (view.getColorPickerP2().getSelectionModel().isSelected(0)) {
-                model.setColorPlayer2(view.getYellow());
+                model.setColorPlayer2("PawnImages/yellow.png");
                 view.getIvPlayer2().setImage(view.getYellow());
             } else if (view.getColorPickerP2().getSelectionModel().isSelected(1)) {
-                model.setColorPlayer2(view.getGreen());
+                model.setColorPlayer2("PawnImages/green.png");
                 view.getIvPlayer2().setImage(view.getGreen());
             } else if (view.getColorPickerP2().getSelectionModel().isSelected(2)) {
-                model.setColorPlayer2(view.getBlue());
+                model.setColorPlayer2("PawnImages/blue.png");
                 view.getIvPlayer2().setImage(view.getBlue());
             } else if (view.getColorPickerP2().getSelectionModel().isSelected(3)) {
-                model.setColorPlayer2(view.getRed());
+                model.setColorPlayer2("PawnImages/red.png");
                 view.getIvPlayer2().setImage(view.getRed());
             }
-
         });
 
         view.getColorPickerP3().setOnAction(event -> {
             if (view.getColorPickerP3().getSelectionModel().isSelected(0)) {
-                model.setColorPlayer3(view.getYellow());
+                model.setColorPlayer3("PawnImages/yellow.png");
                 view.getIvPlayer3().setImage(view.getYellow());
             } else if (view.getColorPickerP3().getSelectionModel().isSelected(1)) {
-                model.setColorPlayer3(view.getGreen());
+                model.setColorPlayer3("PawnImages/green.png");
                 view.getIvPlayer3().setImage(view.getGreen());
             } else if (view.getColorPickerP3().getSelectionModel().isSelected(2)) {
-                model.setColorPlayer3(view.getBlue());
+                model.setColorPlayer3("PawnImages/blue.png");
                 view.getIvPlayer3().setImage(view.getBlue());
             } else if (view.getColorPickerP3().getSelectionModel().isSelected(3)) {
-                model.setColorPlayer3(view.getRed());
+                model.setColorPlayer3("PawnImages/red.png");
                 view.getIvPlayer3().setImage(view.getRed());
             }
 
@@ -354,16 +348,16 @@ public class SetupPresenter {
 
         view.getColorPickerP4().setOnAction(event -> {
             if (view.getColorPickerP4().getSelectionModel().isSelected(0)) {
-                model.setColorPlayer4(view.getYellow());
+                model.setColorPlayer4("PawnImages/yellow.png");
                 view.getIvPlayer4().setImage(view.getYellow());
             } else if (view.getColorPickerP4().getSelectionModel().isSelected(1)) {
-                model.setColorPlayer4(view.getGreen());
+                model.setColorPlayer4("PawnImages/green.png");
                 view.getIvPlayer4().setImage(view.getGreen());
             } else if (view.getColorPickerP4().getSelectionModel().isSelected(2)) {
-                model.setColorPlayer4(view.getBlue());
+                model.setColorPlayer4("PawnImages/blue.png");
                 view.getIvPlayer4().setImage(view.getBlue());
             } else if (view.getColorPickerP4().getSelectionModel().isSelected(3)) {
-                model.setColorPlayer4(view.getRed());
+                model.setColorPlayer4("PawnImages/red.png");
                 view.getIvPlayer4().setImage(view.getRed());
             }
         });

@@ -52,7 +52,7 @@ public class GamePresenter {
             //TODO: Doesn't work for more than 1 turn || Done, Ruben Fixed
             //TODO: Move vertically || Done, Marnix fixed
             //TODO: Move left or right according to position || Should be fixed not sure entirely
-
+            SequentialTransition stMain = new SequentialTransition();
             SequentialTransition st = new SequentialTransition();
             int startpos = model.getCurrentPlayer().getPlayerPos();
 
@@ -89,8 +89,7 @@ public class GamePresenter {
 
                 st.getChildren().add(tt);
             }
-
-            st.play();
+            stMain.getChildren().add(st);
 
 
             model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
@@ -108,21 +107,18 @@ public class GamePresenter {
                 //TODO: Doesnt work exactly
                 int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos+ dice);
 
-                int difColumns = 1;
+                int difColumns = 0;
 
                 ttSL.setByY(difRows * (view.getBoardGrid().getHeight()/10));
                 ttSL.setByX(difColumns * (view.getBoardGrid().getWidth()/10));
                 ttSL.setDuration(Duration.millis(800));
-                ttSL.play();
 
+                stMain.getChildren().add(ttSL);
             }
 
-            //view.getBoardGrid().getChildren().remove(model.getCurrentPlayerImage());
+            stMain.play();
 
-
-            //view.getBoardGrid().add(model.getCurrentPlayerImage(), model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer())), model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())));
-
-
+            //TODO: RUBEN! Delete before final code deployment
             view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 

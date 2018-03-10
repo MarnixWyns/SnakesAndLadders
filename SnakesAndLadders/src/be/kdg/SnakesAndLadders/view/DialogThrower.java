@@ -1,6 +1,11 @@
 package be.kdg.SnakesAndLadders.view;
 
+import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
+import be.kdg.SnakesAndLadders.view.Help.HelpView;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  *
@@ -11,14 +16,14 @@ import javafx.scene.control.Alert;
  * @version 1.0
  */
 public class DialogThrower {
-    private Alert alert;
+     private Alert alert;
 
     public DialogThrower() {
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Default");
     }
 
-    public void throwAlert(Alert.AlertType type, String title, String header, String content){
+     public void throwAlert(Alert.AlertType type, String title, String header, String content){
         alert.setAlertType(type);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -26,10 +31,20 @@ public class DialogThrower {
         alert.showAndWait();
     }
 
-    public void throwAlert(Alert.AlertType type, String title, String header){
+     public void throwAlert(Alert.AlertType type, String title, String header){
         alert.setAlertType(type);
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.showAndWait();
+    }
+
+    public void throwHelpDialog(){
+        HelpView helpView = new HelpView();
+        HelpPresenter helpPresenter = new HelpPresenter(helpView);
+        Stage helpStage = new Stage();
+        helpStage.setTitle("Help");
+        helpStage.initModality(Modality.APPLICATION_MODAL);
+        helpStage.setScene(new Scene(helpView));
+        helpStage.showAndWait();
     }
 }

@@ -225,7 +225,6 @@ public class GameView extends BorderPane {
 
 
         /*
-        //TODO: place playername in center of label
         playerMessage.setSpacing(10);
         playerMessage.setPadding(new Insets(50,0,0,50));
         playerMessage.getChildren().addAll(lblplayerName,lblturnMessage);
@@ -235,7 +234,6 @@ public class GameView extends BorderPane {
         lblturnMessage.setPadding(new Insets(0,0,0,25));
         playerMessage.setPrefWidth(400);
         */
-        //TODO: Ruben set alignment of VBox to center if fullscreen is pressed, yeah Ruben, do this
         gameButtons.setSpacing(10);
         gameButtons.setPadding(new Insets(50,0,0,50));
         gameButtons.getChildren().addAll(lblplayerName, lblturnMessage, ivDice, btnRollDice);
@@ -333,7 +331,6 @@ public class GameView extends BorderPane {
         return ivPlayer4;
     }
 
-
     public GridPane getBoardGrid() {
         return boardGrid;
     }
@@ -342,23 +339,15 @@ public class GameView extends BorderPane {
         return lblFeedback;
     }
 
-    public void setPawnPane(GridPane pawnPane) {
-        this.pawnPane = pawnPane;
-    }
-
-    public VBox getGameButtons() {
-        return gameButtons;
-    }
-
-    public GridPane getBoardBackground() {
-        return boardBackground;
-    }
-
     public Button getBtnHome() {
         return btnHome;
     }
 
     public BackgroundSize getBackgroundBoard() {
         return backgroundBoard;
+    }
+
+    public Button getBtnHelp() {
+        return btnHelp;
     }
 }

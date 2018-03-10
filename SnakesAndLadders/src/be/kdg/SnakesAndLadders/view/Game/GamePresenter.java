@@ -6,7 +6,6 @@ import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
 import be.kdg.SnakesAndLadders.view.Start.StartView;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
-import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
@@ -17,8 +16,6 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class GamePresenter {
@@ -45,22 +42,19 @@ public class GamePresenter {
     private void addEventHandlers() {
         //change background accordingly.
         view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(
-                        model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+                //TODO: Fix this, it is blocking entire loadGame development track
+                model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
 
 
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
 
-            //TODO: Snake animation
-            //TODO: Doesn't work for more than 1 turn || Done, Ruben Fixed
-            //TODO: Move vertically || Done, Marnix fixed
-            //TODO: Move left or right according to position || Should be fixed not sure entirely
             SequentialTransition stMain = new SequentialTransition();
             SequentialTransition st = new SequentialTransition();
             int startpos = model.getCurrentPlayer().getPlayerPos();
 
 
-            if(teller > model.getPlayers().size()){
+            if (teller > model.getPlayers().size()) {
                 st.getChildren().clear();
                 teller = 1;
             }
@@ -70,22 +64,29 @@ public class GamePresenter {
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
 
-
             for (int i = startpos; i < startpos + dice; i++) {
                 TranslateTransition tt = new TranslateTransition();
-                switch (teller){
-                    case 1: tt.setNode(view.getIvPlayer1()); break;
-                    case 2: tt.setNode(view.getIvPlayer2()); break;
-                    case 3: tt.setNode(view.getIvPlayer3()); break;
-                    case 4: tt.setNode(view.getIvPlayer4()); break;
+                switch (teller) {
+                    case 1:
+                        tt.setNode(view.getIvPlayer1());
+                        break;
+                    case 2:
+                        tt.setNode(view.getIvPlayer2());
+                        break;
+                    case 3:
+                        tt.setNode(view.getIvPlayer3());
+                        break;
+                    case 4:
+                        tt.setNode(view.getIvPlayer4());
+                        break;
                 }
 
-                if (i % 10 == 0){
-                    tt.setByY(-view.getBoardGrid().getWidth()/10);
+                if (i % 10 == 0) {
+                    tt.setByY(-view.getBoardGrid().getWidth() / 10);
                 } else if ((i / 10) % 2 == 0) {
-                    tt.setByX(view.getBoardGrid().getWidth()/10);
-                } else if ((i / 10) % 2 == 1){
-                    tt.setByX(-view.getBoardGrid().getWidth()/10);
+                    tt.setByX(view.getBoardGrid().getWidth() / 10);
+                } else if ((i / 10) % 2 == 1) {
+                    tt.setByX(-view.getBoardGrid().getWidth() / 10);
                 }
 
                 tt.setDuration(Duration.millis(300));
@@ -94,26 +95,42 @@ public class GamePresenter {
             }
             stMain.getChildren().add(st);
 
-
             model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
-
 
             if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
                 TranslateTransition ttSL = new TranslateTransition();
-                switch (teller){
-                    case 1: ttSL.setNode(view.getIvPlayer1()); break;
-                    case 2: ttSL.setNode(view.getIvPlayer2()); break;
-                    case 3: ttSL.setNode(view.getIvPlayer3()); break;
-                    case 4: ttSL.setNode(view.getIvPlayer4()); break;
+                switch (teller) {
+                    case 1:
+                        ttSL.setNode(view.getIvPlayer1());
+                        break;
+                    case 2:
+                        ttSL.setNode(view.getIvPlayer2());
+                        break;
+                    case 3:
+                        ttSL.setNode(view.getIvPlayer3());
+                        break;
+                    case 4:
+                        ttSL.setNode(view.getIvPlayer4());
+                        break;
                 }
 
-                //TODO: Doesnt work exactly
-                int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos+ dice);
+                int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos + dice);
 
-                int difColumns = 0;
+                int start = model.translateToColumn(startpos + dice);
+                int stop = model.translateToColumn(model.getCurrentPlayer().getPlayerPos());
 
-                ttSL.setByY(difRows * (view.getBoardGrid().getHeight()/10));
-                ttSL.setByX(difColumns * (view.getBoardGrid().getWidth()/10));
+                int difColumns = stop - start;
+
+                System.out.println(startpos + dice);
+
+                //TODO: Movement past 100
+                if (startpos + dice > 100){
+                    System.out.print("> 100");
+                    difColumns = 0;
+                }
+
+                ttSL.setByY(difRows * (view.getBoardGrid().getHeight() / 10));
+                ttSL.setByX(difColumns * (view.getBoardGrid().getWidth() / 10));
                 ttSL.setDuration(Duration.millis(800));
 
                 stMain.getChildren().add(ttSL);
@@ -149,7 +166,6 @@ public class GamePresenter {
             teller = 1;
             model.setCurrentPlayer(0);
 
-            //todo: Marnix, ook hier heb ik de save optie der bij gezet dus die if statement voor die button moet nog ingevuld worden
             if (alert.getResult() == cancel) {
                 event.consume();
             } else if (alert.getResult() == save) {
@@ -207,6 +223,7 @@ public class GamePresenter {
         view.getIvPlayer3().setImage(new Image(model.getColorPlayer3()));
         view.getIvPlayer4().setImage(new Image(model.getColorPlayer4()));
 
+        view.getBtnHelp().setOnAction(event -> dialogThrower.throwHelpDialog());
     }
 
     private void updateView() {

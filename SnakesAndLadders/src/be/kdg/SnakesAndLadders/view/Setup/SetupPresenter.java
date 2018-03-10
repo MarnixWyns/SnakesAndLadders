@@ -1,14 +1,14 @@
 package be.kdg.SnakesAndLadders.view.Setup;
 
-import be.kdg.SnakesAndLadders.model.*;
+import be.kdg.SnakesAndLadders.model.PieceColor;
+import be.kdg.SnakesAndLadders.model.Player;
+import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
+import be.kdg.SnakesAndLadders.model.SnakesAndLaddersException;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
 import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
 import be.kdg.SnakesAndLadders.view.Help.HelpView;
-import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -30,25 +30,19 @@ public class SetupPresenter {
 
     private SetupView view;
     private Stage primaryStage;
-    private Scene setupScene;
     private DialogThrower dialogThrower;
 
-    public SetupPresenter(SnakesAndLadders model, GameView gameView, SetupView setupView, Stage primaryStage,
-                          Scene setupScene, Scene gameScene) {
+    public SetupPresenter(SnakesAndLadders model, GameView gameView, SetupView setupView, Stage primaryStage) {
         this.model = model;
         this.view = setupView;
         this.primaryStage = primaryStage;
-        this.setupScene = setupScene;
         dialogThrower = new DialogThrower();
         this.model.startGame();
-
-        //TODO: This has to be initialised first time, maybe better placement however
 
         ClassLoader classLoader = getClass().getClassLoader();
 
         try {
-            model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
-            //TODO: obtain background file from Board
+            model.getBoardScan().readFile(new File(classLoader.getResource("BoardLayouts/normal.txt").getFile()));
         } catch (SnakesAndLaddersException e) {
             dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
         }
@@ -112,8 +106,7 @@ public class SetupPresenter {
             try {
                 ArrayList<Player> players = new ArrayList<>();
 
-                ArrayList<TextField> playerNames = new ArrayList<>();
-                playerNames.addAll(Arrays.asList(view.getTfP1name(), view.getTfP2name(), view.getTfP3name(), view.getTfP4name()));
+                ArrayList<TextField> playerNames = new ArrayList<>(Arrays.asList(view.getTfP1name(), view.getTfP2name(), view.getTfP3name(), view.getTfP4name()));
 
                 for (TextField playerName : playerNames) {
                     if (playerName.getText().length() > 10) {
@@ -156,7 +149,7 @@ public class SetupPresenter {
         view.getEasyDifficulty().setOnAction(event -> {
             ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Easy.txt").getFile()));
+                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/easy.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
                 try {
                     view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
@@ -167,17 +160,16 @@ public class SetupPresenter {
                 model.setSelectedBackground("BackgroundImages/easy.jpg");
                 view.getLblPreviewInfo().setText("Easy difficulty: The amount of snakes and ladders is reduced.");
 
-                //TODO: obtain background file from Board
             } catch (SnakesAndLaddersException e) {
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
                 System.exit(1);
-                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found", "The program will now self destruct");
             }
         });
 
         view.getNormalDifficulty().setOnAction(event -> {
             ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Normal.txt").getFile()));
+                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/normal.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
                 try{
                     view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
@@ -189,7 +181,7 @@ public class SetupPresenter {
                 view.getLblPreviewInfo().setText("Normal difficulty: Snakes and ladders are evenly distributed.");
 
             } catch (SnakesAndLaddersException e) {
-                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
                 System.exit(1);
             }
         });
@@ -197,7 +189,7 @@ public class SetupPresenter {
         view.getHardDifficulty().setOnAction(event -> {
             ClassLoader classLoader = getClass().getClassLoader();
             try {
-                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/Hard.txt").getFile()));
+                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/hard.txt").getFile()));
                 model.getBoardScan().readFile(model.getDifficultyFile());
                 try{
                     view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
@@ -209,7 +201,7 @@ public class SetupPresenter {
                 view.getLblPreviewInfo().setText("Hard difficulty: More snakes than ladders.");
 
             } catch (SnakesAndLaddersException e) {
-                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No such game file", "Game file not found");
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
                 System.exit(1);
             }
         });
@@ -344,40 +336,12 @@ public class SetupPresenter {
                 view.getIvPlayer4().setImage(view.getRed());
             }
         });
-        view.getBtnHelp().setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                HelpView helpView = new HelpView();
-                HelpPresenter helpPresenter = new HelpPresenter(helpView);
-                Stage helpStage = new Stage();
-                helpStage.setTitle("Help");
-                helpStage.initOwner(view.getScene().getWindow());
-                helpStage.initModality(Modality.APPLICATION_MODAL);
-                helpStage.setScene(new Scene(helpView));
-                helpStage.showAndWait();
-            }
-        });
+        view.getBtnHelp().setOnAction(event -> dialogThrower.throwHelpDialog());
 
     }
 
     private void updateView() {
 
-    }
-
-    private void showExitDialog() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText("Hierdoor stopt het spel!");
-        alert.setContentText("Ben je zeker?");
-        alert.setTitle("Opgelet!");
-        alert.getButtonTypes().clear();
-        ButtonType neen = new ButtonType("Neen");
-        ButtonType ja = new ButtonType("Ja");
-        alert.getButtonTypes().addAll(neen, ja);
-        alert.showAndWait();
-        /*
-        if (alert.getResult() == null || alert.getResult().equals(neen)) {
-            event.consume();
-        }*/
     }
 
     private void disableFields(boolean dis1, boolean dis2, boolean dis3) {

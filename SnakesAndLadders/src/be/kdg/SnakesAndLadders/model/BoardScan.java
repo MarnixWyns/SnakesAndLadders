@@ -1,6 +1,7 @@
 package be.kdg.SnakesAndLadders.model;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -118,7 +119,7 @@ public class BoardScan {
 
             }
 
-            if (isSaveFile){
+            if (isSaveFile) {
                 board = new Board(bgPath, snakes, ladders, players);
             } else board = new Board(bgPath, snakes, ladders);
 
@@ -133,19 +134,27 @@ public class BoardScan {
      * original game file and adding an extra line containing the player save data.
      *
      * @param difficulty save requires an original difficulty file that is required for copying the original game data.
-     * @param players in order for the save file to work an up to date list of players is required which have to be
-     *                passed through by the presenter.
-     *
+     * @param players    in order for the save file to work an up to date list of players is required which have to be
+     *                   passed through by the presenter.
      * @throws SnakesAndLaddersException if original game file can not be found a SnakesAndLaddersException is thrown
      */
     public void save(File difficulty, ArrayList<Player> players) {
         ClassLoader classLoader = getClass().getClassLoader();
-        File newfile = new File(classLoader.getResource("save_file.txt").getFile());
+
+        //TODO: Stop throwing nullpointer klote resources directory
+        //File newfile = new File(classLoader.getResource("/save_file.txt").getFile());
+        File newfile = new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\save_file.txt");
 
         try {
             Files.deleteIfExists(newfile.toPath());
         } catch (IOException e) {
             throw new SnakesAndLaddersException("Original game file not found");
+        }
+
+        try {
+            Files.createFile(newfile.toPath());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(newfile))); Scanner scanner = new Scanner(difficulty)) {
@@ -202,6 +211,27 @@ public class BoardScan {
         } catch (IOException e) {
             throw new SnakesAndLaddersException("Original game file not found");
         }
+    }
+
+    /**
+     * @return String containing the contents of the Help.txt file for display in a textarea
+     */
+    public String readHelp() {
+
+        StringBuilder help = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/txtFiles/Help.txt")))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                help.append(line).append("\n");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return help.toString();
     }
 
     /**

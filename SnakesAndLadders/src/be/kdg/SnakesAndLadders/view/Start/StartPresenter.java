@@ -70,6 +70,24 @@ public class StartPresenter {
             gameView.getScene().getWindow().setHeight(600);
             gameView.getScene().getWindow().setWidth(1024);
 
+            gameView.getPawnPane1().add(gameView.getIvPlayer1(), 0, 0);
+            gameView.getPawnPane2().add(gameView.getIvPlayer2(), 1,0);
+            gameView.getPawnPane3().add(gameView.getIvPlayer3(), 0,1);
+            gameView.getPawnPane4().add(gameView.getIvPlayer4(), 1, 1);
+
+            gameView.getBoardGrid().add(gameView.getPawnPane1(),
+                    model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
+            model.nextPlayer();
+            gameView.getBoardGrid().add(gameView.getPawnPane2(),
+                    model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
+            model.nextPlayer();
+            gameView.getBoardGrid().add(gameView.getPawnPane3(),
+                    model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
+            model.nextPlayer();
+            gameView.getBoardGrid().add(gameView.getPawnPane4(),
+                    model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
+            model.nextPlayer();
+
             //model.setCountPlayers(2);
         });
         view.getBtnHelp().setOnAction(event -> {

@@ -243,16 +243,7 @@ public class GamePresenter {
     private void updateView() {
 
         //TODO: Ruben can you fix
-        /*
-        view.getBoardGrid().add(view.getIvPlayer1(),
-                model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
-        view.getBoardGrid().add(view.getIvPlayer2(),
-                model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
-        view.getBoardGrid().add(view.getIvPlayer3(),
-                model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
-        view.getBoardGrid().add(view.getIvPlayer4(),
-                model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
-        */
+
 
         //AI movement
         //TODO: Add an animation or something to let the player know the computer haz moved

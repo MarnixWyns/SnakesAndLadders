@@ -490,29 +490,10 @@ public class SetupView extends BorderPane {
         return boardGrid;
     }
 
-    public Image getSetupBackgroundImage() {
-        return setupBackgroundImage;
-    }
-
-    public Background getEasy() {
-        return easy;
-    }
-
-    public Background getNormal() {
-        return normal;
-    }
-
-    public Background getHard() {
-        return hard;
-    }
-
     public Label getLblPreviewInfo() {
         return lblPreviewInfo;
     }
 
-    public VBox getBoardAndPreview() {
-        return boardAndPreview;
-    }
     public BackgroundSize getBackgroundBoard() {
         return backgroundBoard;
     }

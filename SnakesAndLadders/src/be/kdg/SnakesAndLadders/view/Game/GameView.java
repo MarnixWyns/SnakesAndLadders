@@ -203,8 +203,14 @@ public class GameView extends BorderPane {
         ivBlack.setFitHeight(15);
         ivBlack.setFitWidth(15);
 
-        //Putting pawns in the game at start position
+        //set padding for pawngrids
+        pawnPane1.setPadding(new Insets(3,0,0,3));
+        pawnPane2.setPadding(new Insets(3,0,0,20));
+        pawnPane3.setPadding(new Insets(20,0,0,3));
+        pawnPane4.setPadding(new Insets(20,0,0,20));
 
+
+        //Putting pawns in the game at start position
         pawnPane.add(ivPlayer1,0,0);
         pawnPane.add(ivPlayer2,1,0);
         pawnPane.add(ivPlayer3,0,1);
@@ -349,5 +355,21 @@ public class GameView extends BorderPane {
 
     public Button getBtnHelp() {
         return btnHelp;
+    }
+
+    public GridPane getPawnPane1() {
+        return pawnPane1;
+    }
+
+    public GridPane getPawnPane2() {
+        return pawnPane2;
+    }
+
+    public GridPane getPawnPane3() {
+        return pawnPane3;
+    }
+
+    public GridPane getPawnPane4() {
+        return pawnPane4;
     }
 }

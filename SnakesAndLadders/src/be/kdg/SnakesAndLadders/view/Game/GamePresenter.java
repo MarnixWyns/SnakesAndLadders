@@ -138,6 +138,10 @@ public class GamePresenter {
 
             stMain.play();
 
+            //disable the throw button while animation is running and enable it again after the animation has finished.
+            view.getBtnRollDice().setDisable(true);
+            stMain.setOnFinished(event1 -> view.getBtnRollDice().setDisable(false));
+
             //TODO: RUBEN! Delete before final code deployment
             view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());

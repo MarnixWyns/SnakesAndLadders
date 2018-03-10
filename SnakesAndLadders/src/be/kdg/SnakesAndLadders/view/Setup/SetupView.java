@@ -372,6 +372,7 @@ public class SetupView extends BorderPane {
 
         //Default Selections of toggleGroups
         fourPlayers.setSelected(true);
+        normalDifficulty.setSelected(true);
 
 
         btnExitGame.setPrefSize(60, 10);
@@ -457,14 +458,6 @@ public class SetupView extends BorderPane {
         return ivPlayer4;
     }
 
-    ObservableList<String> getColorOptions() {
-        return colorOptions;
-    }
-
-    GridPane getSetupMenu() {
-        return setupMenu;
-    }
-
     RadioButton getEasyDifficulty() {
         return easyDifficulty;
     }
@@ -475,30 +468,6 @@ public class SetupView extends BorderPane {
 
     RadioButton getHardDifficulty() {
         return hardDifficulty;
-    }
-
-    public Background getBackGround1() {
-        return backGround1;
-    }
-
-    public GridPane getBoardBackground() {
-        return boardBackground;
-    }
-
-    public ImageView getIvRed() {
-        return ivRed;
-    }
-
-    public ImageView getIvBlue() {
-        return ivBlue;
-    }
-
-    public ImageView getIvGreen() {
-        return ivGreen;
-    }
-
-    public ImageView getIvYellow() {
-        return ivYellow;
     }
 
     public Image getRed() {

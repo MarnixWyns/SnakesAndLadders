@@ -41,9 +41,13 @@ public class GamePresenter {
 
     private void addEventHandlers() {
         //change background accordingly.
-        view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(
-                //TODO: Fix this, it is blocking entire loadGame development track
-                model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+        //TODO kheb dees nog is aangepast ma da is denk ik ni hetgeen een nullpointer gooit want standaard is de url nu normal
+        if(model.isBackgroundChanged()){
+            view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+        } else {
+            model.setSelectedBackground("BackgroundImages/normal.jpg");
+            view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+        }
 
 
         //Roll dice on button press
@@ -127,6 +131,7 @@ public class GamePresenter {
                 if (startpos + dice > 100){
                     System.out.print("> 100");
                     difColumns = 0;
+                    difRows = startpos + dice - 100;
                 }
 
                 ttSL.setByY(difRows * (view.getBoardGrid().getHeight() / 10));

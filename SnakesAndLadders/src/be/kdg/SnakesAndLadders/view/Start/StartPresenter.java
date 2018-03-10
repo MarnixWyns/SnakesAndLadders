@@ -9,6 +9,11 @@ import be.kdg.SnakesAndLadders.view.Help.HelpView;
 import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
 import be.kdg.SnakesAndLadders.view.Setup.SetupView;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -54,12 +59,13 @@ public class StartPresenter {
 
             //Start game met gelezen files
             model.setPlayers(model.getBoardScan().getBoard().getSavedPlayers());
-            model.setSelectedBackground(model.getBoardScan().getBoard().getBgPath());
+            //model.setSelectedBackground(model.getBoardScan().getBoard().getBgPath());
 
 
             //Switch between scenes from setup to Game
             GameView gameView = new GameView();
             GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);
+            gameView.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, gameView.getBackgroundBoard())));
             view.getScene().setRoot(gameView);
             gameView.getScene().getWindow().setHeight(600);
             gameView.getScene().getWindow().setWidth(1024);

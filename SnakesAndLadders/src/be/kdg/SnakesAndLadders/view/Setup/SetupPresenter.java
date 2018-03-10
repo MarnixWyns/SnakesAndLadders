@@ -164,6 +164,7 @@ public class SetupPresenter {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
                 System.exit(1);
             }
+            model.setBackgroundChanged(true);
         });
 
         view.getNormalDifficulty().setOnAction(event -> {
@@ -184,6 +185,7 @@ public class SetupPresenter {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
                 System.exit(1);
             }
+            model.setBackgroundChanged(true);
         });
 
         view.getHardDifficulty().setOnAction(event -> {
@@ -204,6 +206,7 @@ public class SetupPresenter {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
                 System.exit(1);
             }
+            model.setBackgroundChanged(true);
         });
 
 

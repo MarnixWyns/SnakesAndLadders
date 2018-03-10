@@ -15,6 +15,7 @@ public class SnakesAndLadders {
     private File difficultyFile;
     private BoardScan boardScan;
     private String selectedBackground;
+    private boolean backgroundChanged;
 
     public SnakesAndLadders() {
         currentPlayer = 0;
@@ -135,6 +136,14 @@ public class SnakesAndLadders {
 
     public void setSelectedBackground(String selectedBackground) {
         this.selectedBackground = selectedBackground;
+    }
+
+    public boolean isBackgroundChanged() {
+        return backgroundChanged;
+    }
+
+    public void setBackgroundChanged(boolean backgroundChanged) {
+        this.backgroundChanged = backgroundChanged;
     }
 }
 

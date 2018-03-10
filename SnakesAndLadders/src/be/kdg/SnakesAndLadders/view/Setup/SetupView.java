@@ -372,7 +372,7 @@ public class SetupView extends BorderPane {
 
         //Default Selections of toggleGroups
         fourPlayers.setSelected(true);
-        normalDifficulty.setSelected(true);
+        //normalDifficulty.setSelected(true);
 
 
         btnExitGame.setPrefSize(60, 10);

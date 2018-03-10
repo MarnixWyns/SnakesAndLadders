@@ -273,6 +273,7 @@ public class SetupPresenter {
         model.setColorPlayer3("PawnImages/blue.png");
         model.setColorPlayer4("PawnImages/red.png");
 
+        //TODO: Clean shit code
         //connect comboboxes to pawncolors and change accordingly
         view.getColorPickerP1().setOnAction(event -> {
             if (view.getColorPickerP1().getSelectionModel().isSelected(0)) {

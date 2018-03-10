@@ -90,7 +90,7 @@ public class BoardScan {
                         int pos = Integer.parseInt(part.substring(0, part.indexOf("-")));
 
                         String name;
-                        name = part.substring(part.indexOf('-', 4) + 1);
+                        name = part.substring(part.indexOf('-', 3) + 1);
 
                         PieceColor playerC;
                         switch (part.substring(part.indexOf('-') + 1, part.lastIndexOf('-'))) {

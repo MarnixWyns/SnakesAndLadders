@@ -1,5 +1,6 @@
 package be.kdg.SnakesAndLadders.view.Game;
 
+import be.kdg.SnakesAndLadders.model.Player;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
@@ -42,7 +43,7 @@ public class GamePresenter {
     private void addEventHandlers() {
         //change background accordingly.
         //TODO kheb dees nog is aangepast ma da is denk ik ni hetgeen een nullpointer gooit want standaard is de url nu normal
-        if(model.isBackgroundChanged()){
+        if (model.isBackgroundChanged()) {
             view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
         } else {
             model.setSelectedBackground("BackgroundImages/normal.jpg");
@@ -128,7 +129,7 @@ public class GamePresenter {
                 System.out.println(startpos + dice);
 
                 //TODO: Movement past 100
-                if (startpos + dice > 100){
+                if (startpos + dice > 100) {
                     System.out.print("> 100");
                     difColumns = 0;
                     difRows = startpos + dice - 100;
@@ -205,6 +206,7 @@ public class GamePresenter {
             } else System.exit(0);
         });
 
+
         if (model.getPlayers().size() == 1) {
             view.getIvPlayer1().setVisible(true);
             view.getIvPlayer2().setVisible(true);
@@ -227,15 +229,30 @@ public class GamePresenter {
             view.getIvPlayer4().setVisible(true);
         }
 
+        /*
         view.getIvPlayer1().setImage(new Image(model.getColorPlayer1()));
         view.getIvPlayer2().setImage(new Image(model.getColorPlayer2()));
         view.getIvPlayer3().setImage(new Image(model.getColorPlayer3()));
         view.getIvPlayer4().setImage(new Image(model.getColorPlayer4()));
+*/
+
 
         view.getBtnHelp().setOnAction(event -> dialogThrower.throwHelpDialog());
     }
 
     private void updateView() {
+
+        //TODO: Ruben can you fix
+        /*
+        view.getBoardGrid().add(view.getIvPlayer1(),
+                model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
+        view.getBoardGrid().add(view.getIvPlayer2(),
+                model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
+        view.getBoardGrid().add(view.getIvPlayer3(),
+                model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
+        view.getBoardGrid().add(view.getIvPlayer4(),
+                model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
+        */
 
         //AI movement
         //TODO: Add an animation or something to let the player know the computer haz moved

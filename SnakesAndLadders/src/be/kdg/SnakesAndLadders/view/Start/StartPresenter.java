@@ -5,25 +5,23 @@ import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
 import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
 import be.kdg.SnakesAndLadders.view.Help.HelpView;
+import be.kdg.SnakesAndLadders.view.HelpThrower;
 import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
 import be.kdg.SnakesAndLadders.view.Setup.SetupView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Objects;
 
 
 public class StartPresenter {
     private StartView view;
     private SnakesAndLadders model;
     private Stage primaryStage;
+    private HelpThrower helpThrower;
 
     public StartPresenter(StartView startView, SnakesAndLadders snakesAndLadders, Stage primaryStage) {
         this.view = startView;
@@ -72,21 +70,16 @@ public class StartPresenter {
 
             //model.setCountPlayers(2);
         });
-
+        //todo fix nullpointer when help is thrown
         view.getBtnHelp().setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                HelpView helpView = new HelpView();
-                HelpPresenter helpPresenter = new HelpPresenter(helpView);
-                Stage helpStage = new Stage();
-                helpStage.setTitle("Help");
-                helpStage.initOwner(view.getScene().getWindow());
-                helpStage.initModality(Modality.APPLICATION_MODAL);
-                helpStage.setScene(new Scene(helpView));
-                helpStage.showAndWait();
+                helpThrower.throwHelp(view);
             }
         });
+
     }
+
 
     private void updateView() {
     }

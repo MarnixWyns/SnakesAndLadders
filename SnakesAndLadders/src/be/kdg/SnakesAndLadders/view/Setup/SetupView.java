@@ -547,4 +547,8 @@ public class SetupView extends BorderPane {
     public BackgroundSize getBackgroundBoard() {
         return backgroundBoard;
     }
+
+    public Button getBtnHelp() {
+        return btnHelp;
+    }
 }

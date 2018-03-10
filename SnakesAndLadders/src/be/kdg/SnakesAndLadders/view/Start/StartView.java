@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -19,11 +20,15 @@ import javafx.scene.text.Text;
  */
 public class StartView extends BorderPane {
     private Button btnNewGame;
+    private ImageView IvSnake;
     private Button btnLoadGame;
+    private ImageView IvLeftSnake;
+    private ImageView IvRightSnake;
+    private ImageView IvRightSnake2;
+    private ImageView IvLeftSnake2;
     private Button btnExit;
     private Button btnHelp;
     private Label lblName;
-    private Label lblAbout;
     private Text tAbout;
     private Border border;
 
@@ -31,6 +36,9 @@ public class StartView extends BorderPane {
     private VBox text;
 
     private HBox helpAndExit;
+    private HBox newGame;
+    private HBox loadGame;
+
 
     private Background backGround1;
     private BackgroundSize backgroundSize1;
@@ -53,17 +61,25 @@ public class StartView extends BorderPane {
         text = new VBox();
 
         helpAndExit = new HBox();
+        newGame = new HBox();
+        loadGame = new HBox();
 
         border = new Border(new BorderStroke(Color.DARKGRAY, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT));
 
         lblName = new Label("Welcome to Snakes and Ladders!");
-        lblAbout = new Label("About us:");
 
         tAbout = new Text("" +
                 "This application was created \n" +
                 "by Marnix Wyns and Ruben Vanloo.\n" +
                 "Both students at KdG, \n" +
                 "located in Antwerpen, Belgium.");
+
+
+        IvSnake = new ImageView(new Image("GIF/Snake.gif"));
+        IvRightSnake = new ImageView(new Image("GIF/blueLookingRight.gif"));
+        IvLeftSnake = new ImageView(new Image("GIF/blueLookingLeft.gif"));
+        IvRightSnake2 = new ImageView(new Image("GIF/blueLookingRight.gif"));
+        IvLeftSnake2 = new ImageView(new Image("GIF/blueLookingLeft.gif"));
 
 
         //adjust background:
@@ -84,27 +100,44 @@ public class StartView extends BorderPane {
         setMargin(helpAndExit, new Insets(15, 15, 13, 900));
         setBottom(helpAndExit);
 
+
         //add buttons to gridpane and change their layout
         buttons.setSpacing(25);
         btnNewGame.setPrefSize(200,50);
         btnLoadGame.setPrefSize(200,50);
         btnNewGame.setFont(new Font(20));
         btnLoadGame.setFont(new Font(20));
-        buttons.getChildren().addAll(lblName, btnNewGame,btnLoadGame);
+
+        IvLeftSnake.setFitWidth(60);
+        IvLeftSnake.setFitHeight(60);
+        IvRightSnake.setFitWidth(60);
+        IvRightSnake.setFitHeight(60);
+        IvLeftSnake2.setFitWidth(60);
+        IvLeftSnake2.setFitHeight(60);
+        IvRightSnake2.setFitWidth(60);
+        IvRightSnake2.setFitHeight(60);
+        loadGame.setSpacing(50);
+        loadGame.getChildren().addAll(IvRightSnake2, btnLoadGame, IvLeftSnake2);
+        newGame.setSpacing(50);
+        newGame.getChildren().addAll(IvRightSnake, btnNewGame, IvLeftSnake);
+
+
+        buttons.getChildren().addAll(lblName, newGame,loadGame);
         setLeft(buttons);
         buttons.setAlignment(Pos.CENTER);
         setMargin(buttons, new Insets(0,0,0,90));
+
+
 
         lblName.setFont(Font.font("Arial", 30));
         lblName.setPadding(new Insets(0,0,25,0));
 
 
-        //adding the text and labels to a vbox and align it on the right side of the screen
-        text.getChildren().addAll(lblAbout, tAbout);
-        text.setSpacing(20);
-        text.setPadding(new Insets(50,10,0,10));
+        //adding the text and gif to a vbox and align it on the right side of the screen
+        text.getChildren().addAll(IvSnake, tAbout);
+        text.setSpacing(40);
+        text.setPadding(new Insets(60,10,0,10));
         tAbout.setFont(Font.font("Arial", FontPosture.ITALIC,20));
-        lblAbout.setFont(Font.font("Arial", FontWeight.BOLD,  25));
         setRight(text);
 
         setBorder(border);

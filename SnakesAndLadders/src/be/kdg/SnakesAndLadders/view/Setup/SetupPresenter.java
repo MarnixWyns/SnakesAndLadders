@@ -4,6 +4,11 @@ import be.kdg.SnakesAndLadders.model.*;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
+import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
+import be.kdg.SnakesAndLadders.view.Help.HelpView;
+import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -13,6 +18,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -336,6 +342,19 @@ public class SetupPresenter {
             } else if (view.getColorPickerP4().getSelectionModel().isSelected(3)) {
                 model.setColorPlayer4("PawnImages/red.png");
                 view.getIvPlayer4().setImage(view.getRed());
+            }
+        });
+        view.getBtnHelp().setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HelpView helpView = new HelpView();
+                HelpPresenter helpPresenter = new HelpPresenter(helpView);
+                Stage helpStage = new Stage();
+                helpStage.setTitle("Help");
+                helpStage.initOwner(view.getScene().getWindow());
+                helpStage.initModality(Modality.APPLICATION_MODAL);
+                helpStage.setScene(new Scene(helpView));
+                helpStage.showAndWait();
             }
         });
 

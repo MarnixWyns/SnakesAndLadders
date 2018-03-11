@@ -61,7 +61,6 @@ public class StartPresenter {
             model.setPlayers(model.getBoardScan().getBoard().getSavedPlayers());
             //model.setSelectedBackground(model.getBoardScan().getBoard().getBgPath());
 
-
             //Switch between scenes from setup to Game
             GameView gameView = new GameView();
             GamePresenter gamePresenter = new GamePresenter(gameView, model, primaryStage);
@@ -69,6 +68,9 @@ public class StartPresenter {
             view.getScene().setRoot(gameView);
             gameView.getScene().getWindow().setHeight(600);
             gameView.getScene().getWindow().setWidth(1024);
+
+            System.out.println("BoardLayouts/" + model.getBoardScan().getBoard().getBgPath().substring(0,model.getBoardScan().getBoard().getBgPath().indexOf('.')) + ".txt");
+            model.setDifficultyFile(new File("BoardLayouts/" + model.getBoardScan().getBoard().getBgPath().substring(0,model.getBoardScan().getBoard().getBgPath().indexOf('.')) + ".txt"));
 
             gameView.getPawnPane1().add(gameView.getIvPlayer1(), 0, 0);
             gameView.getPawnPane2().add(gameView.getIvPlayer2(), 1,0);

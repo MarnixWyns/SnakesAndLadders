@@ -209,6 +209,8 @@ public class BoardScan {
 
 
         } catch (IOException e) {
+            System.out.println(newfile);
+            System.out.println(difficulty);
             throw new SnakesAndLaddersException("Original game file not found");
         }
     }

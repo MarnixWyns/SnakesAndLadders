@@ -7,18 +7,12 @@ import be.kdg.SnakesAndLadders.model.SnakesAndLaddersException;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
-import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
-import be.kdg.SnakesAndLadders.view.Help.HelpView;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -140,73 +134,24 @@ public class SetupPresenter {
                 gameView.getScene().getWindow().setHeight(600);
                 gameView.getScene().getWindow().setWidth(1024);
 
-
             } catch (IndexOutOfBoundsException i) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "No player Names", "Please give at least 1 player a name");
             }
         });
 
         view.getEasyDifficulty().setOnAction(event -> {
-            ClassLoader classLoader = getClass().getClassLoader();
-            try {
-                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/easy.txt").getFile()));
-                model.getBoardScan().readFile(model.getDifficultyFile());
-                try {
-                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
-                } catch (IllegalArgumentException e){
-                    dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
-                    System.exit(1);
-                }
-                model.setSelectedBackground("BackgroundImages/easy.jpg");
-                view.getLblPreviewInfo().setText("Easy difficulty: The amount of snakes and ladders is reduced.");
-
-            } catch (SnakesAndLaddersException e) {
-                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
-                System.exit(1);
-            }
-            model.setBackgroundChanged(true);
+            setDifficulty("easy");
+            view.getLblPreviewInfo().setText("Easy difficulty: The amount of snakes and ladders is reduced.");
         });
 
         view.getNormalDifficulty().setOnAction(event -> {
-            ClassLoader classLoader = getClass().getClassLoader();
-            try {
-                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/normal.txt").getFile()));
-                model.getBoardScan().readFile(model.getDifficultyFile());
-                try{
-                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
-                } catch (IllegalArgumentException e){
-                    dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
-                    System.exit(1);
-                }
-                model.setSelectedBackground("BackgroundImages/normal.jpg");
-                view.getLblPreviewInfo().setText("Normal difficulty: Snakes and ladders are evenly distributed.");
-
-            } catch (SnakesAndLaddersException e) {
-                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
-                System.exit(1);
-            }
-            model.setBackgroundChanged(true);
+            setDifficulty("normal");
+            view.getLblPreviewInfo().setText("Normal difficulty: Snakes and ladders are evenly distributed.");
         });
 
         view.getHardDifficulty().setOnAction(event -> {
-            ClassLoader classLoader = getClass().getClassLoader();
-            try {
-                model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/hard.txt").getFile()));
-                model.getBoardScan().readFile(model.getDifficultyFile());
-                try{
-                    view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
-                }catch (IllegalArgumentException e){
-                    dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
-                    System.exit(1);
-                }
-                model.setSelectedBackground("BackgroundImages/hard.jpg");
-                view.getLblPreviewInfo().setText("Hard difficulty: More snakes than ladders.");
-
-            } catch (SnakesAndLaddersException e) {
-                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
-                System.exit(1);
-            }
-            model.setBackgroundChanged(true);
+            setDifficulty("hard");
+            view.getLblPreviewInfo().setText("Hard difficulty: More snakes than ladders.");
         });
 
 
@@ -273,79 +218,78 @@ public class SetupPresenter {
         model.setColorPlayer3("PawnImages/blue.png");
         model.setColorPlayer4("PawnImages/red.png");
 
-        //TODO: Clean shit code
         //connect comboboxes to pawncolors and change accordingly
         view.getColorPickerP1().setOnAction(event -> {
-            if (view.getColorPickerP1().getSelectionModel().isSelected(0)) {
-                model.setColorPlayer1("PawnImages/yellow.png");
-                view.getIvPlayer1().setImage(view.getYellow());
-            } else if (view.getColorPickerP1().getSelectionModel().isSelected(1)) {
-                model.setColorPlayer1("PawnImages/green.png");
-                view.getIvPlayer1().setImage(view.getGreen());
-            } else if (view.getColorPickerP1().getSelectionModel().isSelected(2)) {
-                model.setColorPlayer1("PawnImages/blue.png");
-                view.getIvPlayer1().setImage(view.getBlue());
-            } else if (view.getColorPickerP1().getSelectionModel().isSelected(3)) {
-                model.setColorPlayer1("PawnImages/red.png");
-                view.getIvPlayer1().setImage(view.getRed());
-            }
-
+            setPlayerColor(view.getColorPickerP1());
         });
 
         view.getColorPickerP2().setOnAction(event -> {
-            if (view.getColorPickerP2().getSelectionModel().isSelected(0)) {
-                model.setColorPlayer2("PawnImages/yellow.png");
-                view.getIvPlayer2().setImage(view.getYellow());
-            } else if (view.getColorPickerP2().getSelectionModel().isSelected(1)) {
-                model.setColorPlayer2("PawnImages/green.png");
-                view.getIvPlayer2().setImage(view.getGreen());
-            } else if (view.getColorPickerP2().getSelectionModel().isSelected(2)) {
-                model.setColorPlayer2("PawnImages/blue.png");
-                view.getIvPlayer2().setImage(view.getBlue());
-            } else if (view.getColorPickerP2().getSelectionModel().isSelected(3)) {
-                model.setColorPlayer2("PawnImages/red.png");
-                view.getIvPlayer2().setImage(view.getRed());
-            }
+            setPlayerColor(view.getColorPickerP2());
         });
 
         view.getColorPickerP3().setOnAction(event -> {
-            if (view.getColorPickerP3().getSelectionModel().isSelected(0)) {
-                model.setColorPlayer3("PawnImages/yellow.png");
-                view.getIvPlayer3().setImage(view.getYellow());
-            } else if (view.getColorPickerP3().getSelectionModel().isSelected(1)) {
-                model.setColorPlayer3("PawnImages/green.png");
-                view.getIvPlayer3().setImage(view.getGreen());
-            } else if (view.getColorPickerP3().getSelectionModel().isSelected(2)) {
-                model.setColorPlayer3("PawnImages/blue.png");
-                view.getIvPlayer3().setImage(view.getBlue());
-            } else if (view.getColorPickerP3().getSelectionModel().isSelected(3)) {
-                model.setColorPlayer3("PawnImages/red.png");
-                view.getIvPlayer3().setImage(view.getRed());
-            }
-
+            setPlayerColor(view.getColorPickerP3());
         });
 
         view.getColorPickerP4().setOnAction(event -> {
-            if (view.getColorPickerP4().getSelectionModel().isSelected(0)) {
-                model.setColorPlayer4("PawnImages/yellow.png");
-                view.getIvPlayer4().setImage(view.getYellow());
-            } else if (view.getColorPickerP4().getSelectionModel().isSelected(1)) {
-                model.setColorPlayer4("PawnImages/green.png");
-                view.getIvPlayer4().setImage(view.getGreen());
-            } else if (view.getColorPickerP4().getSelectionModel().isSelected(2)) {
-                model.setColorPlayer4("PawnImages/blue.png");
-                view.getIvPlayer4().setImage(view.getBlue());
-            } else if (view.getColorPickerP4().getSelectionModel().isSelected(3)) {
-                model.setColorPlayer4("PawnImages/red.png");
-                view.getIvPlayer4().setImage(view.getRed());
-            }
+            setPlayerColor(view.getColorPickerP4());
         });
         view.getBtnHelp().setOnAction(event -> dialogThrower.throwHelpDialog());
-
     }
 
     private void updateView() {
 
+    }
+
+    /**
+     *
+     * Method that is called when a RadioButton is selected, the game file according to the selected radiobutton is read and
+     * the path is stored in the model class. After this the background is set according to the image path read in the game file.
+     *
+     * @param difficulty string that is given with lowercase difficulty.
+     */
+    private void setDifficulty(String difficulty){
+        ClassLoader classLoader = getClass().getClassLoader();
+        try {
+            model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/" + difficulty +".txt").getFile()));
+            model.getBoardScan().readFile(model.getDifficultyFile());
+            try{
+                view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
+            } catch (IllegalArgumentException e){
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
+                System.exit(1);
+            }
+            model.setSelectedBackground("BackgroundImages/" + difficulty + ".jpg");
+
+
+        } catch (SnakesAndLaddersException e) {
+            dialogThrower.throwAlert(Alert.AlertType.WARNING, "No game file", "Game file not found", "The game will now close.");
+            System.exit(1);
+        }
+        model.setBackgroundChanged(true);
+    }
+
+    /**
+     *
+     * method to remove duplicate code. Is given a combobox to read and depending on contents, saves player color
+     * and sets the image in the game preview
+     *
+     * @param cb Takes a combobox to read and apply the selected color for
+     */
+    private void setPlayerColor(ComboBox cb){
+        if (cb.getSelectionModel().isSelected(0)) {
+            model.setColorPlayer4("PawnImages/yellow.png");
+            view.getIvPlayer4().setImage(view.getYellow());
+        } else if (cb.getSelectionModel().isSelected(1)) {
+            model.setColorPlayer4("PawnImages/green.png");
+            view.getIvPlayer4().setImage(view.getGreen());
+        } else if (cb.getSelectionModel().isSelected(2)) {
+            model.setColorPlayer4("PawnImages/blue.png");
+            view.getIvPlayer4().setImage(view.getBlue());
+        } else if (cb.getSelectionModel().isSelected(3)) {
+            model.setColorPlayer4("PawnImages/red.png");
+            view.getIvPlayer4().setImage(view.getRed());
+        }
     }
 
     private void disableFields(boolean dis1, boolean dis2, boolean dis3) {

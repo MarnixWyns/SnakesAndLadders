@@ -17,6 +17,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class GamePresenter {
@@ -41,8 +42,14 @@ public class GamePresenter {
     }
 
     private void addEventHandlers() {
+
+        /*
+        ClassLoader classLoader = getClass().getClassLoader();
+        model.setDifficultyFile(new File(classLoader.getResource(
+                "BoardLayouts/"+ model.getBoardScan().getBoard().getBgPath().substring(0,model.getBoardScan().getBoard().getBgPath().indexOf('.') - 1) + ".txt").getFile()));
+*/
+
         //change background accordingly.
-        //TODO kheb dees nog is aangepast ma da is denk ik ni hetgeen een nullpointer gooit want standaard is de url nu normal
         if (model.isBackgroundChanged()) {
             view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
         } else {
@@ -92,6 +99,10 @@ public class GamePresenter {
                     tt.setByX(view.getBoardGrid().getWidth() / 10);
                 } else if ((i / 10) % 2 == 1) {
                     tt.setByX(-view.getBoardGrid().getWidth() / 10);
+                } else if (startpos + dice > 100){
+                    System.out.print("> 100");
+                    tt.setByX(0);
+                    tt.setByY(-view.getBoardGrid().getWidth() / 10);
                 }
 
                 tt.setDuration(Duration.millis(300));
@@ -126,13 +137,11 @@ public class GamePresenter {
 
                 int difColumns = stop - start;
 
-                System.out.println(startpos + dice);
-
                 //TODO: Movement past 100
                 if (startpos + dice > 100) {
                     System.out.print("> 100");
-                    difColumns = 0;
-                    difRows = startpos + dice - 100;
+                    difRows = 0;
+                    //difRows = startpos + dice - 100;
                 }
 
                 ttSL.setByY(difRows * (view.getBoardGrid().getHeight() / 10));
@@ -179,6 +188,7 @@ public class GamePresenter {
             if (alert.getResult() == cancel) {
                 event.consume();
             } else if (alert.getResult() == save) {
+                System.out.println(model.getDifficultyFile());
                 model.getBoardScan().save(model.getDifficultyFile(), model.getPlayers());
                 System.out.print("Saved");
             } else view.getScene().setRoot(startView);
@@ -206,44 +216,36 @@ public class GamePresenter {
             } else System.exit(0);
         });
 
-
-        if (model.getPlayers().size() == 1) {
-            view.getIvPlayer1().setVisible(true);
-            view.getIvPlayer2().setVisible(true);
-            view.getIvPlayer3().setVisible(false);
-            view.getIvPlayer4().setVisible(false);
-        } else if (model.getPlayers().size() == 2) {
-            view.getIvPlayer1().setVisible(true);
-            view.getIvPlayer2().setVisible(true);
-            view.getIvPlayer3().setVisible(false);
-            view.getIvPlayer4().setVisible(false);
-        } else if (model.getPlayers().size() == 3) {
-            view.getIvPlayer1().setVisible(true);
-            view.getIvPlayer2().setVisible(true);
-            view.getIvPlayer3().setVisible(true);
-            view.getIvPlayer4().setVisible(false);
-        } else {
-            view.getIvPlayer1().setVisible(true);
-            view.getIvPlayer2().setVisible(true);
-            view.getIvPlayer3().setVisible(true);
-            view.getIvPlayer4().setVisible(true);
+        try {
+            if (model.getPlayers().size() == 1) {
+                view.getIvPlayer1().setVisible(true);
+                view.getIvPlayer2().setVisible(true);
+                view.getIvPlayer3().setVisible(false);
+                view.getIvPlayer4().setVisible(false);
+            } else if (model.getPlayers().size() == 2) {
+                view.getIvPlayer1().setVisible(true);
+                view.getIvPlayer2().setVisible(true);
+                view.getIvPlayer3().setVisible(false);
+                view.getIvPlayer4().setVisible(false);
+            } else if (model.getPlayers().size() == 3) {
+                view.getIvPlayer1().setVisible(true);
+                view.getIvPlayer2().setVisible(true);
+                view.getIvPlayer3().setVisible(true);
+                view.getIvPlayer4().setVisible(false);
+            } else {
+                view.getIvPlayer1().setVisible(true);
+                view.getIvPlayer2().setVisible(true);
+                view.getIvPlayer3().setVisible(true);
+                view.getIvPlayer4().setVisible(true);
+            }
+        } catch (NullPointerException e) {
+            dialogThrower.throwAlert(Alert.AlertType.ERROR, "No save file", "No save file has been found");
         }
-
-        /*
-        view.getIvPlayer1().setImage(new Image(model.getColorPlayer1()));
-        view.getIvPlayer2().setImage(new Image(model.getColorPlayer2()));
-        view.getIvPlayer3().setImage(new Image(model.getColorPlayer3()));
-        view.getIvPlayer4().setImage(new Image(model.getColorPlayer4()));
-*/
-
 
         view.getBtnHelp().setOnAction(event -> dialogThrower.throwHelpDialog());
     }
 
     private void updateView() {
-
-        //TODO: Ruben can you fix
-
 
         //AI movement
         //TODO: Add an animation or something to let the player know the computer haz moved
@@ -329,16 +331,24 @@ public class GamePresenter {
 
         }
 
-        if (model.getPlayers().isEmpty()) {
+        if (model.getPlayers().size() == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("End Of Game");
             alert.setHeaderText(null);
+
+            String st = "Ranking: \n";
+            int number = 1;
+            for (String s : scoreboard) {
+                st += number + ". " + s + "\n";
+            }
+            alert.setContentText(st);
+            /*
             alert.setContentText("Ranking: \n" +
                     "First place : " + scoreboard.get(0) + "\n" +
                     "Second Place : " + scoreboard.get(1) + "\n" +
                     "Third Place : " + scoreboard.get(2) + "\n" +
                     "Fourth Place : " + scoreboard.get(3));
-
+            */
             alert.show();
 
         }

@@ -3,6 +3,14 @@ package be.kdg.SnakesAndLadders.model;
 import java.io.File;
 import java.util.ArrayList;
 
+
+/**
+ * The main model class of the Snakes And Ladders game, this is the only class used for interfacing between the
+ * different views and the accompanying game logic.
+ *
+ * @author Marnix Ruben
+ * @version 1.0
+ */
 public class SnakesAndLadders {
     private ArrayList<Player> players = new ArrayList<>();
     private int currentPlayer;
@@ -20,7 +28,6 @@ public class SnakesAndLadders {
     public SnakesAndLadders() {
         currentPlayer = 0;
         boardSize = 10;
-
     }
 
     public void startGame() {
@@ -40,7 +47,12 @@ public class SnakesAndLadders {
         return player.getPlayerPos();
     }
 
-    //Column = verticaal, werkt
+    /**
+     * Method that translates a players position to a number between 0 and 9 to be used as a horizontal coordinate.
+     *
+     * @param pos takes the players position and parses that into an int between 0 and 9
+     * @return int between 0-9 to be used for positioning horizontally in the boardGrid and accompanying methods
+     */
     public int translateToColumn(int pos) {
         int row = translateToRow(pos);
 
@@ -52,7 +64,12 @@ public class SnakesAndLadders {
         }
     }
 
-    //Row = horizontaal, werkt
+    /**
+     * Method that translates a players position to a number between 0 and 9 to be used as a vertical coordinate.
+     *
+     * @param pos takes the players position and parses that into an int between 0 and 9
+     * @return int between 0-9 to be used for positioning vertically in the boardGrid and accompanying methods
+     */
     public int translateToRow(int pos) {
         return (boardSize - 1) - ((pos - 1) / boardSize);
     }
@@ -63,10 +80,6 @@ public class SnakesAndLadders {
 
     public ArrayList<Player> getPlayers() {
         return players;
-    }
-
-    public int getCurrentPlayerId() {
-        return currentPlayer;
     }
 
     public void nextPlayer() {
@@ -80,7 +93,6 @@ public class SnakesAndLadders {
     public BoardScan getBoardScan() {
         return boardScan;
     }
-
 
     public void setPlayers(ArrayList<Player> players) {
         this.players = players;

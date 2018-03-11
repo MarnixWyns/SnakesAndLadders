@@ -1,7 +1,4 @@
-package be.kdg.SnakesAndLadders.model;/*
- * Marnix Wyns
- * 2/02/2018
- */
+package be.kdg.SnakesAndLadders.model;
 
 public enum PieceColor {
     BLUE("Blue"), YELLOW("Yellow"), RED("Red"), GREEN("Green");

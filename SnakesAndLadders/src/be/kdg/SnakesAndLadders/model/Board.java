@@ -2,6 +2,14 @@ package be.kdg.SnakesAndLadders.model;
 
 import java.util.*;
 
+/**
+ * The Board class is the class that is used to store the current game, containing players,
+ * the background image path and two ArrayLists. The arraylists contain the begin and end positions of
+ * the Snakes and Ladders, using the start as a key and the end as the corresponding value.
+ *
+ * @author Marnix
+ * @version 1.0
+ */
 public class Board {
 
     private HashMap<Integer, Integer> snakes;

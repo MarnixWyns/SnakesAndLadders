@@ -28,6 +28,7 @@ public class GamePresenter {
     private int dice;
     private int teller = 1;
     private DialogThrower dialogThrower;
+    private int nPlayers;
 
 
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
@@ -36,6 +37,8 @@ public class GamePresenter {
         this.primaryStage = primarystage;
         scoreboard = new ArrayList<>();
         dialogThrower = new DialogThrower();
+
+        nPlayers = model.getPlayers().size();
 
         addEventHandlers();
         updateView();
@@ -140,7 +143,7 @@ public class GamePresenter {
                 //TODO: Movement past 100
                 if (startpos + dice > 100) {
                     System.out.print("> 100");
-                    difRows = 0;
+                    difColumns = 0;
                     //difRows = startpos + dice - 100;
                 }
 
@@ -160,6 +163,8 @@ public class GamePresenter {
             //TODO: RUBEN! Delete before final code deployment
             view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+
+            checkPos();
 
             model.nextPlayer();
             teller++;
@@ -245,6 +250,35 @@ public class GamePresenter {
         view.getBtnHelp().setOnAction(event -> dialogThrower.throwHelpDialog());
     }
 
+    private void checkPos() {
+
+        ArrayList<Player> winners = new ArrayList<>();
+
+        if (model.getCurrentPlayer().getPlayerPos() == 100){
+            dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
+            System.out.println("100! " + model.getCurrentPlayer().getUsername());
+            winners.add(model.getCurrentPlayer());
+
+            //TODO: Disable player
+        }
+
+        if (winners.size() == nPlayers){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("End Of Game");
+            alert.setHeaderText(null);
+
+            StringBuilder st = new StringBuilder("Ranking: \n");
+            int number = 1;
+            for (String s : scoreboard) {
+                st.append(number++).append(". ").append(s).append("\n");
+            }
+            alert.setContentText(st.toString());
+        }
+
+
+
+    }
+
     private void updateView() {
 
         //AI movement
@@ -271,6 +305,7 @@ public class GamePresenter {
         view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
 
 
+        /*
         //TODO: Clean redundant code
         if (model.getCurrentPlayerId() == 0 && model.getCurrentPlayer().getPlayerPos() == 100) {
             scoreboard.add(model.getCurrentPlayer().getUsername());
@@ -330,6 +365,7 @@ public class GamePresenter {
             model.getPlayers().remove(model.getCurrentPlayer());
 
         }
+        */
 
         if (model.getPlayers().size() == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

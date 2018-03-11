@@ -1,16 +1,8 @@
-package be.kdg.SnakesAndLadders.model;/*
- * Marnix Wyns
- * 2/02/2018
- */
-
+package be.kdg.SnakesAndLadders.model;
 
 public class Player {
     private Object color;
     private String username;
-    private boolean player1Finished;
-    private boolean player2Finished;
-    private boolean player3Finished;
-    private boolean player4Finished;
 
     //number field has where player currently is
     private int playerPos;
@@ -36,8 +28,15 @@ public class Player {
         return username;
     }
 
-    //region Coordinate methods
-
+    /**
+     *
+     * Method that calculates the new Player position. It first calculates the rebound if a player goes above position 100.
+     * after this, it is thrown through the checkPos method in the board class that returns the position of the player
+     * in case the player is on a snake or ladder.
+     *
+     * @param addToPos int that is used to add to current position, obtained from Dice class
+     * @param board Board that contains positions of snakes and ladders for use
+     */
     public void addToPlayerPos(int addToPos, Board board) {
 
         //Rebound if > 100
@@ -57,36 +56,5 @@ public class Player {
         this.playerPos = playerPos;
     }
 
-    public void setPlayer1Finished(boolean player1Finished) {
-        this.player1Finished = player1Finished;
-    }
-
-    public void setPlayer2Finished(boolean player2Finished) {
-        this.player2Finished = player2Finished;
-    }
-
-    public void setPlayer3Finished(boolean player3Finished) {
-        this.player3Finished = player3Finished;
-    }
-
-    public void setPlayer4Finished(boolean player4Finished) {
-        this.player4Finished = player4Finished;
-    }
-
-    public boolean isPlayer1Finished() {
-        return player1Finished;
-    }
-
-    public boolean isPlayer2Finished() {
-        return player2Finished;
-    }
-
-    public boolean isPlayer3Finished() {
-        return player3Finished;
-    }
-
-    public boolean isPlayer4Finished() {
-        return player4Finished;
-    }
 
 }

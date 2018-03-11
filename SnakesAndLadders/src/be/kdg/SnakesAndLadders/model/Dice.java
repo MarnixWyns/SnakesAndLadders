@@ -1,7 +1,4 @@
-package be.kdg.SnakesAndLadders.model;/*
- * Marnix Wyns
- * 3/02/2018
- */
+package be.kdg.SnakesAndLadders.model;
 
 import java.util.Random;
 

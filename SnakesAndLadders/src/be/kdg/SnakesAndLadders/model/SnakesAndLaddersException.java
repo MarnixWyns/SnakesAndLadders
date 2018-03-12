@@ -1,5 +1,8 @@
 package be.kdg.SnakesAndLadders.model;
 
+/**
+ * Add JavaDox
+ */
 public class SnakesAndLaddersException extends RuntimeException {
     public SnakesAndLaddersException() {
         super();

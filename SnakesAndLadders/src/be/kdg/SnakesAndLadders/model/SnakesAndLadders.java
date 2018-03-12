@@ -30,6 +30,10 @@ public class SnakesAndLadders {
         boardSize = 10;
     }
 
+    /**
+     * In order to prevent StackOverFlow errors the Boardscan class had when initializing, it has to be initialised
+     * in a different method.
+     */
     public void startGame() {
         dice = new Dice();
         boardScan = new BoardScan();
@@ -37,14 +41,6 @@ public class SnakesAndLadders {
 
     public int throwDice() {
         return dice.getValue();
-    }
-
-    public Player getCurrentPlayer() {
-        return players.get(currentPlayer);
-    }
-
-    public int getPlayerPos(Player player) {
-        return player.getPlayerPos();
     }
 
     /**
@@ -74,20 +70,20 @@ public class SnakesAndLadders {
         return (boardSize - 1) - ((pos - 1) / boardSize);
     }
 
-    public void addPlayer(Player player) {
-        players.add(player);
-    }
-
-    public ArrayList<Player> getPlayers() {
-        return players;
-    }
-
     public void nextPlayer() {
         if (currentPlayer == players.size() - 1) {
             currentPlayer = 0;
         } else {
             currentPlayer++;
         }
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
     public BoardScan getBoardScan() {
@@ -156,6 +152,14 @@ public class SnakesAndLadders {
 
     public void setBackgroundChanged(boolean backgroundChanged) {
         this.backgroundChanged = backgroundChanged;
+    }
+
+    public Player getCurrentPlayer() {
+        return players.get(currentPlayer);
+    }
+
+    public int getPlayerPos(Player player) {
+        return player.getPlayerPos();
     }
 }
 

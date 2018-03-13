@@ -71,6 +71,7 @@ public class GamePresenter {
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
 
+
             for (int i = startpos; i < startpos + dice; i++) {
                 TranslateTransition tt = new TranslateTransition();
                 switch (teller) {
@@ -88,17 +89,27 @@ public class GamePresenter {
                         break;
                 }
 
-                if (i % 10 == 0) {
-                    tt.setByY(-view.getBoardGrid().getWidth() / 10);
-                } else if ((i / 10) % 2 == 0) {
-                    tt.setByX(view.getBoardGrid().getWidth() / 10);
-                } else if ((i / 10) % 2 == 1) {
-                    tt.setByX(-view.getBoardGrid().getWidth() / 10);
-                } else if (startpos + dice > 100){
-                    System.out.print("> 100");
-                    tt.setByX(0);
-                    tt.setByY(-view.getBoardGrid().getWidth() / 10);
+
+                if (startpos + dice > 100){
+                    System.out.println("> 100");
+                    //TODO: So close, Marnix can fix this
+                    int pb = 100 - startpos;
+                    int pa = Math.abs(100 - startpos + (dice - pb));
+                    tt.setByX(pb - pa * (view.getBoardGrid().getWidth() / 10));
+                    tt.setByY(0);
+
+                    System.out.println(pb + " " + pa + " " + (pb - pa));
+                } else {
+                    if (i % 10 == 0) {
+                        tt.setByY(-view.getBoardGrid().getWidth() / 10);
+                    } else if ((i / 10) % 2 == 0) {
+                        tt.setByX(view.getBoardGrid().getWidth() / 10);
+                    } else if ((i / 10) % 2 == 1) {
+                        tt.setByX(-view.getBoardGrid().getWidth() / 10);
+                    }
                 }
+
+
 
                 tt.setDuration(Duration.millis(250));
 

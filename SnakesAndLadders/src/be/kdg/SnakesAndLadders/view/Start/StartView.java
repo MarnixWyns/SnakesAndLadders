@@ -4,19 +4,19 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+
 /**
- * Ruben Vanloo
- * 28/02/2018.
+ * View that functions as a main menu for the gain, containing some fun animations and 2 main buttons, for starting a new game or
+ *
+ * @author Ruben Vanloo
  */
 public class StartView extends BorderPane {
     private Button btnNewGame;
@@ -38,7 +38,6 @@ public class StartView extends BorderPane {
     private HBox helpAndExit;
     private HBox newGame;
     private HBox loadGame;
-
 
     private Background backGround1;
     private BackgroundSize backgroundSize1;

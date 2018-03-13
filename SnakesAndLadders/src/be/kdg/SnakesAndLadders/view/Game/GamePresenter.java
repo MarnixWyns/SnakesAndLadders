@@ -16,8 +16,6 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.io.File;
 import java.util.ArrayList;
 
 public class GamePresenter {
@@ -102,7 +100,7 @@ public class GamePresenter {
                     tt.setByY(-view.getBoardGrid().getWidth() / 10);
                 }
 
-                tt.setDuration(Duration.millis(300));
+                tt.setDuration(Duration.millis(250));
 
                 st.getChildren().add(tt);
             }

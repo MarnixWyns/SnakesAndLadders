@@ -169,7 +169,6 @@ public class GameView extends BorderPane {
         ivBlue = new ImageView(new Image("PawnImages/blue.png"));
         ivGreen = new ImageView(new Image("PawnImages/green.png"));
         ivYellow = new ImageView(new Image("PawnImages/yellow.png"));
-        ivBlack = new ImageView(new Image("PawnImages/black.png"));
 
         ivPlayer1 = ivYellow;
         ivPlayer2 = ivGreen;
@@ -200,8 +199,7 @@ public class GameView extends BorderPane {
         ivGreen.setFitWidth(15);
         ivYellow.setFitHeight(15);
         ivYellow.setFitWidth(15);
-        ivBlack.setFitHeight(15);
-        ivBlack.setFitWidth(15);
+
 
         //set padding for pawngrids
         pawnPane1.setPadding(new Insets(3,0,0,3));

@@ -55,7 +55,7 @@ public class StartPresenter {
             ClassLoader classLoader = getClass().getClassLoader();
             model.startGame();
 
-            model.getBoardScan().readFile(new File(classLoader.getResource("save_file.txt").getFile()));
+            model.getBoardScan().readFile(new File("save_file.txt"));
 
             //Start game met gelezen files
             model.setPlayers(model.getBoardScan().getBoard().getSavedPlayers());

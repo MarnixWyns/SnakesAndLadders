@@ -104,8 +104,7 @@ public class BoardScan {
                                 playerC = PieceColor.BLUE;
                                 break;
                             case "Y":
-                                playerC = PieceColor.YELLOW;
-                                break;
+                                playerC = PieceColor.YELLOW;                                break;
                             default:
                                 throw new SnakesAndLaddersException();
                         }

@@ -16,6 +16,7 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
 import java.util.ArrayList;
 
 public class GamePresenter {
@@ -70,36 +71,86 @@ public class GamePresenter {
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
+            if (startpos + dice > 100) {
+                System.out.println("> 100");
+                SequentialTransition tr = new SequentialTransition();
 
+                int moves = 0;
+                //Whilst haven't hit 100 yet
+                for (int i = startpos; i < 100; i++) {
+                    TranslateTransition tt = new TranslateTransition();
+                    tt.setByX(-view.getBoardGrid().getWidth() / 10);
+                    tt.setDuration(Duration.millis(250));
 
-            for (int i = startpos; i < startpos + dice; i++) {
-                TranslateTransition tt = new TranslateTransition();
-                switch (teller) {
-                    case 1:
-                        tt.setNode(view.getIvPlayer1());
-                        break;
-                    case 2:
-                        tt.setNode(view.getIvPlayer2());
-                        break;
-                    case 3:
-                        tt.setNode(view.getIvPlayer3());
-                        break;
-                    case 4:
-                        tt.setNode(view.getIvPlayer4());
-                        break;
+                    switch (teller) {
+                        case 1:
+                            tt.setNode(view.getIvPlayer1());
+                            break;
+                        case 2:
+                            tt.setNode(view.getIvPlayer2());
+                            break;
+                        case 3:
+                            tt.setNode(view.getIvPlayer3());
+                            break;
+                        case 4:
+                            tt.setNode(view.getIvPlayer4());
+                            break;
+                    }
+
+                    tr.getChildren().add(tt);
+                    System.out.println("init");
+
+                    moves++;
                 }
 
+                //Rebound after 100
+                for (int i = dice - moves; i > 0; i--) {
+                    TranslateTransition tt = new TranslateTransition();
+                    tt.setByX(view.getBoardGrid().getWidth() / 10);
+                    tt.setDuration(Duration.millis(250));
 
-                if (startpos + dice > 100){
-                    System.out.println("> 100");
-                    //TODO: So close, Marnix can fix this
-                    int pb = 100 - startpos;
-                    int pa = Math.abs(100 - startpos + (dice - pb));
-                    tt.setByX(pb - pa * (view.getBoardGrid().getWidth() / 10));
-                    tt.setByY(0);
+                    switch (teller) {
+                        case 1:
+                            tt.setNode(view.getIvPlayer1());
+                            break;
+                        case 2:
+                            tt.setNode(view.getIvPlayer2());
+                            break;
+                        case 3:
+                            tt.setNode(view.getIvPlayer3());
+                            break;
+                        case 4:
+                            tt.setNode(view.getIvPlayer4());
+                            break;
+                    }
 
-                    System.out.println(pb + " " + pa + " " + (pb - pa));
-                } else {
+                    System.out.println("rebound");
+
+                    tr.getChildren().add(tt);
+                }
+
+                tr.play();
+                stMain.getChildren().add(tr);
+
+            } else {
+                for (int i = startpos; i < startpos + dice; i++) {
+                    TranslateTransition tt = new TranslateTransition();
+                    switch (teller) {
+                        case 1:
+                            tt.setNode(view.getIvPlayer1());
+                            break;
+                        case 2:
+                            tt.setNode(view.getIvPlayer2());
+                            break;
+                        case 3:
+                            tt.setNode(view.getIvPlayer3());
+                            break;
+                        case 4:
+                            tt.setNode(view.getIvPlayer4());
+                            break;
+                    }
+
+
                     if (i % 10 == 0) {
                         tt.setByY(-view.getBoardGrid().getWidth() / 10);
                     } else if ((i / 10) % 2 == 0) {
@@ -107,54 +158,48 @@ public class GamePresenter {
                     } else if ((i / 10) % 2 == 1) {
                         tt.setByX(-view.getBoardGrid().getWidth() / 10);
                     }
+
+                    tt.setDuration(Duration.millis(250));
+
+                    st.getChildren().add(tt);
+                }
+
+                stMain.getChildren().add(st);
+
+                model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
+
+                if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
+                    TranslateTransition ttSL = new TranslateTransition();
+                    switch (teller) {
+                        case 1:
+                            ttSL.setNode(view.getIvPlayer1());
+                            break;
+                        case 2:
+                            ttSL.setNode(view.getIvPlayer2());
+                            break;
+                        case 3:
+                            ttSL.setNode(view.getIvPlayer3());
+                            break;
+                        case 4:
+                            ttSL.setNode(view.getIvPlayer4());
+                            break;
+                    }
+
+                    int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos + dice);
+
+                    int start = model.translateToColumn(startpos + dice);
+                    int stop = model.translateToColumn(model.getCurrentPlayer().getPlayerPos());
+
+                    int difColumns = stop - start;
+
+                    ttSL.setByY(difRows * (view.getBoardGrid().getHeight() / 10));
+                    ttSL.setByX(difColumns * (view.getBoardGrid().getWidth() / 10));
+                    ttSL.setDuration(Duration.millis(800));
+
+                    stMain.getChildren().add(ttSL);
                 }
 
 
-
-                tt.setDuration(Duration.millis(250));
-
-                st.getChildren().add(tt);
-            }
-            stMain.getChildren().add(st);
-
-            model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
-
-            if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
-                TranslateTransition ttSL = new TranslateTransition();
-                switch (teller) {
-                    case 1:
-                        ttSL.setNode(view.getIvPlayer1());
-                        break;
-                    case 2:
-                        ttSL.setNode(view.getIvPlayer2());
-                        break;
-                    case 3:
-                        ttSL.setNode(view.getIvPlayer3());
-                        break;
-                    case 4:
-                        ttSL.setNode(view.getIvPlayer4());
-                        break;
-                }
-
-                int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos + dice);
-
-                int start = model.translateToColumn(startpos + dice);
-                int stop = model.translateToColumn(model.getCurrentPlayer().getPlayerPos());
-
-                int difColumns = stop - start;
-
-                //TODO: Movement past 100
-                if (startpos + dice > 100) {
-                    System.out.print("> 100");
-                    difColumns = 0;
-                    //difRows = startpos + dice - 100;
-                }
-
-                ttSL.setByY(difRows * (view.getBoardGrid().getHeight() / 10));
-                ttSL.setByX(difColumns * (view.getBoardGrid().getWidth() / 10));
-                ttSL.setDuration(Duration.millis(800));
-
-                stMain.getChildren().add(ttSL);
             }
 
             stMain.play();
@@ -257,7 +302,7 @@ public class GamePresenter {
 
         ArrayList<Player> winners = new ArrayList<>();
 
-        if (model.getCurrentPlayer().getPlayerPos() == 100){
+        if (model.getCurrentPlayer().getPlayerPos() == 100) {
             dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
             System.out.println("100! " + model.getCurrentPlayer().getUsername());
             winners.add(model.getCurrentPlayer());
@@ -265,7 +310,7 @@ public class GamePresenter {
             //TODO: Disable player
         }
 
-        if (winners.size() == nPlayers){
+        if (winners.size() == nPlayers) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("End Of Game");
             alert.setHeaderText(null);
@@ -277,7 +322,6 @@ public class GamePresenter {
             }
             alert.setContentText(st.toString());
         }
-
 
 
     }

@@ -5,7 +5,7 @@ package be.kdg.SnakesAndLadders.model;
  * the 2 - 4 players that can be currently active in the game, it mainly tracks the players position and also
  * contains data like the username and color.
  *
- * @author Marnix
+ * @author Marnix Wyns
  * @version 1.0
  */
 public class Player {

@@ -46,12 +46,6 @@ public class GamePresenter {
 
     private void addEventHandlers() {
 
-        /*
-        ClassLoader classLoader = getClass().getClassLoader();
-        model.setDifficultyFile(new File(classLoader.getResource(
-                "BoardLayouts/"+ model.getBoardScan().getBoard().getBgPath().substring(0,model.getBoardScan().getBoard().getBgPath().indexOf('.') - 1) + ".txt").getFile()));
-*/
-
         //change background accordingly.
         if (model.isBackgroundChanged()) {
             view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));

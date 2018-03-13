@@ -38,6 +38,10 @@ public class DialogThrower {
         alert.showAndWait();
     }
 
+    /**
+     * Method that creates a new View containing the game help file. The file is read using the BoardScan method
+     * readfile
+     */
     public void throwHelpDialog(){
         HelpView helpView = new HelpView();
         HelpPresenter helpPresenter = new HelpPresenter(helpView);

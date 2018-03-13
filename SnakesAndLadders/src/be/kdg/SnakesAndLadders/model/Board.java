@@ -7,7 +7,7 @@ import java.util.*;
  * the background image path and two ArrayLists. The arraylists contain the begin and end positions of
  * the Snakes and Ladders, using the start as a key and the end as the corresponding value.
  *
- * @author Marnix
+ * @author Marnix Wyns
  * @version 1.0
  */
 public class Board {
@@ -38,9 +38,9 @@ public class Board {
      * This constructor is utilised if a saved game is restarted, it also has the parameter containing player data.
      *
      * @param imgBackground path of the background image of the current level
-     * @param snakes hashmap containing Key<Integer> and Value<Integer>, the key is used as the head of the snake,
+     * @param snakes Hashmap containing Key<Integer> and Value<Integer>, the key is used as the head of the snake,
      *               the value contains the tail of the snake.
-     * @param ladders hashmap containing Key<Integer> and Value<Integer>, the key is used as the bottom of a ladder,
+     * @param ladders Hashmap containing Key<Integer> and Value<Integer>, the key is used as the bottom of a ladder,
      *                the value contains the top of the ladder.
      * @param players Arraylist<Player> containing save data from 1 to 4 players to be used when continuing a saved game.
      */

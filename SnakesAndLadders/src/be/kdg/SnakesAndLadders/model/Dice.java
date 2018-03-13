@@ -6,7 +6,7 @@ import java.util.Random;
  * Dice class to make a more streamlined version of a random number generator that fits better in
  * entire boardgame story
  *
- * @author Marnix
+ * @author Marnix Wyns
  * @version 1.0
  */
 public class Dice {

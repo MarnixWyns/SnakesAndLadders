@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
  * writes data to save files. This class creates the Board objects containing the positions of snakes and ladders that allow the
  * game to be played as desired.
  *
- * @author Marnix
+ * @author Marnix Wyns
  * @version 2.0
  */
 public class BoardScan {
@@ -139,11 +139,7 @@ public class BoardScan {
      * @throws SnakesAndLaddersException if original game file can not be found a SnakesAndLaddersException is thrown
      */
     public void save(File difficulty, ArrayList<Player> players) {
-        ClassLoader classLoader = getClass().getClassLoader();
-
-        //TODO: Stop throwing nullpointer klote resources directory
-        //File newfile = new File(classLoader.getResource("/save_file.txt").getFile());
-        File newfile = new File("C:\\Projects\\SnakesAndLadders\\SlangenEnLadders\\SnakesAndLadders\\resources\\save_file.txt");
+        File newfile = new File("save_file.txt");
 
         try {
             Files.deleteIfExists(newfile.toPath());

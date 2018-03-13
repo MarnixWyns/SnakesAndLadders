@@ -8,7 +8,8 @@ import java.util.ArrayList;
  * The main model class of the Snakes And Ladders game, this is the only class used for interfacing between the
  * different views and the accompanying game logic.
  *
- * @author Marnix Ruben
+ * @author Marnix Wyns
+ * @author Ruben Vanloo
  * @version 1.0
  */
 public class SnakesAndLadders {

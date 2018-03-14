@@ -64,9 +64,6 @@ public class GamePresenter {
                 stMain.getChildren().add(animateRebound(startpos));
 
                 model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
-
-                //TODO: Fix startpos calculation offset
-
                 if (100 - (startpos + dice - 100) != model.getCurrentPlayer().getPlayerPos()) {
                     System.out.println((startpos + dice - 100));
                     stMain.getChildren().add(animateSnakesLaddersRebound(100 - (startpos + dice - 100), (startpos + dice - 100)));
@@ -93,8 +90,6 @@ public class GamePresenter {
                 checkPos();
 
                 model.nextPlayer();
-
-                //TODO: Stackoverflow Error
                 view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
 
                 updateView();
@@ -231,7 +226,7 @@ public class GamePresenter {
                 stMain.getChildren().add(animateSnakesLadders(startpos));
 
                 stMain.play();
-
+                view.getBtnRollDice().setDisable(true);
                 stMain.setOnFinished(event -> view.getLblplayerName().setText(model.getCurrentPlayer().getUsername()));
 
             } else {
@@ -239,11 +234,16 @@ public class GamePresenter {
                 stMain.getChildren().add(animateSnakesLadders(startpos));
 
                 stMain.play();
+                view.getBtnRollDice().setDisable(true);
 
                 view.getLblFeedback().setText("AI Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
                         + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
-                stMain.setOnFinished(event -> view.getLblplayerName().setText(model.getCurrentPlayer().getUsername()));
+                stMain.setOnFinished(event -> {
+                    model.nextPlayer();
+                    view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
+                    view.getBtnRollDice().setDisable(false);
+                });
             }
 
 

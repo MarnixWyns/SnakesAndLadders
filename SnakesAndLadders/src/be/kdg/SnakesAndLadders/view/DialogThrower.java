@@ -28,7 +28,7 @@ public class DialogThrower {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
-        alert.showAndWait();
+        alert.show();
     }
 
      public void throwAlert(Alert.AlertType type, String title, String header){

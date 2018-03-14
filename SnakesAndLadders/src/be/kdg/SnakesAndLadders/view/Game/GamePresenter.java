@@ -26,7 +26,6 @@ public class GamePresenter {
     private Stage primaryStage;
     private ArrayList<String> winners;
     private ArrayList<Player> finishedPlayers;
-    private int leastAmountOfPlayers;
     private int dice;
     private DialogThrower dialogThrower;
 
@@ -55,8 +54,6 @@ public class GamePresenter {
         }
 
         view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
-
-        leastAmountOfPlayers = model.getPlayers().size();
 
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
@@ -245,51 +242,7 @@ public class GamePresenter {
             view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
             updateView();
         }
-        if (model.getCurrentPlayerId() == 1 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayer().getUsername());
-            model.getCurrentPlayer().setPlayer2Finished(true);
 
-            view.getIvPlayer2().setVisible(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayer().getUsername());
-            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
-            alert.show();
-
-
-            model.getPlayers().remove(model.getCurrentPlayer());
-
-        }
-        if (model.getCurrentPlayerId() == 2 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayer().getUsername());
-            model.getCurrentPlayer().setPlayer3Finished(true);
-
-            view.getIvPlayer3().setVisible(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayer().getUsername());
-            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
-            alert.show();
-
-
-            model.getPlayers().remove(model.getCurrentPlayer());
-
-        }
-        if (model.getCurrentPlayerId() == 3 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayer().getUsername());
-            model.getCurrentPlayer().setPlayer4Finished(true);
-
-            view.getIvPlayer4().setVisible(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayer().getUsername());
-            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
-            alert.show();
-
-            model.getPlayers().remove(model.getCurrentPlayer());
-
-        }
-        */
 
         if (model.getPlayers().size() == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -305,7 +258,6 @@ public class GamePresenter {
 
             alert.show();
             view.getBtnRollDice().setDisable(true);
-
         }
     }
 

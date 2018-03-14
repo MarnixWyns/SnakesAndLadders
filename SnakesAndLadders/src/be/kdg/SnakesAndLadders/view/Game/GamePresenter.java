@@ -24,7 +24,6 @@ public class GamePresenter {
     private GameView view;
     private SnakesAndLadders model;
     private Stage primaryStage;
-    private ArrayList<String> winners;
     private ArrayList<Player> finishedPlayers;
     private int dice;
     private DialogThrower dialogThrower;
@@ -33,7 +32,6 @@ public class GamePresenter {
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
         this.view = view;
         this.model = snakesAndLadders;
-        winners = new ArrayList<>();
         finishedPlayers = new ArrayList<>();
         this.primaryStage = primarystage;
         dialogThrower = new DialogThrower();
@@ -43,8 +41,6 @@ public class GamePresenter {
     }
 
     private void addEventHandlers() {
-        System.out.println(model.getCurrentPlayer().getUsername());
-
         //change background accordingly.
         if (model.isBackgroundChanged()) {
             view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
@@ -59,9 +55,7 @@ public class GamePresenter {
         view.getBtnRollDice().setOnAction(event -> {
 
             SequentialTransition stMain = new SequentialTransition();
-            SequentialTransition st = new SequentialTransition();
             int startpos = model.getCurrentPlayer().getPlayerPos();
-
 
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
@@ -71,12 +65,11 @@ public class GamePresenter {
 
                 model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
 
-                System.out.printf("\nStartpos %d\tdice %d\tcurrent %d", startpos, dice, model.getCurrentPlayer().getPlayerPos());
-
                 //TODO: Fix startpos calculation offset
 
                 if (100 - (startpos + dice - 100) != model.getCurrentPlayer().getPlayerPos()) {
-                    stMain.getChildren().add(animateSnakesLaddersRebound(100 - (startpos + dice - 100)));
+                    System.out.println((startpos + dice - 100));
+                    stMain.getChildren().add(animateSnakesLaddersRebound(100 - (startpos + dice - 100), (startpos + dice - 100)));
                 }
 
 
@@ -133,9 +126,7 @@ public class GamePresenter {
             if (alert.getResult() == cancel) {
                 event.consume();
             } else if (alert.getResult() == save) {
-                System.out.println(model.getDifficultyFile());
                 model.getBoardScan().save(model.getDifficultyFile(), model.getPlayers());
-                System.out.print("Saved");
             } else view.getScene().setRoot(startView);
 
         });
@@ -193,13 +184,18 @@ public class GamePresenter {
     private void checkPos() {
         if (model.getCurrentPlayer().getPlayerPos() == 100) {
             dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
-            winners.add(model.getCurrentPlayer().getUsername());
             if (!finishedPlayers.contains(model.getCurrentPlayer())) {
                 finishedPlayers.add(model.getCurrentPlayer());
             }
 
             if (finishedPlayers.size() + 1 == model.getPlayers().size()) {
-                finishedPlayers.add(model.getCurrentPlayer());
+
+                for (Player player : model.getPlayers()) {
+                    if (!finishedPlayers.contains(player)){
+                        finishedPlayers.add(player);
+                    }
+                }
+
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("End Of Game");
                 alert.setHeaderText("Ranking:");
@@ -220,8 +216,8 @@ public class GamePresenter {
     private void updateView() {
 
         //AI movement
-        //TODO: Add an animation or something to let the player know the computer haz moved
         if (model.getCurrentPlayer().getUsername().equals("Computer")) {
+            view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
@@ -230,12 +226,13 @@ public class GamePresenter {
 
             model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
             if (startpos + dice > 100) {
-                System.out.println("> 100");
 
                 stMain.getChildren().add(animateRebound(startpos));
                 stMain.getChildren().add(animateSnakesLadders(startpos));
 
                 stMain.play();
+
+                stMain.setOnFinished(event -> view.getLblplayerName().setText(model.getCurrentPlayer().getUsername()));
 
             } else {
                 stMain.getChildren().add(animateMovement(startpos));
@@ -246,17 +243,14 @@ public class GamePresenter {
                 view.getLblFeedback().setText("AI Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
                         + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
-                model.nextPlayer();
-
-
+                stMain.setOnFinished(event -> view.getLblplayerName().setText(model.getCurrentPlayer().getUsername()));
             }
+
+
         }
 
         while (model.getPlayerPos(model.getCurrentPlayer()) == 100) {
-            System.out.println("caught");
-
             model.nextPlayer();
-
 
             view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
             updateView();
@@ -365,18 +359,18 @@ public class GamePresenter {
         return ttSL;
     }
 
-    private TranslateTransition animateSnakesLaddersRebound(int startpos){
+    private TranslateTransition animateSnakesLaddersRebound(int startpos, int rebound){
         TranslateTransition ttSL = new TranslateTransition();
         ttSL.setNode(getCurrentIV());
 
         int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos + dice);
 
-        int start = model.translateToColumn(startpos + dice);
+        int start = model.translateToColumn(startpos + dice - (startpos + dice - rebound));
         int stop = model.translateToColumn(model.getCurrentPlayer().getPlayerPos());
 
         int difColumns = stop - start;
 
-        ttSL.setByY((difRows * (view.getBoardGrid().getHeight() / 10)) - (view.getBoardGrid().getHeight() / 10) );
+        ttSL.setByY((difRows * (view.getBoardGrid().getHeight() / 10)) - (view.getBoardGrid().getHeight() / 10));
         ttSL.setByX((difColumns * (view.getBoardGrid().getWidth() / 10)) - (view.getBoardGrid().getHeight() / 10));
         ttSL.setDuration(Duration.millis(800));
 

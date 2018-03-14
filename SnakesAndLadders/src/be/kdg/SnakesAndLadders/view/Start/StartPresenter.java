@@ -4,17 +4,13 @@ import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
 import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
-import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
-import be.kdg.SnakesAndLadders.view.Help.HelpView;
 import be.kdg.SnakesAndLadders.view.Setup.SetupPresenter;
 import be.kdg.SnakesAndLadders.view.Setup.SetupView;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -51,8 +47,6 @@ public class StartPresenter {
         view.getBtnExit().setOnAction(event -> System.exit(0));
 
         view.getBtnLoadGame().setOnAction(event -> {
-
-            ClassLoader classLoader = getClass().getClassLoader();
             model.startGame();
 
             model.getBoardScan().readFile(new File("save_file.txt"));
@@ -69,7 +63,6 @@ public class StartPresenter {
             gameView.getScene().getWindow().setHeight(600);
             gameView.getScene().getWindow().setWidth(1024);
 
-            System.out.println("BoardLayouts/" + model.getBoardScan().getBoard().getBgPath().substring(0,model.getBoardScan().getBoard().getBgPath().indexOf('.')) + ".txt");
             model.setDifficultyFile(new File("BoardLayouts/" + model.getBoardScan().getBoard().getBgPath().substring(0,model.getBoardScan().getBoard().getBgPath().indexOf('.')) + ".txt"));
 
             gameView.getPawnPane1().add(gameView.getIvPlayer1(), 0, 0);
@@ -92,9 +85,7 @@ public class StartPresenter {
 
             //model.setCountPlayers(2);
         });
-        view.getBtnHelp().setOnAction(event -> {
-            dt.throwHelpDialog();
-        });
+        view.getBtnHelp().setOnAction(event -> dt.throwHelpDialog());
     }
 
 

@@ -212,11 +212,6 @@ public class SetupPresenter {
         });
         //endregion
 
-        //initialisatie in het geval de spelers de default waarden van de comboboxen nemen
-        model.setColorPlayer1("PawnImages/yellow.png");
-        model.setColorPlayer2("PawnImages/green.png");
-        model.setColorPlayer3("PawnImages/blue.png");
-        model.setColorPlayer4("PawnImages/red.png");
 
         //connect comboboxes to pawncolors and change accordingly
         view.getColorPickerP1().setOnAction(event -> {
@@ -278,16 +273,12 @@ public class SetupPresenter {
      */
     private void setPlayerColor(ComboBox cb){
         if (cb.getSelectionModel().isSelected(0)) {
-            model.setColorPlayer4("PawnImages/yellow.png");
             view.getIvPlayer4().setImage(view.getYellow());
         } else if (cb.getSelectionModel().isSelected(1)) {
-            model.setColorPlayer4("PawnImages/green.png");
             view.getIvPlayer4().setImage(view.getGreen());
         } else if (cb.getSelectionModel().isSelected(2)) {
-            model.setColorPlayer4("PawnImages/blue.png");
             view.getIvPlayer4().setImage(view.getBlue());
         } else if (cb.getSelectionModel().isSelected(3)) {
-            model.setColorPlayer4("PawnImages/red.png");
             view.getIvPlayer4().setImage(view.getRed());
         }
     }

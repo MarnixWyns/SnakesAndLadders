@@ -1,9 +1,7 @@
 package be.kdg.SnakesAndLadders.model;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
@@ -110,7 +108,6 @@ public class BoardScan {
 
                         players.add(new Player(playerC, name, pos));
 
-                        System.out.printf("Color: %s Name: %s Position: %d\n", playerC, name, pos);
                     }
 
                 } else throw new SnakesAndLaddersException("IllegalFileFormat");
@@ -203,8 +200,6 @@ public class BoardScan {
 
 
         } catch (IOException e) {
-            System.out.println(newfile);
-            System.out.println(difficulty);
             throw new SnakesAndLaddersException("Original game file not found");
         }
     }

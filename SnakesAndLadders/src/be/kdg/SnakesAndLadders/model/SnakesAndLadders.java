@@ -17,10 +17,6 @@ public class SnakesAndLadders {
     private int currentPlayer;
     private Dice dice;
     private int boardSize;
-    private String colorPlayer1;
-    private String colorPlayer2;
-    private String colorPlayer3;
-    private String colorPlayer4;
     private File difficultyFile;
     private BoardScan boardScan;
     private String selectedBackground;
@@ -95,38 +91,6 @@ public class SnakesAndLadders {
         this.players = players;
     }
 
-    public void setColorPlayer1(String colorPlayer1) {
-        this.colorPlayer1 = colorPlayer1;
-    }
-
-    public void setColorPlayer2(String colorPlayer2) {
-        this.colorPlayer2 = colorPlayer2;
-    }
-
-    public void setColorPlayer3(String colorPlayer3) {
-        this.colorPlayer3 = colorPlayer3;
-    }
-
-    public void setColorPlayer4(String colorPlayer4) {
-        this.colorPlayer4 = colorPlayer4;
-    }
-
-    public String getColorPlayer1() {
-        return colorPlayer1;
-    }
-
-    public String getColorPlayer2() {
-        return colorPlayer2;
-    }
-
-    public String getColorPlayer3() {
-        return colorPlayer3;
-    }
-
-    public String getColorPlayer4() {
-        return colorPlayer4;
-    }
-
     public void setCurrentPlayer(int currentPlayer) {
         this.currentPlayer = currentPlayer;
     }
@@ -157,15 +121,6 @@ public class SnakesAndLadders {
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayer);
-    }
-
-    public Player getPreviousPlayer(){
-        int n = currentPlayer - 1;
-        if (n == -1){
-            n = players.size() - 1;
-        }
-
-        return players.get(n);
     }
 
     public int getPlayerPos(Player player) {

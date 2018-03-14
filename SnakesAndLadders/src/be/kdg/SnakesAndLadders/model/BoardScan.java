@@ -80,8 +80,6 @@ public class BoardScan {
 
                     isSaveFile = true;
 
-                    //int nPlayers = Integer.parseInt(line.substring(8, 9));
-
                     Pattern pattern = Pattern.compile("[0-9]+-[A-Z]-([A-Z]|[a-z]|[0-9])+");
                     Matcher matcher = pattern.matcher(line);
                     while (matcher.find()) {
@@ -104,7 +102,8 @@ public class BoardScan {
                                 playerC = PieceColor.BLUE;
                                 break;
                             case "Y":
-                                playerC = PieceColor.YELLOW;                                break;
+                                playerC = PieceColor.YELLOW;
+                                break;
                             default:
                                 throw new SnakesAndLaddersException();
                         }
@@ -211,8 +210,6 @@ public class BoardScan {
     }
 
     /**
-     * 
-     *
      * @return String containing the contents of the Help.txt file for display in a textarea
      */
     public String readHelp() {

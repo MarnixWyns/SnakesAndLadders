@@ -1,5 +1,6 @@
 package be.kdg.SnakesAndLadders.view.Game;
 
+import be.kdg.SnakesAndLadders.model.Feedback;
 import be.kdg.SnakesAndLadders.model.Player;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
@@ -95,10 +96,25 @@ public class GamePresenter {
                 updateView();
             });
 
+            //feedback
+            view.getLblFeedbackName().setText("Feedback on " + model.getCurrentPlayer().getUsername() +"\'s throw:");
 
-            //TODO: RUBEN! Delete before final code deployment
-            view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
-                    + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+            if(startpos + dice == 100){
+                view.getLblFeedback().setText(Feedback.NINE.toString());
+            }else if(startpos + dice > model.getPlayerPos(model.getCurrentPlayer())){
+                view.getLblFeedback().setText(Feedback.SEVEN.toString());
+            } else if(startpos + dice < model.getPlayerPos(model.getCurrentPlayer())) {
+                view.getLblFeedback().setText(Feedback.EIGHT.toString());
+            } else {
+                switch (dice){
+                    case 1: view.getLblFeedback().setText(Feedback.ONE.toString()); break;
+                    case 2: view.getLblFeedback().setText(Feedback.TWO.toString()); break;
+                    case 3: view.getLblFeedback().setText(Feedback.THREE.toString()); break;
+                    case 4: view.getLblFeedback().setText(Feedback.FOUR.toString()); break;
+                    case 5: view.getLblFeedback().setText(Feedback.FIVE.toString()); break;
+                    case 6: view.getLblFeedback().setText(Feedback.SIX.toString()); break;
+                }
+            }
         });
 
         view.getBtnHome().setOnAction(event -> {

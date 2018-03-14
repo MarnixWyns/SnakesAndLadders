@@ -68,6 +68,7 @@ public class GameView extends BorderPane {
     private Label lblplayerName;
     private Label lblturnMessage;
     private Label lblFeedback;
+    private Label lblFeedbackName;
 
     private VBox gridFeedback;
     private VBox gameButtons;
@@ -146,7 +147,8 @@ public class GameView extends BorderPane {
 
         lblplayerName = new Label("Player");
         lblturnMessage = new Label("It's your turn!!");
-        lblFeedback = new Label("Roll the damn dice!");
+        lblFeedback = new Label("Ready for the first throw!");
+        lblFeedbackName = new Label("   ");
 
         //VBoxes initialiseren
         gridFeedback = new VBox();
@@ -187,7 +189,7 @@ public class GameView extends BorderPane {
         boardGrid.setGridLinesVisible(true);
         boardGrid.setBackground(new Background(new BackgroundImage(new Image("BackgroundImages/normal.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard)));
         boardBackground.add(boardGrid,0,0);
-        boardBackground.setPadding(new Insets(30, 0, 30, 90));
+        boardBackground.setPadding(new Insets(30, 0, 10, 90));
 
 
         //changing pawns to acceptable size
@@ -221,10 +223,13 @@ public class GameView extends BorderPane {
 
 
         //VBox layout
-        gridFeedback.setSpacing(10);
-        lblFeedback.setPadding(new Insets(10,50,0,150));
+        lblFeedback.setPadding(new Insets(0,0,0,90));
+        lblFeedbackName.setPadding(new Insets(0,0,0,90));
         lblFeedback.setFont(new Font(30));
-        gridFeedback.getChildren().addAll(boardBackground,lblFeedback);
+        lblFeedbackName.setFont(new Font(15));
+        gridFeedback.getChildren().add(boardBackground);
+        gridFeedback.getChildren().add(lblFeedbackName);
+        gridFeedback.getChildren().add(lblFeedback);
         setLeft(gridFeedback);
 
 
@@ -337,6 +342,10 @@ public class GameView extends BorderPane {
 
     public GridPane getBoardGrid() {
         return boardGrid;
+    }
+
+    public Label getLblFeedbackName() {
+        return lblFeedbackName;
     }
 
     public Label getLblFeedback() {

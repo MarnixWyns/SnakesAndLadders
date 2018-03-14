@@ -24,21 +24,21 @@ public class GamePresenter {
     private GameView view;
     private SnakesAndLadders model;
     private Stage primaryStage;
-    private ArrayList<String> scoreboard;
+    private ArrayList<String> winners;
+    private ArrayList<Player> finishedPlayers;
+    private int leastAmountOfPlayers;
     private int dice;
-    private int teller = 1;
     private DialogThrower dialogThrower;
-    private int nPlayers;
+
 
 
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
         this.view = view;
         this.model = snakesAndLadders;
+        winners = new ArrayList<>();
+        finishedPlayers = new ArrayList<>();
         this.primaryStage = primarystage;
-        scoreboard = new ArrayList<>();
         dialogThrower = new DialogThrower();
-
-        nPlayers = model.getPlayers().size();
 
         addEventHandlers();
         updateView();
@@ -55,6 +55,9 @@ public class GamePresenter {
             view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
         }
 
+        view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
+
+        leastAmountOfPlayers = model.getPlayers().size();
 
         //Roll dice on button press
         view.getBtnRollDice().setOnAction(event -> {
@@ -64,12 +67,6 @@ public class GamePresenter {
             SequentialTransition stMain = new SequentialTransition();
             SequentialTransition st = new SequentialTransition();
             int startpos = model.getCurrentPlayer().getPlayerPos();
-
-
-            if (teller > model.getPlayers().size()) {
-                st.getChildren().clear();
-                teller = 1;
-            }
 
 
             dice = model.throwDice();
@@ -116,9 +113,11 @@ public class GamePresenter {
                 checkPos();
 
                 model.nextPlayer();
-                teller++;
+                view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
+
                 updateView();
             });
+
 
             //TODO: RUBEN! Delete before final code deployment
             view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
@@ -142,7 +141,6 @@ public class GamePresenter {
             StartView startView = new StartView();
             StartPresenter startPresenter = new StartPresenter(startView, model, primaryStage);
             model.getPlayers().clear();
-            teller = 1;
             model.setCurrentPlayer(0);
 
             if (alert.getResult() == cancel) {
@@ -206,31 +204,11 @@ public class GamePresenter {
     }
 
     private void checkPos() {
-
-        ArrayList<Player> winners = new ArrayList<>();
-
         if (model.getCurrentPlayer().getPlayerPos() == 100) {
             dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
             System.out.println("100! " + model.getCurrentPlayer().getUsername());
-            winners.add(model.getCurrentPlayer());
-
-            //TODO: Disable player
+            winners.add(model.getCurrentPlayer().getUsername());
         }
-
-        if (winners.size() == nPlayers) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("End Of Game");
-            alert.setHeaderText(null);
-
-            StringBuilder st = new StringBuilder("Ranking: \n");
-            int number = 1;
-            for (String s : scoreboard) {
-                st.append(number++).append(". ").append(s).append("\n");
-            }
-            alert.setContentText(st.toString());
-        }
-
-
     }
 
     private void updateView() {
@@ -262,94 +240,35 @@ public class GamePresenter {
                         + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
                 model.nextPlayer();
-                teller++;
 
 
             }
 
         }
 
-        /*
-        //TODO: Clean redundant code
-        if (model.getCurrentPlayerId() == 0 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayer().getUsername());
-            model.getCurrentPlayer().setPlayer1Finished(true);
-
-            view.getIvPlayer1().setVisible(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayer().getUsername());
-            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
-            alert.show();
-
-            model.getPlayers().remove(model.getCurrentPlayer());
-
+        if(model.getPlayerPos(model.getCurrentPlayer()) == 100){
+            if(!finishedPlayers.contains(model.getCurrentPlayer())){
+                finishedPlayers.add(model.getCurrentPlayer());
+            }
+            model.nextPlayer();
+            view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
+            updateView();
         }
-        if (model.getCurrentPlayerId() == 1 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayer().getUsername());
-            model.getCurrentPlayer().setPlayer2Finished(true);
 
-            view.getIvPlayer2().setVisible(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayer().getUsername());
-            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
-            alert.show();
-
-
-            model.getPlayers().remove(model.getCurrentPlayer());
-
-        }
-        if (model.getCurrentPlayerId() == 2 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayer().getUsername());
-            model.getCurrentPlayer().setPlayer3Finished(true);
-
-            view.getIvPlayer3().setVisible(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayer().getUsername());
-            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
-            alert.show();
-
-
-            model.getPlayers().remove(model.getCurrentPlayer());
-
-        }
-        if (model.getCurrentPlayerId() == 3 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayer().getUsername());
-            model.getCurrentPlayer().setPlayer4Finished(true);
-
-            view.getIvPlayer4().setVisible(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayer().getUsername());
-            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
-            alert.show();
-
-            model.getPlayers().remove(model.getCurrentPlayer());
-
-        }
-        */
-
-        if (model.getPlayers().size() == 1) {
+        if (finishedPlayers.size() + 1 == leastAmountOfPlayers) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("End Of Game");
-            alert.setHeaderText(null);
+            alert.setHeaderText("Ranking:");
 
-            String st = "Ranking: \n";
+            StringBuilder st = new StringBuilder("Ranking: \n");
             int number = 1;
-            for (String s : scoreboard) {
-                st += number + ". " + s + "\n";
+            for (Player s : finishedPlayers) {
+                st.append(number).append(". ").append(s.getUsername()).append("\n");
             }
-            alert.setContentText(st);
-            /*
-            alert.setContentText("Ranking: \n" +
-                    "First place : " + scoreboard.get(0) + "\n" +
-                    "Second Place : " + scoreboard.get(1) + "\n" +
-                    "Third Place : " + scoreboard.get(2) + "\n" +
-                    "Fourth Place : " + scoreboard.get(3));
-            */
+            alert.setContentText(st.toString());
+
             alert.show();
+            view.getBtnRollDice().setDisable(true);
 
         }
     }

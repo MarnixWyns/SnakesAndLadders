@@ -237,22 +237,13 @@ public class GamePresenter {
             }
 
         }
-
-        /*
-        //TODO: Clean redundant code
-        if (model.getCurrentPlayerId() == 0 && model.getCurrentPlayer().getPlayerPos() == 100) {
-            scoreboard.add(model.getCurrentPlayer().getUsername());
-            model.getCurrentPlayer().setPlayer1Finished(true);
-
-            view.getIvPlayer1().setVisible(false);
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(model.getCurrentPlayer().getUsername());
-            alert.setContentText(model.getCurrentPlayer().getUsername() + " has finished");
-            alert.show();
-
-            model.getPlayers().remove(model.getCurrentPlayer());
-
+        if(model.getPlayerPos(model.getCurrentPlayer()) == 100){
+            if(!finishedPlayers.contains(model.getCurrentPlayer())){
+                finishedPlayers.add(model.getCurrentPlayer());
+            }
+            model.nextPlayer();
+            view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
+            updateView();
         }
         if (model.getCurrentPlayerId() == 1 && model.getCurrentPlayer().getPlayerPos() == 100) {
             scoreboard.add(model.getCurrentPlayer().getUsername());

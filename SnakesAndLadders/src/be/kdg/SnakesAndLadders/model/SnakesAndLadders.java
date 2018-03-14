@@ -159,6 +159,15 @@ public class SnakesAndLadders {
         return players.get(currentPlayer);
     }
 
+    public Player getPreviousPlayer(){
+        int n = currentPlayer - 1;
+        if (n == -1){
+            n = players.size() - 1;
+        }
+
+        return players.get(n);
+    }
+
     public int getPlayerPos(Player player) {
         return player.getPlayerPos();
     }

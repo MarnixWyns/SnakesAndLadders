@@ -71,7 +71,7 @@ public class GamePresenter {
 
                 model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
 
-                System.out.printf("\nStartpos %d\tdice %d\tcurrent %d", startpos, dice ,model.getCurrentPlayer().getPlayerPos());
+                System.out.printf("\nStartpos %d\tdice %d\tcurrent %d", startpos, dice, model.getCurrentPlayer().getPlayerPos());
 
                 stMain.getChildren().add(animateSnakesLadders(startpos));
 
@@ -195,8 +195,11 @@ public class GamePresenter {
             dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
             System.out.println("100! " + model.getCurrentPlayer().getUsername());
             winners.add(model.getCurrentPlayer().getUsername());
+            if (!finishedPlayers.contains(model.getCurrentPlayer())) {
+                System.out.println("added");
+                finishedPlayers.add(model.getCurrentPlayer());
+            }
         }
-
     }
 
     private void updateView() {
@@ -232,19 +235,17 @@ public class GamePresenter {
 
 
             }
-
         }
-        if(model.getPlayerPos(model.getCurrentPlayer()) == 100){
-            if(!finishedPlayers.contains(model.getCurrentPlayer())){
-                finishedPlayers.add(model.getCurrentPlayer());
-            }
+
+        while (model.getPlayerPos(model.getCurrentPlayer()) == 100) {
+            System.out.println("caught");
+
             model.nextPlayer();
             view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
             updateView();
         }
-
-
-        if (model.getPlayers().size() == 1) {
+        if (finishedPlayers.size() + 1 == model.getPlayers().size()) {
+            System.out.println(finishedPlayers.size());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("End Of Game");
             alert.setHeaderText("Ranking:");
@@ -261,20 +262,28 @@ public class GamePresenter {
         }
     }
 
-    private ImageView getCurrentIV(){
+    private ImageView getCurrentIV() {
         int index = model.getPlayers().indexOf(model.getCurrentPlayer());
         ImageView iv = null;
 
-        switch (index){
-            case 0: iv = view.getIvPlayer1(); break;
-            case 1: iv = view.getIvPlayer2(); break;
-            case 2: iv = view.getIvPlayer3(); break;
-            case 3: iv = view.getIvPlayer4(); break;
+        switch (index) {
+            case 0:
+                iv = view.getIvPlayer1();
+                break;
+            case 1:
+                iv = view.getIvPlayer2();
+                break;
+            case 2:
+                iv = view.getIvPlayer3();
+                break;
+            case 3:
+                iv = view.getIvPlayer4();
+                break;
         }
         return iv;
     }
 
-    private SequentialTransition animateRebound(int startpos){
+    private SequentialTransition animateRebound(int startpos) {
         SequentialTransition tr = new SequentialTransition();
 
         int moves = 0;
@@ -312,7 +321,7 @@ public class GamePresenter {
         return tr;
     }
 
-    private SequentialTransition animateMovement(int startpos){
+    private SequentialTransition animateMovement(int startpos) {
         SequentialTransition st = new SequentialTransition();
 
         for (int i = startpos; i < startpos + dice; i++) {
@@ -336,7 +345,7 @@ public class GamePresenter {
         return st;
     }
 
-    private TranslateTransition animateSnakesLadders(int startpos){
+    private TranslateTransition animateSnakesLadders(int startpos) {
         TranslateTransition ttSL = new TranslateTransition();
         ttSL.setNode(getCurrentIV());
 

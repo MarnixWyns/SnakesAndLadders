@@ -31,7 +31,6 @@ public class GamePresenter {
     private DialogThrower dialogThrower;
 
 
-
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
         this.view = view;
         this.model = snakesAndLadders;

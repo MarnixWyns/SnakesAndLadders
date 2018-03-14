@@ -193,11 +193,26 @@ public class GamePresenter {
     private void checkPos() {
         if (model.getCurrentPlayer().getPlayerPos() == 100) {
             dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
-            System.out.println("100! " + model.getCurrentPlayer().getUsername());
             winners.add(model.getCurrentPlayer().getUsername());
             if (!finishedPlayers.contains(model.getCurrentPlayer())) {
-                System.out.println("added");
                 finishedPlayers.add(model.getCurrentPlayer());
+            }
+
+            if (finishedPlayers.size() + 1 == model.getPlayers().size()) {
+                finishedPlayers.add(model.getCurrentPlayer());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("End Of Game");
+                alert.setHeaderText("Ranking:");
+
+                StringBuilder st = new StringBuilder("Ranking: \n");
+                int number = 1;
+                for (Player s : finishedPlayers) {
+                    st.append(number++).append(". ").append(s.getUsername()).append("\n");
+                }
+                alert.setContentText(st.toString());
+
+                alert.show();
+                view.getBtnRollDice().setDisable(true);
             }
         }
     }
@@ -246,22 +261,7 @@ public class GamePresenter {
             view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
             updateView();
         }
-        if (finishedPlayers.size() + 1 == model.getPlayers().size()) {
-            System.out.println(finishedPlayers.size());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("End Of Game");
-            alert.setHeaderText("Ranking:");
 
-            StringBuilder st = new StringBuilder("Ranking: \n");
-            int number = 1;
-            for (Player s : finishedPlayers) {
-                st.append(number).append(". ").append(s.getUsername()).append("\n");
-            }
-            alert.setContentText(st.toString());
-
-            alert.show();
-            view.getBtnRollDice().setDisable(true);
-        }
     }
 
     private ImageView getCurrentIV() {

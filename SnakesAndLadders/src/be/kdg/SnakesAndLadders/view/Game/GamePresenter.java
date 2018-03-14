@@ -26,8 +26,9 @@ public class GamePresenter {
     private Stage primaryStage;
     private ArrayList<String> scoreboard;
     private int dice;
+    private int teller = 1;
     private DialogThrower dialogThrower;
-
+    private int nPlayers;
 
 
     public GamePresenter(GameView view, SnakesAndLadders snakesAndLadders, Stage primarystage) {
@@ -37,6 +38,7 @@ public class GamePresenter {
         scoreboard = new ArrayList<>();
         dialogThrower = new DialogThrower();
 
+        nPlayers = model.getPlayers().size();
 
         addEventHandlers();
         updateView();
@@ -59,6 +61,13 @@ public class GamePresenter {
             SequentialTransition stMain = new SequentialTransition();
             SequentialTransition st = new SequentialTransition();
             int startpos = model.getCurrentPlayer().getPlayerPos();
+
+
+            if (teller > model.getPlayers().size()) {
+                st.getChildren().clear();
+                teller = 1;
+            }
+
 
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
@@ -151,6 +160,7 @@ public class GamePresenter {
                 checkPos();
 
                 model.nextPlayer();
+                teller++;
                 updateView();
             });
 
@@ -158,7 +168,6 @@ public class GamePresenter {
             view.getLblFeedback().setText("Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
                     + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
-            System.out.println(model.getCurrentPlayer().getUsername());
 
         });
 
@@ -177,6 +186,7 @@ public class GamePresenter {
             StartView startView = new StartView();
             StartPresenter startPresenter = new StartPresenter(startView, model, primaryStage);
             model.getPlayers().clear();
+            teller = 1;
             model.setCurrentPlayer(0);
 
             if (alert.getResult() == cancel) {
@@ -247,6 +257,21 @@ public class GamePresenter {
             dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
             System.out.println("100! " + model.getCurrentPlayer().getUsername());
             winners.add(model.getCurrentPlayer());
+
+            //TODO: Disable player
+        }
+
+        if (winners.size() == nPlayers) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("End Of Game");
+            alert.setHeaderText(null);
+
+            StringBuilder st = new StringBuilder("Ranking: \n");
+            int number = 1;
+            for (String s : scoreboard) {
+                st.append(number++).append(". ").append(s).append("\n");
+            }
+            alert.setContentText(st.toString());
         }
 
 
@@ -333,10 +358,12 @@ public class GamePresenter {
                         + " Pos: " + model.getCurrentPlayer().getPlayerPos());
 
                 model.nextPlayer();
+                teller++;
+
+
             }
 
         }
-        view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
 
         /*
         //TODO: Clean redundant code
@@ -399,12 +426,6 @@ public class GamePresenter {
 
         }
         */
-        
-        if(model.getCurrentPlayer().getPlayerPos() == 100){
-            model.nextPlayer();
-            updateView();
-        }
-
 
         if (model.getPlayers().size() == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

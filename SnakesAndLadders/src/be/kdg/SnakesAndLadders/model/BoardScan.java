@@ -211,6 +211,8 @@ public class BoardScan {
     }
 
     /**
+     * 
+     *
      * @return String containing the contents of the Help.txt file for display in a textarea
      */
     public String readHelp() {

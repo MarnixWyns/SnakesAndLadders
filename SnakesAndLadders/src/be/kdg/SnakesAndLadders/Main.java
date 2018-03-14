@@ -1,7 +1,4 @@
-package be.kdg.SnakesAndLadders;/*
- * Marnix Wyns
- * 2/02/2018
- */
+package be.kdg.SnakesAndLadders;
 
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.Start.StartPresenter;

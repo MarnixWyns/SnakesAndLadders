@@ -73,14 +73,12 @@ public class GamePresenter {
 
                 System.out.printf("\nStartpos %d\tdice %d\tcurrent %d", startpos, dice, model.getCurrentPlayer().getPlayerPos());
 
-                stMain.getChildren().add(animateSnakesLadders(startpos));
-
                 //TODO: Fix startpos calculation offset
-                /*
-                if (startpos + dice != model.getCurrentPlayer().getPlayerPos()) {
-                    stMain.getChildren().add(animateSnakesLadders(startpos));
+
+                if (100 - (startpos + dice - 100) != model.getCurrentPlayer().getPlayerPos()) {
+                    stMain.getChildren().add(animateSnakesLaddersRebound(100 - (startpos + dice - 100)));
                 }
-                */
+
 
             } else {
                 stMain.getChildren().add(animateMovement(startpos));
@@ -102,6 +100,8 @@ public class GamePresenter {
                 checkPos();
 
                 model.nextPlayer();
+
+                //TODO: Stackoverflow Error
                 view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
 
                 updateView();
@@ -241,6 +241,8 @@ public class GamePresenter {
             System.out.println("caught");
 
             model.nextPlayer();
+
+
             view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
             updateView();
         }
@@ -358,6 +360,24 @@ public class GamePresenter {
 
         ttSL.setByY(difRows * (view.getBoardGrid().getHeight() / 10));
         ttSL.setByX(difColumns * (view.getBoardGrid().getWidth() / 10));
+        ttSL.setDuration(Duration.millis(800));
+
+        return ttSL;
+    }
+
+    private TranslateTransition animateSnakesLaddersRebound(int startpos){
+        TranslateTransition ttSL = new TranslateTransition();
+        ttSL.setNode(getCurrentIV());
+
+        int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos + dice);
+
+        int start = model.translateToColumn(startpos + dice);
+        int stop = model.translateToColumn(model.getCurrentPlayer().getPlayerPos());
+
+        int difColumns = stop - start;
+
+        ttSL.setByY((difRows * (view.getBoardGrid().getHeight() / 10)) - (view.getBoardGrid().getHeight() / 10) );
+        ttSL.setByX((difColumns * (view.getBoardGrid().getWidth() / 10)) - (view.getBoardGrid().getHeight() / 10));
         ttSL.setDuration(Duration.millis(800));
 
         return ttSL;

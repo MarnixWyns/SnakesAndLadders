@@ -10,6 +10,7 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -82,20 +83,7 @@ public class GamePresenter {
                     tt.setByX(-view.getBoardGrid().getWidth() / 10);
                     tt.setDuration(Duration.millis(250));
 
-                    switch (teller) {
-                        case 1:
-                            tt.setNode(view.getIvPlayer1());
-                            break;
-                        case 2:
-                            tt.setNode(view.getIvPlayer2());
-                            break;
-                        case 3:
-                            tt.setNode(view.getIvPlayer3());
-                            break;
-                        case 4:
-                            tt.setNode(view.getIvPlayer4());
-                            break;
-                    }
+                    tt.setNode(getCurrentIV());
 
                     tr.getChildren().add(tt);
                     System.out.println("init");
@@ -109,20 +97,7 @@ public class GamePresenter {
                     tt.setByX(view.getBoardGrid().getWidth() / 10);
                     tt.setDuration(Duration.millis(250));
 
-                    switch (teller) {
-                        case 1:
-                            tt.setNode(view.getIvPlayer1());
-                            break;
-                        case 2:
-                            tt.setNode(view.getIvPlayer2());
-                            break;
-                        case 3:
-                            tt.setNode(view.getIvPlayer3());
-                            break;
-                        case 4:
-                            tt.setNode(view.getIvPlayer4());
-                            break;
-                    }
+                    tt.setNode(getCurrentIV());
 
                     System.out.println("rebound");
 
@@ -135,20 +110,7 @@ public class GamePresenter {
             } else {
                 for (int i = startpos; i < startpos + dice; i++) {
                     TranslateTransition tt = new TranslateTransition();
-                    switch (teller) {
-                        case 1:
-                            tt.setNode(view.getIvPlayer1());
-                            break;
-                        case 2:
-                            tt.setNode(view.getIvPlayer2());
-                            break;
-                        case 3:
-                            tt.setNode(view.getIvPlayer3());
-                            break;
-                        case 4:
-                            tt.setNode(view.getIvPlayer4());
-                            break;
-                    }
+                    tt.setNode(getCurrentIV());
 
 
                     if (i % 10 == 0) {
@@ -170,20 +132,7 @@ public class GamePresenter {
 
                 if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
                     TranslateTransition ttSL = new TranslateTransition();
-                    switch (teller) {
-                        case 1:
-                            ttSL.setNode(view.getIvPlayer1());
-                            break;
-                        case 2:
-                            ttSL.setNode(view.getIvPlayer2());
-                            break;
-                        case 3:
-                            ttSL.setNode(view.getIvPlayer3());
-                            break;
-                        case 4:
-                            ttSL.setNode(view.getIvPlayer4());
-                            break;
-                    }
+                    ttSL.setNode(getCurrentIV());
 
                     int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos + dice);
 
@@ -351,20 +300,7 @@ public class GamePresenter {
                     tt.setByX(-view.getBoardGrid().getWidth() / 10);
                     tt.setDuration(Duration.millis(250));
 
-                    switch (teller) {
-                        case 1:
-                            tt.setNode(view.getIvPlayer1());
-                            break;
-                        case 2:
-                            tt.setNode(view.getIvPlayer2());
-                            break;
-                        case 3:
-                            tt.setNode(view.getIvPlayer3());
-                            break;
-                        case 4:
-                            tt.setNode(view.getIvPlayer4());
-                            break;
-                    }
+                    tt.setNode(getCurrentIV());
 
                     tr.getChildren().add(tt);
                     System.out.println("init");
@@ -374,20 +310,7 @@ public class GamePresenter {
 
                 if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
                     TranslateTransition ttSL = new TranslateTransition();
-                    switch (teller) {
-                        case 1:
-                            ttSL.setNode(view.getIvPlayer1());
-                            break;
-                        case 2:
-                            ttSL.setNode(view.getIvPlayer2());
-                            break;
-                        case 3:
-                            ttSL.setNode(view.getIvPlayer3());
-                            break;
-                        case 4:
-                            ttSL.setNode(view.getIvPlayer4());
-                            break;
-                    }
+                    ttSL.setNode(getCurrentIV());
                 }
 
                 //Rebound after 100
@@ -396,20 +319,7 @@ public class GamePresenter {
                     tt.setByX(view.getBoardGrid().getWidth() / 10);
                     tt.setDuration(Duration.millis(250));
 
-                    switch (teller) {
-                        case 1:
-                            tt.setNode(view.getIvPlayer1());
-                            break;
-                        case 2:
-                            tt.setNode(view.getIvPlayer2());
-                            break;
-                        case 3:
-                            tt.setNode(view.getIvPlayer3());
-                            break;
-                        case 4:
-                            tt.setNode(view.getIvPlayer4());
-                            break;
-                    }
+                    tt.setNode(getCurrentIV());
 
                     System.out.println("rebound");
 
@@ -422,20 +332,8 @@ public class GamePresenter {
             } else {
                 for (int i = startpos; i < startpos + dice; i++) {
                     TranslateTransition tt = new TranslateTransition();
-                    switch (teller) {
-                        case 1:
-                            tt.setNode(view.getIvPlayer1());
-                            break;
-                        case 2:
-                            tt.setNode(view.getIvPlayer2());
-                            break;
-                        case 3:
-                            tt.setNode(view.getIvPlayer3());
-                            break;
-                        case 4:
-                            tt.setNode(view.getIvPlayer4());
-                            break;
-                    }
+                    tt.setNode(getCurrentIV());
+
 
 
                     if (i % 10 == 0) {
@@ -550,6 +448,19 @@ public class GamePresenter {
             alert.show();
 
         }
+    }
+
+    private ImageView getCurrentIV(){
+        int index = model.getPlayers().indexOf(model.getCurrentPlayer());
+        ImageView iv = null;
+
+        switch (index){
+            case 0: iv = view.getIvPlayer1(); break;
+            case 1: iv = view.getIvPlayer2(); break;
+            case 2: iv = view.getIvPlayer3(); break;
+            case 3: iv = view.getIvPlayer4(); break;
+        }
+        return iv;
     }
 }
 

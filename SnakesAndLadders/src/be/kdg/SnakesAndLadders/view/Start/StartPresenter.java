@@ -83,6 +83,8 @@ public class StartPresenter {
                     model.translateToColumn(model.getCurrentPlayer().getPlayerPos()), model.translateToRow(model.getCurrentPlayer().getPlayerPos()));
             model.nextPlayer();
 
+            gameView.getBtnSave().setDisable(true);
+
             //model.setCountPlayers(2);
         });
         view.getBtnHelp().setOnAction(event -> dt.throwHelpDialog());

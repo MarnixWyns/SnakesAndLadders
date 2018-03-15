@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class SnakesAndLadders {
     private ArrayList<Player> players = new ArrayList<>();
+    private Feedback feedback;
     private int currentPlayer;
     private Dice dice;
     private int boardSize;
@@ -125,6 +126,10 @@ public class SnakesAndLadders {
 
     public int getPlayerPos(Player player) {
         return player.getPlayerPos();
+    }
+
+    public Feedback getFeedback() {
+        return feedback;
     }
 }
 

@@ -40,6 +40,7 @@ public class GameView extends BorderPane {
     private Button btnExit;
     private Button btnHome;
     private Button btnHelp;
+    private Button btnSave;
 
     private final String DIEURL = "/DieImages/die";
 
@@ -109,6 +110,7 @@ public class GameView extends BorderPane {
         btnExit = new Button("Exit");
         btnHome = new Button("Home");
         btnHelp = new Button("Help");
+        btnSave = new Button("Save");
 
         //boardgrid initialiserenµ
         column1 = new ColumnConstraints(40);
@@ -244,7 +246,7 @@ public class GameView extends BorderPane {
         playerMessage.setPrefWidth(400);
         */
         gameButtons.setSpacing(10);
-        gameButtons.setPadding(new Insets(50,0,0,50));
+        gameButtons.setPadding(new Insets(0,0,0,50));
         gameButtons.getChildren().addAll(lblplayerName, lblturnMessage, ivDice, btnRollDice);
         lblplayerName.setFont(new Font(50));
         lblturnMessage.setFont(new Font(25));
@@ -261,12 +263,14 @@ public class GameView extends BorderPane {
 
         btnExit.setPrefSize(60, 10);
         btnHelp.setPrefSize(60,10);
+        btnSave.setPrefSize(60,10);
         btnHome.setPrefSize(60,10);
-        helpAndExit.getChildren().add(btnHelp);
+        helpAndExit.getChildren().add(btnSave);
         helpAndExit.getChildren().add(btnHome);
+        helpAndExit.getChildren().add(btnHelp);
         helpAndExit.getChildren().add(btnExit);
         helpAndExit.setSpacing(10);
-        setMargin(helpAndExit, new Insets(15, 15, 13, 800));
+        setMargin(helpAndExit, new Insets(15, 15, 13, 730));
         setBottom(helpAndExit);
 
     }
@@ -378,5 +382,9 @@ public class GameView extends BorderPane {
 
     public GridPane getPawnPane4() {
         return pawnPane4;
+    }
+
+    public Button getBtnSave() {
+        return btnSave;
     }
 }

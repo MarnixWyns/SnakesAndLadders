@@ -1,9 +1,16 @@
 package be.kdg.SnakesAndLadders.view;
 
+import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
+import be.kdg.SnakesAndLadders.view.Game.GameView;
 import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
 import be.kdg.SnakesAndLadders.view.Help.HelpView;
+import be.kdg.SnakesAndLadders.view.Setup.SetupView;
+import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
+import be.kdg.SnakesAndLadders.view.Start.StartView;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -17,6 +24,8 @@ import javafx.stage.Stage;
  */
 public class DialogThrower {
      private Alert alert;
+     private SnakesAndLadders model;
+     private Stage primaryStage;
 
     public DialogThrower() {
         alert = new Alert(Alert.AlertType.INFORMATION);
@@ -36,6 +45,26 @@ public class DialogThrower {
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.show();
+    }
+
+    public void throwHomeAlert(SnakesAndLadders model, Stage primaryStage, Node view){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Are you sure you want to return to start screen?\n");
+        alert.setTitle("Return to Start Screen");
+        alert.getButtonTypes().clear();
+        ButtonType cancel = new ButtonType("Cancel");
+        ButtonType yes = new ButtonType("Return");
+        alert.getButtonTypes().addAll(yes, cancel);
+        alert.showAndWait();
+
+        StartView startView = new StartView();
+        StartPresenter startPresenter = new StartPresenter(startView, model, primaryStage);
+        model.getPlayers().clear();
+        model.setCurrentPlayer(0);
+
+        if (alert.getResult() == cancel) {
+            alert.close();
+        } else view.getScene().setRoot(startView);
     }
 
     /**

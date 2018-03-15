@@ -26,6 +26,7 @@ public class SetupView extends BorderPane {
     private Button btnStartGame;
     private Button btnExitGame;
     private Button btnHelp;
+    private Button btnHome;
 
     private TextField tfP1name;
     private TextField tfP2name;
@@ -148,6 +149,7 @@ public class SetupView extends BorderPane {
         btnStartGame = new Button("Start");
         btnExitGame = new Button("Exit");
         btnHelp = new Button("Help");
+        btnHome = new Button("Home");
 
 
         tfP1name = new TextField();
@@ -377,10 +379,12 @@ public class SetupView extends BorderPane {
 
         btnExitGame.setPrefSize(60, 10);
         btnHelp.setPrefSize(60,10);
+        btnHome.setPrefSize(60,10);
+        helpAndExit.getChildren().add(btnHome);
         helpAndExit.getChildren().add(btnHelp);
         helpAndExit.getChildren().add(btnExitGame);
         helpAndExit.setSpacing(10);
-        setMargin(helpAndExit, new Insets(15, 15, 13, 900));
+        setMargin(helpAndExit, new Insets(0, 15, 13, 800));
         setBottom(helpAndExit);
 
         setBorder(border);
@@ -500,5 +504,9 @@ public class SetupView extends BorderPane {
 
     public Button getBtnHelp() {
         return btnHelp;
+    }
+
+    public Button getBtnHome() {
+        return btnHome;
     }
 }

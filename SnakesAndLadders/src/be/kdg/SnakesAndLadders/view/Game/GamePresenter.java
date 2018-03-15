@@ -67,7 +67,6 @@ public class GamePresenter {
 
                 model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
                 if (100 - (startpos + dice - 100) != model.getCurrentPlayer().getPlayerPos()) {
-                    System.out.println((startpos + dice - 100));
                     stMain.getChildren().add(animateSnakesLaddersRebound(100 - (startpos + dice - 100), (startpos + dice - 100)));
                 }
 
@@ -98,49 +97,59 @@ public class GamePresenter {
             });
 
             //feedback
-            view.getLblFeedbackName().setText("Feedback on " + model.getCurrentPlayer().getUsername() +"\'s throw:");
+            view.getLblFeedbackName().setText("Feedback on " + model.getCurrentPlayer().getUsername() + "\'s throw:");
 
-            if(startpos + dice == 100){
+
+            if (startpos + dice == 100) {
                 view.getLblFeedback().setText(Feedback.HUNDRED.toString());
-            }else if(startpos + dice > model.getPlayerPos(model.getCurrentPlayer())){
+            } else if (startpos + dice > model.getPlayerPos(model.getCurrentPlayer()) && startpos + dice < 100 || startpos + dice > 100 && model.getPlayerPos(model.getCurrentPlayer()) < 100 - (startpos + dice - 100)) {
                 view.getLblFeedback().setText(Feedback.DOWN.toString());
-            } else if(startpos + dice < model.getPlayerPos(model.getCurrentPlayer())) {
+            } else if (startpos + dice < model.getPlayerPos(model.getCurrentPlayer())) {
                 view.getLblFeedback().setText(Feedback.UP.toString());
             } else {
-                switch (dice){
-                    case 1: view.getLblFeedback().setText(Feedback.ONE.toString()); break;
-                    case 2: view.getLblFeedback().setText(Feedback.TWO.toString()); break;
-                    case 3: view.getLblFeedback().setText(Feedback.THREE.toString()); break;
-                    case 4: view.getLblFeedback().setText(Feedback.FOUR.toString()); break;
-                    case 5: view.getLblFeedback().setText(Feedback.FIVE.toString()); break;
-                    case 6: view.getLblFeedback().setText(Feedback.SIX.toString()); break;
+                switch (dice) {
+                    case 1:
+                        view.getLblFeedback().setText(Feedback.ONE.toString());
+                        break;
+                    case 2:
+                        view.getLblFeedback().setText(Feedback.TWO.toString());
+                        break;
+                    case 3:
+                        view.getLblFeedback().setText(Feedback.THREE.toString());
+                        break;
+                    case 4:
+                        view.getLblFeedback().setText(Feedback.FOUR.toString());
+                        break;
+                    case 5:
+                        view.getLblFeedback().setText(Feedback.FIVE.toString());
+                        break;
+                    case 6:
+                        view.getLblFeedback().setText(Feedback.SIX.toString());
+                        break;
                 }
             }
         });
 
-        view.getBtnHome().setOnAction(event -> {
+        view.getBtnSave().setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Are you sure you want to return to start screen?\n" +
-                    "Your progress won't be saved.");
-            alert.setTitle("Return to Start Screen");
+            alert.setTitle("Save Game");
+            alert.setHeaderText("Do you want to save the game?");
             alert.getButtonTypes().clear();
             ButtonType cancel = new ButtonType("Cancel");
-            ButtonType yes = new ButtonType("Return");
-            ButtonType save = new ButtonType("Save and Return");
-            alert.getButtonTypes().addAll(save, cancel, yes);
+            ButtonType saveExit = new ButtonType("Save and Exit");
+            alert.getButtonTypes().addAll(saveExit,cancel);
             alert.showAndWait();
 
-            StartView startView = new StartView();
-            StartPresenter startPresenter = new StartPresenter(startView, model, primaryStage);
-            model.getPlayers().clear();
-            model.setCurrentPlayer(0);
-
-            if (alert.getResult() == cancel) {
+            if(alert.getResult() == cancel){
                 event.consume();
-            } else if (alert.getResult() == save) {
+            } else {
                 model.getBoardScan().save(model.getDifficultyFile(), model.getPlayers());
-            } else view.getScene().setRoot(startView);
+                System.exit(0);
+            }
+        });
 
+        view.getBtnHome().setOnAction(event -> {
+            dialogThrower.throwHomeAlert(model, primaryStage, view);
         });
 
 
@@ -152,15 +161,11 @@ public class GamePresenter {
             alert.getButtonTypes().clear();
             ButtonType cancel = new ButtonType("Cancel");
             ButtonType yes = new ButtonType("Exit");
-            ButtonType save = new ButtonType("Save and Quit");
-            alert.getButtonTypes().addAll(save, cancel, yes);
+            alert.getButtonTypes().addAll(yes, cancel);
             alert.showAndWait();
 
             if (alert.getResult() == cancel) {
                 event.consume();
-            } else if (alert.getResult() == save) {
-                model.getBoardScan().save(model.getDifficultyFile(), model.getPlayers());
-                System.exit(0);
             } else System.exit(0);
         });
 
@@ -195,7 +200,7 @@ public class GamePresenter {
 
     private void checkPos() {
         if (model.getCurrentPlayer().getPlayerPos() == 100) {
-            dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
+
             if (!finishedPlayers.contains(model.getCurrentPlayer())) {
                 finishedPlayers.add(model.getCurrentPlayer());
             }
@@ -203,7 +208,7 @@ public class GamePresenter {
             if (finishedPlayers.size() + 1 == model.getPlayers().size()) {
 
                 for (Player player : model.getPlayers()) {
-                    if (!finishedPlayers.contains(player)){
+                    if (!finishedPlayers.contains(player)) {
                         finishedPlayers.add(player);
                     }
                 }
@@ -221,7 +226,12 @@ public class GamePresenter {
 
                 alert.show();
                 view.getBtnRollDice().setDisable(true);
+            } else {
+                dialogThrower.throwAlert(Alert.AlertType.INFORMATION, "A player has finished", "", model.getCurrentPlayer().getUsername() + " has finished!");
+
             }
+
+
         }
     }
 
@@ -388,7 +398,7 @@ public class GamePresenter {
         return ttSL;
     }
 
-    private TranslateTransition animateSnakesLaddersRebound(int startpos, int rebound){
+    private TranslateTransition animateSnakesLaddersRebound(int startpos, int rebound) {
         TranslateTransition ttSL = new TranslateTransition();
         ttSL.setNode(getCurrentIV());
 

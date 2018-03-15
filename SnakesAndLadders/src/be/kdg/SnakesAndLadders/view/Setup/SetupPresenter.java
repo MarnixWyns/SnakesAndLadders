@@ -47,6 +47,10 @@ public class SetupPresenter {
 
     private void addEventHandlers() {
 
+        view.getBtnHome().setOnAction(event -> {
+            dialogThrower.throwHomeAlert(model, primaryStage, view);
+        });
+
         //check and delete if playernames exceed limit
         view.getTfP1name().setOnKeyTyped(event -> {
             if (view.getTfP1name().getLength() >= 10) {

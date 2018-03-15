@@ -71,6 +71,23 @@ public class StartPresenter {
 
             model.setDifficultyFile(new File("BoardLayouts/" + model.getBoardScan().getBoard().getBgPath().substring(0, model.getBoardScan().getBoard().getBgPath().indexOf('.')) + ".txt"));
 
+            switch (model.getPlayers().size()){
+                case 2: {
+                    gameView.getIvPlayer1().setImage(new Image(model.getPlayers().get(0).getIvPath()));
+                    gameView.getIvPlayer2().setImage(new Image(model.getPlayers().get(1).getIvPath()));
+                } break;
+                case 3: {
+                    gameView.getIvPlayer1().setImage(new Image(model.getPlayers().get(0).getIvPath()));
+                    gameView.getIvPlayer2().setImage(new Image(model.getPlayers().get(1).getIvPath()));
+                    gameView.getIvPlayer3().setImage(new Image(model.getPlayers().get(2).getIvPath()));
+                } break;
+                case 4: {
+                    gameView.getIvPlayer1().setImage(new Image(model.getPlayers().get(0).getIvPath()));
+                    gameView.getIvPlayer2().setImage(new Image(model.getPlayers().get(1).getIvPath()));
+                    gameView.getIvPlayer3().setImage(new Image(model.getPlayers().get(2).getIvPath()));
+                    gameView.getIvPlayer4().setImage(new Image(model.getPlayers().get(3).getIvPath()));
+                }
+            }
             gameView.getPawnPane1().add(gameView.getIvPlayer1(), 0, 0);
             gameView.getPawnPane2().add(gameView.getIvPlayer2(), 1, 0);
             gameView.getPawnPane3().add(gameView.getIvPlayer3(), 0, 1);

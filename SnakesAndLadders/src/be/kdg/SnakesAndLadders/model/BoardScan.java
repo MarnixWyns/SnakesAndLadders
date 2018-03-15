@@ -1,5 +1,8 @@
 package be.kdg.SnakesAndLadders.model;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -88,15 +91,15 @@ public class BoardScan {
                         String name;
                         name = part.substring(part.indexOf('-', 3) + 1);
 
-                        PieceColor playerC;
+                        String ivPath;
                         switch (part.substring(part.indexOf('-') + 1, part.lastIndexOf('-'))) {
-                            case "R": playerC = PieceColor.RED; break;
-                            case "G": playerC = PieceColor.GREEN; break;
-                            case "B": playerC = PieceColor.BLUE; break;
-                            case "Y": playerC = PieceColor.YELLOW; break;
+                            case "R": ivPath = "PawnImages/red.png"; break;
+                            case "G": ivPath = "PawnImages/green.png"; break;
+                            case "B": ivPath = "PawnImages/blue.png"; break;
+                            case "Y": ivPath = "PawnImages/yellow.png"; break;
                             default: throw new SnakesAndLaddersException();
                         }
-                        players.add(new Player(playerC, name, pos));
+                        players.add(new Player(ivPath, name, pos));
                     }
 
                 } else throw new SnakesAndLaddersException("IllegalFileFormat");

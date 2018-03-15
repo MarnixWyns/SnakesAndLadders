@@ -12,6 +12,7 @@ public class Player {
     private Object color;
     private String username;
     private int playerPos;
+    private String ivPath;
 
 
     /**
@@ -29,12 +30,11 @@ public class Player {
     /**
      * Player constructor that takes an addition parameter containing a players positions for use in Save files.
      *
-     * @param color Enum given by readSave function that is obtained from save file
      * @param username String containing the username to be read from save file
      * @param playerPos int containing the current position to be read from save file
      */
-    public Player(Object color, String username, int playerPos) {
-        this.color = color;
+    public Player(String ivPath, String username, int playerPos) {
+        this.ivPath = ivPath;
         this.username = username;
         this.playerPos = playerPos;
     }
@@ -68,5 +68,9 @@ public class Player {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getIvPath() {
+        return ivPath;
     }
 }

@@ -90,28 +90,16 @@ public class BoardScan {
 
                         PieceColor playerC;
                         switch (part.substring(part.indexOf('-') + 1, part.lastIndexOf('-'))) {
-                            case "R":
-                                playerC = PieceColor.RED;
-                                break;
-                            case "G":
-                                playerC = PieceColor.GREEN;
-                                break;
-                            case "B":
-                                playerC = PieceColor.BLUE;
-                                break;
-                            case "Y":
-                                playerC = PieceColor.YELLOW;
-                                break;
-                            default:
-                                throw new SnakesAndLaddersException();
+                            case "R": playerC = PieceColor.RED; break;
+                            case "G": playerC = PieceColor.GREEN; break;
+                            case "B": playerC = PieceColor.BLUE; break;
+                            case "Y": playerC = PieceColor.YELLOW; break;
+                            default: throw new SnakesAndLaddersException();
                         }
-
                         players.add(new Player(playerC, name, pos));
-
                     }
 
                 } else throw new SnakesAndLaddersException("IllegalFileFormat");
-
             }
 
             if (isSaveFile) {

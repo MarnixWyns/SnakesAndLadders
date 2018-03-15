@@ -9,6 +9,7 @@ import be.kdg.SnakesAndLadders.view.Game.GamePresenter;
 import be.kdg.SnakesAndLadders.view.Game.GameView;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -220,13 +221,13 @@ public class SetupPresenter {
 
 
         //connect comboboxes to pawncolors and change accordingly
-        view.getColorPickerP1().setOnAction(event -> setPlayerColor(view.getColorPickerP1()));
+        view.getColorPickerP1().setOnAction(event -> setPlayerColor(view.getColorPickerP1(), view.getIvPlayer1()));
 
-        view.getColorPickerP2().setOnAction(event -> setPlayerColor(view.getColorPickerP2()));
+        view.getColorPickerP2().setOnAction(event -> setPlayerColor(view.getColorPickerP2(), view.getIvPlayer2()));
 
-        view.getColorPickerP3().setOnAction(event -> setPlayerColor(view.getColorPickerP3()));
+        view.getColorPickerP3().setOnAction(event -> setPlayerColor(view.getColorPickerP3(), view.getIvPlayer3()));
 
-        view.getColorPickerP4().setOnAction(event -> setPlayerColor(view.getColorPickerP4()));
+        view.getColorPickerP4().setOnAction(event -> setPlayerColor(view.getColorPickerP4(), view.getIvPlayer4()));
         view.getBtnHelp().setOnAction(event -> dialogThrower.throwHelpDialog());
     }
 
@@ -267,15 +268,15 @@ public class SetupPresenter {
      *
      * @param cb Takes a combobox to read and apply the selected color for
      */
-    private void setPlayerColor(ComboBox cb) {
+    private void setPlayerColor(ComboBox cb, ImageView iv) {
         if (cb.getSelectionModel().isSelected(0)) {
-            view.getIvPlayer4().setImage(view.getYellow());
+            iv.setImage(view.getYellow());
         } else if (cb.getSelectionModel().isSelected(1)) {
-            view.getIvPlayer4().setImage(view.getGreen());
+            iv.setImage(view.getGreen());
         } else if (cb.getSelectionModel().isSelected(2)) {
-            view.getIvPlayer4().setImage(view.getBlue());
+            iv.setImage(view.getBlue());
         } else if (cb.getSelectionModel().isSelected(3)) {
-            view.getIvPlayer4().setImage(view.getRed());
+            iv.setImage(view.getRed());
         }
     }
 

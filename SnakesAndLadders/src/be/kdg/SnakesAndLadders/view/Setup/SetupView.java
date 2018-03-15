@@ -436,6 +436,10 @@ public class SetupView extends BorderPane {
         return colorPickerP4;
     }
 
+    public ImageView getIvPlayer1() {
+        return ivPlayer1;
+    }
+
     ImageView getIvPlayer2() {
         return ivPlayer2;
     }

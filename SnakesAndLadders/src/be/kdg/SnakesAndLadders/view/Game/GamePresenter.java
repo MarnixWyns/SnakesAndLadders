@@ -4,8 +4,6 @@ import be.kdg.SnakesAndLadders.model.Feedback;
 import be.kdg.SnakesAndLadders.model.Player;
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
 import be.kdg.SnakesAndLadders.view.DialogThrower;
-import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
-import be.kdg.SnakesAndLadders.view.Start.StartView;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Alert;
@@ -20,8 +18,14 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
+/**
+ * Game presenter covering all the animations for player movement, dice rolls, feedback, exit and save buttons and more
+ *
+ * @author Marnix Wyns
+ * @author Ruben Vanloo
+ * @version 2.0
+ */
 public class GamePresenter {
     private GameView view;
     private SnakesAndLadders model;
@@ -76,7 +80,7 @@ public class GamePresenter {
 
                 model.getCurrentPlayer().addToPlayerPos(dice, model.getBoardScan().getBoard());
 
-                if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
+                if (startpos + dice != model.getCurrentPlayer().getPlayerPos()) {
                     stMain.getChildren().add(animateSnakesLadders(startpos));
                 }
             }
@@ -99,12 +103,11 @@ public class GamePresenter {
             //feedback
             view.getLblFeedbackName().setText("Feedback on " + model.getCurrentPlayer().getUsername() + "\'s throw:");
 
-
             if (startpos + dice == 100) {
                 view.getLblFeedback().setText(Feedback.HUNDRED.toString());
-            } else if (startpos + dice > model.getPlayerPos(model.getCurrentPlayer()) && startpos + dice < 100 || startpos + dice > 100 && model.getPlayerPos(model.getCurrentPlayer()) < 100 - (startpos + dice - 100)) {
+            } else if (startpos + dice > model.getCurrentPlayer().getPlayerPos() && startpos + dice < 100 || startpos + dice > 100 && model.getCurrentPlayer().getPlayerPos() < 100 - (startpos + dice - 100)) {
                 view.getLblFeedback().setText(Feedback.DOWN.toString());
-            } else if (startpos + dice < model.getPlayerPos(model.getCurrentPlayer())) {
+            } else if (startpos + dice < model.getCurrentPlayer().getPlayerPos()) {
                 view.getLblFeedback().setText(Feedback.UP.toString());
             } else {
                 switch (dice) {
@@ -137,10 +140,10 @@ public class GamePresenter {
             alert.getButtonTypes().clear();
             ButtonType cancel = new ButtonType("Cancel");
             ButtonType saveExit = new ButtonType("Save and Exit");
-            alert.getButtonTypes().addAll(saveExit,cancel);
+            alert.getButtonTypes().addAll(saveExit, cancel);
             alert.showAndWait();
 
-            if(alert.getResult() == cancel){
+            if (alert.getResult() == cancel) {
                 event.consume();
             } else {
                 model.getBoardScan().save(model.getDifficultyFile(), model.getPlayers());
@@ -148,9 +151,7 @@ public class GamePresenter {
             }
         });
 
-        view.getBtnHome().setOnAction(event -> {
-            dialogThrower.throwHomeAlert(model, primaryStage, view);
-        });
+        view.getBtnHome().setOnAction(event -> dialogThrower.throwHomeAlert(model, primaryStage, view));
 
 
         //exitbutton intelligence
@@ -288,7 +289,7 @@ public class GamePresenter {
 
         }
 
-        while (model.getPlayerPos(model.getCurrentPlayer()) == 100) {
+        while (model.getCurrentPlayer().getPlayerPos() == 100) {
             model.nextPlayer();
 
             view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
@@ -335,7 +336,7 @@ public class GamePresenter {
             moves++;
         }
 
-        if (startpos + dice != model.getPlayerPos(model.getCurrentPlayer())) {
+        if (startpos + dice != model.getCurrentPlayer().getPlayerPos()) {
             TranslateTransition ttSL = new TranslateTransition();
             ttSL.setNode(getCurrentIV());
         }
@@ -384,7 +385,7 @@ public class GamePresenter {
         TranslateTransition ttSL = new TranslateTransition();
         ttSL.setNode(getCurrentIV());
 
-        int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos + dice);
+        int difRows = model.translateToRow(model.getCurrentPlayer().getPlayerPos()) - model.translateToRow(startpos + dice);
 
         int start = model.translateToColumn(startpos + dice);
         int stop = model.translateToColumn(model.getCurrentPlayer().getPlayerPos());
@@ -402,7 +403,7 @@ public class GamePresenter {
         TranslateTransition ttSL = new TranslateTransition();
         ttSL.setNode(getCurrentIV());
 
-        int difRows = model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) - model.translateToRow(startpos + dice);
+        int difRows = model.translateToRow(model.getCurrentPlayer().getPlayerPos()) - model.translateToRow(startpos + dice);
 
         int start = model.translateToColumn(startpos + dice - (startpos + dice - rebound));
         int stop = model.translateToColumn(model.getCurrentPlayer().getPlayerPos());

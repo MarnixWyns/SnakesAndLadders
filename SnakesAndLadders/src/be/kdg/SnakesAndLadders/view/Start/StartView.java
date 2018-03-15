@@ -44,7 +44,6 @@ public class StartView extends BorderPane {
     private Image background;
 
 
-
     public StartView() {
         initialiseNodes();
         layoutNodes();
@@ -83,16 +82,16 @@ public class StartView extends BorderPane {
 
         //adjust background:
         background = new Image("/BackgroundImages/background.png");
-        backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
+        backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
         backGround1 = new Background(new BackgroundImage(background,
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize1));
         setBackground(backGround1);
     }
 
     private void layoutNodes() {
 
         btnExit.setPrefSize(60, 10);
-        btnHelp.setPrefSize(60,10);
+        btnHelp.setPrefSize(60, 10);
         helpAndExit.getChildren().add(btnHelp);
         helpAndExit.getChildren().add(btnExit);
         helpAndExit.setSpacing(10);
@@ -102,8 +101,8 @@ public class StartView extends BorderPane {
 
         //add buttons to gridpane and change their layout
         buttons.setSpacing(25);
-        btnNewGame.setPrefSize(200,50);
-        btnLoadGame.setPrefSize(200,50);
+        btnNewGame.setPrefSize(200, 50);
+        btnLoadGame.setPrefSize(200, 50);
         btnNewGame.setFont(new Font(20));
         btnLoadGame.setFont(new Font(20));
 
@@ -121,22 +120,21 @@ public class StartView extends BorderPane {
         newGame.getChildren().addAll(IvRightSnake, btnNewGame, IvLeftSnake);
 
 
-        buttons.getChildren().addAll(lblName, newGame,loadGame);
+        buttons.getChildren().addAll(lblName, newGame, loadGame);
         setLeft(buttons);
         buttons.setAlignment(Pos.CENTER);
-        setMargin(buttons, new Insets(0,0,0,90));
-
+        setMargin(buttons, new Insets(0, 0, 0, 90));
 
 
         lblName.setFont(Font.font("Arial", 30));
-        lblName.setPadding(new Insets(0,0,25,0));
+        lblName.setPadding(new Insets(0, 0, 25, 0));
 
 
         //adding the text and gif to a vbox and align it on the right side of the screen
         text.getChildren().addAll(IvSnake, tAbout);
         text.setSpacing(40);
-        text.setPadding(new Insets(60,10,0,10));
-        tAbout.setFont(Font.font("Arial", FontPosture.ITALIC,20));
+        text.setPadding(new Insets(60, 10, 0, 10));
+        tAbout.setFont(Font.font("Arial", FontPosture.ITALIC, 20));
         setRight(text);
 
         setBorder(border);

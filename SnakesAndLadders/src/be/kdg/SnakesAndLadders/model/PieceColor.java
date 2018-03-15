@@ -1,7 +1,7 @@
 package be.kdg.SnakesAndLadders.model;
 
 /**
- * Enum for creating a more streamlined code file
+ * Enum for more streamlined player generation file
  *
  * @author Ruben Vanloo
  */

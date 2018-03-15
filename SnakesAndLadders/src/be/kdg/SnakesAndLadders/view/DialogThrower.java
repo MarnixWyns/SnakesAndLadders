@@ -1,10 +1,8 @@
 package be.kdg.SnakesAndLadders.view;
 
 import be.kdg.SnakesAndLadders.model.SnakesAndLadders;
-import be.kdg.SnakesAndLadders.view.Game.GameView;
 import be.kdg.SnakesAndLadders.view.Help.HelpPresenter;
 import be.kdg.SnakesAndLadders.view.Help.HelpView;
-import be.kdg.SnakesAndLadders.view.Setup.SetupView;
 import be.kdg.SnakesAndLadders.view.Start.StartPresenter;
 import be.kdg.SnakesAndLadders.view.Start.StartView;
 import javafx.scene.Node;
@@ -15,7 +13,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- *
  * In order to prevent long, duplicate code blocks for throwing alerts in presenter classes, this class features
  * a few overriding methods for quickly making an alert using only a single line of code.
  *
@@ -23,16 +20,14 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 public class DialogThrower {
-     private Alert alert;
-     private SnakesAndLadders model;
-     private Stage primaryStage;
+    private Alert alert;
 
     public DialogThrower() {
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Default");
     }
 
-     public void throwAlert(Alert.AlertType type, String title, String header, String content){
+    public void throwAlert(Alert.AlertType type, String title, String header, String content) {
         alert.setAlertType(type);
         alert.setTitle(title);
         alert.setHeaderText(header);
@@ -40,14 +35,14 @@ public class DialogThrower {
         alert.show();
     }
 
-     public void throwAlert(Alert.AlertType type, String title, String header){
+    public void throwAlert(Alert.AlertType type, String title, String header) {
         alert.setAlertType(type);
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.show();
     }
 
-    public void throwHomeAlert(SnakesAndLadders model, Stage primaryStage, Node view){
+    public void throwHomeAlert(SnakesAndLadders model, Stage primaryStage, Node view) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Are you sure you want to return to start screen?\n");
         alert.setTitle("Return to Start Screen");
@@ -71,7 +66,7 @@ public class DialogThrower {
      * Method that creates a new View containing the game help file. The file is read using the BoardScan method
      * readfile
      */
-    public void throwHelpDialog(){
+    public void throwHelpDialog() {
         HelpView helpView = new HelpView();
         HelpPresenter helpPresenter = new HelpPresenter(helpView);
         Stage helpStage = new Stage();

@@ -1,20 +1,12 @@
-package be.kdg.SnakesAndLadders.view.Setup;/*
- * Marnix Wyns
- * 2/02/2018
- */
+package be.kdg.SnakesAndLadders.view.Setup;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -217,7 +209,6 @@ public class SetupView extends BorderPane {
         boardBackground = new GridPane();
 
 
-
         //VBox initialiseren
         playerButtons = new VBox();
         playerNames = new VBox();
@@ -282,7 +273,6 @@ public class SetupView extends BorderPane {
         normal = new Background(new BackgroundImage(new Image("BackgroundImages/normal.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
         hard = new Background(new BackgroundImage(new Image("BackgroundImages/hard.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard));
     }
-
 
 
     private void layoutNodes() {
@@ -378,8 +368,8 @@ public class SetupView extends BorderPane {
 
 
         btnExitGame.setPrefSize(60, 10);
-        btnHelp.setPrefSize(60,10);
-        btnHome.setPrefSize(60,10);
+        btnHelp.setPrefSize(60, 10);
+        btnHome.setPrefSize(60, 10);
         helpAndExit.getChildren().add(btnHome);
         helpAndExit.getChildren().add(btnHelp);
         helpAndExit.getChildren().add(btnExitGame);
@@ -444,10 +434,6 @@ public class SetupView extends BorderPane {
 
     ComboBox getColorPickerP4() {
         return colorPickerP4;
-    }
-
-    ImageView getIvPlayer1() {
-        return ivPlayer1;
     }
 
     ImageView getIvPlayer2() {

@@ -1,20 +1,15 @@
-package be.kdg.SnakesAndLadders.view.Game;/*
- * Marnix Wyns
- * 2/02/2018
- */
+package be.kdg.SnakesAndLadders.view.Game;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-
 
 public class GameView extends BorderPane {
 
@@ -95,7 +90,6 @@ public class GameView extends BorderPane {
     Background backGround1;
 
 
-
     public GameView() {
         initialiseNodes();
         layoutNodes();
@@ -159,12 +153,12 @@ public class GameView extends BorderPane {
 
         //achtergrond veranderen
         backgroundGame = new Image("/BackgroundImages/background.png");
-        backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO,BackgroundSize.AUTO,false, false, true, false);
+        backgroundSize1 = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
         backGround1 = new Background(new BackgroundImage(backgroundGame,
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.CENTER, backgroundSize1));
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize1));
         setBackground(backGround1);
 
-        backgroundBoard = new BackgroundSize(400,400, false, false, true, false);
+        backgroundBoard = new BackgroundSize(400, 400, false, false, true, false);
 
 
         //pawns initialisation
@@ -190,7 +184,7 @@ public class GameView extends BorderPane {
         boardGrid.getRowConstraints().addAll(row1, row2, row3, row4, row5, row6, row7, row8, row9, row10);
         boardGrid.setGridLinesVisible(true);
         boardGrid.setBackground(new Background(new BackgroundImage(new Image("BackgroundImages/normal.jpg"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundBoard)));
-        boardBackground.add(boardGrid,0,0);
+        boardBackground.add(boardGrid, 0, 0);
         boardBackground.setPadding(new Insets(30, 0, 10, 90));
 
 
@@ -206,27 +200,27 @@ public class GameView extends BorderPane {
 
 
         //set padding for pawngrids
-        pawnPane1.setPadding(new Insets(3,0,0,3));
-        pawnPane2.setPadding(new Insets(3,0,0,20));
-        pawnPane3.setPadding(new Insets(20,0,0,3));
-        pawnPane4.setPadding(new Insets(20,0,0,20));
+        pawnPane1.setPadding(new Insets(3, 0, 0, 3));
+        pawnPane2.setPadding(new Insets(3, 0, 0, 20));
+        pawnPane3.setPadding(new Insets(20, 0, 0, 3));
+        pawnPane4.setPadding(new Insets(20, 0, 0, 20));
 
 
         //Putting pawns in the game at start position
-        pawnPane.add(ivPlayer1,0,0);
-        pawnPane.add(ivPlayer2,1,0);
-        pawnPane.add(ivPlayer3,0,1);
-        pawnPane.add(ivPlayer4, 1,1);
+        pawnPane.add(ivPlayer1, 0, 0);
+        pawnPane.add(ivPlayer2, 1, 0);
+        pawnPane.add(ivPlayer3, 0, 1);
+        pawnPane.add(ivPlayer4, 1, 1);
         pawnPane.setHgap(3);
         pawnPane.setVgap(3);
-        boardGrid.add(pawnPane,0,9);
-        pawnPane.setPadding(new Insets(3,0,0,3));
+        boardGrid.add(pawnPane, 0, 9);
+        pawnPane.setPadding(new Insets(3, 0, 0, 3));
         boardGrid.getStyleClass().add("boardgrid1");
 
 
         //VBox layout
-        lblFeedback.setPadding(new Insets(0,0,0,90));
-        lblFeedbackName.setPadding(new Insets(0,0,0,90));
+        lblFeedback.setPadding(new Insets(0, 0, 0, 90));
+        lblFeedbackName.setPadding(new Insets(0, 0, 0, 90));
         lblFeedback.setFont(new Font(30));
         lblFeedbackName.setFont(new Font(15));
         gridFeedback.getChildren().add(boardBackground);
@@ -246,25 +240,25 @@ public class GameView extends BorderPane {
         playerMessage.setPrefWidth(400);
         */
         gameButtons.setSpacing(10);
-        gameButtons.setPadding(new Insets(0,0,0,50));
+        gameButtons.setPadding(new Insets(0, 0, 0, 50));
         gameButtons.getChildren().addAll(lblplayerName, lblturnMessage, ivDice, btnRollDice);
         lblplayerName.setFont(new Font(50));
         lblturnMessage.setFont(new Font(25));
         ivDice.setFitHeight(200);
         ivDice.setFitWidth(200);
-        lblturnMessage.setPadding(new Insets(0,0,40,0));
+        lblturnMessage.setPadding(new Insets(0, 0, 40, 0));
         btnRollDice.setPrefWidth(150);
         btnRollDice.setPrefHeight(50);
         btnRollDice.setFont(new Font(20));
         setRight(gameButtons);
-        setMargin(gameButtons, new Insets(0,90,0,0));
+        setMargin(gameButtons, new Insets(0, 90, 0, 0));
         gameButtons.setAlignment(Pos.CENTER);
         gameButtons.setPrefWidth(300);
 
         btnExit.setPrefSize(60, 10);
-        btnHelp.setPrefSize(60,10);
-        btnSave.setPrefSize(60,10);
-        btnHome.setPrefSize(60,10);
+        btnHelp.setPrefSize(60, 10);
+        btnSave.setPrefSize(60, 10);
+        btnHome.setPrefSize(60, 10);
         helpAndExit.getChildren().add(btnSave);
         helpAndExit.getChildren().add(btnHome);
         helpAndExit.getChildren().add(btnHelp);
@@ -282,7 +276,7 @@ public class GameView extends BorderPane {
         private ImageView Ivplayer3;
         private ImageView Ivplayer4;
 
-        public Animation(){
+        public Animation() {
             this.initialiseNodes();
             this.layoutNodes();
             this.animate();
@@ -312,11 +306,11 @@ public class GameView extends BorderPane {
         return btnRollDice;
     }
 
-    ImageView getIvDice(){
+    ImageView getIvDice() {
         return ivDice;
     }
 
-    String getDIEURL(){
+    String getDIEURL() {
         return DIEURL;
     }
 
@@ -324,7 +318,7 @@ public class GameView extends BorderPane {
         return btnExit;
     }
 
-    Label getLblplayerName(){
+    Label getLblplayerName() {
         return lblplayerName;
     }
 

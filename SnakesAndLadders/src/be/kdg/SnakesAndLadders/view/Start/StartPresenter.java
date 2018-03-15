@@ -15,7 +15,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-
+/**
+ * Start presenter that handles only a few basic tasks, it handles as the start page that forwards the
+ * user to the setupView, or lets the user load an existing game from a save file.
+ *
+ * @author Ruben Vanloo
+ * @version 1.0
+ */
 public class StartPresenter {
     private StartView view;
     private SnakesAndLadders model;
@@ -63,11 +69,11 @@ public class StartPresenter {
             gameView.getScene().getWindow().setHeight(600);
             gameView.getScene().getWindow().setWidth(1024);
 
-            model.setDifficultyFile(new File("BoardLayouts/" + model.getBoardScan().getBoard().getBgPath().substring(0,model.getBoardScan().getBoard().getBgPath().indexOf('.')) + ".txt"));
+            model.setDifficultyFile(new File("BoardLayouts/" + model.getBoardScan().getBoard().getBgPath().substring(0, model.getBoardScan().getBoard().getBgPath().indexOf('.')) + ".txt"));
 
             gameView.getPawnPane1().add(gameView.getIvPlayer1(), 0, 0);
-            gameView.getPawnPane2().add(gameView.getIvPlayer2(), 1,0);
-            gameView.getPawnPane3().add(gameView.getIvPlayer3(), 0,1);
+            gameView.getPawnPane2().add(gameView.getIvPlayer2(), 1, 0);
+            gameView.getPawnPane3().add(gameView.getIvPlayer3(), 0, 1);
             gameView.getPawnPane4().add(gameView.getIvPlayer4(), 1, 1);
 
             gameView.getBoardGrid().add(gameView.getPawnPane1(),

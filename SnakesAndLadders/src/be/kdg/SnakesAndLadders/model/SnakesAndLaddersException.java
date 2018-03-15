@@ -1,7 +1,9 @@
 package be.kdg.SnakesAndLadders.model;
 
 /**
- * Add JavaDoc
+ * Custom exception to be thrown by game, mostly used by BoardScan class.
+ *
+ * @author Marnix Wyns
  */
 public class SnakesAndLaddersException extends RuntimeException {
     public SnakesAndLaddersException() {

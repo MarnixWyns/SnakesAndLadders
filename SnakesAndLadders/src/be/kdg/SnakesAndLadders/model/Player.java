@@ -62,10 +62,6 @@ public class Player {
         return playerPos;
     }
 
-    public void setPlayerPos(int playerPos) {
-        this.playerPos = playerPos;
-    }
-
     public Object getColor() {
         return color;
     }

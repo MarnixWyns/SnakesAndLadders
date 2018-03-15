@@ -14,11 +14,16 @@ import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Setup presenter, handles the player creation, board switching and preview and feeds all the entered information into the model classes.
+ *
+ * @author Marnix Wyns
+ * @author Ruben Vanloo
+ */
 public class SetupPresenter {
     private SnakesAndLadders model;
 
@@ -47,9 +52,7 @@ public class SetupPresenter {
 
     private void addEventHandlers() {
 
-        view.getBtnHome().setOnAction(event -> {
-            dialogThrower.throwHomeAlert(model, primaryStage, view);
-        });
+        view.getBtnHome().setOnAction(event -> dialogThrower.throwHomeAlert(model, primaryStage, view));
 
         //check and delete if playernames exceed limit
         view.getTfP1name().setOnKeyTyped(event -> {
@@ -79,24 +82,24 @@ public class SetupPresenter {
         //startButton intelligence
         view.getBtnStartGame().setOnAction(event -> {
 
-            if(view.getOnePlayer().isSelected() && view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()){
+            if (view.getOnePlayer().isSelected() && view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "Player name is empty.");
                 return;
             }
-            if(view.getTwoPlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()))){
+            if (view.getTwoPlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()))) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "One of the player names is empty.");
                 return;
             }
-            if(view.getThreePlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()) || (view.getTfP3name() == null || view.getTfP3name().getText().trim().isEmpty()))){
+            if (view.getThreePlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()) || (view.getTfP3name() == null || view.getTfP3name().getText().trim().isEmpty()))) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "One of the player names is empty.");
                 return;
             }
-            if(view.getFourPlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()) || (view.getTfP3name() == null || view.getTfP3name().getText().trim().isEmpty()) || (view.getTfP4name() == null || view.getTfP4name().getText().trim().isEmpty()))){
+            if (view.getFourPlayers().isSelected() && ((view.getTfP1name() == null || view.getTfP1name().getText().trim().isEmpty()) || (view.getTfP2name() == null || view.getTfP2name().getText().trim().isEmpty()) || (view.getTfP3name() == null || view.getTfP3name().getText().trim().isEmpty()) || (view.getTfP4name() == null || view.getTfP4name().getText().trim().isEmpty()))) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "Player name empty!", "One of the player names is empty.");
                 return;
             }
-            if(!view.getHardDifficulty().isSelected() && !view.getNormalDifficulty().isSelected() && !view.getEasyDifficulty().isSelected()){
-                dialogThrower.throwAlert(Alert.AlertType.WARNING,"No difficulty selected", "Please select a difficulty");
+            if (!view.getHardDifficulty().isSelected() && !view.getNormalDifficulty().isSelected() && !view.getEasyDifficulty().isSelected()) {
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "No difficulty selected", "Please select a difficulty");
                 return;
             }
 
@@ -117,7 +120,6 @@ public class SetupPresenter {
                 players.add(new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText()));
                 players.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
                 players.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
-
 
 
                 //Should filter out all players that aren't valid
@@ -218,21 +220,13 @@ public class SetupPresenter {
 
 
         //connect comboboxes to pawncolors and change accordingly
-        view.getColorPickerP1().setOnAction(event -> {
-            setPlayerColor(view.getColorPickerP1());
-        });
+        view.getColorPickerP1().setOnAction(event -> setPlayerColor(view.getColorPickerP1()));
 
-        view.getColorPickerP2().setOnAction(event -> {
-            setPlayerColor(view.getColorPickerP2());
-        });
+        view.getColorPickerP2().setOnAction(event -> setPlayerColor(view.getColorPickerP2()));
 
-        view.getColorPickerP3().setOnAction(event -> {
-            setPlayerColor(view.getColorPickerP3());
-        });
+        view.getColorPickerP3().setOnAction(event -> setPlayerColor(view.getColorPickerP3()));
 
-        view.getColorPickerP4().setOnAction(event -> {
-            setPlayerColor(view.getColorPickerP4());
-        });
+        view.getColorPickerP4().setOnAction(event -> setPlayerColor(view.getColorPickerP4()));
         view.getBtnHelp().setOnAction(event -> dialogThrower.throwHelpDialog());
     }
 
@@ -241,20 +235,19 @@ public class SetupPresenter {
     }
 
     /**
-     *
      * Method that is called when a RadioButton is selected, the game file according to the selected radiobutton is read and
      * the path is stored in the model class. After this the background is set according to the image path read in the game file.
      *
      * @param difficulty string that is given with lowercase difficulty.
      */
-    private void setDifficulty(String difficulty){
+    private void setDifficulty(String difficulty) {
         ClassLoader classLoader = getClass().getClassLoader();
         try {
-            model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/" + difficulty +".txt").getFile()));
+            model.setDifficultyFile(new File(classLoader.getResource("BoardLayouts/" + difficulty + ".txt").getFile()));
             model.getBoardScan().readFile(model.getDifficultyFile());
-            try{
+            try {
                 view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image("Backgroundimages/" + model.getBoardScan().getBoard().getBgPath()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "Background error", "No such background image found.");
                 System.exit(1);
             }
@@ -269,13 +262,12 @@ public class SetupPresenter {
     }
 
     /**
-     *
      * method to remove duplicate code. Is given a combobox to read and depending on contents, saves player color
      * and sets the image in the game preview
      *
      * @param cb Takes a combobox to read and apply the selected color for
      */
-    private void setPlayerColor(ComboBox cb){
+    private void setPlayerColor(ComboBox cb) {
         if (cb.getSelectionModel().isSelected(0)) {
             view.getIvPlayer4().setImage(view.getYellow());
         } else if (cb.getSelectionModel().isSelected(1)) {

@@ -3,7 +3,6 @@ package be.kdg.SnakesAndLadders.model;
 import java.io.File;
 import java.util.ArrayList;
 
-
 /**
  * The main model class of the Snakes And Ladders game, this is the only class used for interfacing between the
  * different views and the accompanying game logic.
@@ -14,7 +13,6 @@ import java.util.ArrayList;
  */
 public class SnakesAndLadders {
     private ArrayList<Player> players = new ArrayList<>();
-    private Feedback feedback;
     private int currentPlayer;
     private Dice dice;
     private int boardSize;
@@ -122,14 +120,6 @@ public class SnakesAndLadders {
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayer);
-    }
-
-    public int getPlayerPos(Player player) {
-        return player.getPlayerPos();
-    }
-
-    public Feedback getFeedback() {
-        return feedback;
     }
 }
 

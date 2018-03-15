@@ -15,7 +15,7 @@ public class Main extends Application {
         StartView startView = new StartView();
 
         Scene startScene = new Scene(startView);
-        StartPresenter startPresenter = new StartPresenter(startView,model,primaryStage);
+        StartPresenter startPresenter = new StartPresenter(startView, model, primaryStage);
         primaryStage.setScene(startScene);
         primaryStage.setTitle("Snakes and Ladders");
         primaryStage.setResizable(false);

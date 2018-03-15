@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class GamePresenter {
     private GameView view;
@@ -100,11 +101,11 @@ public class GamePresenter {
             view.getLblFeedbackName().setText("Feedback on " + model.getCurrentPlayer().getUsername() +"\'s throw:");
 
             if(startpos + dice == 100){
-                view.getLblFeedback().setText(Feedback.NINE.toString());
+                view.getLblFeedback().setText(Feedback.HUNDRED.toString());
             }else if(startpos + dice > model.getPlayerPos(model.getCurrentPlayer())){
-                view.getLblFeedback().setText(Feedback.SEVEN.toString());
+                view.getLblFeedback().setText(Feedback.DOWN.toString());
             } else if(startpos + dice < model.getPlayerPos(model.getCurrentPlayer())) {
-                view.getLblFeedback().setText(Feedback.EIGHT.toString());
+                view.getLblFeedback().setText(Feedback.UP.toString());
             } else {
                 switch (dice){
                     case 1: view.getLblFeedback().setText(Feedback.ONE.toString()); break;
@@ -232,6 +233,11 @@ public class GamePresenter {
             dice = model.throwDice();
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
+            try {
+                Thread.sleep(1500);
+            } catch (InterruptedException e) {
+                dialogThrower.throwAlert(Alert.AlertType.WARNING, "AI time-out doesn't work", "");
+            }
             SequentialTransition stMain = new SequentialTransition();
             int startpos = model.getCurrentPlayer().getPlayerPos();
 
@@ -241,9 +247,16 @@ public class GamePresenter {
                 stMain.getChildren().add(animateRebound(startpos));
                 stMain.getChildren().add(animateSnakesLadders(startpos));
 
+                view.getLblFeedbackName().setText("AI:");
+                view.getLblFeedback().setText("I have moved!");
+
                 stMain.play();
                 view.getBtnRollDice().setDisable(true);
-                stMain.setOnFinished(event -> view.getLblplayerName().setText(model.getCurrentPlayer().getUsername()));
+                stMain.setOnFinished(event -> {
+                    model.nextPlayer();
+                    view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
+                    view.getBtnRollDice().setDisable(false);
+                });
 
             } else {
                 stMain.getChildren().add(animateMovement(startpos));
@@ -252,8 +265,8 @@ public class GamePresenter {
                 stMain.play();
                 view.getBtnRollDice().setDisable(true);
 
-                view.getLblFeedback().setText("AI Row: " + model.translateToRow(model.getPlayerPos(model.getCurrentPlayer())) + " Column: " + model.translateToColumn(model.getPlayerPos(model.getCurrentPlayer()))
-                        + " Pos: " + model.getCurrentPlayer().getPlayerPos());
+                view.getLblFeedbackName().setText("AI:");
+                view.getLblFeedback().setText("I have moved!");
 
                 stMain.setOnFinished(event -> {
                     model.nextPlayer();

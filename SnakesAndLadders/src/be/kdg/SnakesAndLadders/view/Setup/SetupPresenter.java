@@ -57,24 +57,28 @@ public class SetupPresenter {
 
         //check and delete if playernames exceed limit
         view.getTfP1name().setOnKeyTyped(event -> {
+            checkName(view.getTfP1name());
             if (view.getTfP1name().getLength() >= 10) {
                 event.consume();
             }
         });
 
         view.getTfP2name().setOnKeyTyped(event -> {
+            checkName(view.getTfP2name());
             if (view.getTfP2name().getLength() >= 10) {
                 event.consume();
             }
         });
 
         view.getTfP3name().setOnKeyTyped(event -> {
+            checkName(view.getTfP3name());
             if (view.getTfP3name().getLength() >= 10) {
                 event.consume();
             }
         });
 
         view.getTfP4name().setOnKeyTyped(event -> {
+            checkName(view.getTfP4name());
             if (view.getTfP4name().getLength() >= 10) {
                 event.consume();
             }
@@ -298,5 +302,12 @@ public class SetupPresenter {
         view.getIvPlayer2().setVisible(dis1);
         view.getIvPlayer3().setVisible(dis2);
         view.getIvPlayer4().setVisible(dis3);
+    }
+
+    private void checkName(TextField tf){
+        if (tf.getText().equalsIgnoreCase("compute")){
+            tf.setText("");
+            dialogThrower.throwAlert(Alert.AlertType.WARNING, "Invalid username", "You don't seem to speak binary to me...");
+        }
     }
 }

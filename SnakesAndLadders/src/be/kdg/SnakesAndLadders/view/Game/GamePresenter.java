@@ -54,6 +54,7 @@ public class GamePresenter {
             model.setSelectedBackground("BackgroundImages/normal.jpg");
             view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
         }
+        //change pawnIV's accordingly
         if(model.isNewGame()){
             switch (model.getColorChoice().get(0).toString().toLowerCase()){
                 case "yellow": view.getIvPlayer1().setImage(new Image("PawnImages/yellow.png")); break;
@@ -79,6 +80,10 @@ public class GamePresenter {
                 case "green": view.getIvPlayer4().setImage(new Image("PawnImages/green.png")); break;
                 case "red": view.getIvPlayer4().setImage(new Image("PawnImages/red.png")); break;
             }
+        }
+        //change pawnIV in case of AI
+        if(model.isNewGame() && model.getPlayers().get(1).getUsername().toLowerCase().equals("computer")){
+            view.getIvPlayer2().setImage(new Image("PawnImages/Black.png"));
         }
 
         view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());

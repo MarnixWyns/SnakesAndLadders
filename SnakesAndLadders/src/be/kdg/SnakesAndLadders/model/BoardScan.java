@@ -97,6 +97,7 @@ public class BoardScan {
                             case "G": ivPath = "PawnImages/green.png"; break;
                             case "B": ivPath = "PawnImages/blue.png"; break;
                             case "Y": ivPath = "PawnImages/yellow.png"; break;
+                            case "Z": ivPath = "PawnImages/black.png"; break;
                             default: throw new SnakesAndLaddersException();
                         }
                         players.add(new Player(ivPath, name, pos));
@@ -173,6 +174,8 @@ public class BoardScan {
                     case "green":
                         iplayer.append("G");
                         break;
+                    case "black":
+                        iplayer.append("Z");
                 }
                 iplayer.append("-");
 

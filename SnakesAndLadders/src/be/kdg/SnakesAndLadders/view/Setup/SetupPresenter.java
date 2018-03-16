@@ -131,7 +131,7 @@ public class SetupPresenter {
                 }
 
                 if (model.getPlayers().size() == 1 || view.getOnePlayer().isSelected()) {
-                    model.addPlayer(new Player(PieceColor.YELLOW, "Computer"));
+                    model.addPlayer(new Player(PieceColor.BLACK, "Computer"));
                 }
 
                 //Switch between scenes from setup to Game

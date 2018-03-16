@@ -245,7 +245,7 @@ public class GamePresenter {
             view.getIvDice().setImage(new Image(view.getDIEURL() + dice + ".png"));
 
             try {
-                Thread.sleep(1500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 dialogThrower.throwAlert(Alert.AlertType.WARNING, "AI time-out doesn't work", "");
             }

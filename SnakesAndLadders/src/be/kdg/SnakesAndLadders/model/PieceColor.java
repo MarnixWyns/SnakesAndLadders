@@ -6,7 +6,7 @@ package be.kdg.SnakesAndLadders.model;
  * @author Ruben Vanloo
  */
 public enum PieceColor {
-    BLUE("Blue"), YELLOW("Yellow"), RED("Red"), GREEN("Green");
+    BLUE("Blue"), YELLOW("Yellow"), RED("Red"), GREEN("Green"), BLACK("Black");
 
     private String colorString;
 

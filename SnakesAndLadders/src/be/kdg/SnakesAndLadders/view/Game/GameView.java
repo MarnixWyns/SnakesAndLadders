@@ -348,4 +348,5 @@ public class GameView extends BorderPane {
     public Button getBtnSave() {
         return btnSave;
     }
+
 }

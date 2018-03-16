@@ -118,9 +118,13 @@ public class SetupPresenter {
                 }
 
                 players.add(new Player(view.getColorPickerP1().getValue(), view.getTfP1name().getText()));
+                model.getColorChoice().add(0,view.getColorPickerP1().getValue());
                 players.add(new Player(view.getColorPickerP2().getValue(), view.getTfP2name().getText()));
+                model.getColorChoice().add(1,view.getColorPickerP2().getValue());
                 players.add(new Player(view.getColorPickerP3().getValue(), view.getTfP3name().getText()));
+                model.getColorChoice().add(2,view.getColorPickerP3().getValue());
                 players.add(new Player(view.getColorPickerP4().getValue(), view.getTfP4name().getText()));
+                model.getColorChoice().add(3,view.getColorPickerP4().getValue());
 
 
                 //Should filter out all players that aren't valid

@@ -54,6 +54,33 @@ public class GamePresenter {
             model.setSelectedBackground("BackgroundImages/normal.jpg");
             view.getBoardGrid().setBackground(new Background(new BackgroundImage(new Image(model.getSelectedBackground()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, view.getBackgroundBoard())));
         }
+        if(model.isNewGame()){
+            switch (model.getColorChoice().get(0).toString().toLowerCase()){
+                case "yellow": view.getIvPlayer1().setImage(new Image("PawnImages/yellow.png")); break;
+                case "blue": view.getIvPlayer1().setImage(new Image("PawnImages/blue.png")); break;
+                case "green": view.getIvPlayer1().setImage(new Image("PawnImages/green.png")); break;
+                case "red": view.getIvPlayer1().setImage(new Image("PawnImages/red.png")); break;
+            }
+            switch (model.getColorChoice().get(1).toString().toLowerCase()){
+                case "yellow": view.getIvPlayer2().setImage(new Image("PawnImages/yellow.png")); break;
+                case "blue": view.getIvPlayer2().setImage(new Image("PawnImages/blue.png")); break;
+                case "green": view.getIvPlayer2().setImage(new Image("PawnImages/green.png")); break;
+                case "red": view.getIvPlayer2().setImage(new Image("PawnImages/red.png")); break;
+            }
+            switch (model.getColorChoice().get(2).toString().toLowerCase()){
+                case "yellow": view.getIvPlayer3().setImage(new Image("PawnImages/yellow.png")); break;
+                case "blue": view.getIvPlayer3().setImage(new Image("PawnImages/blue.png")); break;
+                case "green": view.getIvPlayer3().setImage(new Image("PawnImages/green.png")); break;
+                case "red": view.getIvPlayer3().setImage(new Image("PawnImages/red.png")); break;
+            }
+            switch (model.getColorChoice().get(3).toString().toLowerCase()){
+                case "yellow": view.getIvPlayer4().setImage(new Image("PawnImages/yellow.png")); break;
+                case "blue": view.getIvPlayer4().setImage(new Image("PawnImages/blue.png")); break;
+                case "green": view.getIvPlayer4().setImage(new Image("PawnImages/green.png")); break;
+                case "red": view.getIvPlayer4().setImage(new Image("PawnImages/red.png")); break;
+            }
+        }
+
 
         view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
 

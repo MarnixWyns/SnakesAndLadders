@@ -2,6 +2,7 @@ package be.kdg.SnakesAndLadders.model;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * The main model class of the Snakes And Ladders game, this is the only class used for interfacing between the
@@ -13,7 +14,9 @@ import java.util.ArrayList;
  */
 public class SnakesAndLadders {
     private ArrayList<Player> players = new ArrayList<>();
+    private ArrayList<Object> colorChoice = new ArrayList<>();
     private int currentPlayer;
+    private boolean isNewGame;
     private Dice dice;
     private int boardSize;
     private File difficultyFile;
@@ -120,6 +123,18 @@ public class SnakesAndLadders {
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayer);
+    }
+
+    public ArrayList<Object> getColorChoice() {
+        return colorChoice;
+    }
+
+    public boolean isNewGame() {
+        return isNewGame;
+    }
+
+    public void setNewGame(boolean newGame) {
+        isNewGame = newGame;
     }
 }
 

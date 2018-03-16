@@ -48,6 +48,7 @@ public class StartPresenter {
             GameView gameView = new GameView();
             SetupPresenter setupPresenter = new SetupPresenter(model, gameView, setupView, primaryStage);
             view.getScene().setRoot(setupView);
+            model.setNewGame(true);
         });
         //exit button without warning
         view.getBtnExit().setOnAction(event -> System.exit(0));

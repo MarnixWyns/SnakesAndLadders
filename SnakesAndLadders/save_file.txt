@@ -1,7 +1,7 @@
 #Dit is een normaal spelbord van 10x10
-#Auteur: Putt Putt
-normal.jpg
+#Auteur: Freddy Fish
+easy.jpg
 BORD=10
-SLANGEN=10(16-6,46-25,49-11,62-19,64-60,74-53,89-68,92-88,95-75,99-80)
-LADDERS=11(2-38,7-14,8-31,15-26,21-42,28-84,36-44,51-67,71-91,78-98,87-94)
-PLAYERS=2(13-B-1,6-R-2)
+SLANGEN=8(40-3,27-5,43-18,54-31,66-45,76-58,89-53,99-41)
+LADDERS=7(4-25,13-46,33-49,42-63,50-69,62-81,74-92)
+PLAYERS=2(29-B-blue ,25-R-red)

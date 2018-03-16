@@ -17,6 +17,7 @@ import java.util.regex.Pattern;
  * game to be played as desired.
  *
  * @author Marnix Wyns
+ * @author Ruben Vanloo since he fixed what marnix didn't
  * @version 2.0
  */
 public class BoardScan {

@@ -81,7 +81,6 @@ public class GamePresenter {
             }
         }
 
-
         view.getLblplayerName().setText(model.getCurrentPlayer().getUsername());
 
         //Roll dice on button press

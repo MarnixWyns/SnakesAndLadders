@@ -116,6 +116,7 @@ public class StartPresenter {
 
 
     private void updateView() {
-
+        model.startGame();
+        view.getBtnLoadGame().setDisable(!model.getBoardScan().hasSave(new File("save_file.txt")));
     }
 }

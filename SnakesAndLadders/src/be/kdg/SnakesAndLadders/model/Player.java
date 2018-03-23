@@ -14,7 +14,6 @@ public class Player {
     private int playerPos;
     private String ivPath;
 
-
     /**
      * Player constructor to be used when the game is started for the first time, setting the players on 1 by default
      *

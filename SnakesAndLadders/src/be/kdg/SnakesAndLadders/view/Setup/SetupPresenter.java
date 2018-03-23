@@ -108,7 +108,6 @@ public class SetupPresenter {
                 return;
             }
 
-
             try {
                 ArrayList<Player> players = new ArrayList<>();
 
@@ -304,6 +303,7 @@ public class SetupPresenter {
         view.getIvPlayer4().setVisible(dis3);
     }
 
+    //Methode had mooier gekunnen, maar werkt
     private void checkName(TextField tf){
         if (tf.getText().equalsIgnoreCase("compute")){
             tf.setText("");

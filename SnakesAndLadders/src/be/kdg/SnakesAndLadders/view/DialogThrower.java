@@ -75,4 +75,5 @@ public class DialogThrower {
         helpStage.setScene(new Scene(helpView));
         helpStage.showAndWait();
     }
+
 }

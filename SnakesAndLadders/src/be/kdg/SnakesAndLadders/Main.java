@@ -19,11 +19,9 @@ public class Main extends Application {
         primaryStage.setScene(startScene);
         primaryStage.setTitle("Snakes and Ladders");
         primaryStage.setResizable(false);
-
         primaryStage.setHeight(600);
         primaryStage.setWidth(1024);
         primaryStage.getIcons().add(new Image("/icon.png"));
-
 
         primaryStage.show();
     }

@@ -147,7 +147,6 @@ public class BoardScan {
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 pw.write(line + "\n");
-
             }
 
             //Write extra line containing player data
@@ -197,6 +196,21 @@ public class BoardScan {
         } catch (IOException e) {
             throw new SnakesAndLaddersException("Original game file not found");
         }
+    }
+
+    public boolean hasSave(File file){
+
+        if (file.exists()){
+            try (Scanner scanner = new Scanner(file)){
+                if (scanner.hasNext()) {
+                    return true;
+                }
+            } catch (FileNotFoundException e) {
+                return false;
+            }
+        }
+
+        return false;
     }
 
     /**
